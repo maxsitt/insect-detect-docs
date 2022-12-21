@@ -12,7 +12,7 @@ highest probability**.
 - Paste the `metadata_classified*.csv` file from the
   [previous step](classification.md) into the `analysis` folder.
 - Download the provided `csv_analysis.py` script from the
-  [`insect-detect-ml` GitHub repo]([githublink](https://github.com/maxsitt/insect-detect-ml))
+  [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml)
   and paste it into the `analysis` folder.
 - The `csv_analysis.py` script will automatically analyze the first
   `metadata_classified*.csv` file in the current directory in alphabetical order.

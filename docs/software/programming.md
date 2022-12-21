@@ -508,7 +508,7 @@ The following Python script is the main script for fully
 
     If you want to try the script without the PiJuice Zero pHAT connected to
     your Raspberry Pi, use the `yolov5_tracker_save_hqsync_nopj.py` script,
-    available at the [`insect-detect` GitHub repo](githublink).
+    available at the [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect).
 
 Run the script with:
 
