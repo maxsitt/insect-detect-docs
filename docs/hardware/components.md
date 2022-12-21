@@ -50,7 +50,7 @@ supply will be necessary. To test the
 [automated monitoring script](../software/programming.md#automated-monitoring-script)
 without the PiJuice Zero pHAT connected to the Raspberry Pi, please use the
 `yolov5_tracker_save_hqsync_nopj.py` script, available at the
-[`insect-detect` GitHub repo](githublink).
+[`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect).
 
 ---
 
