@@ -13,7 +13,9 @@
 The latest versions of the Python scripts are available in the
 [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect).
 Download the whole repository and copy it to the `home/pi` folder of your
-Raspberry Pi, with simple Drag and drop in the VS Code remote window explorer.
+Raspberry Pi, by simply dragging & dropping it into the VS Code remote window
+explorer. If you downloaded the repository manually and its foldername is
+`insect-detect-main`, change it to `insect-detect`.
 If you run into any problems, find a bug or something that could be optimized,
 please post an [issue](https://github.com/maxsitt/insect-detect/issues) at the
 GitHub repo.
