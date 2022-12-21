@@ -117,9 +117,10 @@ Your ready-to-mount camera trap should look like this:
 ## Preparing the flower platform
 
 You can download the PDF templates for two different sizes of the artifical
-flower platform at the [`insect-detect-docs` GitHub repo](githublink). You will
-also find the [Inkscape](https://inkscape.org/) .svg files in the same folder,
-which you could use as template for your own platform design.
+flower platform at the
+[`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform).
+You will also find the [Inkscape](https://inkscape.org/) .svg files in the
+same folder, which you could use as template for your own platform design.
 
 The bigger platform (500x280 mm) should be mounted at a distance of **40 cm**
 from camera to platform, when using 4K (3840x2160 px) resolution for the HQ
