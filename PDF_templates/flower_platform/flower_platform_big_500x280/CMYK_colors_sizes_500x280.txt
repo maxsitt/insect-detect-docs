@@ -1,0 +1,20 @@
+Platform size: 500x280 mm
+-> 500x280 mm rectangle
+
+CMYK colors:
+Background rectangle:			25, 0, 75, 20
+2x White ("Apiaceae"):			0, 0, 0, 0
+5x Violet ("Cichorium intybus"):	30, 25, 0, 0
+6x Yellow ("Ranunculus repens"):	0, 0, 100, 0
+
+no stroke
+
+Sizes:
+2x White ("Apiaceae"):			center circle = 100x100 mm; 9x surrounding circles = 40x40 mm
+5x Violet ("Cichorium intybus"):	16x ellipses = 8x25 mm (drawn in 50x50 mm circle, which was removed afterwards)
+6x Yellow ("Ranunculus repens"):	5x ellipses = 20x25 mm (drawn in 50x50 mm circle, which was removed afterwards)
+
+
+Inkscape:
+File -> Export... -> PDF
+
