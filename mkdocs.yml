@@ -1,0 +1,145 @@
+# Copyright (c) 2022 Maximilian Sittinger <maximilian.sittinger@julius-kuehn.de>
+
+# License: CC BY-SA 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+
+# You are free to share (copy and redistribute the material in any medium or
+# format) and adapt (remix, transform, and build upon the material for any
+# purpose, even commercially) the software and associated documentation under
+# the following terms:
+# Attribution: You must give appropriate credit, provide a link to the license,
+# and indicate if changes were made. You may do so in any reasonable manner,
+# but not in any way that suggests the licensor endorses you or your use.
+# ShareAlike: If you remix, transform, or build upon the material, you must
+# distribute your contributions under the same license as the original.
+# No additional restrictions: You may not apply legal terms or technological
+# measures that legally restrict others from doing anything the license permits.
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Project information
+site_name: Insect Detect Docs
+site_url: https://maxsitt.github.io/insect-detect-docs/
+site_author: Maximilian Sittinger
+site_description: >-
+  Insect Detect: DIY camera trap for continuous automated insect monitoring - 
+  Documentation and build instructions
+
+# Repository
+repo_name: maxsitt/insect-detect-docs
+repo_url: https://github.com/maxsitt/insect-detect-docs
+edit_uri: ""
+
+# Copyright
+copyright: Copyright &copy; 2022 Maximilian Sittinger
+
+# Configuration
+theme:
+  name: material
+  language: en
+  features:
+  - content.code.annotate
+  - header.autohide
+  - navigation.indexes
+  - navigation.instant
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.suggest
+  - toc.follow
+  palette: 
+    - scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
+    - scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+
+# Plugins
+plugins:
+  - search
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: none
+      width: "100%"
+      height: auto
+      zoomable: true
+      draggable: true
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/maxsitt
+    - icon: fontawesome/brands/orcid
+      link: https://orcid.org/0000-0002-4096-8556
+    - icon: fontawesome/brands/researchgate
+      link: https://researchgate.net/profile/Maximilian-Sittinger
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Anchor link to this section
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+# Page tree
+nav:
+  - Introduction: index.md
+  - Hardware:
+    - hardware/index.md
+    - Components: hardware/components.md
+    - Building Instructions:
+      - Overview: hardware/buildinstructions_overview.md
+      - Preparing the enclosure: hardware/buildinstructions_enclosure.md
+      - Integrating the Hardware: hardware/buildinstructions_hardware.md
+      - Mounting Setup: hardware/buildinstructions_mounting.md
+  - Software:
+    - software/index.md
+    - Local Setup: software/localsetup.md
+    - Raspberry Pi Setup: software/pisetup.md
+    - Programming: software/programming.md
+  - Model Training:
+    - Annotation: modeltraining/annotation.md
+    - YOLOv5 Training: modeltraining/yolov5.md
+  - Deployment:
+    - Detection: deployment/detection.md
+    - Classification: deployment/classification.md
+    - Analysis: deployment/analysis.md
