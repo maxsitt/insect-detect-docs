@@ -19,8 +19,9 @@ of about 20 hours (e.g. 4 hours/day for 5 days), independent of the amount of
 sunlight available to charge the batteries. The plastic enclosure which
 contains all electronic parts is attached to a HPL sheet and can be mounted on
 e.g. a steel or wooden post with a standard pipe clamp. The artificial flower
-platform can be printed with the provided [PDF template](githublink) or with
-your own design and will be mounted on the same post with a pipe clamp
+platform can be printed with the provided
+[PDF template](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform)
+or with your own design and will be mounted on the same post with a pipe clamp
 connected to aluminium square tubes.
 
 ---
