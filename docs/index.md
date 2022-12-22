@@ -193,16 +193,17 @@ the combined results with the provided Pyton script.
 
 ## GitHub repositories
 
-- [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect) with Python
-  scripts for testing the camera trap system and enabling automated insect monitoring.
+- [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect)
+  > Python scripts for testing the camera trap and deploy the automated
+    insect monitoring pipeline.
 
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml)
-  with Jupyter notebooks, that can be directly run in Google Colab to train
-  YOLOv5 detection and classification models on your own data.
+  > Jupyter notebooks to run in Google Colab for YOLOv5 detection and
+    classification model training.
 
 - [`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs)
-  containing the Markdown source files and assets of this documentation website,
-  based on [Material for MkDocs](https://github.com/squidfunk/mkdocs-material).
+  > Source files and assets of this documentation website, based on
+    [Material for MkDocs](https://github.com/squidfunk/mkdocs-material).
 
 ---
 
@@ -223,8 +224,11 @@ the combined results with the provided Pyton script.
 Until the corresponding paper will be published, please cite this project as:
 
 ``` text
-Zenodo DOI
+Sittinger, M. (2022). Insect Detect - Software for automated insect monitoring
+with a DIY camera trap system. Zenodo. https://doi.org/10.5281/zenodo.7472238
 ```
+
+[![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977)
 
 ---
 
