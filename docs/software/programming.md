@@ -7,34 +7,35 @@
     section, together with details on possible modifications. Click on the
     :material-plus-circle: symbol to open the code annotations for more
     info. You can find the full
-    [DepthAI Python API reference](https://docs.luxonis.com/projects/api/en/latest/references/python/)
+    [DepthAI Python API reference](https://docs.luxonis.com/projects/api/en/latest/references/python/){target=_blank}
     at the DepthAI Docs.
 
 The latest versions of the Python scripts are available in the
-[`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect).
+[`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
 Download the whole repository and copy it to the `home/pi` folder of your
 Raspberry Pi, by simply dragging & dropping it into the VS Code remote window
 explorer. If you downloaded the repository manually and its foldername is
 `insect-detect-main`, change it to `insect-detect`.
 If you run into any problems, find a bug or something that could be optimized,
-please post an [issue](https://github.com/maxsitt/insect-detect/issues) at the
-GitHub repo.
+please post an [issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}
+at the GitHub repo.
 
 ---
 
 ## OAK camera preview
 
 This Python script will create and configure the
-[ColorCamera node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/),
+[ColorCamera node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank},
 to send frames to the host (Raspberry Pi) and show them in a new window. If you
 are connected to the Raspberry Pi via SSH,
-[X11 forwarding](pisetup.md#configure-x11-forwarding) has to be set up together
-with an active [X server](localsetup.md#vcxsrv-windows-x-server), to show the
+[X11 forwarding](pisetup.md#configure-x11-forwarding){target=_blank} has to be
+set up together with an active
+[X server](localsetup.md#vcxsrv-windows-x-server){target=_blank}, to show the
 frames in a window on your local PC. In the proposed script, the sensor
 resolution is set to 4K (3840x2160 px) and the full FOV 4K frames are
 downscaled to LQ preview frames (416x416 px), which is the same configuration
 as used for the full
-[automated monitoring pipeline](../deployment/detection.md).
+[automated monitoring pipeline](../deployment/detection.md){target=_blank}.
 
 Run the script with:
 
@@ -86,24 +87,24 @@ with dai.Device(pipeline, usb2Mode=True) as device: # (6)!
 ```
 
 1.  You can find more info about the
-    [ColorCamera node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/)
+    [ColorCamera node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}
     and possible configurations at the DepthAI Docs.
 2.  If your image is shown upside down (on older OAK-1 cameras), you can rotate
     it on-device by activating this configuration.
 3.  `THE_4_K` = 3840x2160 pixel. Default sensor resolution is `THE_1080_P`.
     Aspect ratio for both is 16:9. You can check all
-    [supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html)
+    [supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html){target=_blank}
     and their respective resolutions at the DepthAI Docs. IMX378 is used in the OAK-1.
 4.  More info about other possible
-    [downscaling options](https://github.com/luxonis/depthai-experiments/tree/master/gen2-full-fov-nn).
-5.  The [XLinkOut node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/xlink_out/)
+    [downscaling options](https://github.com/luxonis/depthai-experiments/tree/master/gen2-full-fov-nn){target=_blank}.
+5.  The [XLinkOut node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/xlink_out/){target=_blank}
     sends data from the OAK device to the host (e.g. Raspberry Pi) via XLink.
 6.  If your host (e.g. RPi Zero 2 W) has no USB 3 port or you aren't using a
     USB 3 cable, it is recommended to
-    [force USB 2 communication](https://docs.luxonis.com/en/latest/pages/troubleshooting/#forcing-usb2-communication)
+    [force USB 2 communication](https://docs.luxonis.com/en/latest/pages/troubleshooting/#forcing-usb2-communication){target=_blank}
     with `usb2Mode=True`.
 7.  You can
-    [specify different queue configurations](https://docs.luxonis.com/projects/api/en/latest/components/device/#specifying-arguments-for-getoutputqueue-method),
+    [specify different queue configurations](https://docs.luxonis.com/projects/api/en/latest/components/device/#specifying-arguments-for-getoutputqueue-method){target=_blank},
     by changing the maximum queue size or the blocking behaviour.
 8.  Press ++q++ on your keyboard while the window is selected to close it and
     stop the script execution.
@@ -112,15 +113,16 @@ with dai.Device(pipeline, usb2Mode=True) as device: # (6)!
 
 ## YOLOv5 preview
 
-With the following Python script you can run a custom YOLOv5 object detection
-model ([.blob format](https://docs.luxonis.com/en/latest/pages/model_conversion))
+With the following Python script you can run a custom YOLOv5 object detection model
+([.blob format](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank})
 on the OAK device with full FOV 4K frames downscaled to LQ frames (e.g. 416x416
 px) as model input and show the frames together with the model output (bounding
 box, label, confidence score) in a new window.
 
-If you copied the whole [`insect-detect` GitHub repo](githublink) to your
-Raspberry Pi, the provided YOLOv5s detection model and config .json will be
-used by the OAK-1 device. If you want to use your own model, change the
+If you copied the whole
+[`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
+to your Raspberry Pi, the provided YOLOv5s detection model and config .json will
+be used by the OAK-1 device. If you want to use your own model, change the
 `MODEL_PATH` and `CONFIG_PATH` accordingly.
 
 Run the script with:
@@ -277,13 +279,13 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     change your IoU or confidence threshold in this line for experimenting with
     different settings.
 4.  More info about the
-    [YoloDetectionNetwork node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/yolo_detection_network/).
+    [YoloDetectionNetwork node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/yolo_detection_network/){target=_blank}.
 5.  The downscaled LQ preview frames are used as model input. More info about
-    [linking nodes](https://docs.luxonis.com/projects/api/en/latest/components/nodes/).
+    [linking nodes](https://docs.luxonis.com/projects/api/en/latest/components/nodes/){target=_blank}.
 6.  To avoid freezing of the pipeline, we will set `blocking=False` for the
     frames that are used as model input.
 7.  More info on
-    [`cv2.putText()`](https://www.geeksforgeeks.org/python-opencv-cv2-puttext-method/)
+    [`cv2.putText()`](https://www.geeksforgeeks.org/python-opencv-cv2-puttext-method/){target=_blank}
     to customize your output.
 
 ---
@@ -291,8 +293,8 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 ## YOLOv5 + object tracker preview
 
 In the next Python script we will add an
-[ObjectTracker node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/),
-based on the [Intel DL Streamer](https://dlstreamer.github.io/dev_guide/object_tracking.html)
+[ObjectTracker node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank},
+based on the [Intel DL Streamer](https://dlstreamer.github.io/dev_guide/object_tracking.html){target=_blank}
 framework, which uses the detection model output as input for tracking detected
 objects and assigning unique tracking IDs on-device. The frames, together with
 the model and tracker output (bounding box from tracker output and bbox from
@@ -466,9 +468,9 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 ```
 
 1.  More info about the
-    [ObjectTracker node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/).
-2.  More info on the supported
-    [tracking types](https://dlstreamer.github.io/dev_guide/object_tracking.html).
+    [ObjectTracker node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank}.
+2.  More info about the supported
+    [tracking types](https://dlstreamer.github.io/dev_guide/object_tracking.html){target=_blank}.
 3.  You can use the bounding box coordinates from the tracker output, as
     defined in this segment, and/or the bbox coordinates from the passthrough
     detections to draw the bboxes on the frame. In this example we are using
@@ -482,11 +484,11 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 ## Automated monitoring script
 
 The following Python script is the main script for fully
-[automated insect monitoring](../deployment/detection.md).
+[automated insect monitoring](../deployment/detection.md){target=_blank}.
 
 - The object tracker output (+ passthrough detections) from inference on LQ
   frames (e.g. 416x416) is synchronized with the HQ frames (e.g. 3840x2160) in a
-  [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/)
+  [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
 - Detections (area of the bounding box) are cropped from the synced HQ frames
   and saved to .jpg. See the optional arguments to save the full raw HQ frames
@@ -501,7 +503,7 @@ The following Python script is the main script for fully
 - After a recording interval is finished, or if the PiJuice battery charge
   level drops below a specified threshold, or if an error occurs, the Raspberry
   Pi is safely shut down and waits for the next wake up from the PiJuice Zero.
-- The [PiJuice I2C Command API](https://github.com/PiSupply/PiJuice/tree/master/Software#i2c-command-api)
+- The [PiJuice I2C Command API](https://github.com/PiSupply/PiJuice/tree/master/Software#i2c-command-api){target=_blank}
   is used for power management, which means that a recording will only be made
   if the PiJuice battery charge level is higher than a specified threshold and
   the respective recording duration is conditional on the current charge level.
@@ -510,7 +512,7 @@ The following Python script is the main script for fully
 
     If you want to try the script without the PiJuice Zero pHAT connected to
     your Raspberry Pi, use the `yolov5_tracker_save_hqsync_nopj.py` script,
-    available at the [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect).
+    available at the [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
 
 Run the script with:
 
@@ -519,8 +521,8 @@ python3 ./insect-detect/yolov5_tracker_save_hqsync.py
 ```
 
 For fully automated monitoring in the field, set up a
-[cron job](../pisetup/#set-up-cron-job) that will run the script automatically
-at each boot (after wake up by PiJuice Zero pHAT).
+[cron job](../pisetup/#set-up-cron-job){target=_blank} that will run the script
+automatically at each boot (after wake up by PiJuice Zero pHAT).
 
 ??? info "Optional arguments"
 
@@ -918,10 +920,10 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 8.  You can specify your own recording durations and charge level thresholds in
     this code section. The suggested values can provide an efficient recording
     behaviour if you are using the 12,000 mAh PiJuice battery and set up the
-    [Wakeup Alarm](../pisetup/#pijuice-zero-configuration) for 2-5 times per
-    day. Depending on the number of Wakeups per day, as well as the season and
-    sun exposure of the solar panel, it could make sense to increase or
-    decrease the recording duration of the camera trap.
+    [Wakeup Alarm](../pisetup/#pijuice-zero-configuration){target=_blank} for
+    2-5 times per day. Depending on the number of Wakeups per day, as well as
+    the season and sun exposure of the solar panel, it could make sense to
+    increase or decrease the recording duration of the camera trap.
 9.  The recording will be stopped if the charge level of the PiJuice battery
     that is updated in each while loop drops below the specified threshold. You
     can adjust this threshold, e.g. when using a different battery capacity.
@@ -939,12 +941,12 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 This Python script enables the capture of images at the highest possible
 resolution of the
-[supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html)
+[supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html){target=_blank}
 at a specified time interval (e.g. every 3 seconds). This will lead to a bigger
 field of view (FOV), compared to the other scripts where the camera is set to
 4K resolution. You can find more information on sensor resolution and image
 types at the
-[DepthAI API Docs](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/).
+[DepthAI API Docs](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}.
 You can use this script for training data collection if the provided detection
 model does not work for you, or if you want to detect other objects than
 insects.
@@ -1028,14 +1030,15 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 ```
 
 1.  `THE_12_MP` = 4032x3040 pixel. Check out other possible
-    [sensor resolutions](https://docs.luxonis.com/projects/api/en/latest/references/python/#depthai.ColorCameraProperties.SensorResolution).
+    [sensor resolutions](https://docs.luxonis.com/projects/api/en/latest/references/python/#depthai.ColorCameraProperties.SensorResolution){target=_blank}.
 2.  The maximum number of frames in all pools (raw, isp, preview, video, still)
     is set to 2, to avoid a potential out-of-memory error, especially when
     saving images with the OAK-1 MAX at 5312x6000 px.
 3.  10 fps is currently the maximum framerate supported by the OAK-1 MAX at
     full resolution. You can increase this to e.g. 20 fps for faster auto-focus/
     -exposure/-white balance if you are using lower sensor resolutions.
-4.  More info about the [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/)
+4.  More info about the
+    [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}
 5.  You can set the time interval to capture the still images in the script
     that will be run on the OAK device. It is recommended to wait at least one
     second (`time.sleep(1)`) between capturing and saving an image, as the OAK

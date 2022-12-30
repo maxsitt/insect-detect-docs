@@ -4,8 +4,8 @@ The following instructions will enable you to reproduce the **Full Setup** of
 the DIY camera trap for automated insect monitoring. If you only want to build
 the **Minimal Setup**, plug the solar panel micro USB output directly into the
 PiJuice Zero pHAT without using the Voltaic 12,800 mAh battery (+ USB cable)
-and skip the last steps for [mounting](buildinstructions_mounting.md) the
-camera trap and flower platform.
+and skip the last steps for [mounting](buildinstructions_mounting.md){target=_blank}
+the camera trap and flower platform.
 
 ???+ abstract "Required tools & equipment"
 
@@ -14,13 +14,15 @@ camera trap and flower platform.
         1. Ruler + Permanent Marker
         2. Drilling machine
         3. Metal Drill Bit 3 mm & 4 mm
-        4. Metal Step Drill Bit (with 14 and 20 mm step) (e.g. [Amazon](https://amzn.to/3Tisap2))
+        4. Metal Step Drill Bit (with 14 and 20 mm step)
+           (e.g. [Amazon](https://amzn.to/3Tisap2){target=_blank})
         5. Crepe tape
-        6. Sealing glue (e.g. [Amazon](https://amzn.to/3Vds7wu))
+        6. Sealing glue (e.g. [Amazon](https://amzn.to/3Vds7wu){target=_blank})
         7. Scissors
-        8. 14 mm Hole Punch (e.g. [Amazon](https://amzn.to/3MiUTrs))
-        9. Hammer
-        10. Soldering Iron (+ Solder) or [Hammer Header](https://shop.pimoroni.com/products/gpio-hammer-header)
+        8. 14 mm Hole Punch (e.g. [Amazon](https://amzn.to/3MiUTrs){target=_blank})
+        9.  Hammer
+        10. Soldering Iron (+ Solder) or
+            [Hammer Header](https://shop.pimoroni.com/products/gpio-hammer-header){target=_blank}
             (if you buy a Raspberry Pi without header)
         11. Pliers
         12. Allen wrench 3 mm
@@ -31,13 +33,15 @@ camera trap and flower platform.
         14. Ruler + Permanent Marker
         15. Drilling machine
         16. Metal Drill Bit 3 mm
-        17. Metal Step Drill Bit (with 14 and 20 mm step) (e.g. [Amazon](https://amzn.to/3Tisap2))
+        17. Metal Step Drill Bit (with 14 and 20 mm step)
+            (e.g. [Amazon](https://amzn.to/3Tisap2){target=_blank})
         18. Crepe tape
-        19. Sealing glue (e.g. [Amazon](https://amzn.to/3Vds7wu))
+        19. Sealing glue (e.g. [Amazon](https://amzn.to/3Vds7wu){target=_blank})
         20. Scissors
-        21. 14 mm Hole Punch (e.g. [Amazon](https://amzn.to/3MiUTrs))
+        21. 14 mm Hole Punch (e.g. [Amazon](https://amzn.to/3MiUTrs){target=_blank})
         22. Hammer
-        23. Soldering Iron (+ Solder) or [Hammer Header](https://shop.pimoroni.com/products/gpio-hammer-header)
+        23. Soldering Iron (+ Solder) or
+            [Hammer Header](https://shop.pimoroni.com/products/gpio-hammer-header){target=_blank}
             (if you buy a Raspberry Pi without header)
         24. Pliers
 

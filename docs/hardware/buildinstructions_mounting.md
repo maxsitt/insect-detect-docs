@@ -118,9 +118,9 @@ Your ready-to-mount camera trap should look like this:
 
 You can download the PDF templates for two different sizes of the artifical
 flower platform at the
-[`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform).
-You will also find the [Inkscape](https://inkscape.org/) .svg files in the
-same folder, which you could use as template for your own platform design.
+[`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform){target=_blank}.
+You will also find the [Inkscape](https://inkscape.org/){target=_blank} .svg files
+in the same folder, which you could use as template for your own platform design.
 
 The bigger platform (500x280 mm) should be mounted at a distance of **40 cm**
 from camera to platform, when using 4K (3840x2160 px) resolution for the HQ
@@ -134,10 +134,10 @@ platform or other background, the aspect ratio of the frame where insects will
 be detected (e.g. for 4K resolution ~1:1.78) should be considered for planning.
 
 It is recommended to print the templates on a weather- and UV-resistant
-material, e.g. [lightweight foam board](https://bit.ly/3VATW2b). There are many
-online print shops that can do this for you. If it is possible to add a matt UV
-coating (e.g. at this [print shop](https://bit.ly/3QlFJTA)), this is also
-recommended.
+material, e.g. [lightweight foam board](https://bit.ly/3VATW2b){target=_blank}.
+There are many online print shops that can do this for you. If it is possible
+to add a matt UV coating (e.g. at this [print shop](https://bit.ly/3QlFJTA){target=_blank}),
+this is also recommended.
 
 ---
 
@@ -181,9 +181,9 @@ same platform dimension and pipe clamps as in our example, you can already
 adjust the platform at 55 mm, measured from the aluminium tube to the platform.
 For the smaller platform (350x200 mm) this distance should be 115 mm. Otherwise
 you can adjust the platform after everything is mounted with the provided
-[cam_preview.py script](../software/programming.md#oak-camera-preview). Attach
-the platform to the shorter aluminium tubes with two M4 40 mm screws, two M4
-nuts and four washers.
+[cam_preview.py script](../software/programming.md#oak-camera-preview){target=_blank}.
+Attach the platform to the shorter aluminium tubes with two M4 40 mm screws,
+two M4 nuts and four washers.
 
 ![Flower platform frame connection](assets/images/flower_platform_frame_connection.jpg){ width="600" }
 
@@ -201,8 +201,8 @@ tube piece.
 You can now mount the platform on any standard wooden or steel post! Tighten
 the screws (if you didn't do this already) after you checked the correct
 position with the
-[cam_preview.py script](../software/programming.md#oak-camera-preview). If
-possible, slightly tilt the post and camera trap system forwards, that
+[cam_preview.py script](../software/programming.md#oak-camera-preview){target=_blank}.
+If possible, slightly tilt the post and camera trap system forwards, that
 rainwater can run off the platform.
 
 ![Flower platform mounted](assets/images/flower_platform_mounted.jpg){ width="700" }
@@ -218,16 +218,16 @@ camera (= enclosure) to the platform to 28 cm.
 ## Mounting the solar panel
 
 There are many possible DIY solutions to mount the solar panel at the
-[best angle](https://bit.ly/3CrEAEh) for your location. In our case this is
-about 30° (southwestern Germany). In the following picture, we used two wooden
-wedges fixed with some double-sided tape.
+[best angle](https://bit.ly/3CrEAEh){target=_blank} for your location. In our
+case this is about 30° (southwestern Germany). In the following picture, we
+used two wooden wedges fixed with some double-sided tape.
 
 ![Solar panel DIY mounting](assets/images/solarpanel_mounting_diy.jpg){ width="500" }
 
 If you want a prettier mounting solution, you can get the
-[medium mounting bracket](https://bit.ly/3Ths3tK), which will fit perfectly for
-the 6V 9W Voltaic panel and allow more airflow above the enclosure to
-potentially keep it cooler during hot days.
+[medium mounting bracket](https://bit.ly/3Ths3tK){target=_blank}, which will
+fit perfectly for the 6V 9W Voltaic panel and allow more airflow above the
+enclosure to potentially keep it cooler during hot days.
 
 ![Solar panel bracket mounting](assets/images/solarpanel_mounting_bracket.jpg){ width="600" }
 

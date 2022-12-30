@@ -2,8 +2,8 @@
 
 Before we can use the Raspberry Pi Zero 2 W, we will first have to install
 Raspberry Pi OS Lite to the micro SD card. If you followed the steps in
-[Local Setup](localsetup.md), you already have the Raspberry Pi Imager
-installed on your system (v1.7.3 is used in the following instructions).
+[Local Setup](localsetup.md){target=_blank}, you already have the Raspberry Pi
+Imager installed on your system (v1.7.3 is used in the following instructions).
 
 ---
 
@@ -13,15 +13,15 @@ If you will be using the Raspberry Pi - OAK combination for testing and
 development and don't want to type in your password all the time, it is
 recommended to set up SSH key based authentication. You can find more details
 on this topic and instructions for macOS or Linux in the
-[VS Code Docs](https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication)
-and [Raspberry Pi Docs](https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access).
+[VS Code Docs](https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication){target=_blank} and
+[Raspberry Pi Docs](https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access){target=_blank}.
 
 We will start by generating a new key pair on your local Windows PC and then
 copy the public key to the Raspberry Pi with the Raspberry Pi Imager. But first
 check if there is already an SSH key on your computer by going to the
 `C:\Users\username\.ssh` folder. If there is a file named `id_rsa.pub` you can
 skip this step. If you can't find the `.ssh` folder or the key file, open a
-[local Terminal](https://www.digitalcitizen.life/open-windows-terminal/)
+[local Terminal](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
 (Windows PowerShell) and run the following command:
 
 ``` powershell
@@ -118,13 +118,13 @@ the custom configuration has to be enabled.
 
 To be able to connect to the Pi in VS Code via SSH, we will first have to find
 its IP address in the WiFi network. There are
-[several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address)
+[several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address){target=_blank}
 to achieve this, probably one of the easiest solutions is to install
-[Fing](https://www.fing.com/) on your PC or smartphone (you don't need an
-account to use the [Fing App](https://www.fing.com/products/fing-app)) and scan
-the IP addresses of all devices in your WiFi network. After you know the IP
-address of your Raspberry Pi, we can go on with the next step and establish a
-SSH connection in VS Code.
+[Fing](https://www.fing.com/){target=_blank} on your PC or smartphone (you
+don't need an account to use the [Fing App](https://www.fing.com/products/fing-app){target=_blank})
+and scan the IP addresses of all devices in your WiFi network. After you know
+the IP address of your Raspberry Pi, we can go on with the next step and
+establish a SSH connection in VS Code.
 
 ---
 
@@ -192,7 +192,7 @@ sudo reboot
 
 After the reboot you may have to reload the remote VS Code window. When the
 Raspberry Pi terminal is back and active again, we will change some of the Pi
-settings with:
+settings (use the arrow keys to navigate) with:
 
 ``` bash
 sudo raspi-config
@@ -284,8 +284,12 @@ sudo reboot
 ## PiJuice Zero configuration
 
 In the next steps, we will configure the PiJuice Zero for efficient power
-management and wake-up control. To begin, we will have to install the PiJuice
-package and its dependencies by running the following in the SSH Terminal:
+management and wake-up control. If you want to try the system without the
+PiJuice Zero connected to the Raspberry Pi, you can skip this and the following
+step and directly continue with the [OAK-1 configuration](#oak-1-configuration).
+
+To begin, we will have to install the PiJuice package and its dependencies by
+running the following in the SSH Terminal:
 
 ``` bash
 sudo apt-get install pijuice-base
@@ -304,10 +308,10 @@ now established.
 ![VS Code PiJuice i2cdetect](assets/images/pijuice_i2cdetect.png){ width="500" }
 
 From now on we want to use the built-in RTC
-([real-time clock](https://en.wikipedia.org/wiki/Real-time_clock)) of the
-PiJuice Zero board as primary hardware clock to wake up the Raspberry Pi at
-specific times when it is not connected to the internet. For this, we will have
-to manually load the RTC driver at each boot by modifying the
+([real-time clock](https://en.wikipedia.org/wiki/Real-time_clock){target=_blank})
+of the PiJuice Zero board as primary hardware clock to wake up the Raspberry Pi
+at specific times when it is not connected to the internet. For this, we will
+have to manually load the RTC driver at each boot by modifying the
 `/boot/config.txt` file.
 
 Open the `config.txt` file with:
@@ -383,7 +387,7 @@ pijuice_cli
 
 The most important settings are now applied. You can get a lot more information
 about all of the other settings at the
-[PiJuice GitHub repo](https://github.com/PiSupply/PiJuice/tree/master/Software#pijuice-cli).
+[PiJuice GitHub repo](https://github.com/PiSupply/PiJuice/tree/master/Software#pijuice-cli){target=_blank}.
 
 In the last step, we will set the `Wakeup Alarm` to specified times to fully
 automate the camera trap recordings. The PiJuice wakeup alarm clock is set in
@@ -405,11 +409,11 @@ step.
 ## Set up Cron Job
 
 Because the Raspberry Pi should run the
-[Python script](programming.md#automated-monitoring-script) for automated
-insect monitoring on its own after being woken up by the PiJuice, we have to
-set up a cron job that will be executed at each boot. You can find more
+[Python script](programming.md#automated-monitoring-script){target=_blank} for
+automated insect monitoring on its own after being woken up by the PiJuice, we
+have to set up a cron job that will be executed at each boot. You can find more
 information about cron, crontab and cron jobs
-[here](https://en.wikipedia.org/wiki/Cron).
+[here](https://en.wikipedia.org/wiki/Cron){target=_blank}.
 
 Open the crontab file for editing by running:
 
@@ -450,8 +454,8 @@ booting up your Raspberry Pi, it will try to run the Python script.
 
 ## OAK-1 configuration
 
-Before we can use the OAK-1 in our [Python scripts](programming.md), we will
-first have to install some dependencies by running:
+Before we can use the OAK-1 in our [Python scripts](programming.md){target=_blank},
+we will first have to install some dependencies by running:
 
 ``` bash
 sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
@@ -528,16 +532,16 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
     Plug the OAK device back into USB. If this was the cause of the error, your
     OAK device should be correctly detected and identified now.
 
-- A lot more information on setting up the OAK camera and DepthAI can be found
-  at the [Luxonis Docs](https://docs.luxonis.com/en/latest/pages/tutorials/first_steps/).
+- A lot more information on setting up the OAK camera and DepthAI can be found at the
+  [Luxonis Docs](https://docs.luxonis.com/en/latest/pages/tutorials/first_steps/){target=_blank}.
 - If you want to learn more about the OAK and DepthAI, also check out the
-  [FAQ](https://docs.luxonis.com/en/latest/pages/faq/) and
-  [API Documentation](https://docs.luxonis.com/projects/api/en/latest/).
+  [FAQ](https://docs.luxonis.com/en/latest/pages/faq/){target=_blank} and
+  [API Documentation](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
 - If you have any problems with the OAK device, take a look at the
-  [Troubleshooting page](https://docs.luxonis.com/en/latest/pages/troubleshooting/)
-  or get [Support](https://docs.luxonis.com/en/latest/pages/support/) directly
-  from the Luxonis developers in the [forum](https://discuss.luxonis.com/) or
-  in the [Discord channel](https://discord.gg/luxonis).
+  [Troubleshooting page](https://docs.luxonis.com/en/latest/pages/troubleshooting/){target=_blank}
+  or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} directly
+  from the Luxonis developers in the [forum](https://discuss.luxonis.com/){target=_blank}
+  or in the [Discord channel](https://discord.gg/luxonis){target=_blank}.
 
 ---
 
@@ -548,8 +552,8 @@ necessary to show the OAK-1 camera stream that is send to the Raspberry Pi in a
 new window on our local computer.
 
 Open the VS Code Extensions and install the Remote X11 extension that we
-already installed on our local machine in [Local Setup](localsetup.md) to the
-Raspberry Pi by selecting `Install in SSH: [IP-ADDRESS]`.
+already installed on our local machine in [Local Setup](localsetup.md){target=_blank}
+to the Raspberry Pi by selecting `Install in SSH: [IP-ADDRESS]`.
 
 ![VS Code Remote X11 install SSH](assets/images/vscode_remotex11_ssh_install.png){ width="700" }
 
@@ -575,9 +579,9 @@ Scroll down and make sure that the **XAuth Permission Level** is set to
 ![VS Code Remote X11 SSH settings Remote Authentication](assets/images/vscode_remotex11_ssh_settings_remote_auth.png){ width="700" }
 
 Now you can start the **VcXsrv X server** by opening the `XLaunch.exe`, which
-we installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server). Keep all
-the default settings (press **Next** three times, then **Finish**) and the
-VcXsrv tray icon will appear in your taskbar. Before we will test the X11
+we installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
+Keep all the default settings (press **Next** three times, then **Finish**) and
+the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
 forwarding, open a new SSH Terminal in VS Code for all changes to take effect.
 
 ![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }

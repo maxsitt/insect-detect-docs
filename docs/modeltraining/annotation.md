@@ -20,46 +20,49 @@ model assisted labeling.
 
 Some of these annotation tools are:
 
-- [Roboflow](https://roboflow.com/)
-- [CVAT](https://www.cvat.ai/)
-- [Label Studio](https://labelstud.io/)
-- [Supervisely](https://supervise.ly/)
-- [labelme](https://github.com/wkentaro/labelme)
-- [SuperAnnotate](https://www.superannotate.com/)
-- [Hasty](https://hasty.ai/)
-- [V7 Labs](https://www.v7labs.com/)
-- [Labelbox](https://labelbox.com/)
+- [Roboflow](https://roboflow.com/){target=_blank}
+- [CVAT](https://www.cvat.ai/){target=_blank}
+- [Label Studio](https://labelstud.io/){target=_blank}
+- [Supervisely](https://supervise.ly/){target=_blank}
+- [labelme](https://github.com/wkentaro/labelme){target=_blank}
+- [SuperAnnotate](https://www.superannotate.com/){target=_blank}
+- [Hasty](https://hasty.ai/){target=_blank}
+- [V7 Labs](https://www.v7labs.com/){target=_blank}
+- [Labelbox](https://labelbox.com/){target=_blank}
 
 ---
 
 ## Roboflow
 
-Because of its free [public plan](https://roboflow.com/pricing), direct
-connection to a repository for [open source datasets](https://roboflow.com/universe)
-and ease of use with many helpful functions, we chose Roboflow to annotate our
-images. The Roboflow [Python package](https://docs.roboflow.com/python) makes
-it easy to automatically upload annotated datasets e.g. when using a Google
-Colab notebook as training environment.
+Because of its free [public plan](https://roboflow.com/pricing){target=_blank},
+direct connection to a repository for
+[open source datasets](https://roboflow.com/universe){target=_blank} and ease
+of use with many helpful functions, we chose Roboflow to annotate our images.
+The Roboflow [Python package](https://docs.roboflow.com/python){target=_blank}
+makes it easy to automatically upload annotated datasets e.g. when using a
+Google Colab notebook as training environment.
 
 If you are new to image annotation and dataset management, it is recommended to
-study the [Roboflow documentation](https://docs.roboflow.com/), especially for
-the [Annotate tool](https://docs.roboflow.com/annotate). Also take a look at
-[best practices for image labeling](https://blog.roboflow.com/tips-for-how-to-label-images/),
+study the [Roboflow documentation](https://docs.roboflow.com/){target=_blank},
+especially for the [Annotate tool](https://docs.roboflow.com/annotate){target=_blank}.
+Also take a look at
+[best practices for image labeling](https://blog.roboflow.com/tips-for-how-to-label-images/){target=_blank},
 as a dataset with optimally labeled images can significantly increase model
 performance and accuracy.
 
-The [dataset health check](https://docs.roboflow.com/dataset-health-check) can
-give you a quick overview of your current dataset and show possible problems,
-e.g. regarding class imbalance. With different
-[image preprocessing](https://docs.roboflow.com/image-transformations/image-preprocessing)
-steps you can easily modify your dataset in multiple ways (e.g. resize, modify
-classes).
-[Image augmentations](https://docs.roboflow.com/image-transformations/image-augmentation)
+The [dataset health check](https://docs.roboflow.com/dataset-health-check){target=_blank}
+can give you a quick overview of your current dataset and show possible
+problems, e.g. regarding class imbalance. With different
+[image preprocessing](https://docs.roboflow.com/image-transformations/image-preprocessing){target=_blank}
+steps you can easily modify your dataset in multiple ways (e.g. resize,
+modify classes).
+[Image augmentations](https://docs.roboflow.com/image-transformations/image-augmentation){target=_blank}
 can diversify your dataset, e.g. by applying image rotation, exposure or blur.
 Multiple dataset can be generated in this way from the same annotated source
-images. These datasets can then be [exported](https://docs.roboflow.com/exporting-data)
-in all common formats, either as .zip file or as download link that can be used
-to upload the dataset e.g. into a Google Colab model training notebook.
+images. These datasets can then be
+[exported](https://docs.roboflow.com/exporting-data){target=_blank} in all
+common formats, either as .zip file or as download link that can be used to
+upload the dataset e.g. into a Google Colab model training notebook.
 
 <figure markdown>
   ![Roboflow Annotate](assets/images/roboflow_annotate.jpg){ width="800" }

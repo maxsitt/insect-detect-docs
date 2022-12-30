@@ -76,9 +76,10 @@ already have a device with attached header, you will have to solder a header to
 the Raspberry Pi. But before that make sure to stick the heatsink on the CPU of
 your Raspberry. This will keep the header to sit flush against the Raspberry Pi
 as you solder it. If this is your first time soldering you can find detailed
-instructions [here](https://bit.ly/3AsZMdg) and [here](https://bit.ly/3pr6kCO).
-As alternative to soldering the header, you could also use a
-[Hammer Header](https://shop.pimoroni.com/products/gpio-hammer-header).
+instructions [here](https://bit.ly/3AsZMdg){target=_blank} and
+[here](https://bit.ly/3pr6kCO){target=_blank}. As alternative to soldering the
+header, you could also use a
+[Hammer Header](https://shop.pimoroni.com/products/gpio-hammer-header){target=_blank}.
 
 After attaching the CPU heatsink and soldering or hammering the header, your
 Raspberry Pi should look like this:
@@ -168,14 +169,14 @@ everything will be waterproof.
 
 ![Enclosure Cable Gland Extension Cable position sealed](assets/images/enclosure_cable_gland_extension_cable_position2.jpg){ width="400" }
 
-The [Voltaic V50 battery](https://bit.ly/3psf8bA) that we are using in this
-example, has an integrated over temperature protection, which means that it
-will stop charging at 45°C. To improve the heat dissipation, we can stick the
-battery to the mounting plate with a thermal pad and add two heatsinks to the
-top of the battery. This step is optional and only recommended if your camera
-trap will be exposed to high temperatures in summer. Instead of the thermal
-pad, you could also use two small pieces of double-sided tape or velcro strips
-to attach the batteries to the mounting plate.
+The [Voltaic V50 battery](https://bit.ly/3psf8bA){target=_blank} that we are
+using in this example, has an integrated over temperature protection, which
+means that it will stop charging at 45°C. To improve the heat dissipation, we
+can stick the battery to the mounting plate with a thermal pad and add two
+heatsinks to the top of the battery. This step is optional and only recommended
+if your camera trap will be exposed to high temperatures in summer. Instead of
+the thermal pad, you could also use two small pieces of double-sided tape or
+velcro strips to attach the batteries to the mounting plate.
 
 ![Battery Solar Panel Heatsinks](assets/images/battery_solarpanel_heatsinks.jpg){ width="500" }
 
@@ -214,8 +215,8 @@ OAK-1 USB cable.
 In the next step, we will connect the solar panel battery to the PiJuice Zero
 pHAT with the angled USB A to micro USB cable. Now you could already connect
 the solarpanel, but if you want to continue with the following steps for
-[mounting](buildinstructions_mounting.md) the camera trap, it is recommended to
-connect the solar panel only at the end of the mounting process.
+[mounting](buildinstructions_mounting.md){target=_blank} the camera trap, it is
+recommended to connect the solar panel only at the end of the mounting process.
 
 ![Solar Panel connection](assets/images/solarpanel_connection.jpg){ width="600" }
 
@@ -226,10 +227,10 @@ can now tighten the screws that are holding the mounting plate in place.
 
 ![Enclosure Cables Ties fixing](assets/images/enclosure_cable_ties_fixed.jpg){ width="600" }
 
-If you are going for the [Minimal Setup](components.md#minimal-setup) you are
-now finished! Just connect the USB 3 Type-A to Type-C cable, which was included
-in the OAK-1 kit, to the micro USB adapter of the Raspberry Pi and your good to
-go! Don't close the lid yet, as we need to
+If you are going for the [Minimal Setup](components.md#minimal-setup){target=_blank}
+you are now finished! Just connect the USB 3 Type-A to Type-C cable, which was
+included in the OAK-1 kit, to the micro USB adapter of the Raspberry Pi and
+your good to go! Don't close the lid yet, as we need to
 [set up the software](../software/index.md) in the next steps. If you want to
-build the [Full Setup](components.md#full-setup), continue with the next step
-for mounting the camera trap and the artificial flower platform.
+build the [Full Setup](components.md#full-setup){target=_blank}, continue with
+the next step for mounting the camera trap and the artificial flower platform.

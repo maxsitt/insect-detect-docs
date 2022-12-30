@@ -2,21 +2,22 @@
 
 In this first main section, detailed instructions are given on how to build
 your own weatherproof and solar-powered camera trap with automated real-time
-insect detection and tracking. In the [components](components.md) section, all
-required parts are listed, including example product links. You will also need
-some tools and equipment, which are shown in the
-[overview](buildinstructions_overview.md) section of the building instructions.
-If you don't own these tools yourself, you could lend them from someone or go
-to your local Fablab/Makerspace, where all required tools should be available.
+insect detection and tracking. In the [components](components.md){target=_blank}
+section, all required parts are listed, including example product links. You
+will also need some tools and equipment, which are shown in the
+[overview](buildinstructions_overview.md){target=_blank} section of the
+building instructions. If you don't own these tools yourself, you could lend
+them from someone or go to your local Fablab/Makerspace, where all required
+tools should be available.
 
-We will start with [preparing the enclosure](buildinstructions_enclosure.md),
+We will start with [preparing the enclosure](buildinstructions_enclosure.md){target=_blank},
 where all of the electronic parts will be mounted inside to protect them from
 weather and humidity. In the next step, we are going to
-[integrate the hardware](buildinstructions_hardware.md) into the enclosure. For
-the **Full Setup**, we will prepare everything for
-[mounting](buildinstructions_mounting.md) the camera trap and the flower
-platform in the last section. If you are going for the **Minimal Setup** you
-can skip this step and use your own mounting option.
+[integrate the hardware](buildinstructions_hardware.md){target=_blank} into
+the enclosure. For the **Full Setup**, we will prepare everything for
+[mounting](buildinstructions_mounting.md){target=_blank} the camera trap and
+the flower platform in the last section. If you are going for the
+**Minimal Setup** you can skip this step and use your own mounting option.
 
 ??? warning "Disclaimer"
 

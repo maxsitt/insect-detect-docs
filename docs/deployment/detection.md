@@ -19,16 +19,16 @@ following an alternative approach to this problem is proposed.
 ## Processing pipeline
 
 The OAK-1 camera and
-[DepthAI Python API](https://docs.luxonis.com/projects/api/en/latest/) make it
-possible to run a low-quality (LQ) stream (e.g. 416x416 px) in parallel with a
-high-quality (HQ) stream (e.g. 3840x2160 px) and
-[synchronize the detections](../software/programming.md#automated-monitoring-script)
+[DepthAI Python API](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}
+make it possible to run a low-quality (LQ) stream (e.g. 416x416 px) in parallel
+with a high-quality (HQ) stream (e.g. 3840x2160 px) and
+[synchronize the detections](../software/programming.md#automated-monitoring-script){target=_blank}
 made on the LQ stream with the frames from the HQ stream on-device. This
 approach enables the use of the LQ stream as input for a YOLOv5 detection model
 to increase the possible inference speed, which in turn also increases the
 performance and accuracy of the included
-[object tracker](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/),
-from the [Intel DL Streamer](https://dlstreamer.github.io/dev_guide/object_tracking.html)
+[object tracker](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank},
+from the [Intel DL Streamer](https://dlstreamer.github.io/dev_guide/object_tracking.html){target=_blank}
 framework.
 
 As the insects in these LQ frames often miss visual features that would be
@@ -40,8 +40,8 @@ are synchronized with the HQ stream in real time on-device. In this way it is
 possible to
 **crop the detected insects (area of the bounding box) from the HQ frames** and
 save them as individual .jpg files. These have a high enough resolution for
-accurate [classification](classification.md) in a subsequent step on your local
-PC.
+accurate [classification](classification.md){target=_blank} in a subsequent
+step on your local PC.
 
 Separating the detection and classification steps can also simplify dataset
 management, annotation and model training. Overall less training data is
@@ -71,7 +71,8 @@ event. This metadata includes:
 - **rec_ID**, calculated with the number of already existing recording folders
   to distinguish each recording event. This is important, as the unique
   tracking IDs will restart from 1 for each recording interval and the metadata
-  .csv files will be merged in the [next processing step](classification.md).
+  .csv files will be merged in the
+  [next processing step](classification.md){target=_blank}.
 - **timestamp** gives information about the exact recording time (format:
   `%Y%m%d_%H-%M-%S.%f`).
 - **label** is negligible if a detection model with only one class is used, but
@@ -83,14 +84,14 @@ event. This metadata includes:
   insect. As cropped detections are saved in short time intervals (e.g. every
   second), many images can exist of an individual tracked insect, dependent on
   its duration of stay on the flower platform. All of these images are
-  classified in the [next step](classification.md) and the class with the
-  overall highest probability is then calculated in the final step by using the
-  [analysis](analysis.md) Python script.
+  classified in the [next step](classification.md){target=_blank} and the class
+  with the overall highest probability is then calculated in the final step by
+  using the [analysis](analysis.md){target=_blank} Python script.
 - **x_min**, **y_min**, **x_max**, **y_max** relative bounding box coordinates.
   These coordinates make it possible to calculate the relative bounding box
   size. If the absolute frame size (e.g. size of the flower platform in mm) is
-  inserted into the [analysis](analysis.md) script, the absolute average
-  bounding box size in mm is calculated for each detection.
+  inserted into the [analysis](analysis.md){target=_blank} script, the absolute
+  average bounding box size in mm is calculated for each detection.
 - **file_path** to the cropped detection, saved as .jpg.
 
 | rec_ID | timestamp                                                          | label  | confidence | track_ID | x_min  | y_min  | x_max  | y_max  | file_path                                                                                                                                    |

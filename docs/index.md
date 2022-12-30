@@ -214,11 +214,11 @@ the provided Pyton script.
 
 ## Datasets
 
-- [Detection Dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection){target=_blank}
+- [**Detection Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection){target=_blank}
   > Dataset to train an insect detection model, with annotated images collected in
     2022 with the DIY camera trap and the proposed flower platform as background.
 
-- [Classification Dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
+- [**Classification Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
   > Dataset to train an insect classification model, which contains the cropped
     bounding boxes with insects, exported from the Detection Dataset.
 
