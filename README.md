@@ -2,6 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/assets/logo.png" width="500">
 
+[![DOI](https://zenodo.org/badge/580908850.svg)](https://zenodo.org/badge/latestdoi/580908850)
 [![License badge](https://img.shields.io/badge/license-CC%20BY--SA%204.0-red)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 This repository contains the Markdown source files and assets (images, screenshots)
@@ -72,3 +73,12 @@ The Python scripts for classification and analysis are available in the
 
 The documentation website and its content is licensed under the Creative Commons Attribution-ShareAlike 4.0
 International License ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
+
+## Citation
+
+You can cite this repository as:
+
+```
+Sittinger, M. (2023). Insect Detect Docs - Documentation website for the
+Insect Detect DIY camera trap system. Zenodo. https://doi.org/10.5281/zenodo.7503371
+```
