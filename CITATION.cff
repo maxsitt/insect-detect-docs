@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this resource, please cite it as below."
+authors:
+  - family-names: Sittinger
+    given-names: Maximilian
+    orcid: "https://orcid.org/0000-0002-4096-8556"
+title: >-
+  "Insect Detect Docs - Documentation website
+  for the Insect Detect DIY camera trap system."
+version: 1.0
+doi: 10.5281/zenodo.7503372
+date-released: 2023-01-04
+license: CC-BY-SA-4.0
+url: "https://maxsitt.github.io/insect-detect-docs/"
