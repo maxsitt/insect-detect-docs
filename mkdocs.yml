@@ -47,7 +47,9 @@ theme:
   language: en
   features:
   - content.code.annotate
+  - content.code.copy
   - header.autohide
+  - navigation.footer
   - navigation.indexes
   - navigation.instant
   - navigation.top
