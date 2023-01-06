@@ -491,7 +491,7 @@ python3 -m pip install psutil
 Install `opencv-python`:
 
 ``` bash
-python3 -m pip install opencv-python
+python3 -m pip install opencv-python==4.6.0.66
 ```
 
 Install the `depthai` package:
