@@ -186,7 +186,7 @@ pipeline, from on-device [detection](deployment/detection.md){target=_blank}
 and tracking, to [classification](deployment/classification.md){target=_blank}
 of the cropped insect images on your local PC and subsequent automated
 [analysis](deployment/analysis.md){target=_blank} of the combined results with
-the provided Pyton script.
+the provided Python script.
 
 <figure markdown>
   ![OAK-1 Raspberry Pi PiJuice Zero](assets/images/oak_rpi_pijuice.jpg){ width="540" }
@@ -230,7 +230,7 @@ Until the corresponding paper will be published, please cite this project as:
 
 ``` text
 Sittinger, M. (2022). Insect Detect - Software for automated insect monitoring
-with a DIY camera trap system. Zenodo. https://doi.org/10.5281/zenodo.7472238
+with a DIY camera trap system (v1.2). Zenodo. https://doi.org/10.5281/zenodo.7515847
 ```
 
 [![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977){target=_blank}
