@@ -2,6 +2,16 @@
 
 ![Insect Detect Logo](assets/logo.png){ width="500" }
 
+<span style="font-size: 140%; font-weight: bold">
+Build your own insect-detecting camera trap!
+</span>
+
+<span style="font-weight: bold">
+This website provides instructions on hardware assembly, software setup,
+programming, model training and deployment of a smart DIY camera trap that can
+be used for automated monitoring.
+</span>
+
 ## Background
 
 Long-term monitoring data at a high spatiotemporal resolution is essential to
