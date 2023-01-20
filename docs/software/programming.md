@@ -158,7 +158,7 @@ import numpy as np
 
 # Define optional arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("-log", "--print-log", action="store_true",
+parser.add_argument("-log", "--print_log", action="store_true",
     help="print RPi available memory (MB) + CPU utilization (percent)")
 args = parser.parse_args()
 
@@ -334,7 +334,7 @@ import numpy as np
 
 # Define optional arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("-log", "--print-log", action="store_true",
+parser.add_argument("-log", "--print_log", action="store_true",
     help="print RPi available memory (MB) + CPU utilization (percent)")
 args = parser.parse_args()
 
@@ -486,7 +486,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 The following Python script is the main script for fully
 [automated insect monitoring](../deployment/detection.md){target=_blank}.
 
-- The object tracker output (+ passthrough detections) from inference on LQ
+- The object tracker output (+ passthrough detections) from inference on full FOV LQ
   frames (e.g. 416x416) is synchronized with the HQ frames (e.g. 3840x2160) in a
   [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
@@ -528,11 +528,11 @@ python3 insect-detect/yolov5_tracker_save_hqsync.py
 
     Add after `yolov5_tracker_save_hqsync.py`, separated by space:
 
-    - `-raw` to save cropped detections + full HQ frames
-    - `-overlay` to save cropped detections + full HQ frames with overlay (bbox + info)
-    - `-log` to save additional battery, temperature and RPi memory/CPU logs to .csv
+    - `-raw` to additionally save full HQ frames
+    - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
+    - `-log` to save temperature, RPi memory/CPU and battery logs to .csv
 
-``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 190 305 306 319 331 333 342"
+``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 191 308 309 322 334 343"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -588,13 +588,13 @@ if chargelevel_start < 10 or disk_free < 200: # (2)!
 # Define optional arguments
 parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
-group.add_argument("-raw", "--save-raw-frames", action="store_true",
+group.add_argument("-raw", "--save_raw_frames", action="store_true",
     help="additionally save full raw HQ frames in separate folder (e.g. for training data)")
-group.add_argument("-overlay", "--save-overlay-frames", action="store_true",
+group.add_argument("-overlay", "--save_overlay_frames", action="store_true",
     help="additionally save full HQ frames with overlay (bbox + info) in separate folder")
-parser.add_argument("-log", "--save-logs", action="store_true",
-    help="save battery info + temperature, RPi CPU + OAK VPU temperatures and \
-          RPi available memory (MB) + CPU utilization (percent) to .csv file")
+parser.add_argument("-log", "--save_logs", action="store_true",
+    help="save RPi CPU + OAK VPU temperatures, RPi available memory (MB) + \
+          CPU utilization (percent) and battery info to .csv file")
 args = parser.parse_args()
 
 # Extract detection model metadata from config JSON
@@ -618,10 +618,10 @@ pipeline = dai.Pipeline()
 cam_rgb = pipeline.create(dai.node.ColorCamera)
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
+cam_rgb.setVideoSize(3840, 2160) # HQ frames for syncing, aspect ratio 16:9 (4K)
 cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setVideoSize(3840, 2160) # HQ frames for syncing, aspect ratio 16:9 (4K)
 cam_rgb.setFps(20) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input
@@ -651,6 +651,7 @@ nn.out.link(tracker.inputDetections)
 
 # Create script node and define inputs (to sync detections with HQ frames)
 script = pipeline.create(dai.node.Script)
+script.setProcessor(dai.ProcessorType.LEON_CSS)
 tracker.out.link(script.inputs["tracker"]) # tracker output + passthrough detections
 cam_rgb.video.link(script.inputs["frames"]) # HQ frames
 script.inputs["frames"].setBlocking(False)
@@ -695,10 +696,10 @@ rec_start = datetime.now().strftime("%Y%m%d_%H-%M")
 save_path = f"./insect-detect/data/{rec_start[:8]}/{rec_start}"
 for text in labels:
     Path(f"{save_path}/cropped/{text}").mkdir(parents=True, exist_ok=True)
-    if args.save_raw_frames:
-        Path(f"{save_path}/raw/{text}").mkdir(parents=True, exist_ok=True)
     if args.save_overlay_frames:
         Path(f"{save_path}/overlay/{text}").mkdir(parents=True, exist_ok=True)
+if args.save_raw_frames:
+    Path(f"{save_path}/raw").mkdir(parents=True, exist_ok=True)
 
 # Calculate current recording ID by subtracting number of directories with date-prefix
 folders_dates = len([f for f in Path("./insect-detect/data").glob("**/20*") if f.is_dir()])
@@ -732,25 +733,6 @@ def store_data(frame, tracklets):
                 cropped_path = f"{save_path}/cropped/{labels[t.srcImgDetection.label]}/{timestamp}_{t.id}_cropped.jpg"
                 cv2.imwrite(cropped_path, det_crop)
 
-                # Save full raw HQ frame (e.g. for training data collection)
-                if args.save_raw_frames:
-                    raw_path = f"{save_path}/raw/{labels[t.srcImgDetection.label]}/{timestamp}_{t.id}_raw.jpg"
-                    cv2.imwrite(raw_path, frame)
-
-                # Save full HQ frame with overlay (bounding box, label, confidence, tracking ID) drawn on frame
-                # text position, font size and thickness optimized for 3840x2160 HQ frame size
-                if args.save_overlay_frames: # (5)!
-                    overlay_frame = frame.copy()
-                    cv2.putText(overlay_frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 80),
-                                cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 6)
-                    cv2.putText(overlay_frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 140),
-                                cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 5)
-                    cv2.putText(overlay_frame, f"t.ID:{t.id}", (bbox[0], bbox[3] + 240),
-                                cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 6)
-                    cv2.rectangle(overlay_frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 3)
-                    overlay_path = f"{save_path}/overlay/{labels[t.srcImgDetection.label]}/{timestamp}_{t.id}_overlay.jpg"
-                    cv2.imwrite(overlay_path, overlay_frame)
-
                 # Save corresponding metadata to .csv file for each cropped detection
                 data = {
                     "rec_ID": rec_id,
@@ -766,6 +748,26 @@ def store_data(frame, tracklets):
                 }
                 metadata.writerow(data)
                 metadata_file.flush() # write data immediately to .csv to avoid potential data loss
+
+                # Save full HQ frame with overlay (bounding box, label, confidence, tracking ID) drawn on frame
+                # text position, font size and thickness optimized for 3840x2160 HQ frame size
+                if args.save_overlay_frames: # (5)!
+                    overlay_frame = frame.copy()
+                    cv2.putText(overlay_frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 80),
+                                cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 6)
+                    cv2.putText(overlay_frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 140),
+                                cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 5)
+                    cv2.putText(overlay_frame, f"t.ID:{t.id}", (bbox[0], bbox[3] + 240),
+                                cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 6)
+                    cv2.rectangle(overlay_frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 3)
+                    overlay_path = f"{save_path}/overlay/{labels[t.srcImgDetection.label]}/{timestamp}_{t.id}_overlay.jpg"
+                    cv2.imwrite(overlay_path, overlay_frame)
+
+        # Save full raw HQ frame (e.g. for training data collection)
+        if args.save_raw_frames:
+            timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
+            raw_path = f"{save_path}/raw/{timestamp}_raw.jpg"
+            cv2.imwrite(raw_path, frame)
 
 def record_log(): # (6)!
     """Write information about each recording interval to .csv file."""
@@ -796,31 +798,31 @@ def record_log(): # (6)!
 
 def save_logs(): # (7)!
     """
-    Write time, PiJuice battery info + temp, RPi CPU + OAK VPU temp and
-    RPi available memory (MB) + CPU utilization (percent) to .csv file.
+    Write recording ID, time, RPi CPU + OAK VPU temp, RPi available memory (MB) +
+    CPU utilization (percent) and PiJuice battery info + temp to .csv file.
     """
     with open(f"./insect-detect/data/{rec_start[:8]}/info_log_{rec_start[:8]}.csv",
               "a", encoding="utf-8") as log_info_file:
         log_info = csv.DictWriter(log_info_file, fieldnames=
-            ["rec_ID", "timestamp", "power_input", "charge_status", "charge_level",
-             "current_batt_mA", "current_gpio_mA", "voltage_batt_mV", "temp_batt",
-             "temp_pi", "temp_oak", "pi_mem_available", "pi_cpu_used"])
+            ["rec_ID", "timestamp", "temp_pi", "temp_oak", "pi_mem_available", "pi_cpu_used",
+             "power_input", "charge_status", "charge_level", "temp_batt", "voltage_batt_mV",
+             "current_batt_mA", "current_gpio_mA"])
         if log_info_file.tell() == 0:
             log_info.writeheader()
         logs_info = {
             "rec_ID": rec_id,
             "timestamp": datetime.now().strftime("%Y%m%d_%H-%M-%S"),
-            "power_input": pijuice.status.GetStatus().get("data", {}).get("powerInput", 0),
-            "charge_status": pijuice.status.GetStatus().get("data", {}).get("battery", 0),
-            "charge_level": chargelevel,
-            "current_batt_mA": pijuice.status.GetBatteryCurrent().get("data", 0),
-            "current_gpio_mA": pijuice.status.GetIoCurrent().get("data", 0),
-            "voltage_batt_mV": pijuice.status.GetBatteryVoltage().get("data", 0),
-            "temp_batt": pijuice.status.GetBatteryTemperature().get("data", 0),
             "temp_pi": round(CPUTemperature().temperature),
             "temp_oak": round(device.getChipTemperature().average),
             "pi_mem_available": round(psutil.virtual_memory().available / 1048576),
-            "pi_cpu_used": psutil.cpu_percent(interval=None)
+            "pi_cpu_used": psutil.cpu_percent(interval=None),
+            "power_input": pijuice.status.GetStatus().get("data", {}).get("powerInput", 0),
+            "charge_status": pijuice.status.GetStatus().get("data", {}).get("battery", 0),
+            "charge_level": chargelevel,
+            "temp_batt": pijuice.status.GetBatteryTemperature().get("data", 0),
+            "voltage_batt_mV": pijuice.status.GetBatteryVoltage().get("data", 0),
+            "current_batt_mA": pijuice.status.GetBatteryCurrent().get("data", 0),
+            "current_gpio_mA": pijuice.status.GetIoCurrent().get("data", 0)
         }
         log_info.writerow(logs_info)
         log_info_file.flush()
@@ -833,6 +835,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
     q_track = device.getOutputQueue(name="track", maxSize=4, blocking=False)
 
+    # Set battery charge level and recording start time
     chargelevel = chargelevel_start
     start_time = time.monotonic()
 
@@ -863,11 +866,9 @@ with dai.Device(pipeline, usb2Mode=True) as device:
                 tracklets_data = track_synced.tracklets
                 if frame_synced is not None:
                     store_data(frame_synced, tracklets_data)
-                    time.sleep(1) # wait 1 second to save cropped detections # (10)
-                    if args.save_raw_frames or args.save_overlay_frames:
-                        time.sleep(2) # wait 2 seconds longer to save additional raw frames
+                    time.sleep(1) # wait 1 second to save the cropped detections (+ HQ frames) # (10)
 
-            # Write PiJuice battery info + temp, RPi CPU and OAK VPU temp, RPi info to .csv log file
+            # Write RPi CPU + OAK VPU temp, RPi info and battery info + temp to .csv log file
             if args.save_logs:
                 save_logs()
 
@@ -929,8 +930,9 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 10. In this line you can change the time interval with which the cropped
     detections will be saved to .jpg. This does not affect the detection model
     and object tracker, which are both run on-device even if no detections are
-    saved. To avoid potential memory errors, it is recommended to wait at least
-    2 seconds when additionally saving full HQ frames (`-raw` or `-overlay`).
+    saved. Using `-overlay` to additionally save the full HQ frames for each
+    detection can significantly slow down the pipeline depending on the number
+    of detected objects.
 11. If you are still in the testing phase, comment out the shutdown commands in
     this line and the last line by adding `#` in front of the line.
 
@@ -943,7 +945,8 @@ use the following script to save HQ frames (e.g. 3840x2160 px) to .jpg at a
 specified time interval (e.g. every second). The downscaled full FOV LQ frames
 (e.g. 416x416 px) can be saved to .jpg additionally, e.g. to include them in
 the training data, as the detection model will do inference on LQ frames
-(however you could also downscale the annotated HQ images in Roboflow).
+(however it is recommended downscale the annotated HQ images in Roboflow
+before training).
 
 Run the script with:
 
@@ -959,7 +962,7 @@ python3 insect-detect/frame_capture.py
       recording time; default = 2)
     - `-lq` to additionally save downscaled full FOV LQ frames (e.g. 416x416)
 
-``` py title="frame_capture.py" hl_lines="17"
+``` py title="frame_capture.py" hl_lines="18"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -975,14 +978,15 @@ from pathlib import Path
 import cv2
 import depthai as dai
 
-# Set capture frequency in seconds (save frame to .jpg every XX seconds)
-CAPTURE_FREQ = 1
+# Set capture frequency in seconds
+# 'CAPTURE_FREQ = 0.2' saves ~57 frames per minute to .jpg
+CAPTURE_FREQ = 0.2 # (1)!
 
 # Define optional arguments
 parser = argparse.ArgumentParser()
-parser.add_argument("-min", "--min_rec_time", type=int, choices=range(1, 720),
+parser.add_argument("-min", "--min_rec_time", type=int, choices=range(1, 721),
                     default=2, help="set record time in minutes")
-parser.add_argument("-lq", "--save-lq-frames", action="store_true",
+parser.add_argument("-lq", "--save_lq_frames", action="store_true",
     help="additionally save downscaled full FOV LQ frames (e.g. 416x416)")
 args = parser.parse_args()
 
@@ -1017,13 +1021,14 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     if args.save_lq_frames:
         q_lq_frame = device.getOutputQueue(name="lq_frame", maxSize=4, blocking=False)
 
-    # Set recording start time and create folders to save the frames
+    # Create folders to save the frames
     rec_start = datetime.now().strftime("%Y%m%d_%H-%M")
     save_path = f"./insect-detect/frames/{rec_start[:8]}/{rec_start}"
     Path(f"{save_path}/HQ_frames").mkdir(parents=True, exist_ok=True)
     if args.save_lq_frames:
         Path(f"{save_path}/LQ_frames").mkdir(parents=True, exist_ok=True)
 
+    # Set recording start time
     start_time = time.monotonic()
 
     # Get recording time in min from optional argument (default: 2)
@@ -1033,9 +1038,8 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     # Record until recording time is finished
     while time.monotonic() < start_time + rec_time:
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
-
         # Get HQ (+ LQ) frames and save to .jpg at specified time interval
+        timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
         hq_path = f"{save_path}/HQ_frames/{timestamp}_HQ.jpg"
         hq_frame = q_hq_frame.get().getCvFrame()
         cv2.imwrite(hq_path, hq_frame)
@@ -1050,21 +1054,29 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 # Print number and path of saved frames to console
 frames_hq = len(list(Path(f"{save_path}/HQ_frames").glob("*.jpg")))
 if not args.save_lq_frames:
-    print(f"Saved {frames_hq} HQ frames to {save_path}.")
+    print(f"Saved {frames_hq} HQ frames to {save_path}.") # (2)!
 if args.save_lq_frames:
     frames_lq = len(list(Path(f"{save_path}/LQ_frames").glob("*.jpg")))
     print(f"Saved {frames_hq} HQ and {frames_lq} LQ frames to {save_path}.")
 
 ```
 
+1.  You can increase the capture frequency in this line, e.g. if you want to
+    only save a frame every 10 seconds, every minute etc. Keep in mind that
+    the image processing will take some time and test different values until
+    the frames are saved with your desired time interval.
+2.  If you are running this script automatically, you can also write this
+    info to a log file. Check the [monitoring script](#automated-monitoring-script)
+    and copy the lines at the beginning to create a logger.
+
 ---
 
-## Still image capture
+## Still capture
 
-The following Python script enables the capture of images at the highest
+The following Python script enables the capture of still frames at the highest
 possible resolution of the
 [supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html){target=_blank}
-at a specified time interval (e.g. every 2 seconds). This will lead to a bigger
+at a specified time interval (e.g. every second). This will lead to a bigger
 field of view (FOV), compared to the other scripts where the camera is set to
 4K resolution. You can find more information on sensor resolution and image
 types at the
@@ -1083,7 +1095,7 @@ python3 insect-detect/still_capture.py
     - `-min` to set recording time in minutes (e.g. `-min 5` for 5 min
       recording time; default = 2)
 
-``` py title="still_capture.py" hl_lines="16 30 34 62"
+``` py title="still_capture.py" hl_lines="17 31 35"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -1098,8 +1110,9 @@ from pathlib import Path
 
 import depthai as dai
 
-# Set capture frequency in seconds (save still to .jpg every XX seconds)
-CAPTURE_FREQ = 2
+# Set capture frequency in seconds
+# 'CAPTURE_FREQ = 1' saves ~57 still frames per minute to .jpg
+CAPTURE_FREQ = 1
 
 # Define optional arguments
 parser = argparse.ArgumentParser()
@@ -1119,11 +1132,6 @@ cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_12_MP) # OA
 cam_rgb.setNumFramesPool(2,2,2,2,2) # (2)!
 cam_rgb.setFps(10) # frames per second available for focus/exposure # (3)
 
-# Define camera control input
-xin_ctrl = pipeline.create(dai.node.XLinkIn)
-xin_ctrl.setStreamName("control")
-xin_ctrl.out.link(cam_rgb.inputControl)
-
 # Create and configure video encoder node and define input + output
 still_enc = pipeline.create(dai.node.VideoEncoder) # (4)!
 still_enc.setDefaultProfilePreset(1, dai.VideoEncoderProperties.Profile.MJPEG)
@@ -1134,20 +1142,34 @@ xout_still = pipeline.create(dai.node.XLinkOut)
 xout_still.setStreamName("still")
 still_enc.bitstream.link(xout_still.input)
 
+# Create script node (to send capture still command)
+script = pipeline.create(dai.node.Script)
+script.setProcessor(dai.ProcessorType.LEON_CSS)
+
+# Set script that will be run on-device (Luxonis OAK)
+script.setScript('''
+ctrl = CameraControl()
+ctrl.setCaptureStill(True)
+
+while True:
+    node.io["capture_still"].send(ctrl)
+''')
+
+# Send script output (capture still command) to camera
+script.outputs["capture_still"].link(cam_rgb.inputControl)
+
 # Connect to OAK device and start pipeline
 with dai.Device(pipeline, usb2Mode=True) as device:
 
-    # Create input queue to send the still capture command to the OAK device
-    q_ctrl = device.getInputQueue(name="control", maxSize=4, blocking=False)
-
-    # Create output queue to get the encoded still images
+    # Create output queue to get the encoded still frames from the output defined above
     q_still = device.getOutputQueue(name="still", maxSize=1, blocking=False)
 
-    # Set recording start time and create folder to save the still images
+    # Create folder to save the still frames
     rec_start = datetime.now().strftime("%Y%m%d_%H-%M")
-    save_path = f"./insect-detect/stills/{rec_start[:8]}/{rec_start}" # (5)!
+    save_path = f"./insect-detect/stills/{rec_start[:8]}/{rec_start}"
     Path(f"{save_path}").mkdir(parents=True, exist_ok=True)
 
+    # Set recording start time
     start_time = time.monotonic()
 
     # Get recording time in min from optional argument (default: 2)
@@ -1157,17 +1179,11 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     # Record until recording time is finished
     while time.monotonic() < start_time + rec_time:
 
-        # Send still capture command to OAK device
-        ctrl = dai.CameraControl()
-        ctrl.setCaptureStill(True)
-        q_ctrl.send(ctrl)
-
-        timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
-
         # Get encoded still frames and save to .jpg at specified time interval
-        enc_still = q_still.get()
+        timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
+        enc_still = q_still.get().getData()
         with open(f"{save_path}/{timestamp}_still.jpg", "wb") as still_jpg:
-            still_jpg.write(enc_still.getData())
+            still_jpg.write(enc_still)
 
         time.sleep(CAPTURE_FREQ)
 
@@ -1187,8 +1203,148 @@ print(f"Saved {frames_still} still frames to {save_path}.")
     -exposure/-white balance if you are using lower sensor resolutions.
 4.  More info about the
     [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}
-5.  For each recording day and time a respective folder is created. If you want
-    to save all still images into the same directory, you can change this here.
-    Be careful not to save any folder with date prefix into the
-    `./insect-detect/data` directory, as this will lead to the calculation of
-    wrong recording IDs if the monitoring script is used with the same system.
+
+---
+
+## Video capture
+
+With the following Python script you can save encoded HQ frames (1080p or 4K
+resolution) with HEVC/H.265 compression to a .mp4 video file. As there is no
+encoding happening on the host (Raspberry Pi), almost no CPU and RAM is used.
+This makes it possible to record 4K video with 30 fps with almost no load on
+the Raspberry Pi. As 4K 30 fps video can take up a lot of disk space, the
+remaining free disk space is checked while recording and the recording is
+stopped if the free space left drops below a specified threshold (e.g. 200 MB).
+
+If you don't need the full 30 fps you can decrease the frame rate which will
+lead to a smaller video file size (e.g. `-fps 15`).
+
+Run the script with:
+
+``` bash
+python3 insect-detect/video_capture.py
+```
+
+??? info "Optional argument"
+
+    Add after `video_capture.py`, separated by space:
+
+    - `-min` to set recording time in minutes (e.g. `-min 5` for 5 min
+      recording time; default = 2)
+    - `-fps` to set frame rate (frames per second) for video capture (default: 30)
+    - `-4k` to record video in 4K resolution (3840x2160 px) (default: 1080p)
+
+``` py title="video_capture.py" hl_lines="89"
+'''
+Author:   Maximilian Sittinger (https://github.com/maxsitt)
+License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
+
+includes segments from open source scripts available at https://github.com/luxonis
+'''
+
+import argparse
+import time
+from datetime import datetime
+from fractions import Fraction
+from pathlib import Path
+
+import av
+import depthai as dai
+import psutil
+
+# Define optional arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("-min", "--min_rec_time", type=int, choices=range(1, 61),
+                    default=2, help="set record time in minutes")
+parser.add_argument("-fps", "--frames_per_second", type=int, choices=range(1, 31),
+                    default=30, help="set frame rate (frames per second) for video capture")
+parser.add_argument("-4k", "--four_k_resolution", action="store_true",
+                    help="record video in 4K resolution (3840x2160 px); default = 1080p")
+args = parser.parse_args()
+
+# Get frame rate (frames per second) from optional argument (default: 30)
+FPS = args.frames_per_second
+
+# Create depthai pipeline
+pipeline = dai.Pipeline()
+
+# Create and configure camera node
+cam_rgb = pipeline.create(dai.node.ColorCamera)
+#cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
+cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P)
+cam_rgb.setVideoSize(1920, 1080)
+if args.four_k_resolution:
+    cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
+    cam_rgb.setVideoSize(3840, 2160)
+cam_rgb.setFps(FPS) # frames per second available for focus/exposure
+
+# Create and configure video encoder node and define input + output
+video_enc = pipeline.create(dai.node.VideoEncoder)
+video_enc.setDefaultProfilePreset(FPS, dai.VideoEncoderProperties.Profile.H265_MAIN)
+cam_rgb.video.link(video_enc.input)
+
+xout_vid = pipeline.create(dai.node.XLinkOut)
+xout_vid.setStreamName("video")
+video_enc.bitstream.link(xout_vid.input)
+
+# Connect to OAK device and start pipeline
+with dai.Device(pipeline, usb2Mode=True) as device:
+
+    # Create output queue to get the encoded frames from the output defined above
+    q_video = device.getOutputQueue(name="video", maxSize=30, blocking=True)
+
+    # Create folder to save the videos
+    rec_start = datetime.now().strftime("%Y%m%d")
+    save_path = f"./insect-detect/videos/{rec_start}"
+    Path(f"{save_path}").mkdir(parents=True, exist_ok=True)
+
+    # Create .mp4 container with HEVC/H.265 compression
+    timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S")
+    RES = "1080p"
+    if args.four_k_resolution:
+        RES = "4K"
+    with av.open(f"{save_path}/{timestamp}_{FPS}fps_{RES}_video.mp4", "w") as container:
+        stream = container.add_stream("hevc", rate=FPS)
+        stream.time_base = Fraction(1, 1000 * 1000)
+        stream.width = 1920
+        stream.height = 1080
+        if args.four_k_resolution:
+            stream.width = 3840
+            stream.height = 2160
+
+    # Set recording start time
+    start_time = time.monotonic()
+
+    # Get recording time in min from optional argument (default: 2)
+    rec_time = args.min_rec_time * 60
+    print(f"Recording time: {args.min_rec_time} min\n")
+
+    # Get free disk space in MB
+    disk_free = round(psutil.disk_usage("/").free / 1048576)
+
+    # Record until recording time is finished or free disk space drops below threshold
+    while time.monotonic() < start_time + rec_time and disk_free > 200: # (1)!
+
+        # Update free disk space
+        disk_free = round(psutil.disk_usage("/").free / 1048576)
+
+        # Get encoded video frames and save to packet
+        enc_video = q_video.get().getData()
+        packet = av.Packet(enc_video)
+        packet.dts = int((time.monotonic() - start_time) * 1000 * 1000)
+        packet.pts = int((time.monotonic() - start_time) * 1000 * 1000)
+
+        # Mux packet into the .mp4 container
+        container.mux_one(packet)
+
+# Print duration, fps and path of saved video + free disk space to console
+if not args.four_k_resolution:
+    print(f"\nSaved {args.min_rec_time} min 1080p video with {args.frames_per_second} fps to {save_path}.")
+if args.four_k_resolution:
+    print(f"\nSaved {args.min_rec_time} min 4K video with {args.frames_per_second} fps to {save_path}.")
+print(f"Free disk space left: {disk_free} MB")
+
+```
+
+1.  Depending on the available disk space, it might make sense to change this
+    threshold to a higher or lower value.
