@@ -473,7 +473,7 @@ Upgrade the package `numpy`:
 python3 -m pip install --upgrade numpy
 ```
 
-We will have to install four more packages, that are required for the Python
+We will have to install five more packages, that are required for the Python
 scripts to work correctly.
 
 Install `python3-pandas`:
@@ -492,6 +492,13 @@ Install `opencv-python`:
 
 ``` bash
 python3 -m pip install opencv-python==4.6.0.66
+```
+
+Install the [PyAV package](https://github.com/PyAV-Org/PyAV) if you want
+to use the [`video_capture.py`](programming.md#video-capture) script:
+
+``` bash
+python3 -m pip install av
 ```
 
 Install the `depthai` package:
