@@ -240,7 +240,7 @@ Until the corresponding paper will be published, please cite this project as:
 
 ``` text
 Sittinger, M. (2022). Insect Detect - Software for automated insect monitoring
-with a DIY camera trap system (v1.2). Zenodo. https://doi.org/10.5281/zenodo.7515847
+with a DIY camera trap system (v1.3). Zenodo. https://doi.org/10.5281/zenodo.7554302
 ```
 
 [![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977){target=_blank}
