@@ -209,12 +209,14 @@ the provided Python script.
 ## GitHub repositories
 
 - [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
-  > Python scripts for testing the camera trap and deploy the automated
-    insect monitoring pipeline.
+  > Python scripts for testing and deploying the camera trap system for automated
+    insect monitoring. Includes a basic YOLOv5s insect detection model.
 
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
   > Jupyter notebooks to run in Google Colab for YOLOv5 detection and
-    classification model training.
+    classification model training. Modified YOLOv5 classification script with
+    basic YOLOv5s insect classification model. Python script for automated
+    analysis of the generated metadata .csv files.
 
 - [`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs){target=_blank}
   > Source files and assets of this documentation website, based on
