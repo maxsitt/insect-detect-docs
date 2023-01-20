@@ -494,8 +494,8 @@ Install `opencv-python`:
 python3 -m pip install opencv-python==4.6.0.66
 ```
 
-Install the [PyAV package](https://github.com/PyAV-Org/PyAV) if you want
-to use the [`video_capture.py`](programming.md#video-capture) script:
+Install the [PyAV package](https://github.com/PyAV-Org/PyAV){target=_blank} if you want
+to use the [`video_capture.py`](programming.md#video-capture){target=_blank} script:
 
 ``` bash
 python3 -m pip install av
