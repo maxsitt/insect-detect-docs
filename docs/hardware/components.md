@@ -188,7 +188,7 @@ video output that is used for the HQ frames in the
 is still limited to a maximum resoltion of 3840x2160 pixel (4K). Which means
 that, at the moment, the OAK-1 MAX will only be worth the higher price if you
 are using e.g. the
-[time-lapse image capture script](../software/programming.md#time-lapse-image-capture){target=_blank}
+[still capture script](../software/programming.md#still-capture){target=_blank}
 to take still images at the highest possible sensor resolution. The also more
 expensive [OAK-1 W](https://docs.luxonis.com/projects/hardware/en/latest/pages/NG9096w.html){target=_blank}
 (199 $) includes an
