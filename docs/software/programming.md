@@ -1210,11 +1210,11 @@ print(f"Saved {frames_still} still frames to {save_path}.")
 
 With the following Python script you can save encoded HQ frames (1080p or 4K
 resolution) with HEVC/H.265 compression to a .mp4 video file. As there is no
-encoding happening on the host (Raspberry Pi), almost no CPU and RAM is used.
-This makes it possible to record 4K video with 30 fps with almost no load on
-the Raspberry Pi. As 4K 30 fps video can take up a lot of disk space, the
-remaining free disk space is checked while recording and the recording is
-stopped if the free space left drops below a specified threshold (e.g. 200 MB).
+encoding happening on the host (RPi), CPU and RAM usage is minimal, which makes
+it possible to record 4K 30 fps video with almost no load on the Raspberry Pi.
+As 4K 30 fps video can take up a lot of disk space, the remaining free disk
+space is checked while recording and the recording is stopped if the free space
+left drops below a specified threshold (e.g. 200 MB).
 
 If you don't need the full 30 fps you can decrease the frame rate which will
 lead to a smaller video file size (e.g. `-fps 15`).
@@ -1225,7 +1225,7 @@ Run the script with:
 python3 insect-detect/video_capture.py
 ```
 
-??? info "Optional argument"
+??? info "Optional arguments"
 
     Add after `video_capture.py`, separated by space:
 
