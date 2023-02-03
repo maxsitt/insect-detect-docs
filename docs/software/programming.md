@@ -64,7 +64,7 @@ cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K) # (3)!
 cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square # (4)
-cam_rgb.setFps(20) # frames per second available for focus/exposure
+cam_rgb.setFps(30) # frames per second available for focus/exposure
 
 xout_rgb = pipeline.create(dai.node.XLinkOut) # (5)!
 xout_rgb.setStreamName("frame")
@@ -121,7 +121,7 @@ box, label, confidence score) in a new window.
 
 If you copied the whole
 [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
-to your Raspberry Pi, the provided YOLOv5s detection model and config .json will
+to your Raspberry Pi, the provided YOLOv5n detection model and config .json will
 be used by the OAK-1 device. If you want to use your own model, change the
 `MODEL_PATH` and `CONFIG_PATH` accordingly.
 
@@ -138,7 +138,7 @@ python3 insect-detect/yolov5_preview.py
     - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
       (%) to console
 
-``` py title="yolov5_preview.py" hl_lines="28 29 76 77"
+``` py title="yolov5_preview.py" hl_lines="27 28 75 76 128"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -148,7 +148,6 @@ compiled with open source scripts available at https://github.com/luxonis
 
 import argparse
 import json
-import sys
 import time
 from pathlib import Path
 
@@ -166,8 +165,8 @@ if args.print_log:
     import psutil
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5s_416_openvino_2022.1_9shave.blob") # (1)!
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5s_416.json") # (2)!
+MODEL_PATH = Path("./insect-detect/models/yolov5n_416_openvino_2022.1_5shave.blob") # (1)!
+CONFIG_PATH = Path("./insect-detect/models/json/yolov5_416.json") # (2)!
 
 # Extract detection model metadata from config JSON
 with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -193,7 +192,7 @@ cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(20) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(30) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input + outputs
 nn = pipeline.create(dai.node.YoloDetectionNetwork) # (3)!
@@ -249,6 +248,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
         if nn_out is not None:
             dets = nn_out.detections
             counter += 1
+            fps = counter / (time.monotonic() - start_time)
 
         if frame is not None:
             for detection in dets:
@@ -260,10 +260,13 @@ with dai.Device(pipeline, usb2Mode=True) as device:
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
                 cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2)
 
-            cv2.putText(frame, "NN fps: {:.2f}".format(counter / (time.monotonic() - start_time)),
-                        (2, frame.shape[0] - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+            cv2.putText(frame, f"fps: {round(fps, 2)}", (4, frame.shape[0] - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
             cv2.imshow("yolov5_preview", frame)
+            # streaming the frames via SSH (X11 forwarding) will slow down fps
+            # comment out 'cv2.imshow()' and print fps to console for "true" fps
+            #print(f"fps: {round(fps, 2)}")
 
         if cv2.waitKey(1) == ord("q"):
             break
@@ -314,7 +317,7 @@ python3 insect-detect/yolov5_tracker_preview.py
     - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
       (%) to console
 
-``` py title="yolov5_tracker_preview.py" hl_lines="74 140 141"
+``` py title="yolov5_tracker_preview.py" hl_lines="73 138 139 147"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -324,7 +327,6 @@ compiled with open source scripts available at https://github.com/luxonis
 
 import argparse
 import json
-import sys
 import time
 from pathlib import Path
 
@@ -342,8 +344,8 @@ if args.print_log:
     import psutil
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5s_416_openvino_2022.1_9shave.blob")
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5s_416.json")
+MODEL_PATH = Path("./insect-detect/models/yolov5n_416_openvino_2022.1_4shave.blob")
+CONFIG_PATH = Path("./insect-detect/models/json/yolov5_416.json")
 
 # Extract detection model metadata from config JSON
 with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -369,7 +371,7 @@ cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(20) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(30) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input
 nn = pipeline.create(dai.node.YoloDetectionNetwork)
@@ -389,8 +391,6 @@ nn.setNumInferenceThreads(2)
 # Create and configure object tracker node and define inputs + outputs
 tracker = pipeline.create(dai.node.ObjectTracker) # (1)!
 tracker.setTrackerType(dai.TrackerType.SHORT_TERM_IMAGELESS) # (2)!
-#tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS)
-#tracker.setTrackerType(dai.TrackerType.ZERO_TERM_COLOR_HISTOGRAM)
 tracker.setTrackerIdAssignmentPolicy(dai.TrackerIdAssignmentPolicy.UNIQUE_ID)
 nn.passthrough.link(tracker.inputTrackerFrame)
 nn.passthrough.link(tracker.inputDetectionFrame)
@@ -435,6 +435,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
         if track_out is not None:
             tracklets_data = track_out.tracklets
             counter+=1
+            fps = counter / (time.monotonic() - start_time)
             
         if frame is not None:
             for t in tracklets_data:
@@ -457,10 +458,13 @@ with dai.Device(pipeline, usb2Mode=True) as device:
                 cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2) # model output
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 130), 1) # tracker output
 
-            cv2.putText(frame, "NN fps: {:.2f}".format(counter / (time.monotonic() - start_time)),
-                        (2, frame.shape[0] - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+            cv2.putText(frame, f"fps: {round(fps, 2)}", (4, frame.shape[0] - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
             cv2.imshow("tracker_preview", frame)
+            # streaming the frames via SSH (X11 forwarding) will slow down fps
+            # comment out 'cv2.imshow()' and print fps to console for "true" fps
+            #print(f"fps: {round(fps, 2)}")
 
         if cv2.waitKey(1) == ord("q"):
             break
@@ -532,7 +536,7 @@ python3 insect-detect/yolov5_tracker_save_hqsync.py
     - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
     - `-log` to save temperature, RPi memory/CPU and battery logs to .csv
 
-``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 191 308 309 322 334 343"
+``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 188 307 308 321 334 343"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -571,8 +575,8 @@ logger = logging.getLogger() # (1)!
 sys.stderr.write = logger.error
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5s_416_openvino_2022.1_9shave.blob")
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5s_416.json")
+MODEL_PATH = Path("./insect-detect/models/yolov5n_416_openvino_2022.1_4shave.blob")
+CONFIG_PATH = Path("./insect-detect/models/json/yolov5_416.json")
 
 # Instantiate PiJuice
 pijuice = PiJuice(1, 0x14)
@@ -622,7 +626,7 @@ cam_rgb.setVideoSize(3840, 2160) # HQ frames for syncing, aspect ratio 16:9 (4K)
 cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(20) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(30) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input
 nn = pipeline.create(dai.node.YoloDetectionNetwork)
@@ -642,8 +646,6 @@ nn.setNumInferenceThreads(2)
 # Create and configure object tracker node and define inputs
 tracker = pipeline.create(dai.node.ObjectTracker)
 tracker.setTrackerType(dai.TrackerType.SHORT_TERM_IMAGELESS)
-#tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS)
-#tracker.setTrackerType(dai.TrackerType.ZERO_TERM_COLOR_HISTOGRAM)
 tracker.setTrackerIdAssignmentPolicy(dai.TrackerIdAssignmentPolicy.UNIQUE_ID)
 nn.passthrough.link(tracker.inputTrackerFrame)
 nn.passthrough.link(tracker.inputDetectionFrame)
@@ -706,7 +708,6 @@ folders_dates = len([f for f in Path("./insect-detect/data").glob("**/20*") if f
 folders_days = len([f for f in Path("./insect-detect/data").glob("20*") if f.is_dir()])
 rec_id = folders_dates - folders_days
 
-
 def frame_norm(frame, bbox):
     """Convert relative bounding box coordinates (0-1) to pixel coordinates."""
     norm_vals = np.full(len(bbox), frame.shape[0])
@@ -765,9 +766,12 @@ def store_data(frame, tracklets):
 
         # Save full raw HQ frame (e.g. for training data collection)
         if args.save_raw_frames:
-            timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
-            raw_path = f"{save_path}/raw/{timestamp}_raw.jpg"
-            cv2.imwrite(raw_path, frame)
+            # save only once in case of multiple detections
+            for i, t in enumerate(tracklets):
+                if i == 0:
+                    timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
+                    raw_path = f"{save_path}/raw/{timestamp}_raw.jpg"
+                    cv2.imwrite(raw_path, frame)
 
 def record_log(): # (6)!
     """Write information about each recording interval to .csv file."""
@@ -827,7 +831,6 @@ def save_logs(): # (7)!
         log_info.writerow(logs_info)
         log_info_file.flush()
 
-
 # Connect to OAK device and start pipeline
 with dai.Device(pipeline, usb2Mode=True) as device:
 
@@ -865,8 +868,9 @@ with dai.Device(pipeline, usb2Mode=True) as device:
             if track_synced is not None:
                 tracklets_data = track_synced.tracklets
                 if frame_synced is not None:
+                    # save cropped detections every second (slower if saving additional HQ frames)
                     store_data(frame_synced, tracklets_data)
-                    time.sleep(1) # wait 1 second to save the cropped detections (+ HQ frames) # (10)
+                    time.sleep(1) # (10)!
 
             # Write RPi CPU + OAK VPU temp, RPi info and battery info + temp to .csv log file
             if args.save_logs:
@@ -979,7 +983,7 @@ import cv2
 import depthai as dai
 
 # Set capture frequency in seconds
-# 'CAPTURE_FREQ = 0.2' saves ~57 frames per minute to .jpg
+# 'CAPTURE_FREQ = 0.2' saves ~57 frames per minute to .jpg (RPi Zero 2)
 CAPTURE_FREQ = 0.2 # (1)!
 
 # Define optional arguments
@@ -998,7 +1002,7 @@ cam_rgb = pipeline.create(dai.node.ColorCamera)
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 cam_rgb.setVideoSize(3840, 2160) # HQ frames, aspect ratio 16:9 (4K)
-cam_rgb.setFps(20) # frames per second available for focus/exposure
+cam_rgb.setFps(30) # frames per second available for focus/exposure
 if args.save_lq_frames:
     cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames
     cam_rgb.setInterleaved(False)
@@ -1130,7 +1134,7 @@ cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_12_MP) # OA
 #cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_13_MP) # OAK-1 Lite (IMX214)
 #cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_5312X6000) # OAK-1 MAX (LCM48)
 cam_rgb.setNumFramesPool(2,2,2,2,2) # (2)!
-cam_rgb.setFps(10) # frames per second available for focus/exposure # (3)
+cam_rgb.setFps(30) # frames per second available for focus/exposure # (3)
 
 # Create and configure video encoder node and define input + output
 still_enc = pipeline.create(dai.node.VideoEncoder) # (4)!
@@ -1199,8 +1203,7 @@ print(f"Saved {frames_still} still frames to {save_path}.")
     is set to 2, to avoid a potential out-of-memory error, especially when
     saving images with the OAK-1 MAX at 5312x6000 px.
 3.  10 fps is currently the maximum framerate supported by the OAK-1 MAX at
-    full resolution. You can increase this to e.g. 20 fps for faster auto-focus/
-    -exposure/-white balance if you are using lower sensor resolutions.
+    full resolution (will be automatically capped).
 4.  More info about the
     [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}
 
