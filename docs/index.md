@@ -6,11 +6,9 @@
 Build your own insect-detecting camera trap!
 </span>
 
-<span style="font-weight: bold">
 This website provides instructions on hardware assembly, software setup,
 programming, model training and deployment of a DIY camera trap that can
 be used for automated insect monitoring.
-</span>
 
 ## Background
 
@@ -23,7 +21,7 @@ as well as to design effective conservation strategies
 Automated monitoring methods can be used to extend the ecologists' toolbox and yield
 multidimensional data as output, with a comparatively low time and labor input
 ([Besson et al., 2022](https://doi.org/10.1111/ele.14123){target=_blank}).
-If these novel methods are standardized, and easily accessible and reproducible,
+If these novel methods are standardized and easily accessible and reproducible,
 they could furthermore decentralize monitoring efforts and strengthen the integration
 of independent biodiversity observations (e.g. Citizen Science)
 ([K&uuml;hl et al., 2020](https://doi.org/10.1016/j.oneear.2020.09.010){target=_blank}).
@@ -53,7 +51,7 @@ to extract information such as species identity, abundance and behaviour
 
 Small detection models with relatively low computational costs can be run on
 suitable devices
-"[on the edge](https://docs.edgeimpulse.com/docs/concepts/what-is-edge-machine-learning)",
+[on the edge](https://docs.edgeimpulse.com/docs/concepts/what-is-edge-machine-learning),
 to enable real-time detection of objects the model was trained on. The
 appearance and detection of an insect can thereby be used as a kind of trigger
 to automatically start a recording. This can drastically reduce the amount of
@@ -69,9 +67,8 @@ classify insects in each image in real-time on the device. Filtering of false
 detections and the tracking of individual insects was performed in a subsequent
 step on a remote computer. A recent [dataset](https://doi.org/10.5281/zenodo.7395751){target=_blank}
 with annotated images was published together with a preprint by
-[Bjerge et al. (2022)](https://doi.org/10.1101/2022.10.25.513484){target=_blank}
-and can be seen as an important benchmark for insect detection and
-classification models with complex background.
+[Bjerge et al. (2022)](https://doi.org/10.1101/2022.10.25.513484){target=_blank},
+which can be used as an important benchmark for insect detection with complex background.
 
 ??? quote "The necessity of automated biodiversity monitoring"
 
@@ -165,7 +162,7 @@ attraction for specific pollinator groups (e.g. hoverflies).
 <figure markdown>
   ![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus.gif){ width="600" }
   <figcaption>On-device detection with the YOLOv5n model can reach up to 30 fps,
-              an object tracker is used to assign unique IDs to each individual</figcaption>
+              an object tracker assigns unique IDs to each individual insect</figcaption>
 </figure>
 
 In the [**Hardware**](hardware/index.md){target=_blank} section of this website
@@ -243,17 +240,12 @@ the provided Python script.
 
 ### Detection models
 
-| Model<br><sup>(.blob)        | size<br><sup>(pixels) | mAP<sup>val<br>50-95 | mAP<sup>val<br>50 | Precision<sup>val<br> | Recall<sup>val<br> | Speed<br><sup>OAK<br>(fps) |
-| ---------------------------- | --------------------- | -------------------- | ----------------- | --------------------- | ------------------ | -------------------------- |
-| **YOLOv5n** (5 shaves)       | 416                   | 58.2                 | 97.4              | **97.0**              | 95.0               | **~32**                    |
-| YOLOv5n (4 shaves) + tracker | 416                   | 58.2                 | 97.4              | 97.0                  | 95.0               | ~30                        |
-| **YOLOv5s** (5 shaves)       | 416                   | **63.4**             | **97.8**          | 96.6                  | **95.6**           | ~17                        |
-| YOLOv5s (4 shaves) + tracker | 416                   | 63.4                 | 97.8              | 96.6                  | 95.6               | ~17                        |
+| Model<br><sup>(.blob) | size<br><sup>(pixels) | mAP<sup>val<br>50-95 | mAP<sup>val<br>50 | Precision<sup>val<br> | Recall<sup>val<br> | Speed OAK<br><sup>(fps) |
+| --------------------- | --------------------- | -------------------- | ----------------- | --------------------- | ------------------ | ----------------------- |
+| YOLOv5n + tracker     | 416                   | 58.2                 | 97.4              | 97.0                  | 95.0               | ~30                     |
+| YOLOv5s + tracker     | 416                   | 63.4                 | 97.8              | 96.6                  | 95.6               | ~17                     |
 
-**Table Notes**
-
-- Both models were trained to 300 epochs with batch size 32 and default settings with
-  [hyp.scratch-low.yaml](https://github.com/ultralytics/yolov5/blob/master/data/hyps/hyp.scratch-low.yaml) hyperparameters.
+- Both models were trained to 300 epochs with batch size 32 and default settings.
   Reproduce the model training with the provided
   [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb).
 - Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/4) with only 1 class ("insect").
@@ -266,7 +258,7 @@ the provided Python script.
 
 **Table Notes**
 
-- The model was trained to 100 epochs with batch size 64 and default settings and hyperparameters.
+- The model was trained to 100 epochs with batch size 64 and default settings.
   Reproduce the model training with the provided
   [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb).
 - Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/dataset/2)
