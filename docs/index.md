@@ -242,8 +242,8 @@ the provided Python script.
 
 | Model<br><sup>(.blob) | size<br><sup>(pixels) | mAP<sup>val<br>50-95 | mAP<sup>val<br>50 | Precision<sup>val<br> | Recall<sup>val<br> | Speed OAK<br><sup>(fps) |
 | --------------------- | --------------------- | -------------------- | ----------------- | --------------------- | ------------------ | ----------------------- |
-| YOLOv5n + tracker     | 416                   | 58.2                 | 97.4              | 97.0                  | 95.0               | ~30                     |
-| YOLOv5s + tracker     | 416                   | 63.4                 | 97.8              | 96.6                  | 95.6               | ~17                     |
+| **YOLOv5n**           | 416                   | 58.2                 | 97.4              | 97.0                  | 95.0               | ~30                     |
+| **YOLOv5s**           | 416                   | 63.4                 | 97.8              | 96.6                  | 95.6               | ~17                     |
 
 - Both models were trained to 300 epochs with batch size 32 and default settings.
   Reproduce the model training with the provided
@@ -255,8 +255,6 @@ the provided Python script.
 | Model<br><sup>(.pt) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Top5 Accuracy<sup>val<br>  |
 | ------------------- | --------------------- | ------------------------- | -------------------------- |
 | **YOLOv5s-cls**     | 128                   | 0.9835                    | 1                          |
-
-**Table Notes**
 
 - The model was trained to 100 epochs with batch size 64 and default settings.
   Reproduce the model training with the provided
