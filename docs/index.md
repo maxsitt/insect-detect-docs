@@ -247,8 +247,8 @@ the provided Python script.
 
 - Both models were trained to 300 epochs with batch size 32 and default settings.
   Reproduce the model training with the provided
-  [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb).
-- Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/4) with only 1 class ("insect").
+  [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}.
+- Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/4){target=_blank} with only 1 class ("insect").
 
 ### Classification model
 
@@ -258,9 +258,9 @@ the provided Python script.
 
 - The model was trained to 100 epochs with batch size 64 and default settings.
   Reproduce the model training with the provided
-  [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb).
-- Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/dataset/2)
-  with 7 classes ([class balance](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/health)).
+  [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}.
+- Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/dataset/2){target=_blank}
+  with 7 classes ([class balance](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/health){target=_blank}).
 
 ---
 
