@@ -1057,11 +1057,11 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 # Print number and path of saved frames to console
 frames_hq = len(list(Path(f"{save_path}/HQ_frames").glob("*.jpg")))
-if not args.save_lq_frames:
-    print(f"Saved {frames_hq} HQ frames to {save_path}.") # (2)!
 if args.save_lq_frames:
     frames_lq = len(list(Path(f"{save_path}/LQ_frames").glob("*.jpg")))
     print(f"Saved {frames_hq} HQ and {frames_lq} LQ frames to {save_path}.")
+else:
+    print(f"Saved {frames_hq} HQ frames to {save_path}.") # (2)!
 
 ```
 
@@ -1193,7 +1193,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 # Print number and path of saved still frames to console
 frames_still = len(list(Path(f"{save_path}").glob("*.jpg")))
-print(f"Saved {frames_still} still frames to {save_path}.")
+print(f"Saved {frames_still} still frames to {save_path}.") # (5)!
 
 ```
 
@@ -1206,6 +1206,9 @@ print(f"Saved {frames_still} still frames to {save_path}.")
     full resolution (will be automatically capped).
 4.  More info about the
     [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}
+5.  If you are running this script automatically, you can also write this
+    info to a log file. Check the [monitoring script](#automated-monitoring-script)
+    and copy the lines at the beginning to create a logger.
 
 ---
 
@@ -1341,13 +1344,16 @@ with dai.Device(pipeline, usb2Mode=True) as device:
         container.mux_one(packet)
 
 # Print duration, fps and path of saved video + free disk space to console
-if not args.four_k_resolution:
-    print(f"\nSaved {args.min_rec_time} min 1080p video with {args.frames_per_second} fps to {save_path}.")
 if args.four_k_resolution:
     print(f"\nSaved {args.min_rec_time} min 4K video with {args.frames_per_second} fps to {save_path}.")
-print(f"Free disk space left: {disk_free} MB")
+else:
+    print(f"\nSaved {args.min_rec_time} min 1080p video with {args.frames_per_second} fps to {save_path}.")
+print(f"Free disk space left: {disk_free} MB") # (2)!
 
 ```
 
 1.  Depending on the available disk space, it might make sense to change this
     threshold to a higher or lower value.
+2.  If you are running this script automatically, you can also write this
+    info to a log file. Check the [monitoring script](#automated-monitoring-script)
+    and copy the lines at the beginning to create a logger.
