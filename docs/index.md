@@ -45,7 +45,7 @@ overview in [Pegoraro et al., 2020](https://doi.org/10.1042/ETLS20190074){target
 As for traditional camera traps used for monitoring of mammals, the often large
 amount of image data that is produced in this way can be most efficiently processed
 and analyzed by making use of machine learning (ML) and especially deep
-learning (DL) algorithms (e.g. object detection/classification models),
+learning (DL) algorithms (e.g. object detection and image classification models),
 to extract information such as species identity, abundance and behaviour
 ([Tuia et al., 2022](https://doi.org/10.1038/s41467-022-27980-y){target=_blank}).
 
@@ -99,16 +99,17 @@ which can be used as an important benchmark for insect detection with complex ba
               automated monitoring of flower-visiting insects</figcaption>
 </figure>
 
-The proposed DIY camera trap for automated insect monitoring is composed of
-low-cost off-the-shelf hardware [components](hardware/components.md){target=_blank},
-combined with completely open source software and can be easily assembled and
-set up with the provided instructions. All
+The **Insect Detect** DIY camera trap for automated insect monitoring is
+composed of low-cost off-the-shelf hardware
+[components](hardware/components.md#list-of-components){target=_blank},
+combined with open source [software](https://github.com/maxsitt/insect-detect){target=_blank}
+and can be easily assembled and set up with the provided instructions. All
 [Python scripts](software/programming.md){target=_blank} for testing the
 system, data collection and continuous automated monitoring can be adapted
 to different use cases by changing only a few lines of code. The labeled
 [datasets](#datasets) and provided [models](#models) for insect detection and
 classification should be seen as a starting point to train your own models,
-e.g. adapted to different backgrounds or insect taxa (classes for
+e.g. adapted to different backgrounds or insect taxa (labels and classes for
 detection/classification).
 
 Especially when deploying the camera trap system in new environments, edge
@@ -119,8 +120,8 @@ of retraining and redeploying can ensure a high detection and classification
 accuracy over time. With the combination of
 [Roboflow](https://roboflow.com/){target=_blank} for annotation and dataset
 management and [Google Colab](https://colab.research.google.com/){target=_blank}
-as cloud training platform, this can be achieved in a straightforward way,
-even without prior knowledge or specific hardware and free of charge.
+as cloud training platform, this can be achieved in a straightforward way, even
+without prior knowledge or specific hardware requirements and free of charge.
 
 <figure markdown>
   ![Insect Detect Active Learning loop](assets/images/active_learning_loop.png){ width="800" }
@@ -128,7 +129,7 @@ even without prior knowledge or specific hardware and free of charge.
               accuracy if real-world data is integrated to train new models</figcaption>
 </figure>
 
-The use of an artificial flower platform provides a homogenous, constant
+The use of an artificial flower platform provides a homogeneous, constant
 background, which standardizes the visual attraction for insects and leads to
 higher detection and tracking accuracy with less data requirement for model
 training. Because of the flat design, the posture of insects landing on the
@@ -209,7 +210,7 @@ the provided Python script.
 ## GitHub repositories
 
 - [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
-  > Detection models (YOlOv5n + YOLOv5s) and Python scripts for testing and
+  > Detection models (YOLOv5n + YOLOv5s) and Python scripts for testing and
     deploying the camera trap system for automated insect monitoring.
 
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
@@ -252,9 +253,9 @@ the provided Python script.
 
 ### Classification model
 
-| Model<br><sup>(.pt) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Top5 Accuracy<sup>val<br>  |
-| ------------------- | --------------------- | ------------------------- | -------------------------- |
-| **YOLOv5s-cls**     | 128                   | 0.9835                    | 1                          |
+| Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Top5 Accuracy<sup>val<br>  |
+| --------------------- | --------------------- | ------------------------- | -------------------------- |
+| **YOLOv5s-cls**       | 128                   | 0.9835                    | 1                          |
 
 - The model was trained to 100 epochs with batch size 64 and default settings.
   Reproduce the model training with the provided
@@ -266,7 +267,7 @@ the provided Python script.
 
 ## Citation
 
-Until the corresponding paper will be published, please cite this project as:
+Until the corresponding paper will be published, you can cite this project as:
 
 ``` text
 Sittinger, M. (2022). Insect Detect - Software for automated insect monitoring
@@ -282,7 +283,7 @@ with a DIY camera trap system (v1.4). Zenodo. https://doi.org/10.5281/zenodo.759
 Many thanks to:
 
 - [**Dr. Annette Herz**](https://www.julius-kuehn.de/en/bi/staff/p/s/annette-herz/){target=_blank}
-  and the whole **Ento Lab** for constant feedback and support.
+  and the whole Ento Lab for constant feedback and support.
 - [**Simon Feiertag**](https://www.selvavida.com/){target=_blank} for taking
   many of the pictures shown on this website.
 - [**Sebastian Sittinger**](https://de.linkedin.com/in/sebastian-sittinger-a29183b9){target=_blank}
