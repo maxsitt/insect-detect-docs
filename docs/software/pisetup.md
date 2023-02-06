@@ -5,6 +5,78 @@ Raspberry Pi OS Lite to the micro SD card. If you followed the steps in
 [Local Setup](localsetup.md){target=_blank}, you already have the Raspberry Pi
 Imager installed on your system (v1.7.3 is used in the following instructions).
 
+??? question "Raspberry Pi Zero W"
+
+    The Remote - SSH  and Remote X11 extensions will not work with the
+    Raspberry Pi Zero W, as the armv6l architecture is not supported.
+    Instead, you can connect to the RPi Zero W via SSH directly in the
+    VS Code Terminal by following these steps:
+
+    - [Generate a SSH key](#ssh-key-based-authentication).
+    - Go to the `C:\Users\<username>\.ssh` folder.
+    - Create a new `config.txt` file and copy the following content to it
+      (insert your correct Windows username):
+
+        ``` text
+        Host raspberrypi
+            HostName raspberrypi
+            User pi
+            EnableSSHKeysign yes
+            IdentityFile C:\Users\<username>\.ssh\id_rsa
+            ForwardX11 yes
+            ForwardX11Trusted yes
+        ```
+
+    - If you set a different hostname than `raspberrypi` during the
+      [RPi OS installation](#raspberry-pi-os-installation),
+      please adapt it accordingly for `Host` and `HostName`.
+      Instead of the hostname, you could also insert the
+      [IP address](#first-boot-and-ip-address-search)
+      of your RPi Zero (if you are setting up multiple devices).
+    - Save the file and delete its `.txt` extension in the file properties.
+    - Connect to your RPi Zero via SSH in the VS Code Terminal by running:
+
+        ``` powershell
+        ssh pi@raspberrypi
+        ```
+
+    - You can check if X11 forwarding works correctly by running:
+
+        ``` bash
+        echo $DISPLAY
+        ```
+
+        ...which should give you the following output:
+
+        ``` bash
+        localhost:10.0
+        ```
+
+    - For a similar remote explorer experience as with the Remote - SSH extension, install the
+      [SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
+      extension.
+    - Open the SSH FS extension by clicking on the new icon in the left side bar.
+    - Create a new SSH FS configuration (Name: e.g. `rpi_zero`) with the following fields
+      (insert your correct Windows username):
+
+        - Host: `raspberrypi`
+        - Port: `22`
+        - Root: `~/`
+        - Username: `pi`
+        - Private key: `c:\Users\<username>\.ssh\id_rsa`
+
+    - Leave the other fields blank and save the configuration with the
+      **Save** button at the bottom.
+    - In the SSH FS extension, click on the first symbol to the right of your
+      configuration: `Add as Workspace folder`. This will open the `/home/pi`
+      folder in your VS Code explorer. You can now view files directly in
+      VS Code and drag & drop any files or folders from your PC to the RPi Zero.
+    - Follow the steps for [RPi configuration](#rpi-configuration),
+      [PiJuice Zero configuration](#pijuice-zero-configuration)
+      and [OAK-1 configuration](#oak-1-configuration).
+    - Skip the last step to configure X11 forwarding, as this should
+      already work by enabling it in the `config` file.
+
 ---
 
 ## SSH key based authentication
@@ -19,7 +91,7 @@ on this topic and instructions for macOS or Linux in the
 We will start by generating a new key pair on your local Windows PC and then
 copy the public key to the Raspberry Pi with the Raspberry Pi Imager. But first
 check if there is already an SSH key on your computer by going to the
-`C:\Users\username\.ssh` folder. If there is a file named `id_rsa.pub` you can
+`C:\Users\<username>\.ssh` folder. If there is a file named `id_rsa.pub` you can
 skip this step. If you can't find the `.ssh` folder or the key file, open a
 [local Terminal](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
 (Windows PowerShell) and run the following command:
@@ -28,7 +100,7 @@ skip this step. If you can't find the `.ssh` folder or the key file, open a
 ssh-keygen -t rsa -b 4096
 ```
 
-Save the key to `C:\Users\username/.ssh/id_rsa` by hitting ++enter++. When you
+Save the key to `C:\Users\<username>/.ssh/id_rsa` by hitting ++enter++. When you
 are asked to enter a passphrase, just hit ++enter++. Now that we have generated
 the private and public SSH keys, we can select **public-key authentication** in
 the advanced options of the Raspberry Pi Imager in the next steps.
@@ -299,7 +371,7 @@ After the installation you can check if the PiJuice Zero is correctly detected
 by running:
 
 ``` bash
-i2cdetect -y 1
+sudo i2cdetect -y 1
 ```
 
 If you see an entry at address `14` and `68`, the connection to the PiJuice is
@@ -341,7 +413,7 @@ sudo reboot
 After the reboot run:
 
 ``` bash
-i2cdetect -y 1
+sudo i2cdetect -y 1
 ```
 
 You should now see `UU` at address 68, which means that the RTC driver was
@@ -371,17 +443,19 @@ pijuice_cli
   `Update` the firmware.
 - Next, go to the `Battery profile` tab and check if the correct profile is
   selected. If you are using the 12,000 mAh battery, this should be
-  `PJLIPO_12000`. Depending on your hardware setup, you could decrease the
-  `Termination current [mA]` to e.g. `100` if you are using a solar panel as
-  direct input into the PiJuice Zero (**Minimal Setup** without Voltaic
-  battery). Scroll down and change `Temperature sense` to `NTC`. This will make
-  sure that the battery temperature is correctly estimated. Save the changed
-  settings with `Apply settings`.
+  `PJLIPO_12000`. Scroll down and change `Temperature sense` to `NTC`.
+  This will make sure that the battery temperature is correctly estimated.
+  Save the changed settings with `Apply settings`.
 - Go to the `System Task` tab, activate `Software Halt Power Off` and set the
   `Delay period [seconds]` to `20`. With this setting activated, the power to
   the Raspberry Pi will be cut off 20 seconds after a software shutdown (e.g.
   `sudo shutdown -h now`) has occured. This will make sure that the OS can
   complete the shutdown process without potential SD card corruption.
+- Optional: Depending on your hardware setup, under the `Battery profile` tab
+  you could decrease the `Termination current [mA]` to e.g. `100` if you are
+  using a solar panel as direct input into the PiJuice Zero
+  ([**Minimal Setup**](../hardware/components.md#minimal-setup){target=_blank}
+  without Voltaic battery).
 
 ![VS Code PiJuice System Task](assets/images/pijuice_system_task.png){ width="500" }
 
