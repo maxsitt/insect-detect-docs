@@ -6,13 +6,14 @@
     **Windows 11** computer. For Mac and Linux users some software may be very
     similar to Windows (e.g. RPi imager, VS Code), but some steps (e.g. X11
     forwarding) will be different to what is shown in these instructions. If
-    you are a Mac or Linux user and have problems with the software setup,
-    please get in touch with me!
+    you run into any problems with the software setup, please
+    [post an issue](https://github.com/maxsitt/insect-detect-docs/issues){target=_blank}
+    at the GitHub repo.
 
 ## Raspberry Pi Imager
 
 We will use the official Raspberry Pi Imager to download and install Raspberry
-Pi OS Lite on the micro SD card and directly configure some important options.
+Pi OS Lite to the micro SD card and directly configure some important options.
 [Download Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}
 and install it to your computer. [In the next section](pisetup.md){target=_blank},
 we are going through all necessary steps to install and configure your
@@ -56,6 +57,78 @@ the Extensions icon in the left side bar and install the
       more readable preview of the .csv metadata and log files.
     - [Save Commands](https://bit.ly/3NntHsb){target=_blank} extension if you
       want to save some often used terminal commands for direct execution.
+
+??? question "Raspberry Pi Zero W"
+
+    The Remote - SSH  and Remote X11 extensions will not work with the
+    Raspberry Pi Zero W, as the armv6l architecture is not supported.
+    Instead, you can connect to the RPi Zero W via SSH directly in the
+    VS Code Terminal by following these steps:
+
+    - [Generate a SSH key](pisetup.md#ssh-key-based-authentication){target=_blank}.
+    - Go to the `C:\Users\<username>\.ssh` folder.
+    - Create a new `config.txt` file and copy the following content to it
+      (insert your correct Windows username):
+
+      ``` text
+      Host raspberrypi
+          HostName raspberrypi
+          User pi
+          EnableSSHKeysign yes
+          IdentityFile C:\Users\<username>\.ssh\id_rsa
+          ForwardX11 yes
+          ForwardX11Trusted yes
+      ```
+
+    - If you set a different hostname than `raspberrypi` during the
+      [RPi OS installation](pisetup.md#raspberry-pi-os-installation){target=_blank},
+      please adapt it accordingly for `Host` and `HostName`.
+      Instead of the hostname, you could also insert the
+      [IP address](pisetup.md#first-boot-and-ip-address-search){target=_blank}
+      of your RPi Zero (if you are setting up multiple devices).
+    - Save the file and delete its `.txt` extension in the file properties.
+    - Connect to your RPi Zero via SSH in the VS Code Terminal by running:
+
+      ``` powershell
+      ssh pi@raspberrypi
+      ```
+
+    - You can check if X11 forwarding works correctly by running:
+
+      ``` bash
+      echo $DISPLAY
+      ```
+
+      ...which should give you the following output:
+
+      ``` bash
+      localhost:10.0
+      ```
+
+    - For a similar remote explorer experience as with the Remote - SSH extension, install the
+      [SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
+      extension to your VS Code setup.
+    - Open the SSH FS extension by clicking on the new icon in the left side bar.
+    - Create a new SSH FS configuration (Name: e.g. `rpi_zero`) with the following fields
+      (insert your correct Windows username):
+
+      - Host: `raspberrypi`
+      - Port: `22`
+      - Root: `~/`
+      - Username: `pi`
+      - Private key: `c:\Users\<username>\.ssh\id_rsa`
+
+    - Leave the other fields blank and save the configuration with the
+      **Save** button at the bottom.
+    - You can now click on the first symbol to the right of your configuration:
+      `Add as Workspace folder`. This will open the `/home/pi` folder in your
+      VS Code explorer. You can now view files directly in VS Code and
+      drag & drop any files or folders from your PC to the RPi Zero.
+    - Follow the steps for [RPi configuration](pisetup.md#rpi-configuration){target=_blank},
+      [PiJuice Zero configuration](pisetup.md#pijuice-zero-configuration){target=_blank}
+      and [OAK-1 configuration](pisetup.md#oak-1-configuration){target=_blank}.
+    - You can skip the last step to configure X11 forwarding, as this should
+      already work by enabling it in the `config` file.
 
 ---
 
