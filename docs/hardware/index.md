@@ -1,6 +1,6 @@
 # Hardware
 
-In this first main section, detailed instructions are given on how to build
+In this first main section, you will find detailed instructions on how to build
 your own weatherproof and solar-powered camera trap with automated real-time
 insect detection and tracking. In the [components](components.md){target=_blank}
 section, all required parts are listed, including example product links. You
@@ -14,10 +14,11 @@ We will start with [preparing the enclosure](buildinstructions_enclosure.md){tar
 where all of the electronic parts will be mounted inside to protect them from
 weather and humidity. In the next step, we are going to
 [integrate the hardware](buildinstructions_hardware.md){target=_blank} into
-the enclosure. For the **Full Setup**, we will prepare everything for
-[mounting](buildinstructions_mounting.md){target=_blank} the camera trap and
-the flower platform in the last section. If you are going for the
-**Minimal Setup** you can skip this step and use your own mounting option.
+the enclosure. For the [**Full Setup**](components.md#full-setup){target=_blank},
+we will prepare everything for [mounting](buildinstructions_mounting.md){target=_blank}
+the camera trap and the flower platform in the last section. If you are going
+for the [**Minimal Setup**](components.md#minimal-setup){target=_blank},
+you can skip this step and use your own mounting option.
 
 ??? warning "Disclaimer"
 
