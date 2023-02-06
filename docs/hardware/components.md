@@ -50,7 +50,8 @@ PiJuice Zero pHAT and battery included in this setup, an additional power
 supply will be necessary. To test the
 [automated monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}
 without the PiJuice Zero pHAT connected to the Raspberry Pi, please use the
-`yolov5_tracker_save_hqsync_nopj.py` script, available at the
+[`yolov5_tracker_save_hqsync_nopj.py`](https://github.com/maxsitt/insect-detect/blob/main/yolov5_tracker_save_hqsync_nopj.py){target=_blank}
+script, available at the
 [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
 
 ---
@@ -186,8 +187,8 @@ can take still images with a resolution of up to 5312x6000 pixel. However, the
 video output that is used for the HQ frames in the
 [automated monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}
 is still limited to a maximum resoltion of 3840x2160 pixel (4K). Which means
-that, at the moment, the OAK-1 MAX will only be worth the higher price if you
-are using e.g. the
+that, at the moment, the OAK-1 MAX will probably only be worth the higher price
+if you are using e.g. the
 [still capture script](../software/programming.md#still-capture){target=_blank}
 to take still images at the highest possible sensor resolution. The also more
 expensive [OAK-1 W](https://docs.luxonis.com/projects/hardware/en/latest/pages/NG9096w.html){target=_blank}
@@ -196,8 +197,16 @@ expensive [OAK-1 W](https://docs.luxonis.com/projects/hardware/en/latest/pages/N
 wide FOV 120° sensor, which might be beneficial depending on your camera trap
 setup. We did not test the OAK-1 W variant, so there is no guarantee that all
 provided Python scripts will work in the same way as for the OAK-1, OAK-1 Lite
-and OAK-1 MAX, which were all tested and will work with the scripts without any
-problems.
+and OAK-1 MAX.
+
+The following table shows all compatible Raspberry Pi and OAK versions, that
+were tested with the camera trap [software](https://github.com/maxsitt/insect-detect){target=_blank}.
+
+| Raspberry Pi | OAK-1                   | OAK-1 Lite              | OAK-1 MAX               | OAK-D Lite              |
+| ------------ | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Zero 2 W     | :material-check-circle: | :material-check-circle: | :material-check-circle: | :material-check-circle: |
+| Zero W       | :material-check-circle: | :material-check-circle: | :material-check-circle: | :material-check-circle: |
+| 4 Model B    | :material-check-circle: | :material-check-circle: | :material-check-circle: | :material-check-circle: |
 
 The [Witty Pi 4 Mini](https://www.uugear.com/product/witty-pi-4-mini/){target=_blank}
 or the newer version
