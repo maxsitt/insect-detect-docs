@@ -1,11 +1,13 @@
 # Building Instructions: Overview
 
-The following instructions will enable you to reproduce the **Full Setup** of
-the DIY camera trap for automated insect monitoring. If you only want to build
-the **Minimal Setup**, plug the solar panel micro USB output directly into the
-PiJuice Zero pHAT without using the Voltaic 12,800 mAh battery (+ USB cable)
-and skip the last steps for [mounting](buildinstructions_mounting.md){target=_blank}
-the camera trap and flower platform.
+The following instructions will enable you to reproduce the
+[**Full Setup**](components.md#full-setup){target=_blank} of the DIY camera
+trap for automated insect monitoring. If you only want to assemble the
+[**Minimal Setup**](components.md#minimal-setup){target=_blank}, plug the solar
+panel micro USB output directly into the PiJuice Zero pHAT without using the
+Voltaic 12,800 mAh battery (+ USB cable) and skip the last steps for
+[mounting](buildinstructions_mounting.md){target=_blank} the camera trap and
+the flower platform.
 
 ???+ abstract "Required tools & equipment"
 
@@ -97,7 +99,7 @@ the camera trap and flower platform.
 
 ### Mounting setup
 
-Only necessary for the **Full Setup**.
+Only necessary for the [**Full Setup**](components.md#full-setup){target=_blank}.
 
 ??? abstract "Required tools & components"
 
