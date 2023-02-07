@@ -62,9 +62,9 @@ Separating the detection and classification steps can also simplify dataset
 management, annotation and model training. Overall less training data is
 sufficient for good detection results, as no classes have to be distinguished
 by the detection model. You can directly use the cropped detections as input
-for a growing image dataset to [train](../modeltraining/yolov5.md) new insect
-classification models, just by sorting them to folders with the respective
-class name (e.g. insect taxon).
+for a growing image dataset to [train](../modeltraining/yolov5.md){target=_blank}
+new insect classification models, just by sorting them to folders with the
+respective class name (e.g. insect taxon).
 
 ---
 
@@ -79,8 +79,7 @@ event. This metadata includes:
   tracking IDs will restart from 1 for each recording interval and the metadata
   .csv files will be merged during the automated
   [classification step](classification.md){target=_blank}.
-- `timestamp` gives information about the exact recording time (format:
-  `%Y%m%d_%H-%M-%S.%f`).
+- `timestamp` with exact recording time (format: `%Y%m%d_%H-%M-%S.%f`).
 - `label` is negligible if a detection model with only one class is used, but
   enables the deployment of a multi-class detection model.
 - `confidence` score can be used to evaluate the quality of the detection
@@ -95,8 +94,8 @@ event. This metadata includes:
   [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank} script.
 - `x_min`, `y_min`, `x_max`, `y_max` relative bounding box coordinates.
   These coordinates make it possible to calculate the relative bounding box
-  size. If the absolute frame size (e.g. size of the flower platform in mm) is
-  inserted into the
+  size. If the absolute frame dimensions (e.g. size of the flower platform in mm)
+  are used as arguments for the
   [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
   script, the absolute average bounding box size in mm is calculated for each detection.
 - `file_path` to the cropped detection, saved as .jpg.
