@@ -157,15 +157,15 @@ options.
 
 ![Raspberry Pi Imager Start settings](assets/images/raspberrypi_imager_start_settings.png){ width="600" }
 
-- Set the hostname, e.g. to the default *raspberrypi*. If you will be deploying
-  multiple Raspberry Pis, individual hostnames may be a good idea.
+- Set the hostname, e.g. to the default `raspberrypi`. If you will be deploying
+  multiple Raspberry Pis, you should give each a unique hostname.
 - Enable SSH with public-key authentication.
-- Set the username and password. It is recommended to keep the default **pi**
+- Set the username and password. It is recommended to keep the default `pi`
   as username.
-- Enter your local WiFi SSID and password, to be able to connect to the Pi via
-  SSH immediately after the first boot. Don't forget to select the correct
-  Wireless LAN country in the dropdown menu below.
-- Set the locale settings to your time zone and keyboard layout, then hit SAVE.
+- If not already filled out, enter your local WiFi SSID and password, to be
+  able to connect to the Pi via SSH immediately after the first boot. Don't
+  forget to select the correct Wireless LAN country in the dropdown menu below.
+- Set the locale settings to your time zone and keyboard layout, then hit **SAVE**.
 
 ![Raspberry Pi Imager settings](assets/images/raspberrypi_imager_settings.png){ width="600" }
 
@@ -177,26 +177,29 @@ Raspberry Pi.
 
 ## First boot and IP address search
 
-If you already have the PiJuice Zero pHAT connected to your Raspberry Pi,
-insert the micro USB cable (connected to your battery, laptop or power supply)
-into the PiJuice USB micro input. Power on the Raspberry Pi with a short single
-press on the PiJuice SW1 button (on the left and marked green in the following
-picture). If your are working without the PiJuice at the moment, insert your
-micro USB cable connected to a power supply into the **PWR IN** USB micro input
-of the Raspberry Pi. The first boot will take a little bit longer, as all of
-the custom configuration has to be enabled.
+If you already have the PiJuice Zero pHAT connected to your Raspberry Pi, insert
+the micro USB cable (connected to your battery, laptop or power supply) into the
+PiJuice USB micro input. Power on the Raspberry Pi with a short single press on
+the PiJuice **SW1** button (on the left and marked green in the following picture).
+
+If your are working without the PiJuice at the moment, insert your micro
+USB cable connected to a power supply into the **PWR IN** USB micro input
+of the Raspberry Pi. The first boot will take a little bit longer, as all
+of the custom configuration has to be enabled.
 
 ![PiJuice Zero buttons](https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png){ width="500" }
 
-To be able to connect to the Pi in VS Code via SSH, we will first have to find
-its IP address in the WiFi network. There are
+You can connect to the RPi via SSH by using the hostname, that you set during
+the RPi OS installation (e.g. `raspberrypi`). If you did not set a hostname or
+don't know it, you will have to connect to the RPi by using its IP address.
+
+To be able to connect to the Pi in VS Code via SSH without using the hostname,
+we will first have to find its IP address in the WiFi network. There are
 [several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address){target=_blank}
 to achieve this, probably one of the easiest solutions is to install
 [Fing](https://www.fing.com/){target=_blank} on your PC or smartphone (you
 don't need an account to use the [Fing App](https://www.fing.com/products/fing-app){target=_blank})
-and scan the IP addresses of all devices in your WiFi network. After you know
-the IP address of your Raspberry Pi, we can go on with the next step and
-establish a SSH connection in VS Code.
+and scan the IP addresses of all devices in your WiFi network.
 
 ---
 
@@ -211,22 +214,26 @@ Choose the first option **Connect to Host...**
 
 ![VS Code connect remote SSH](assets/images/vscode_connect_remote.png){ width="600" }
 
-Type in your user name (this is **pi** if you didn't change the default name)
-and your Pi's IP address with **@** in between (e.g. `pi@192.168.1.93`) and hit
-++enter++.
+Type in your user name (this is `pi` if you didn't change the default name)
+and your Pi's hostname or IP address with `@` in between (e.g. `pi@raspberrypi`
+or `pi@192.168.1.93`) and hit ++enter++.
 
 ![VS Code connect remote SSH IP address](assets/images/vscode_remote_ip.png){ width="600" }
 
 Now VS Code will connect to the Raspberry Pi via SSH and open a new remote
 window. This might take a while during the first start, as several packages
 have to be installed on the Raspberry Pi first. When you are asked to select
-the platform of the remote host choose **Linux**. Enter the password that you
+the platform of the remote host, choose **Linux**. Enter the password that you
 set in the Raspberry Pi Imager options when you are asked for it (not necessary
 if you chose public-key authentication).
 
 After these steps, the Pi SSH Terminal at the bottom will open and you can
 start with setting up your Pi! In the explorer view on the left, press
 **Open Folder** and open the home folder `/home/pi/`.
+
+If the Pi SSH Terminal will not automatically open after you established the
+SSH connection, go to **Terminal** in the menu bar at the top and open a
+**New Terminal**.
 
 ![VS Code Raspberry Pi connected](assets/images/vscode_raspberry_connected.png){ width="600" }
 
