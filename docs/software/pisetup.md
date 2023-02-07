@@ -31,8 +31,7 @@ Imager installed on your system (v1.7.3 is used in the following instructions).
       [RPi OS installation](#raspberry-pi-os-installation),
       please adapt it accordingly for `Host` and `HostName`.
       Instead of the hostname, you could also insert the
-      [IP address](#first-boot-and-ip-address-search)
-      of your RPi Zero (if you are setting up multiple devices).
+      [IP address](#first-boot-and-ip-address-search) of your RPi Zero.
     - Save the file and delete its `.txt` extension in the file properties.
     - Connect to your RPi Zero via SSH in the VS Code Terminal by running:
 

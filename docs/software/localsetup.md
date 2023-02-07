@@ -86,7 +86,7 @@ the Extensions icon in the left side bar and install the
       please adapt it accordingly for `Host` and `HostName`.
       Instead of the hostname, you could also insert the
       [IP address](pisetup.md#first-boot-and-ip-address-search){target=_blank}
-      of your RPi Zero (if you are setting up multiple devices).
+      of your RPi Zero.
     - Save the file and delete its `.txt` extension in the file properties.
     - Connect to your RPi Zero via SSH in the VS Code Terminal by running:
 
