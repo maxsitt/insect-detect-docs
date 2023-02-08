@@ -32,7 +32,7 @@ for faster CPU inference.
 
 To be able to run the image classification and subsequent
 [analysis](analysis.md){target=_blank} Python scripts on your computer,
-[install Python 3.11](https://www.python.org/downloads/windows/){target=_blank}
+install [Python 3.11](https://www.python.org/downloads/windows/){target=_blank}
 to your PC. If you followed the steps in the
 [Software](../software/localsetup.md){target=_blank} section, you already have
 VS Code installed together with the [Python](https://bit.ly/2Zm3Ypq){target=_blank}
@@ -50,16 +50,14 @@ from GitHub as .zip file or `git clone` it, if you have
 
 ![YOLOv5 repository download](assets/images/yolov5_download.png){ width="800" }
 
-Extract the `yolov5-master.zip` file to a folder of your choice, e.g.
-`C:\Users\<username>\YOLOv5-cls`.
+- Create the new folder `C:\Users\<username>\YOLOv5-cls`.
+- Extract the `yolov5-master.zip` file to the folder `C:\Users\<username>\YOLOv5-cls`.
+- Open a new Terminal (PowerShell) in VS Code, navigate to the `YOLOv5-cls` folder
+  and install the required Python packages for YOLOv5 by running:
 
-Open a new Terminal (PowerShell) in VS Code, navigate to the folder into
-which you extracted the YOLOv5 repository and install the required Python
-packages for YOLOv5 by running:
-
-``` powershell
-python.exe -m pip install -r yolov5-master/requirements.txt
-```
+    ``` powershell
+    python.exe -m pip install -r yolov5-master/requirements.txt
+    ```
 
 ![YOLOv5 install requirements](assets/images/yolov5_requirements.png){ width="800" }
 
@@ -73,9 +71,9 @@ download the [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-
 We will use the
 [`predict_mod.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/predict_mod.py){target=_blank}
 script together with the `yolov5s-cls_128.onnx` image classification model
-to classify all cropped insect images in your `data` folder and append the
-classification results to the merged metadata .csv files and/or write them
-to a new .csv file.
+to classify all cropped insect images in the `data` folder from your
+Raspberry Pi and append the classification results to the merged
+metadata .csv files or write them to a new .csv file.
 
 - Copy the `yolov5s-cls_128.onnx` model into the `YOLOv5-cls` folder.
 - Copy your `data` folder, saved from the Raspberry Pi's SD card (e.g. with the
@@ -85,13 +83,11 @@ to a new .csv file.
   `-overlay`), save them to a different directory and delete them before
   running the classification script.
 - Copy the `predict_mod.py` script to `YOLOv5-cls\yolov5-master\classify`.
+- Navigate to the `YOLOv5-cls` folder and start the classification script by running:
 
-In the Terminal navigate to the `YOLOv5-cls` folder and start the
-classification script by running:
-
-``` powershell
-python.exe yolov5-master\classify\predict_mod.py --name data_classified --weights yolov5s-cls_128.onnx --source data/**/ --img 128 --concat-csv
-```
+    ``` powershell
+    python.exe yolov5-master\classify\predict_mod.py --name data_classified --weights yolov5s-cls_128.onnx --source data/**/ --img 128 --concat-csv
+    ```
 
 ![YOLOv5 run classification](assets/images/yolov5_classify_command.png){ width="800" }
 
@@ -112,9 +108,9 @@ classification results (top3 classes + probabilities) written to new columns
 and saved as single `metadata_classified_{timestamp}.csv` file in the
 `YOLOv5-cls` folder. If you used `--sort-top1` as optional argument, you will
 find the images sorted to top1 class in the directory
-`yolov5-master\runs\predict-cls\data_classified\top1_classes`. This allows for
-a quick identification of edge cases (e.g. insect taxa that were classified to
-the wrong class) and these images can be used to
+`YOLOv5-cls\yolov5-master\runs\predict-cls\data_classified\top1_classes`. This
+allows for a quick identification of edge cases (e.g. insect taxa that were
+classified to the wrong class) and these images can be used to
 [retrain](../modeltraining/yolov5.md){target=_blank} your classification model.
 
 The classified metadata .csv file still contains multiple rows for each tracked insect
