@@ -519,8 +519,9 @@ automatically at each boot (after wake up by the PiJuice Zero).
 ??? question "No PiJuice Zero?"
 
     If you want to try the script without the PiJuice Zero pHAT connected to
-    your Raspberry Pi, use the `yolov5_tracker_save_hqsync_nopj.py` script,
-    available at the [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
+    your Raspberry Pi, use the
+    [`yolov5_tracker_save_hqsync_nopj.py`](https://github.com/maxsitt/insect-detect/blob/main/yolov5_tracker_save_hqsync_nopj.py){target=_blank}
+    script, available at the [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
 
 Run the script with:
 
@@ -918,7 +919,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     accordingly.
 6.  This function will be called after a recording interval is finished, or if
     an error occurs during the recording and will write some info about the
-    respective recording interval to the `record_log.csv` file.
+    respective recording interval to `record_log.csv`.
 7.  This function will be called if you are using the optional `-log` argument
     and will save the specified logging info to a .csv file.
 8.  You can specify your own recording durations and charge level thresholds in
