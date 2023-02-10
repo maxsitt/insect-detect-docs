@@ -38,7 +38,7 @@ classification results to `metadata_classified_{timestamp}.csv`.
       [flower platform](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform/flower_platform_big_500x280){target=_blank}
       dimensions; default of 1 gives relative bbox size)
     - `-min_tracks` to remove tracking IDs with less than the specified number
-      of images (e.g. `-min_tracks 0` to keep the original data; default = 3)
+      of images (e.g. `-min_tracks 1` to keep the original data; default = 3)
     - `-max_tracks` to remove tracking IDs with more than the specified number
       of images (default = 1800)
 
@@ -105,7 +105,7 @@ correctly tracked or objects that are lying on the platform and are incorrectly
 detected as insects. Depending on the speed and accuracy of the deployed
 detection model, adjusting these thresholds (by using the optional argument
 `-min_tracks`) can result in more accurate abundance information. You could
-also run the `csv_analysis.py` script with `-min_tracks 0` to keep the original
+also run the `csv_analysis.py` script with `-min_tracks 1` to keep the original
 data and take a look at the distribution of the number of images per tracking ID.
 
 ![Plot images per tracking ID](assets/images/imgs_per_track.png){ width="500" }
