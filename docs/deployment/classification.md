@@ -75,7 +75,6 @@ to classify all cropped insect images in the `data` folder from your
 Raspberry Pi and append the classification results to the merged
 metadata .csv files or write them to a new .csv file.
 
-- Copy the `yolov5s-cls_128.onnx` model into the `YOLOv5-cls` folder.
 - Copy your `data` folder, saved from the Raspberry Pi's SD card (e.g. with the
   [DiskInternals LinuxReader](../software/localsetup.md#diskinternals-linuxreader){target=_blank})
   into the `YOLOv5-cls` folder. Please make sure that **only cropped detections**
@@ -83,6 +82,7 @@ metadata .csv files or write them to a new .csv file.
   `-overlay`), save them to a different directory and delete them before
   running the classification script.
 - Copy the `predict_mod.py` script to `YOLOv5-cls\yolov5-master\classify`.
+- Copy the `yolov5s-cls_128.onnx` model into the `YOLOv5-cls` folder.
 - Navigate to the `YOLOv5-cls` folder and start the classification script by running:
 
     ``` powershell
@@ -114,7 +114,7 @@ classified to the wrong class) and these images can be used to
 [retrain](../modeltraining/yolov5.md){target=_blank} your classification model.
 
 The classified metadata .csv file still contains multiple rows for each tracked insect
-(= track_ID). In the [last processing step](analysis.md){target=_blank}, we will use the
+(= `track_ID`). In the [last processing step](analysis.md){target=_blank}, we will use the
 [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
 script to automatically analyze the classified metadata .csv file and calculate
 the respective class with the overall highest probability for each tracked insect.
