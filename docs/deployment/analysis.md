@@ -98,15 +98,16 @@ thorough exploration and analysis of the data, e.g. with
 
 ![Plot top1 classes per recording](assets/images/top1_classes_per_rec.png){ width="500" }
 
-By default, all tracked insects (= `track_ID`) with less than 3 or more than
-1800 images will be removed from the final `metadata_classified*_top1.csv`.
+By default, all tracked insects (= unique `track_ID`) with less than 3 or more
+than 1800 images will be removed from the final `metadata_classified*_top1.csv`.
 This can exclude many false tracking IDs, e.g. insects moving too fast to be
 correctly tracked or objects that are lying on the platform and are incorrectly
 detected as insects. Depending on the speed and accuracy of the deployed
-detection model, adjusting these thresholds (by using the optional argument
-`-min_tracks`) can result in more accurate abundance information. You could
-also run the `csv_analysis.py` script with `-min_tracks 1` to keep the original
-data and take a look at the distribution of the number of images per tracking ID.
+detection model and the respective recording duration, adjusting these thresholds
+(by using the optional arguments `-min_tracks` and/or `-max_tracks`) can result
+in more accurate data on insect abundance/activity. You could also run the
+`csv_analysis.py` script with `-min_tracks 1` to keep the original data and
+take a look at the distribution of the number of images per tracking ID.
 
 ![Plot images per tracking ID](assets/images/imgs_per_track.png){ width="500" }
 
