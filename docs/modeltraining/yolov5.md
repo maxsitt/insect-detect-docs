@@ -12,7 +12,7 @@ It is highly recommended to read the
 if this is your first time training a deep learning model.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
-notebooks for custom training with your own dataset of a:
+notebooks for custom training of a:
 
 - [**YOLOv5 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}
   > Includes conversion to
@@ -21,11 +21,11 @@ notebooks for custom training with your own dataset of a:
 
 - [**YOLOv5 image classification model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}
   > Includes [export](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
-    to [ONNX](https://onnx.ai/){target=_blank} format for faster CPU inference.
+    to [ONNX](https://onnx.ai/){target=_blank} format for faster CPU inference on your PC.
 
-Check the [Colab introduction](https://colab.research.google.com/){target=_blank}
-and [features overview](https://colab.research.google.com/notebooks/basic_features_overview.ipynb){target=_blank},
-if this is your first time using a Google Colab notebook.
+Check the [introduction](https://colab.research.google.com/){target=_blank} and
+[features overview](https://colab.research.google.com/notebooks/basic_features_overview.ipynb){target=_blank},
+if this is your first time using a Colab notebook.
 
 After opening the notebook, log in to your Google account and under the **File**
 menu choose **Save a copy in Drive**. Now you can change the code and adapt the

@@ -13,8 +13,8 @@ Various open and closed source tools are available, working offline on your PC
 or via an online platform in your browser. These tools have different pricing plans,
 but most of them can be used for free with usage limits or for education/academia.
 All of them will give you the basic functionalities of annotating images for
-object detection (bounding boxes) or image classification (single image label).
-Some are easy to use, others are more complex and can provide additional functions
+object detection (bounding boxes) or image classification (image label).
+Some are simple, others are more complex and can provide additional functions
 such as [AutoML](https://en.wikipedia.org/wiki/Automated_machine_learning){target=_blank}
 ("one-click model training") or
 [model assisted labeling](https://docs.roboflow.com/annotate/model-assisted-labeling){target=_blank}.
