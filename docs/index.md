@@ -208,10 +208,10 @@ the provided Python script.
     deploying the camera trap system for automated insect monitoring.
 
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-  > Jupyter notebooks to run in Google Colab for YOLOv5 object detection and
-    image classification model training. Modified YOLOv5 classification script
-    with basic YOLOv5s insect classification model. Python script for automated
-    analysis of the generated metadata .csv files.
+  > Google Colab notebooks for YOLOv5 object detection and image classification
+    model training. Modified YOLOv5 classification script with basic YOLOv5s
+    insect classification model. Python script for automated analysis of the
+    metadata .csv files.
 
 - [`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs){target=_blank}
   > Source files and assets of this documentation website, based on
@@ -247,13 +247,9 @@ the provided Python script.
 - Trained on custom [dataset_320](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7){target=_blank} or
   [dataset_416](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/4){target=_blank} with only 1 class ("insect").
 - Model metrics (mAP, Precision, Recall) are shown for the original .pt model before conversion to ONNX -> OpenVINO -> .blob format.
-- Speed (fps) is shown for the converted model in .blob format, running on the OAK device (same speed with object tracker).
+- Speed (fps) is shown for the converted model in .blob format, running on the OAK device.
 
-<figure markdown>
-  ![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="320" }
-  <figcaption>On-device detection with the YOLOv5n model can reach up to 40 fps,
-              an object tracker assigns unique IDs to each individual insect</figcaption>
-</figure>
+![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="400" }
 
 ### Classification model
 
