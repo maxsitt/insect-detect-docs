@@ -12,7 +12,7 @@ multiple counting of a single individual.
 
 Model speed can be increased by choosing **small models** with fewer parameters
 (e.g. YOLOv5n) and **decreasing the resolution** of frames that are used as
-input for the model (e.g. 416x416 pixel). However, the reduced image resolution
+input for the model (e.g. 320x320 pixel). However, the reduced image resolution
 can significantly decrease the detection and especially classification accuracy.
 This effect is even stronger when dealing with very small objects like insects.
 
@@ -28,7 +28,7 @@ following, an alternative approach to this problem is proposed.
 
 The OAK-1 camera and
 [DepthAI Python API](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}
-make it possible to run a low-quality (LQ) stream (e.g. 416x416 px) in parallel
+make it possible to run a low-quality (LQ) stream (e.g. 320x320 px) in parallel
 with a high-quality (HQ) stream (e.g. 3840x2160 px) and
 [synchronize the detections](../software/programming.md#automated-monitoring-script){target=_blank}
 made on the LQ stream with the frames from the HQ stream on-device. This
@@ -56,7 +56,7 @@ frames and save them as individual .jpg files (e.g. every second). The
 [classification](classification.md){target=_blank} in a subsequent step on
 your local PC.
 
-![HQ frame sync cropped detection](assets/images/hq_frame_sync.png){ width="800" }
+![HQ frame sync cropped detection](assets/images/hq_frame_sync.gif){ width="800" }
 
 Separating the detection and classification steps can also simplify dataset
 management, annotation and model training. Overall less training data is
