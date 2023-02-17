@@ -34,7 +34,7 @@ set up together with an active
 [X server](localsetup.md#vcxsrv-windows-x-server){target=_blank} to show the
 frames in a window on your local PC. In this example script, the sensor
 resolution is set to 4K (3840x2160 px) and the HQ frames are downscaled to full
-FOV LQ frames (416x416 px), which is the same configuration as used for the
+FOV LQ frames (320x320 px), which is the same configuration as used for the
 [automated monitoring script](#automated-monitoring-script){target=_blank}.
 
 Run the script with:
@@ -61,10 +61,10 @@ pipeline = dai.Pipeline()
 cam_rgb = pipeline.create(dai.node.ColorCamera) # (1)!
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG) # (2)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K) # (3)!
-cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames
+cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square # (4)
-cam_rgb.setFps(30) # frames per second available for focus/exposure
+cam_rgb.setFps(40) # frames per second available for focus/exposure
 
 xout_rgb = pipeline.create(dai.node.XLinkOut) # (5)!
 xout_rgb.setStreamName("frame")
@@ -115,7 +115,7 @@ with dai.Device(pipeline, usb2Mode=True) as device: # (6)!
 
 With the following Python script you can run a custom YOLOv5 object detection model
 ([.blob format](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank})
-on the OAK device with 4K HQ frames downscaled to full FOV LQ frames (e.g. 416x416
+on the OAK device with 4K HQ frames downscaled to full FOV LQ frames (e.g. 320x320
 px) as model input and show the frames together with the model output (bounding
 box, label, confidence score) in a new window.
 
@@ -165,8 +165,8 @@ if args.print_log:
     import psutil
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5n_416_openvino_2022.1_5shave.blob") # (1)!
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5_416.json") # (2)!
+MODEL_PATH = Path("./insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob") # (1)!
+CONFIG_PATH = Path("./insect-detect/models/json/yolov5_320.json") # (2)!
 
 # Extract detection model metadata from config JSON
 with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -189,10 +189,10 @@ pipeline = dai.Pipeline()
 cam_rgb = pipeline.create(dai.node.ColorCamera)
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
-cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames for model input
+cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(30) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(40) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input + outputs
 nn = pipeline.create(dai.node.YoloDetectionNetwork) # (3)!
@@ -254,10 +254,10 @@ with dai.Device(pipeline, usb2Mode=True) as device:
             for detection in dets:
                 bbox = frame_norm(frame, (detection.xmin, detection.ymin,
                                           detection.xmax, detection.ymax))
-                cv2.putText(frame, labels[detection.label], (bbox[0], bbox[3] + 20),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1) # (7)!
-                cv2.putText(frame, f"{round(detection.confidence, 2)}", (bbox[0], bbox[3] + 40),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+                cv2.putText(frame, labels[detection.label], (bbox[0], bbox[3] + 13),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1) # (7)!
+                cv2.putText(frame, f"{round(detection.confidence, 2)}", (bbox[0], bbox[3] + 25),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
                 cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2)
 
             cv2.putText(frame, f"fps: {round(fps, 2)}", (4, frame.shape[0] - 10),
@@ -344,8 +344,8 @@ if args.print_log:
     import psutil
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5n_416_openvino_2022.1_4shave.blob")
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5_416.json")
+MODEL_PATH = Path("./insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
+CONFIG_PATH = Path("./insect-detect/models/json/yolov5_320.json")
 
 # Extract detection model metadata from config JSON
 with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -368,10 +368,10 @@ pipeline = dai.Pipeline()
 cam_rgb = pipeline.create(dai.node.ColorCamera)
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
-cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames for model input
+cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(30) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(40) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input
 nn = pipeline.create(dai.node.YoloDetectionNetwork)
@@ -390,7 +390,7 @@ nn.setNumInferenceThreads(2)
 
 # Create and configure object tracker node and define inputs + outputs
 tracker = pipeline.create(dai.node.ObjectTracker) # (1)!
-tracker.setTrackerType(dai.TrackerType.SHORT_TERM_IMAGELESS) # (2)!
+tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS) # (2)!
 tracker.setTrackerIdAssignmentPolicy(dai.TrackerIdAssignmentPolicy.UNIQUE_ID)
 nn.passthrough.link(tracker.inputTrackerFrame)
 nn.passthrough.link(tracker.inputDetectionFrame)
@@ -447,14 +447,14 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
                 bbox = frame_norm(frame, (t.srcImgDetection.xmin, t.srcImgDetection.ymin,
                                           t.srcImgDetection.xmax, t.srcImgDetection.ymax)) # (4)!
-                cv2.putText(frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 20),
+                cv2.putText(frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 13),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                cv2.putText(frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 25),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                cv2.putText(frame, f"ID:{t.id}", (bbox[0], bbox[3] + 40),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-                cv2.putText(frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 40),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
-                cv2.putText(frame, f"t.ID:{t.id}", (bbox[0], bbox[3] + 60),
-                            cv2.FONT_HERSHEY_SIMPLEX,  0.6, (255, 255, 255), 1)
-                cv2.putText(frame, t.status.name, (bbox[0], bbox[3] + 75),
-                            cv2.FONT_HERSHEY_SIMPLEX,  0.4, (255, 255, 255), 1)
+                cv2.putText(frame, t.status.name, (bbox[0], bbox[3] + 50),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 255, 255), 1)
                 cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2) # model output
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 130), 1) # tracker output
 
@@ -491,7 +491,7 @@ The following Python script is the main script for fully
 [automated insect monitoring](../deployment/detection.md){target=_blank}.
 
 - The object tracker output (+ passthrough detections) from inference on full FOV LQ
-  frames (e.g. 416x416) is synchronized with the HQ frames (e.g. 3840x2160) in a
+  frames (e.g. 320x320) is synchronized with the HQ frames (e.g. 3840x2160) in a
   [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
 - Detections (area of the bounding box) are cropped from the synced HQ frames
@@ -537,7 +537,7 @@ python3 insect-detect/yolov5_tracker_save_hqsync.py
     - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
     - `-log` to save temperature, RPi memory/CPU and battery logs to .csv
 
-``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 188 307 308 321 334 343"
+``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 189 308 309 322 335 344"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -576,8 +576,8 @@ logger = logging.getLogger() # (1)!
 sys.stderr.write = logger.error
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5n_416_openvino_2022.1_4shave.blob")
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5_416.json")
+MODEL_PATH = Path("./insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
+CONFIG_PATH = Path("./insect-detect/models/json/yolov5_320.json")
 
 # Instantiate PiJuice
 pijuice = PiJuice(1, 0x14)
@@ -624,10 +624,10 @@ cam_rgb = pipeline.create(dai.node.ColorCamera)
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 cam_rgb.setVideoSize(3840, 2160) # HQ frames for syncing, aspect ratio 16:9 (4K)
-cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames for model input
+cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(30) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(40) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input
 nn = pipeline.create(dai.node.YoloDetectionNetwork)
@@ -646,7 +646,7 @@ nn.setNumInferenceThreads(2)
 
 # Create and configure object tracker node and define inputs
 tracker = pipeline.create(dai.node.ObjectTracker)
-tracker.setTrackerType(dai.TrackerType.SHORT_TERM_IMAGELESS)
+tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS)
 tracker.setTrackerIdAssignmentPolicy(dai.TrackerIdAssignmentPolicy.UNIQUE_ID)
 nn.passthrough.link(tracker.inputTrackerFrame)
 nn.passthrough.link(tracker.inputDetectionFrame)
@@ -657,6 +657,7 @@ script = pipeline.create(dai.node.Script)
 script.setProcessor(dai.ProcessorType.LEON_CSS)
 tracker.out.link(script.inputs["tracker"]) # tracker output + passthrough detections
 cam_rgb.video.link(script.inputs["frames"]) # HQ frames
+script.inputs["tracker"].setBlocking(False)
 script.inputs["frames"].setBlocking(False)
 
 # Set script that will be run on-device (Luxonis OAK) # (3)
@@ -755,12 +756,12 @@ def store_data(frame, tracklets):
                 # text position, font size and thickness optimized for 3840x2160 HQ frame size
                 if args.save_overlay_frames: # (5)!
                     overlay_frame = frame.copy()
-                    cv2.putText(overlay_frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 80),
-                                cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 6)
-                    cv2.putText(overlay_frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 140),
-                                cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 5)
-                    cv2.putText(overlay_frame, f"t.ID:{t.id}", (bbox[0], bbox[3] + 240),
-                                cv2.FONT_HERSHEY_SIMPLEX, 3, (255, 255, 255), 6)
+                    cv2.putText(overlay_frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 35),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 3)
+                    cv2.putText(overlay_frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 70),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 3)
+                    cv2.putText(overlay_frame, f"ID:{t.id}", (bbox[0], bbox[3] + 130),
+                                cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 4)
                     cv2.rectangle(overlay_frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 3)
                     overlay_path = f"{save_path}/overlay/{labels[t.srcImgDetection.label]}/{timestamp}_{t.id}_overlay.jpg"
                     cv2.imwrite(overlay_path, overlay_frame)
@@ -948,7 +949,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 If you want to only capture images, e.g. for training data collection, you can
 use the following script to save HQ frames (e.g. 3840x2160 px) to .jpg at a
 specified time interval (e.g. every second). The downscaled full FOV LQ frames
-(e.g. 416x416 px) can be saved to .jpg additionally, e.g. to include them in
+(e.g. 320x320 px) can be saved to .jpg additionally, e.g. to include them in
 the training data, as the detection model will do inference on LQ frames
 (however it is recommended downscale the annotated HQ images in Roboflow
 before training).
@@ -965,7 +966,7 @@ python3 insect-detect/frame_capture.py
 
     - `-min` to set recording time in minutes (e.g. `-min 5` for 5 min
       recording time; default = 2)
-    - `-lq` to additionally save downscaled full FOV LQ frames (e.g. 416x416)
+    - `-lq` to additionally save downscaled full FOV LQ frames (e.g. 320x320)
 
 ``` py title="frame_capture.py" hl_lines="18"
 '''
@@ -984,7 +985,7 @@ import cv2
 import depthai as dai
 
 # Set capture frequency in seconds
-# 'CAPTURE_FREQ = 0.2' saves ~57 frames per minute to .jpg (RPi Zero 2)
+# 'CAPTURE_FREQ = 0.2' saves ~60 frames per minute to .jpg (RPi Zero 2)
 CAPTURE_FREQ = 0.2 # (1)!
 
 # Define optional arguments
@@ -992,7 +993,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-min", "--min_rec_time", type=int, choices=range(1, 721),
                     default=2, help="set record time in minutes")
 parser.add_argument("-lq", "--save_lq_frames", action="store_true",
-    help="additionally save downscaled full FOV LQ frames (e.g. 416x416)")
+    help="additionally save downscaled full FOV LQ frames (e.g. 320x320)")
 args = parser.parse_args()
 
 # Create depthai pipeline
@@ -1003,9 +1004,9 @@ cam_rgb = pipeline.create(dai.node.ColorCamera)
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 cam_rgb.setVideoSize(3840, 2160) # HQ frames, aspect ratio 16:9 (4K)
-cam_rgb.setFps(30) # frames per second available for focus/exposure
+cam_rgb.setFps(40) # frames per second available for focus/exposure
 if args.save_lq_frames:
-    cam_rgb.setPreviewSize(416, 416) # downscaled LQ frames
+    cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames
     cam_rgb.setInterleaved(False)
     cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
 
