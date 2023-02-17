@@ -137,13 +137,13 @@ platform will be more uniform, which can lead to better classification
 results and less images required for model training. The biggest disadvantage
 at the moment is the bias in attraction for different insect groups. We are
 currently testing various shapes, colors and materials to enhance the visual
-attraction for specific pollinator groups (e.g. hoverflies).
+attraction for specific pollinator groups (e.g. hover flies).
 
 !!! success "Implemented functions"
 
     - non-invasive, continuous automated monitoring of flower-visiting insects
     - standardized artificial flower platform as visual attractant
-    - on-device detection and tracking with provided YOLOv5n model (up to 30 fps)
+    - on-device detection and tracking with provided YOLOv5n model (up to 40 fps)
     - save images of detected insects cropped from high-resolution frames (4K)
     - low power consumption (< 4 W) and fully solar-powered
     - automated classification and analysis in subsequent step on local PC
@@ -155,16 +155,10 @@ attraction for specific pollinator groups (e.g. hoverflies).
 !!! failure "Not implemented (yet)"
 
     - high attraction of the flower platform for a wide range of insect taxa
-    - real-time data transfer (e.g. via LTE stick/module)
     - on-device classification and analysis
+    - real-time data transfer (e.g. via LTE stick/module)
     - comparison with traditional monitoring methods (validation)
     - selection of different detection model architectures (coming soon)
-
-<figure markdown>
-  ![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus.gif){ width="600" }
-  <figcaption>On-device detection with the YOLOv5n model can reach up to 30 fps,
-              an object tracker assigns unique IDs to each individual insect</figcaption>
-</figure>
 
 In the [**Hardware**](hardware/index.md){target=_blank} section of this website
 you will find a list with all required [components](hardware/components.md){target=_blank}
@@ -210,13 +204,13 @@ the provided Python script.
 ## GitHub repositories
 
 - [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
-  > Detection models (YOLOv5n + YOLOv5s) and Python scripts for testing and
+  > YOLOv5 object detection models and Python scripts for testing and
     deploying the camera trap system for automated insect monitoring.
 
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-  > Jupyter notebooks to run in Google Colab for YOLOv5 detection and
-    classification model training. Modified YOLOv5 classification script with
-    basic YOLOv5s insect classification model. Python script for automated
+  > Jupyter notebooks to run in Google Colab for YOLOv5 object detection and
+    image classification model training. Modified YOLOv5 classification script
+    with basic YOLOv5s insect classification model. Python script for automated
     analysis of the generated metadata .csv files.
 
 - [`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs){target=_blank}
@@ -243,19 +237,29 @@ the provided Python script.
 
 | Model<br><sup>(.blob) | size<br><sup>(pixels) | mAP<sup>val<br>50-95 | mAP<sup>val<br>50 | Precision<sup>val<br> | Recall<sup>val<br> | Speed OAK<br><sup>(fps) |
 | --------------------- | --------------------- | -------------------- | ----------------- | --------------------- | ------------------ | ----------------------- |
-| **YOLOv5n**           | 416                   | 58.2                 | 97.4              | 97.0                  | 95.0               | ~30                     |
-| **YOLOv5s**           | 416                   | 63.4                 | 97.8              | 96.6                  | 95.6               | ~17                     |
+| **YOLOv5n**           | **320**               | 53.9                 | 97.6              | 96.0                  | 96.6               | **40**                  |
+| YOLOv5n               | 416                   | 58.2                 | 97.4              | 97.0                  | 95.0               | 30                      |
+| YOLOv5s               | 416                   | 63.4                 | 97.8              | 96.6                  | 95.6               | 17                      |
 
-- Both models were trained to 300 epochs with batch size 32 and default settings.
+- All models were trained to 300 epochs with batch size 32 and default settings.
   Reproduce the model training with the provided
   [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}.
-- Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/4){target=_blank} with only 1 class ("insect").
+- Trained on custom [dataset_320](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7){target=_blank} or
+  [dataset_416](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/4){target=_blank} with only 1 class ("insect").
+- Model metrics (mAP, Precision, Recall) are shown for the original .pt model before conversion to ONNX -> OpenVINO -> .blob format.
+- Speed (fps) is shown for the converted model in .blob format, running on the OAK device (same speed with object tracker).
+
+<figure markdown>
+  ![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="320" }
+  <figcaption>On-device detection with the YOLOv5n model can reach up to 40 fps,
+              an object tracker assigns unique IDs to each individual insect</figcaption>
+</figure>
 
 ### Classification model
 
-| Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Top5 Accuracy<sup>val<br>  |
-| --------------------- | --------------------- | ------------------------- | -------------------------- |
-| **YOLOv5s-cls**       | 128                   | 0.9835                    | 1                          |
+| Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Top5 Accuracy<sup>val<br> |
+| --------------------- | --------------------- | ------------------------- | ------------------------- |
+| **YOLOv5s-cls**       | 128                   | 0.9835                    | 1                         |
 
 - The model was trained to 100 epochs with batch size 64 and default settings.
   Reproduce the model training with the provided
@@ -271,7 +275,7 @@ Until the corresponding paper will be published, you can cite this project as:
 
 ``` text
 Sittinger, M. (2022). Insect Detect - Software for automated insect monitoring
-with a DIY camera trap system (v1.4). Zenodo. https://doi.org/10.5281/zenodo.7598658
+with a DIY camera trap system (v1.5). Zenodo. https://doi.org/10.5281/zenodo.7472238
 ```
 
 [![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977){target=_blank}
