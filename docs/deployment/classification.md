@@ -1,6 +1,6 @@
 # Deployment: Classification
 
-The **Insect Detect** DIY camera trap system for automated insect monitoring will
+The **Insect Detect** DIY camera trap for automated insect monitoring will
 yield cropped detections of individual insects saved as .jpg files and relevant
 [metadata](detection.md#metadata-csv){target=_blank} saved to .csv for each
 recording event when using the provided script for
@@ -35,7 +35,8 @@ To be able to run the image classification and subsequent
 install [Python 3.11](https://www.python.org/downloads/windows/){target=_blank}
 to your PC. If you followed the steps in the
 [Software](../software/localsetup.md){target=_blank} section, you already have
-VS Code installed together with the [Python](https://bit.ly/2Zm3Ypq){target=_blank}
+[VS Code](../software/localsetup.md#visual-studio-code){target=_blank}
+installed together with the [Python](https://bit.ly/2Zm3Ypq){target=_blank}
 extension. Activate Python in VS Code by pressing ++f1++ to open the Command Palette
 and start typing the `Python: Select Interpreter` command and select it. You can find a
 [Getting started tutorial](https://code.visualstudio.com/docs/python/python-tutorial){target=_blank}
@@ -43,12 +44,9 @@ and more information on
 [Python in VS Code](https://code.visualstudio.com/docs/languages/python){target=_blank}
 at the official VS Code website.
 
-After VS Code and Python are installed on your system, download the
-[YOLOv5 repository](https://github.com/ultralytics/yolov5){target=_blank}
-from GitHub as .zip file or `git clone` it, if you have
-[git](https://git-scm.com/){target=_blank} installed.
-
-![YOLOv5 repository download](assets/images/yolov5_download.png){ width="800" }
+After VS Code and Python are installed on your system,
+[download](https://github.com/ultralytics/yolov5/archive/refs/heads/master.zip){target=_blank}
+the [YOLOv5](https://github.com/ultralytics/yolov5){target=_blank} GitHub repository.
 
 - Create the new folder `C:\Users\<username>\YOLOv5-cls`.
 - Extract the `yolov5-master.zip` file to the folder `C:\Users\<username>\YOLOv5-cls`.
@@ -66,8 +64,9 @@ from GitHub as .zip file or `git clone` it, if you have
 ## Run image classification
 
 To be able to use the direct output (.jpg images and .csv metadata) from the
-[automated monitoring script](../software/programming.md#automated-monitoring-script){target=_blank},
-download the [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}.
+[automated monitoring](../software/programming.md#automated-monitoring-script){target=_blank} script,
+[download](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){target=_blank}
+the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} GitHub repository.
 We will use the
 [`predict_mod.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/predict_mod.py){target=_blank}
 script together with the `yolov5s-cls_128.onnx` image classification model
