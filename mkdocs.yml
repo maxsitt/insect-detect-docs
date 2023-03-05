@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Maximilian Sittinger <maximilian.sittinger@julius-kuehn.de>
+# Copyright (c) 2022-2023 Maximilian Sittinger <maximilian.sittinger@julius-kuehn.de>
 
 # License: CC BY-SA 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -39,7 +39,7 @@ repo_url: https://github.com/maxsitt/insect-detect-docs
 edit_uri: ""
 
 # Copyright
-copyright: Copyright &copy; 2022 Maximilian Sittinger
+copyright: Copyright &copy; 2022 - 2023 Maximilian Sittinger
 
 # Configuration
 theme:
@@ -99,6 +99,10 @@ extra:
       link: https://orcid.org/0000-0002-4096-8556
     - icon: fontawesome/brands/researchgate
       link: https://researchgate.net/profile/Maximilian-Sittinger
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/M_Sittinger
+    - icon: fontawesome/regular/envelope
+      link: mailto:maximilian.sittinger@julius-kuehn.de
 
 # Extensions
 markdown_extensions:
