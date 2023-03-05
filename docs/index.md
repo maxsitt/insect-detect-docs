@@ -204,20 +204,18 @@ the provided Python script.
 ## GitHub repositories
 
 - [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
-
-  [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){ .md-button }
-
   > YOLOv5 object detection models and Python scripts for testing and
     deploying the camera trap system for automated insect monitoring.
 
+      [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){ .md-button }
+
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-
-  [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
-
   > Google Colab notebooks for YOLOv5 object detection and image classification
     model training. Modified YOLOv5 classification script with basic YOLOv5s
     insect classification model. Python script for automated analysis of the
     metadata .csv files.
+
+      [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
 
 - [`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs){target=_blank}
   > Source files and assets of this documentation website, based on
