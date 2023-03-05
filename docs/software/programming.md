@@ -2,20 +2,19 @@
 
 !!! tip "Adapt the software to your use case"
 
-    You will find all Python scripts to get started with the deployment of
-    an automated monitoring pipeline with the Raspberry Pi + OAK (+ PiJuice
-    Zero) combination in this section, together with details on possible
-    modifications. Click on the :material-plus-circle: symbol to open the
-    code annotations for more information. You can find the full
-    [DepthAI Python API reference](https://docs.luxonis.com/projects/api/en/latest/references/python/){target=_blank}
-    at the DepthAI Docs.
+    You will find all Python scripts to get started with automated insect
+    monitoring with the **Insect Detect** DIY camera trap in this section,
+    together with suggestions on possible modifications. Click on the
+    :material-plus-circle: symbol to open the code annotations for more
+    information. More details can be found at the
+    [DepthAI Python API reference](https://docs.luxonis.com/projects/api/en/latest/references/python/){target=_blank}.
 
 The latest versions of the Python scripts are available in the
 [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
-Download the whole repository and copy it to the `home/pi` folder of your
-Raspberry Pi, by simply dragging & dropping it into the VS Code remote window
-explorer. If you downloaded the repository manually and its foldername is
-`insect-detect-main`, change it to `insect-detect`.
+[Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
+the whole repository, extract it and change its foldername from `insect-detect-main`
+to `insect-detect`. Copy the renamed folder to the `home/pi` directory of your
+Raspberry Pi, by simply dragging & dropping it into the VS Code remote window explorer.
 
 If you run into any problems, find a bug or something that could be optimized,
 please post an [issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}
