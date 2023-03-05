@@ -25,7 +25,7 @@
 You could start by marking the four holes where the Raspberry Pi Zero 2 W and
 the PiJuice Zero will be fixed with the spacer bolts. Instead of measuring and
 marking the drilling holes, you can print the provided
-[mounting_plate_drill_template.pdf](https://github.com/maxsitt/insect-detect-docs/blob/main/PDF_templates/drilling_templates/mounting_plate_drill_template.pdf){target=_blank}
+[drill template](https://github.com/maxsitt/insect-detect-docs/blob/main/PDF_templates/drilling_templates/mounting_plate_drill_template.pdf){target=_blank}
 (original size) and attach it to the mounting plate. Use a strong nail and
 hammer to mark the drilling positions. This will also help to align the drill
 bit when placing it on the otherwise smooth surface of the plate.
