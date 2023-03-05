@@ -137,7 +137,7 @@ platform will be more uniform, which can lead to better classification
 results and less images required for model training. The biggest disadvantage
 at the moment is the bias in attraction for different insect groups. We are
 currently testing various shapes, colors and materials to enhance the visual
-attraction for specific pollinator groups (e.g. hover flies).
+attraction for specific pollinator groups (e.g. hoverflies).
 
 !!! success "Implemented functions"
 
@@ -204,10 +204,16 @@ the provided Python script.
 ## GitHub repositories
 
 - [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
+
+  [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){ .md-button }
+
   > YOLOv5 object detection models and Python scripts for testing and
     deploying the camera trap system for automated insect monitoring.
 
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
+
+  [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
+
   > Google Colab notebooks for YOLOv5 object detection and image classification
     model training. Modified YOLOv5 classification script with basic YOLOv5s
     insect classification model. Python script for automated analysis of the
@@ -241,8 +247,8 @@ the provided Python script.
 | YOLOv5n               | 416                   | 58.2                 | 97.4              | 97.0                  | 95.0               | 30                      |
 | YOLOv5s               | 416                   | 63.4                 | 97.8              | 96.6                  | 95.6               | 17                      |
 
-- All models were trained to 300 epochs with batch size 32 and default settings.
-  Reproduce the model training with the provided
+- All [models](https://github.com/maxsitt/insect-detect/tree/main/models){target=_blank}
+  were trained to 300 epochs with batch size 32 and default settings. Reproduce the model training with the provided
   [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}.
 - Trained on custom [dataset_320](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7){target=_blank} or
   [dataset_416](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/4){target=_blank} with only 1 class ("insect").
@@ -257,8 +263,8 @@ the provided Python script.
 | --------------------- | --------------------- | ------------------------- | ------------------------- |
 | **YOLOv5s-cls**       | 128                   | 0.9835                    | 1                         |
 
-- The model was trained to 100 epochs with batch size 64 and default settings.
-  Reproduce the model training with the provided
+- The [model](https://github.com/maxsitt/insect-detect-ml/blob/main/yolov5s-cls_128.onnx){target=_blank}
+  was trained to 100 epochs with batch size 64 and default settings. Reproduce the model training with the provided
   [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}.
 - Trained on custom [dataset](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/dataset/2){target=_blank}
   with 7 classes ([class balance](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/health){target=_blank}).
