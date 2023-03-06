@@ -3,17 +3,18 @@
 <img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/assets/logo.png" width="500">
 
 [![DOI](https://zenodo.org/badge/580908850.svg)](https://zenodo.org/badge/latestdoi/580908850)
-[![License badge](https://img.shields.io/badge/license-CC%20BY--SA%204.0-red)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 This repository contains the Markdown source files and assets (images, screenshots)
 of the [Insect Detect Docs](https://maxsitt.github.io/insect-detect-docs/) website.
-In the `PDF_templates` folder you will find all drilling templates, that can be used
-while [building](https://maxsitt.github.io/insect-detect-docs/hardware/buildinstructions_enclosure/)
-the DIY camera trap. Also templates for the small and big flower platform that is
-used as attractant and background for the insect detection & recording can be found
-in this folder.
+The `PDF_templates` folder contains
+[drilling templates](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/drilling_templates),
+that can be used while [building](https://maxsitt.github.io/insect-detect-docs/hardware/buildinstructions_enclosure/)
+the Insect Detect DIY camera trap and templates for the small and big
+[flower platform](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform)
+that is used as visual attractant and background for the insect detection.
 
-The camera trap system is composed of low-cost off-the-shelf hardware components
+The Insect Detect DIY camera trap system is composed of low-cost off-the-shelf hardware components
 ([Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/),
 [Luxonis OAK-1](https://docs.luxonis.com/projects/hardware/en/latest/pages/BW1093.html),
 [PiJuice Zero pHAT](https://uk.pi-supply.com/products/pijuice-zero)), combined with
