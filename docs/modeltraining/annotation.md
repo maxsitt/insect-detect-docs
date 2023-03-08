@@ -59,11 +59,12 @@ steps, you can easily modify your dataset in multiple ways (e.g. resize,
 modify classes).
 [Image augmentations](https://docs.roboflow.com/image-transformations/image-augmentation){target=_blank}
 can diversify your dataset, e.g. by applying image rotation, exposure or blur.
-Multiple dataset can be generated in this way from the same annotated source
+Multiple datasets can be generated in this way from the same annotated source
 images. These datasets can then be
 [exported](https://docs.roboflow.com/exporting-data){target=_blank} in all
-common formats, either as .zip file or as download link that can be used to
-upload the dataset, e.g. into a Google Colab model training notebook.
+common formats and downloaded either as .zip file or used to generate a link
+to upload the dataset, e.g. into a Google Colab
+[model training notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}.
 
 <figure markdown>
   ![Roboflow Annotate](assets/images/roboflow_annotate.jpg){ width="800" }
