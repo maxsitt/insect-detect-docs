@@ -378,6 +378,12 @@ Reboot the Raspberry Pi for all changes to take effect:
 sudo reboot
 ```
 
+If you want to shutdown your Raspberry Pi, run:
+
+``` bash
+sudo shutdown -h now
+```
+
 ---
 
 ## PiJuice Zero configuration
@@ -458,8 +464,8 @@ sudo hwclock -r
 
 ---
 
-We will now start with configuring the PiJuice Zero through its command line
-interface by running:
+We will now configure the PiJuice Zero through its command line interface
+by running:
 
 ``` bash
 pijuice_cli
@@ -579,28 +585,25 @@ Upgrade the package `numpy`:
 python3 -m pip install --upgrade numpy
 ```
 
-We will have to install five more packages, that are required for the Python
-scripts to work correctly.
-
-Install `pandas`:
+Install the package `pandas`:
 
 ``` bash
 python3 -m pip install pandas
 ```
 
-Install `psutil`:
+Install the package `psutil`:
 
 ``` bash
 python3 -m pip install psutil
 ```
 
-Install `opencv-python`:
+Install the package `opencv-python`:
 
 ``` bash
 python3 -m pip install opencv-python==4.6.0.66
 ```
 
-Install the [PyAV package](https://github.com/PyAV-Org/PyAV){target=_blank} if you want
+Install the package [PyAV](https://github.com/PyAV-Org/PyAV){target=_blank} if you want
 to use the [`video_capture.py`](programming.md#video-capture){target=_blank} script:
 
 ``` bash
@@ -615,7 +618,7 @@ python3 -m pip install av
     python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai
     ```
 
-    Additionally, you will have to install the `libusb-1.0-0-dev` package with:
+    Additionally, you will have to install the package `libusb-1.0-0-dev` with:
 
     ``` bash
     sudo apt-get install libusb-1.0-0-dev
@@ -670,6 +673,12 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
   from the Luxonis developers in the [forum](https://discuss.luxonis.com/){target=_blank}
   or in the [Discord channel](https://discord.gg/luxonis){target=_blank}.
 
+If you want to shutdown your Raspberry Pi, run:
+
+``` bash
+sudo shutdown -h now
+```
+
 ---
 
 ## Configure X11 forwarding
@@ -680,28 +689,30 @@ new window on our local computer.
 
 Open the VS Code Extensions and install the Remote X11 extension that we
 already installed on our local machine in [Local Setup](localsetup.md){target=_blank}
-to the Raspberry Pi by selecting `Install in SSH: [IP-ADDRESS]`.
+to the Raspberry Pi by selecting `Install in SSH:`.
 
 ![VS Code Remote X11 install SSH](assets/images/vscode_remotex11_ssh_install.png){ width="700" }
 
-Open the local **Remote X11 (SSH)** extension, press the Settings symbol and
-select `Extension Settings`.
+Open the local **Remote X11 (SSH)** extension and select `Extension Settings`.
 
 ![VS Code Remote X11 SSH settings](assets/images/vscode_remotex11_ssh_settings.png){ width="700" }
 
-At the top you will see two tabs for `User` and `Remote [SSH: IP-ADDRESS]`. In
-the `User` settings tab, make sure that the **XAuth Permission Level** is set
-to `trusted`.
+At the top you will see two tabs for `User` and `Remote [SSH: <IP-ADDRESS>]`.
+In the `User` settings tab, make sure that the **XAuth Permission Level** is
+set to `trusted`.
 
 ![VS Code Remote X11 SSH settings User](assets/images/vscode_remotex11_ssh_settings_user.png){ width="700" }
 
-Go to the `Remote [SSH: IP-ADDRESS]` settings tab and change the
-**Display Command** to `echo DISPLAY=$DISPLAY`.
+Go to the `Remote [SSH: <IP-ADDRESS>]` settings tab and change the
+**Display Command** to:
+
+``` text
+echo DISPLAY=$DISPLAY
+```
 
 ![VS Code Remote X11 SSH settings Remote Display](assets/images/vscode_remotex11_ssh_settings_remote_display.png){ width="700" }
 
-Scroll down and make sure that the **XAuth Permission Level** is set to
-`trusted` in the Remote settings too.
+Scroll down and set the **XAuth Permission Level** to `trusted`.
 
 ![VS Code Remote X11 SSH settings Remote Authentication](assets/images/vscode_remotex11_ssh_settings_remote_auth.png){ width="700" }
 
@@ -741,3 +752,6 @@ localhost:10.0
 
     Restart VcXsrv and reboot the Raspberry Pi before testing the connection
     again with `echo $DISPLAY`.
+
+With everything set up, you can now move on to [Programming](programming.md){target=_blank}
+and use the provided Python scripts for your own automated insect monitoring pipelines!
