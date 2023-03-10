@@ -587,6 +587,14 @@ Install the `depthai` package:
 python3 -m pip install depthai
 ```
 
+??? question "Raspberry Pi Zero W"
+
+    To install the depthai package on the RPi Zero W, run:
+
+    ``` bash
+    python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai
+    ```
+
 You can check if your OAK camera is correctly detected by running:
 
 ``` bash
