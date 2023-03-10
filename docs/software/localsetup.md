@@ -69,7 +69,7 @@ the Extensions icon in the left side bar and install the
     - [Generate a SSH key](pisetup.md#ssh-key-based-authentication){target=_blank}.
     - Go to the `C:\Users\<username>\.ssh` folder.
     - Create a new `config.txt` file and copy the following content to it
-      (insert your correct Windows username):
+      (**insert your correct Windows username**):
 
         ``` text
         Host raspberrypi
@@ -94,6 +94,11 @@ the Extensions icon in the left side bar and install the
         ssh pi@raspberrypi
         ```
 
+        When you are asked if you are sure you want to continue connecting,
+        type in `yes` and hit ++enter++.
+
+    - To paste commands to the Terminal after connecting to the RPi, use
+      right-click on your mouse.
     - You can check if X11 forwarding works correctly by running:
 
         ``` bash
@@ -111,7 +116,7 @@ the Extensions icon in the left side bar and install the
       extension.
     - Open the SSH FS extension by clicking on the new icon in the left side bar.
     - Create a new SSH FS configuration (Name: e.g. `rpi_zero`) with the following fields
-      (insert your correct Windows username):
+      (**insert your correct Windows username**):
 
         - Host: `raspberrypi`
         - Port: `22`
@@ -122,9 +127,11 @@ the Extensions icon in the left side bar and install the
     - Leave the other fields blank and save the configuration with the
       **Save** button at the bottom.
     - In the SSH FS extension, click on the first symbol to the right of your
-      configuration: `Add as Workspace folder`. This will open the `/home/pi`
-      folder in your VS Code explorer. You can now view files directly in
-      VS Code and drag & drop any files or folders from your PC to the RPi Zero.
+      configuration: `Add as Workspace folder`. Retry if it does not work
+      immediately. This will open the `/home/pi` folder in your VS Code explorer.
+      You can now view and edit files (e.g. [Python scripts](programming.md){target=_blank}
+      and images) directly in VS Code and drag & drop any files or folders
+      (e.g. `insect-detect`) from your PC to the RPi Zero.
     - Follow the steps for [RPi configuration](pisetup.md#rpi-configuration){target=_blank},
       [PiJuice Zero configuration](pisetup.md#pijuice-zero-configuration){target=_blank}
       and [OAK-1 configuration](pisetup.md#oak-1-configuration){target=_blank}.
