@@ -31,9 +31,13 @@ are connected to the Raspberry Pi via SSH,
 [X11 forwarding](pisetup.md#configure-x11-forwarding){target=_blank} has to be
 set up together with an active
 [X server](localsetup.md#vcxsrv-windows-x-server){target=_blank} to show the
-frames in a window on your local PC. In this example script, the sensor
-resolution is set to 4K (3840x2160 px) and the HQ frames are downscaled to full
-FOV LQ frames (320x320 px), which is the same configuration as used for the
+frames in a window on your local PC. If you are using the Raspberry Pi Zero W (v1),
+make sure that you followed the steps in the info box at the top of the
+[Raspberry Pi Setup](pisetup.md){target=_blank} page.
+
+In this example script, the sensor resolution is set to 4K (3840x2160 px) and
+the HQ frames are downscaled to full FOV LQ frames (320x320 px), which is the
+same configuration as used for the
 [automated monitoring script](#automated-monitoring-script){target=_blank}.
 
 Run the script with:
@@ -316,7 +320,7 @@ python3 insect-detect/yolov5_tracker_preview.py
     - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
       (%) to console
 
-``` py title="yolov5_tracker_preview.py" hl_lines="73 138 139 147"
+``` py title="yolov5_tracker_preview.py" hl_lines="73 140 141 149"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -390,6 +394,8 @@ nn.setNumInferenceThreads(2)
 # Create and configure object tracker node and define inputs + outputs
 tracker = pipeline.create(dai.node.ObjectTracker) # (1)!
 tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS) # (2)!
+# use short term tracker if fps < ~30 for better tracking performance
+#tracker.setTrackerType(dai.TrackerType.SHORT_TERM_IMAGELESS)
 tracker.setTrackerIdAssignmentPolicy(dai.TrackerIdAssignmentPolicy.UNIQUE_ID)
 nn.passthrough.link(tracker.inputTrackerFrame)
 nn.passthrough.link(tracker.inputDetectionFrame)
@@ -536,7 +542,7 @@ python3 insect-detect/yolov5_tracker_save_hqsync.py
     - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
     - `-log` to save temperature, RPi memory/CPU and battery logs to .csv
 
-``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 189 308 309 322 335 344"
+``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 191 310 311 324 337 346"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -646,6 +652,8 @@ nn.setNumInferenceThreads(2)
 # Create and configure object tracker node and define inputs
 tracker = pipeline.create(dai.node.ObjectTracker)
 tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS)
+# use short term tracker if fps < ~30 for better tracking performance
+#tracker.setTrackerType(dai.TrackerType.SHORT_TERM_IMAGELESS)
 tracker.setTrackerIdAssignmentPolicy(dai.TrackerIdAssignmentPolicy.UNIQUE_ID)
 nn.passthrough.link(tracker.inputTrackerFrame)
 nn.passthrough.link(tracker.inputDetectionFrame)
