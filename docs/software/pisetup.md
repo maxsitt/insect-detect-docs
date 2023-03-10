@@ -39,12 +39,11 @@ Imager installed on your system.
         ssh pi@raspberrypi
         ```
 
-      When you are asked if you are sure you want to continue connecting,
-      type in `yes` and hit ++enter++.
+        When you are asked if you are sure you want to continue connecting,
+        type in `yes` and hit ++enter++.
 
-    - To paste commands to the Terminal after connecting to the RPi, don't use
-      ++ctrl+v++, but right-click on your mouse.
-
+    - To paste commands to the Terminal after connecting to the RPi, use
+      right-click on your mouse.
     - You can check if X11 forwarding works correctly by running:
 
         ``` bash
