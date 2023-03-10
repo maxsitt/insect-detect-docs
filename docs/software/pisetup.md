@@ -3,9 +3,9 @@
 Before we can use the Raspberry Pi Zero 2 W, we will first have to install
 Raspberry Pi OS Lite to the micro SD card. If you followed the steps in
 [Local Setup](localsetup.md){target=_blank}, you already have the Raspberry Pi
-Imager installed on your system (v1.7.3 is used in the following instructions).
+Imager installed on your system.
 
-??? question "Raspberry Pi Zero W"
+??? question "Raspberry Pi Zero W (v1)"
 
     The Remote - SSH  and Remote X11 extensions will not work with the
     Raspberry Pi Zero W, as the armv6l architecture is not supported.
@@ -15,7 +15,7 @@ Imager installed on your system (v1.7.3 is used in the following instructions).
     - [Generate a SSH key](#ssh-key-based-authentication).
     - Go to the `C:\Users\<username>\.ssh` folder.
     - Create a new `config.txt` file and copy the following content to it
-      (insert your correct Windows username):
+      (**insert your correct Windows username**):
 
         ``` text
         Host raspberrypi
@@ -39,6 +39,12 @@ Imager installed on your system (v1.7.3 is used in the following instructions).
         ssh pi@raspberrypi
         ```
 
+      When you are asked if you are sure you want to continue connecting,
+      type in `yes` and hit ++enter++.
+
+    - To paste commands to the Terminal after connecting to the RPi, don't use
+      ++ctrl+v++, but right-click on your mouse.
+
     - You can check if X11 forwarding works correctly by running:
 
         ``` bash
@@ -56,7 +62,7 @@ Imager installed on your system (v1.7.3 is used in the following instructions).
       extension.
     - Open the SSH FS extension by clicking on the new icon in the left side bar.
     - Create a new SSH FS configuration (Name: e.g. `rpi_zero`) with the following fields
-      (insert your correct Windows username):
+      (**insert your correct Windows username**):
 
         - Host: `raspberrypi`
         - Port: `22`
@@ -67,9 +73,11 @@ Imager installed on your system (v1.7.3 is used in the following instructions).
     - Leave the other fields blank and save the configuration with the
       **Save** button at the bottom.
     - In the SSH FS extension, click on the first symbol to the right of your
-      configuration: `Add as Workspace folder`. This will open the `/home/pi`
-      folder in your VS Code explorer. You can now view files directly in
-      VS Code and drag & drop any files or folders from your PC to the RPi Zero.
+      configuration: `Add as Workspace folder`. Retry if it does not work
+      immediately. This will open the `/home/pi` folder in your VS Code explorer.
+      You can now view and edit files (e.g. [Python scripts](programming.md){target=_blank}
+      and images) directly in VS Code and drag & drop any files or folders
+      (e.g. `insect-detect`) from your PC to the RPi Zero.
     - Follow the steps for [RPi configuration](#rpi-configuration),
       [PiJuice Zero configuration](#pijuice-zero-configuration)
       and [OAK-1 configuration](#oak-1-configuration).
@@ -100,7 +108,7 @@ ssh-keygen -t rsa -b 4096
 ```
 
 Save the key to `C:\Users\<username>/.ssh/id_rsa` by hitting ++enter++. When you
-are asked to enter a passphrase, just hit ++enter++. Now that we have generated
+are asked to enter a passphrase, hit ++enter++ twice. Now that we have generated
 the private and public SSH keys, we can select **public-key authentication** in
 the advanced options of the Raspberry Pi Imager in the next steps.
 
@@ -159,12 +167,12 @@ options.
 - Set the hostname, e.g. to the default `raspberrypi`. If you will be deploying
   multiple Raspberry Pis, you should give each a unique hostname.
 - Enable SSH with public-key authentication.
-- Set the username and password. It is recommended to keep the default `pi`
+- Set the username and password. It is recommended to use the default `pi`
   as username.
 - If not already filled out, enter your local WiFi SSID and password, to be
   able to connect to the Pi via SSH immediately after the first boot. Don't
   forget to select the correct Wireless LAN country in the dropdown menu below.
-- Set the locale settings to your time zone and keyboard layout, then hit **SAVE**.
+- Set the locale settings to your time zone and keyboard layout, then press **SAVE**.
 
 ![Raspberry Pi Imager settings](assets/images/raspberrypi_imager_settings.png){ width="600" }
 
@@ -176,21 +184,24 @@ Raspberry Pi.
 
 ## First boot and IP address search
 
-If you already have the PiJuice Zero pHAT connected to your Raspberry Pi, insert
-the micro USB cable (connected to your battery, laptop or power supply) into the
-PiJuice USB micro input. Power on the Raspberry Pi with a short single press on
-the PiJuice **SW1** button (on the left and marked green in the following picture).
+If you already have the PiJuice Zero pHAT (+ PiJuice battery) connected to your
+Raspberry Pi, insert the micro USB cable (connected to your battery, laptop or
+power supply) into the PiJuice USB micro input. Power on the Raspberry Pi with
+a short single press on the PiJuice **SW1** button (on the left and marked
+green in the following picture).
 
 If your are working without the PiJuice at the moment, insert your micro
-USB cable connected to a power supply into the **PWR IN** USB micro input
-of the Raspberry Pi. The first boot will take a little bit longer, as all
-of the custom configuration has to be enabled.
+USB cable connected to a power supply, battery or laptop into the **PWR IN**
+USB micro input on the outer side of the Raspberry Pi. The first boot will
+take a little bit longer, as all of the custom configuration has to be enabled.
+Wait until the green LED stops blinking (about 5 min) before moving on.
 
 ![PiJuice Zero buttons](https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png){ width="500" }
 
 You can connect to the RPi via SSH by using the hostname, that you set during
-the RPi OS installation (e.g. `raspberrypi`). If you did not set a hostname or
-don't know it, you will have to connect to the RPi by using its IP address.
+the RPi OS installation (e.g. `raspberrypi`) in the [following step](#remote-ssh-connection).
+If you did not set a hostname or don't know it, you will have to connect to the
+RPi by using its IP address.
 
 To be able to connect to the Pi in VS Code via SSH without using the hostname,
 we will first have to find its IP address in the WiFi network. There are
@@ -203,6 +214,10 @@ and scan the IP addresses of all devices in your WiFi network.
 ---
 
 ## Remote SSH connection
+
+If you are using Raspberry Pi Zero W (v1), please follow the instructions in
+the info box at the [top of this page](#raspberry-pi-setup) before proceeding
+to the [RPi configuration](#rpi-configuration){target=_blank}.
 
 Open VS Code and press the green button in the bottom left to open the
 Remote-SSH extension connection settings.
@@ -228,7 +243,10 @@ if you chose public-key authentication).
 
 After these steps, the Pi SSH Terminal at the bottom will open and you can
 start with setting up your Pi! In the explorer view on the left, press
-**Open Folder** and open the home folder `/home/pi/`.
+**Open Folder** and open the home folder `/home/pi/`. You can now view and
+edit files (e.g. [Python scripts](programming.md){target=_blank} and images)
+directly in VS Code and drag & drop any files or folders (e.g. `insect-detect`)
+from your PC to the RPi Zero.
 
 If the Pi SSH Terminal will not automatically open after you established the
 SSH connection, go to **Terminal** in the menu bar at the top and open a
@@ -268,9 +286,10 @@ Reboot the Raspberry Pi after all updates were successfully installed with:
 sudo reboot
 ```
 
-After the reboot you may have to reload the remote VS Code window. When the
-Raspberry Pi terminal is back and active again, we will change some of the Pi
-settings (use the arrow keys to navigate) with:
+After the reboot you may have to reload the remote VS Code window (or establish
+a new SSH connection if you are using RPi Zero W (v1)). When the Raspberry Pi
+terminal is back and active again, we will change some of the RPi settings
+(use the arrow keys to navigate) with:
 
 ``` bash
 sudo raspi-config
@@ -297,7 +316,7 @@ sudo raspi-config
   will disable the new KMS video driver for 3D graphics in RPi OS Bullseye.
 
 After these changes are made, select `Finish` in the bottom right of the main
-menu and reboot the Pi.
+menu and reboot.
 
 ---
 
@@ -311,7 +330,7 @@ sudo nano /boot/config.txt
 We will disable audio, camera/display auto detects and Bluetooth, by making the
 following changes in the `config.txt` file (use the arrow keys to navigate):
 
-``` py hl_lines="2 5 8 10 11"
+``` py
 # Enable audio (loads snd_bcm2835)
 dtparam=audio=off
 
@@ -320,7 +339,12 @@ camera_auto_detect=0
 
 # Automatically load overlays for detected DSI displays
 display_auto_detect=0
+```
 
+Copy and paste (use right-click to paste) the following two lines directly
+under the options you just changed:
+
+``` py
 # Disable Bluetooth
 dtoverlay=disable-bt
 ```
@@ -339,11 +363,9 @@ sudo nano /etc/rc.local
 
 Add the following lines above `exit 0`:
 
-``` py hl_lines="1 2"
+``` py
 # Disable HDMI at boot
 /usr/bin/tvservice -o
-
-exit 0
 ```
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
@@ -372,6 +394,8 @@ running the following in the SSH Terminal:
 ``` bash
 sudo apt-get install pijuice-base
 ```
+
+When you are asked if you want to continue, confirm with ++y+enter++.
 
 After the installation you can check if the PiJuice Zero is correctly detected
 by running:
@@ -454,16 +478,17 @@ pijuice_cli
   Save the changed settings with `Apply settings`.
 - Go to the `System Task` tab, activate `Software Halt Power Off` and set the
   `Delay period [seconds]` to `20`. With this setting activated, the power to
-  the Raspberry Pi will be cut off 20 seconds after a software shutdown (e.g.
-  `sudo shutdown -h now`) has occured. This will make sure that the OS can
-  complete the shutdown process without potential SD card corruption.
+  the Raspberry Pi will be cut off 20 seconds after a software shutdown has
+  occured. This will make sure that the OS can complete the shutdown process
+  without potential SD card corruption.
+
+    ![VS Code PiJuice System Task](assets/images/pijuice_system_task.png){ width="500" }
+
 - Optional: Depending on your hardware setup, under the `Battery profile` tab
   you could decrease the `Termination current [mA]` to e.g. `100` if you are
   using a solar panel as direct input into the PiJuice Zero
   ([**Minimal Setup**](../hardware/components.md#minimal-setup){target=_blank}
   without Voltaic battery).
-
-![VS Code PiJuice System Task](assets/images/pijuice_system_task.png){ width="500" }
 
 The most important settings are now applied. You can get a lot more information
 about all of the other settings at the
@@ -500,6 +525,8 @@ Open the crontab file for editing by running:
 ``` bash
 crontab -e
 ```
+
+When you are asked to choose an editor, type in `1` and confirm with ++enter++.
 
 Now paste the following lines at the end of the crontab file:
 
@@ -556,10 +583,10 @@ python3 -m pip install --upgrade numpy
 We will have to install five more packages, that are required for the Python
 scripts to work correctly.
 
-Install `python3-pandas`:
+Install `pandas`:
 
 ``` bash
-sudo apt-get install python3-pandas
+python3 -m pip install pandas
 ```
 
 Install `psutil`:
@@ -581,19 +608,25 @@ to use the [`video_capture.py`](programming.md#video-capture){target=_blank} scr
 python3 -m pip install av
 ```
 
+??? question "Raspberry Pi Zero W (v1)"
+
+    To install the `depthai` package on the RPi Zero W (v1) run:
+
+    ``` bash
+    python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai
+    ```
+
+    Additionally, you will have to install the `libusb-1.0-0-dev` package with:
+
+    ``` bash
+    sudo apt-get install libusb-1.0-0-dev
+    ```
+
 Install the `depthai` package:
 
 ``` bash
 python3 -m pip install depthai
 ```
-
-??? question "Raspberry Pi Zero W"
-
-    To install the depthai package on the RPi Zero W, run:
-
-    ``` bash
-    python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai
-    ```
 
 You can check if your OAK camera is correctly detected by running:
 
