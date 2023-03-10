@@ -59,7 +59,7 @@ the Extensions icon in the left side bar and install the
     - [Save Commands](https://bit.ly/3NntHsb){target=_blank} extension if you
       want to save some often used terminal commands for direct execution.
 
-??? question "Raspberry Pi Zero W"
+??? question "Raspberry Pi Zero W (v1)"
 
     The Remote - SSH  and Remote X11 extensions will not work with the
     Raspberry Pi Zero W, as the armv6l architecture is not supported.
