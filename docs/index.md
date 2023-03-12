@@ -145,7 +145,7 @@ attraction for specific pollinator groups (e.g. hoverflies).
     - standardized artificial flower platform as visual attractant
     - on-device detection and tracking with provided YOLOv5n model (up to 40 fps)
     - save images of detected insects cropped from high-resolution frames (4K)
-    - low power consumption (< 4 W) and fully solar-powered
+    - low power consumption (~ 4 W) and fully solar-powered
     - automated classification and analysis in subsequent step on local PC
     - weatherproof enclosure
     - easy to build and deploy with low-cost off-the-shelf hardware components
@@ -231,13 +231,13 @@ the provided Python script.
   > Dataset to train insect detection models, with annotated images collected in
     2022 with the DIY camera trap and the proposed flower platform as background.
 
-      [Download :simple-zenodo:](https://doi.org/10.5281/zenodo.7725941){ .md-button }
+      [Download :simple-zenodo:](https://doi.org/10.5281/zenodo.7725941){target=_blank}{ .md-button }
 
 - [**Classification Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
   > Dataset to train insect classification models, which mostly contains the
     cropped bounding boxes with insects, exported from the Detection Dataset.
 
-      [Download :simple-zenodo:](https://doi.org/10.5281/zenodo.7725970){ .md-button }
+      [Download :simple-zenodo:](https://doi.org/10.5281/zenodo.7725970){target=_blank}{ .md-button }
 
 ---
 
