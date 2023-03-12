@@ -46,17 +46,17 @@ theme:
   name: material
   language: en
   features:
-  - content.code.annotate
-  - content.code.copy
-  - header.autohide
-  - navigation.footer
-  - navigation.indexes
-  - navigation.instant
-  - navigation.top
-  - navigation.tracking
-  - search.highlight
-  - search.suggest
-  - toc.follow
+    - content.code.annotate
+    - content.code.copy
+    - header.autohide
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+    - toc.follow
   palette: 
     - scheme: slate
       primary: blue grey
@@ -144,7 +144,8 @@ nav:
     - Programming: software/programming.md
   - Model Training:
     - Annotation: modeltraining/annotation.md
-    - YOLOv5 Training: modeltraining/yolov5.md
+    - Object Detection: modeltraining/train_detection.md
+    - Image Classification: modeltraining/train_classification.md
   - Deployment:
     - Detection: deployment/detection.md
     - Classification: deployment/classification.md
