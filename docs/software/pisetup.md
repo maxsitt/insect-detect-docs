@@ -673,12 +673,6 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
   from the Luxonis developers in the [forum](https://discuss.luxonis.com/){target=_blank}
   or in the [Discord channel](https://discord.gg/luxonis){target=_blank}.
 
-If you want to shutdown your Raspberry Pi, run:
-
-``` bash
-sudo shutdown -h now
-```
-
 ---
 
 ## Configure X11 forwarding
