@@ -221,6 +221,8 @@ the provided Python script.
   > Source files and assets of this documentation website, based on
     [Material for MkDocs](https://github.com/squidfunk/mkdocs-material){target=_blank}.
 
+      [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-docs/archive/refs/heads/main.zip){ .md-button }
+
 ---
 
 ## Datasets
@@ -229,9 +231,13 @@ the provided Python script.
   > Dataset to train insect detection models, with annotated images collected in
     2022 with the DIY camera trap and the proposed flower platform as background.
 
+      [Download :simple-zenodo:](https://doi.org/10.5281/zenodo.7725941){ .md-button }
+
 - [**Classification Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
   > Dataset to train insect classification models, which mostly contains the
     cropped bounding boxes with insects, exported from the Detection Dataset.
+
+      [Download :simple-zenodo:](https://doi.org/10.5281/zenodo.7725970){ .md-button }
 
 ---
 
