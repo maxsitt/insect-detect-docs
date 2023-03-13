@@ -114,7 +114,7 @@ detection/classification).
 
 Especially when deploying the camera trap system in new environments, edge
 cases (low confidence score or false detection/classification) should be
-identified and models [retrained](modeltraining/yolov5.md){target=_blank}
+identified and models [retrained](modeltraining/train_detection.md){target=_blank}
 with new data (correctly annotated images). This iterative Active Learning loop
 of retraining and redeploying can ensure a high detection and classification
 accuracy over time. With the combination of
@@ -143,7 +143,7 @@ attraction for specific pollinator groups (e.g. hoverflies).
 
     - non-invasive, continuous automated monitoring of flower-visiting insects
     - standardized artificial flower platform as visual attractant
-    - on-device detection and tracking with provided YOLOv5n model (up to 40 fps)
+    - on-device detection and tracking with provided YOLO models (up to 40 fps)
     - save images of detected insects cropped from high-resolution frames (4K)
     - low power consumption (~ 4 W) and fully solar-powered
     - automated classification and analysis in subsequent step on local PC
@@ -158,7 +158,6 @@ attraction for specific pollinator groups (e.g. hoverflies).
     - on-device classification and analysis
     - real-time data transfer (e.g. via LTE stick/module)
     - comparison with traditional monitoring methods (validation)
-    - selection of different detection model architectures (coming soon)
 
 In the [**Hardware**](hardware/index.md){target=_blank} section of this website
 you will find a list with all required [components](hardware/components.md){target=_blank}
@@ -177,11 +176,11 @@ at the Python scripts if you want, with details on
 
 The **Model Training** section will show you tools to
 [annotate](modeltraining/annotation.md){target=_blank} your own images and use
-these to train your custom [YOLOv5](modeltraining/yolov5.md){target=_blank}
-object detection model that can be deployed on the
-[OAK-1](https://bit.ly/3Ew7PbM){target=_blank} camera. To classify the cropped
-insect images, you can also train your custom classification model in the next
-step that can be run on your local PC (no GPU necessary). All of the model
+these to train your custom [object detection models](modeltraining/train_detection.md){target=_blank}
+that can be deployed on the [OAK-1](https://docs.luxonis.com/projects/hardware/en/latest/pages/BW1093.html){target=_blank}
+camera. To classify the cropped insect images, you can train your custom
+[image classification model](modeltraining/train_classification.md){target=_blank}
+in the next step that can be run on your local PC (no GPU necessary). All of the model
 training can be done in [Google Colab](https://colab.research.google.com/){target=_blank},
 where you will have access to a free cloud GPU for fast training. This means
 all you need is a Google account, no special hardware is required.
@@ -204,16 +203,15 @@ the provided Python script.
 ## GitHub repositories
 
 - [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
-  > YOLOv5 object detection models and Python scripts for testing and
-    deploying the camera trap system for automated insect monitoring.
+  > YOLO insect detection models and Python scripts for testing and
+    deploying the DIY camera trap system for automated insect monitoring.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){ .md-button }
 
 - [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-  > Google Colab notebooks for YOLOv5 object detection and image classification
-    model training. Modified YOLOv5 classification script with basic YOLOv5s
-    insect classification model. Python script for automated analysis of the
-    metadata .csv files.
+  > Notebooks for YOLOv5/v6/v7/v8 object detection and YOLOv5-cls image classification
+    model training. YOLOv5 classification script with YOLOv5s-cls insect classification
+    model. Python script for automated analysis of the metadata .csv files.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
 
