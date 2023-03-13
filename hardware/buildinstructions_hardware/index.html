@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Insect Detect: DIY camera trap for continuous automated insect monitoring -  Documentation and build instructions" name="description"/>
+<meta content="Maximilian Sittinger" name="author"/>
+<link href="https://maxsitt.github.io/insect-detect-docs/hardware/buildinstructions_hardware/" rel="canonical"/>
+<link href="../buildinstructions_enclosure/" rel="prev"/>
+<link href="../buildinstructions_mounting/" rel="next"/>
+<link href="../../assets/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.1.2" name="generator"/>
+<title>Integrating the Hardware - Insect Detect Docs</title>
+<link href="../../assets/stylesheets/main.7bf56d0a.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="teal" data-md-color-primary="blue-grey" data-md-color-scheme="slate" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#integrating-the-hardware">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Insect Detect Docs" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Insect Detect Docs">
+<img alt="logo" src="../../assets/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Insect Detect Docs
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Integrating the Hardware
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="teal" data-md-color-media="" data-md-color-primary="blue-grey" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="teal" data-md-color-media="" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"></path></svg>
+</label>
+</form>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Insect Detect Docs" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Insect Detect Docs">
+<img alt="logo" src="../../assets/logo.png"/>
+</a>
+    Insect Detect Docs
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+        Introduction
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">Hardware</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Hardware
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../components/">
+        Components
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          Building Instructions
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+          Building Instructions
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../buildinstructions_overview/">
+        Overview
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../buildinstructions_enclosure/">
+        Preparing the enclosure
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Integrating the Hardware
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Integrating the Hardware
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-you-will-need">
+    What you will need
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oak-1-and-silica-gel-fixing">
+    OAK-1 and silica gel fixing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rpi-and-pijuice-fixing">
+    RPi and PiJuice fixing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inserting-the-mounting-plate">
+    Inserting the mounting plate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrating-the-batteries">
+    Integrating the batteries
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connecting-everything">
+    Connecting everything
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../buildinstructions_mounting/">
+        Mounting Setup
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../software/">Software</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../software/localsetup/">
+        Local Setup
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../software/pisetup/">
+        Raspberry Pi Setup
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../software/programming/">
+        Programming
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Model Training
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Model Training
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../modeltraining/annotation/">
+        Annotation
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../modeltraining/train_detection/">
+        Object Detection
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../modeltraining/train_classification/">
+        Image Classification
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Deployment
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          Deployment
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deployment/detection/">
+        Detection
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deployment/classification/">
+        Classification
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../deployment/analysis/">
+        Analysis
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-you-will-need">
+    What you will need
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#oak-1-and-silica-gel-fixing">
+    OAK-1 and silica gel fixing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rpi-and-pijuice-fixing">
+    RPi and PiJuice fixing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#inserting-the-mounting-plate">
+    Inserting the mounting plate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#integrating-the-batteries">
+    Integrating the batteries
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connecting-everything">
+    Connecting everything
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="integrating-the-hardware">Integrating the Hardware<a class="headerlink" href="#integrating-the-hardware" title="Anchor link to this section">¶</a></h1>
+<h2 id="what-you-will-need">What you will need<a class="headerlink" href="#what-you-will-need" title="Anchor link to this section">¶</a></h2>
+<details class="abstract">
+<summary>Required tools &amp; components</summary>
+<ol>
+<li><strong>Soldering Iron (+ Solder)</strong> or <strong>Hammer Header</strong></li>
+<li><strong>Pliers</strong></li>
+<li>8x Cable Tie Mount</li>
+<li>8x Stainless Steel Cable Tie</li>
+<li>Silica Gel Pack 50 g</li>
+<li>OAK-1 (OpenCV AI Kit)</li>
+<li>Raspberry Pi Zero 2 W (+ SD card)</li>
+<li>RPi CPU Heatsink</li>
+<li>RPi Header</li>
+<li>RPi Stacking Header</li>
+<li>RPi Spacer Bolts 10 mm</li>
+<li>RPi Spacer Bolts 20 mm</li>
+<li>PiJuice Zero UPS pHAT</li>
+<li>Solar Panel Extension Cable, 1 ft</li>
+<li>Voltaic 12,800 mAh Li-Ion Battery (Full Setup only)</li>
+<li><em>2x Thermal Pad (1 mm) 50x50 mm</em> (optional)</li>
+<li><em>2x Heatsink 40x30 mm</em> (optional)</li>
+<li>Solar Panel Micro USB Adapter</li>
+<li>PiJuice 12,000 mAh LiPo Battery</li>
+<li>Micro USB to USB A Adapter, angled</li>
+<li>USB A to micro USB cable, 20 cm, angled (Full Setup only)</li>
+<li>Solar Panel 6V 9W</li>
+</ol>
+</details>
+<hr/>
+<h2 id="oak-1-and-silica-gel-fixing">OAK-1 and silica gel fixing<a class="headerlink" href="#oak-1-and-silica-gel-fixing" title="Anchor link to this section">¶</a></h2>
+<p>As we just finished preparing the lid of the enclosure, we can continue with
+fixing the cable tie mounts to the inside of the lid. The OAK-1 and a pack of
+silica gel will be attached to the inside of the lid with the stainless steel
+cable ties.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_lid_mounting_template.png"><img alt="Enclosure lid mounting template" src="../assets/images/enclosure_lid_mounting_template.png" width="500"/></a></p>
+<p>After marking the location where the four cable tie mounts, holding the OAK-1
+in place, will be attached to the inside of the enclosure lid, we can stick
+them to their positions with the included adhesive pads.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/cable_tie_mounts_fixing.jpg"><img alt="Enclosure Lid Cable Tie Mounts fixing" src="../assets/images/cable_tie_mounts_fixing.jpg" width="500"/></a></p>
+<p>Repeat this step for the other four cable tie mounts, that will keep the pack
+of silica gel in place.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/cable_tie_mounts.jpg"><img alt="Enclosure Lid Cable Tie Mounts" src="../assets/images/cable_tie_mounts.jpg" width="500"/></a></p>
+<p>Now we are going to put the stainless steel cable ties through the holes of the
+cable tie mounts. You can bend the tip of the cable ties a little bit to make
+them go through the cable tie mounts easier.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/cable_ties_attachment.jpg"><img alt="Enclosure Lid Cable Ties attachment" src="../assets/images/cable_ties_attachment.jpg" width="500"/></a></p>
+<p>After attaching and connecting the cable ties you can bend them a litte bit to
+make it easier to put the silica gel pack and the OAK-1 under them.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/cable_ties_bending.jpg"><img alt="Enclosure Lid Cable Ties bending" src="../assets/images/cable_ties_bending.jpg" width="500"/></a></p>
+<p>While attaching the OAK-1 camera, please make sure to center the camera lens
+with the hole in the lid. After that you can tighten the cables ties. The lid
+of the enclosure is finished now and we are going to move on with attaching the
+rest of the hardware to the mounting plate of the enclosure!</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_lid_fixed_hardware.jpg"><img alt="Enclosure Lid Fixed Hardware" src="../assets/images/enclosure_lid_fixed_hardware.jpg" width="600"/></a></p>
+<hr/>
+<h2 id="rpi-and-pijuice-fixing">RPi and PiJuice fixing<a class="headerlink" href="#rpi-and-pijuice-fixing" title="Anchor link to this section">¶</a></h2>
+<p>But first we will have to prepare the Raspberry Pi Zero 2 W. If you don't
+already have a device with attached header, you will have to solder a header to
+the Raspberry Pi. But before that make sure to stick the heatsink on the CPU of
+your Raspberry. This will keep the header to sit flush against the Raspberry Pi
+as you solder it. If this is your first time soldering you can find detailed
+instructions <a href="https://bit.ly/3AsZMdg" target="_blank">here</a> and
+<a href="https://bit.ly/3pr6kCO" target="_blank">here</a>. As alternative to soldering the
+header, you could also use a
+<a href="https://shop.pimoroni.com/products/gpio-hammer-header" target="_blank">Hammer Header</a>.</p>
+<p>After attaching the CPU heatsink and soldering or hammering the header, your
+Raspberry Pi should look like this:</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/raspberrypi_zero2w_top.jpg"><img alt="Raspberry Pi Zero 2 W with Header top" src="../assets/images/raspberrypi_zero2w_top.jpg" width="500"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/raspberrypi_zero2w_bottom.jpg"><img alt="Raspberry Pi Zero 2 W with Header bottom" src="../assets/images/raspberrypi_zero2w_bottom.jpg" width="500"/></a></p>
+<p>Now we can put the stacking header on top of the freshly soldered header.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/raspberrypi_zero2w_stackingheader.jpg"><img alt="Raspberry Pi Zero 2 W Stacking Header" src="../assets/images/raspberrypi_zero2w_stackingheader.jpg" width="500"/></a></p>
+<p>The Raspberry Pi is now prepared to be attached to the mounting plate together
+with the PiJuice Zero pHAT. For this, we will need the 10 mm and 20 mm spacer
+bolts, as well as the four washers and four screws that came with the bolts.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/mounting_plate_hardware.jpg"><img alt="Mounting Plate Hardware mounting" src="../assets/images/mounting_plate_hardware.jpg" width="600"/></a></p>
+<p>We are going to put the smaller 10 mm spacer bolts into the four holes we
+previously drilled.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/mounting_plate_10mmbolts.jpg"><img alt="Mounting Plate 10mm Bolts" src="../assets/images/mounting_plate_10mmbolts.jpg" width="500"/></a></p>
+<p>Then fasten the bolts with the washers at the backside of the mounting plate.
+But don't tighten them yet! We will need a little bit of space to align the
+components on the other side of the mounting plate in the following steps.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/mounting_plate_10mmbolts_washers.jpg"><img alt="Mounting Plate 10mm Bolts fixing" src="../assets/images/mounting_plate_10mmbolts_washers.jpg" width="500"/></a></p>
+<p>Place your Raspberry Pi on top of the spacer bolts. Make sure that the ports
+are pointing towards the edge of the mounting plate.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/mounting_plate_10mmbolts_raspberrypi.jpg"><img alt="Mounting Plate 10mm Bolts Raspberry Pi" src="../assets/images/mounting_plate_10mmbolts_raspberrypi.jpg" width="500"/></a></p>
+<p>You can now screw the longer 20 mm spacer bolts into the 10 mm bolts to fix the
+Raspberry Pi to the mounting plate. Again, don't tighten too much as we will
+need some space to align everything at the end.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/mounting_plate_20mmbolts_raspberrypi.jpg"><img alt="Mounting Plate 20mm Bolts Raspberry Pi" src="../assets/images/mounting_plate_20mmbolts_raspberrypi.jpg" width="500"/></a></p>
+<p>In the last step, we are going to connect the PiJuice Zero pHAT with the GPIO
+pins of the RPi stacking header. If you have some trouble with this, you can
+check if some of the pins are not properly aligned and adjust them carefully
+before trying again. Finally, fasten the screws on top of the PiJuice board.
+Now you can properly tighten all bolts and the washers on the backside of the
+mounting plate.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/mounting_plate_pijuicezero.jpg"><img alt="Mounting Plate PiJuice Zero" src="../assets/images/mounting_plate_pijuicezero.jpg" width="600"/></a></p>
+<hr/>
+<h2 id="inserting-the-mounting-plate">Inserting the mounting plate<a class="headerlink" href="#inserting-the-mounting-plate" title="Anchor link to this section">¶</a></h2>
+<p>Before we insert the mounting plate into the enclosure, the 2x2 cable ties have
+to be aligned with the positions where the batteries will be. If your cable
+ties are too short, you can connect two ties for extension, which will also
+work fine. In the following pictures, the batteries are hold in place with only
+one cable tie. However, it is recommended to use two cable ties for each
+battery, as described in the text.</p>
+<p>Do not directly screw the mounting plate to the enclosure, to be able to adjust
+the cable ties later, so that they are in the respective centers of the
+batteries.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_mounting_plate_cable_ties.jpg"><img alt="Enclosure Mounting Plate Cable Ties" src="../assets/images/enclosure_mounting_plate_cable_ties.jpg" width="600"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_mounting_plate_cable_ties_fixed.jpg"><img alt="Enclosure Mounting Plate Cable Ties fixed" src="../assets/images/enclosure_mounting_plate_cable_ties_fixed.jpg" width="600"/></a></p>
+<hr/>
+<h2 id="integrating-the-batteries">Integrating the batteries<a class="headerlink" href="#integrating-the-batteries" title="Anchor link to this section">¶</a></h2>
+<p>In the next step, we are going to put the extension cable of the solar panel
+through the cable gland. In the following pictures, the 4 foot (120 cm) Voltaic
+extension cable is used. This will also work, but if you can get the shorter 1
+foot (30 cm) cable, you won't have to roll it up in the enclosure.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_cable_gland_extension_cable.jpg"><img alt="Enclosure Cable Gland Extension Cable" src="../assets/images/enclosure_cable_gland_extension_cable.jpg" width="600"/></a></p>
+<p>Push the female port though the cable gland until the overmold is approximately
+⅔ of the way in. Tighten the sealing nut properly to make sure that
+everything will be waterproof.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_cable_gland_extension_cable_fixing.jpg"><img alt="Enclosure Cable Gland Extension Cable fixing" src="../assets/images/enclosure_cable_gland_extension_cable_fixing.jpg" width="500"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_cable_gland_extension_cable_position.jpg"><img alt="Enclosure Cable Gland Extension Cable position" src="../assets/images/enclosure_cable_gland_extension_cable_position.jpg" width="400"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_cable_gland_extension_cable_position2.jpg"><img alt="Enclosure Cable Gland Extension Cable position sealed" src="../assets/images/enclosure_cable_gland_extension_cable_position2.jpg" width="400"/></a></p>
+<p>The <a href="https://bit.ly/3psf8bA" target="_blank">Voltaic V50 battery</a> that we are
+using in this example, has an integrated over temperature protection, which
+means that it will stop charging at 45°C. To improve the heat dissipation, we
+can stick the battery to the mounting plate with a thermal pad and add two
+heatsinks to the top of the battery. This step is optional and only recommended
+if your camera trap will be exposed to high temperatures in summer. Instead of
+the thermal pad, you could also use two small pieces of double-sided tape or
+velcro strips to attach the batteries to the mounting plate.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/battery_solarpanel_heatsinks.jpg"><img alt="Battery Solar Panel Heatsinks" src="../assets/images/battery_solarpanel_heatsinks.jpg" width="500"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/battery_solarpanel_heatsinks_attached.jpg"><img alt="Battery Solar Panel Heatsinks attached" src="../assets/images/battery_solarpanel_heatsinks_attached.jpg" width="400"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/battery_solarpanel_thermalpad.jpg"><img alt="Battery Solar Panel Thermal Pad" src="../assets/images/battery_solarpanel_thermalpad.jpg" width="400"/></a></p>
+<p>Next, we are going to plug the micro USB adapter into the male port of the
+solar panel extension cable and connect it to the battery.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/extension_cable_usb_adapter.jpg"><img alt="Extension Cable USB Adapter" src="../assets/images/extension_cable_usb_adapter.jpg" width="500"/></a></p>
+<p>You can stick the PiJuice battery to the mounting plate with the second Thermal
+pad or some double-sided tape/velcro strips.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/battery_pijuice_thermalpad.jpg"><img alt="Battery PiJuice Thermal Pad" src="../assets/images/battery_pijuice_thermalpad.jpg" width="400"/></a></p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_batteries.jpg"><img alt="Enclosure Batteries attached" src="../assets/images/enclosure_batteries.jpg" width="600"/></a></p>
+<p>After both batteries are attached to the mounting plate, we can connect the
+PiJuice battery to the PiJuice Zero pHAT. Please make sure that the holes for
+the connection pins are facing downwards.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/battery_pijuice_connection.jpg"><img alt="Battery PiJuice connection" src="../assets/images/battery_pijuice_connection.jpg" width="500"/></a></p>
+<hr/>
+<h2 id="connecting-everything">Connecting everything<a class="headerlink" href="#connecting-everything" title="Anchor link to this section">¶</a></h2>
+<p>Plug the angled micro USB to USB A adapter into the micro USB port of the
+Raspberry Pi Zero 2 W. This adapter is necessary for the connection with the
+OAK-1 USB cable.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/raspberrypi_usb_adapter.jpg"><img alt="Raspberry Pi USB Adapter" src="../assets/images/raspberrypi_usb_adapter.jpg" width="500"/></a></p>
+<p>In the next step, we will connect the solar panel battery to the PiJuice Zero
+pHAT with the angled USB A to micro USB cable. Now you could already connect
+the solarpanel, but if you want to continue with the following steps for
+<a href="../buildinstructions_mounting/" target="_blank">mounting</a> the camera trap, it is
+recommended to connect the solar panel only at the end of the mounting process.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/solarpanel_connection.jpg"><img alt="Solar Panel connection" src="../assets/images/solarpanel_connection.jpg" width="600"/></a></p>
+<p>Now that everything is in place, tighten the cable ties to keep the batteries
+secure, as the enclosure will be turned over for mounting and the thermal pads
+alone would not guarantee a secure fixture. If you didn't do it already, you
+can now tighten the screws that are holding the mounting plate in place.</p>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="../assets/images/enclosure_cable_ties_fixed.jpg"><img alt="Enclosure Cables Ties fixing" src="../assets/images/enclosure_cable_ties_fixed.jpg" width="600"/></a></p>
+<p>If you are going for the <a href="../components/#minimal-setup" target="_blank">Minimal Setup</a>
+you are now finished! Just connect the USB 3 Type-A to Type-C cable, which was
+included in the OAK-1 kit, to the micro USB adapter of the Raspberry Pi and
+your good to go! Don't close the lid yet, as we need to
+<a href="../../software/">set up the software</a> in the next steps. If you want to
+build the <a href="../components/#full-setup" target="_blank">Full Setup</a>, continue with
+the next step for mounting the camera trap and the artificial flower platform.</p>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Preparing the enclosure" class="md-footer__link md-footer__link--prev" href="../buildinstructions_enclosure/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  Previous
+                </span>
+                Preparing the enclosure
+              </div>
+</div>
+</a>
+<a aria-label="Next: Mounting Setup" class="md-footer__link md-footer__link--next" href="../buildinstructions_mounting/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  Next
+                </span>
+                Mounting Setup
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2022 - 2023 Maximilian Sittinger
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://github.com/maxsitt" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+<a class="md-social__link" href="https://orcid.org/0000-0002-4096-8556" rel="noopener" target="_blank" title="orcid.org">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91 0-41.64-26.54-76.9-84.67-76.9zM256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57 19.64 19.64 0 0 1-19.57 19.57zM300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369z"></path></svg>
+</a>
+<a class="md-social__link" href="https://researchgate.net/profile/Maximilian-Sittinger" rel="noopener" target="_blank" title="researchgate.net">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M0 32v448h448V32H0zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7v7.3zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9zm-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6z"></path></svg>
+</a>
+<a class="md-social__link" href="https://twitter.com/M_Sittinger" rel="noopener" target="_blank" title="twitter.com">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+</a>
+<a class="md-social__link" href="mailto:maximilian.sittinger@julius-kuehn.de" rel="noopener" target="_blank" title="">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "header.autohide", "navigation.footer", "navigation.indexes", "navigation.top", "navigation.tracking", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "none", "closeEffect": "none", "slideEffect": "slide"});})</script></body>
+</html>
