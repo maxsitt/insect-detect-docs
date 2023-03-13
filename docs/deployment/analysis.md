@@ -117,7 +117,7 @@ in a subsequent step.
 ![Plot duration per tracking ID](assets/images/duration_per_track.png){ width="500" }
 
 To find cases where the classification model could be further enhanced by
-[retraining](../modeltraining/yolov5.md){target=_blank} with new image data,
-you can take a look at the mean classification probability per top1 class.
+[retraining](../modeltraining/train_classification.md){target=_blank} with new image
+data, you can take a look at the mean classification probability per top1 class.
 
 ![Plot mean prob per top1 class](assets/images/top1_classes_mean_prob.png){ width="500" }

@@ -62,7 +62,7 @@ Separating the detection and classification steps can also simplify dataset
 management, annotation and model training. Overall less training data is
 sufficient for good detection results, as no classes have to be distinguished
 by the detection model. You can directly use the cropped detections as input
-for a growing image dataset to [train](../modeltraining/yolov5.md){target=_blank}
+for a growing image dataset to [train](../modeltraining/train_classification.md){target=_blank}
 new insect classification models, just by sorting them to folders with the
 respective class name (e.g. insect taxon).
 

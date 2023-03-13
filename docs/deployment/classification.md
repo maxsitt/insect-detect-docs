@@ -110,7 +110,7 @@ find the images sorted to top1 class in the directory
 `YOLOv5-cls\yolov5-master\runs\predict-cls\data_classified\top1_classes`. This
 allows for a quick identification of edge cases (e.g. insect taxa that were
 classified to the wrong class) and these images can be used to
-[retrain](../modeltraining/yolov5.md){target=_blank} your classification model.
+[retrain](../modeltraining/train_classification.md){target=_blank} your classification model.
 
 The classified metadata .csv file still contains multiple rows for each tracked insect
 (= `track_ID`). In the [last processing step](analysis.md){target=_blank}, we will use the
