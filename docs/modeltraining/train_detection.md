@@ -9,6 +9,10 @@ it to use for real-time inference, even on resource-constrained hardware.
 After the first release, several new YOLO versions improved the initial model
 and formed the ["YOLO family"](https://blog.roboflow.com/guide-to-yolo-models/){target=_blank}.
 
+Check out the provided [Python scripts](../software/programming.md){target=_blank} and the
+recommended [processing pipeline](../deployment/detection.md#processing-pipeline){target=_blank}
+for more information on how to deploy the detection models.
+
 ## YOLOv5
 
 **YOLOv5n** is the most recommended model for the DIY camera trap at the moment!
