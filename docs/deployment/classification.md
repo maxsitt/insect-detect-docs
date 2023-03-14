@@ -7,8 +7,9 @@ recording event when using the provided script for
 [automated monitoring](../software/programming.md#automated-monitoring-script){target=_blank}.
 
 The recommended [processing pipeline](detection.md#processing-pipeline){target=_blank}
-uses a [YOLOv5n](../index.md#detection-models){target=_blank} detection model with only
-one generic class ("insect"), as the low input resolution would result in a low
+uses a [YOLOv5n](../index.md#detection-models){target=_blank} detection model with
+only one generic class ("insect"), as the low input resolution, which is necessary
+for the model to run fast enough to track flying insects, would result in a low
 classification accuracy in most cases. The detections are then cropped from HQ frames
 with a high enough resolution to enable good classification results in a subsequent
 step on your local PC, using a [YOLOv5s-cls](../index.md#classification-model){target=_blank}
