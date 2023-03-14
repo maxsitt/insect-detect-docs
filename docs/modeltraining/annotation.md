@@ -64,7 +64,7 @@ images. These datasets can then be
 [exported](https://docs.roboflow.com/exporting-data){target=_blank} in all
 common formats and downloaded either as .zip file or used to generate a link
 to upload the dataset, e.g. into a Google Colab
-[model training notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}.
+[model training notebook](train_detection.md){target=_blank}.
 
 <figure markdown>
   ![Roboflow Annotate](assets/images/roboflow_annotate.jpg){ width="800" }

@@ -13,6 +13,8 @@ Check out the provided [Python scripts](../software/programming.md){target=_blan
 recommended [processing pipeline](../deployment/detection.md#processing-pipeline){target=_blank}
 for more information on how to deploy the detection models.
 
+---
+
 ## YOLOv5
 
 **YOLOv5n** is the most recommended model for the DIY camera trap at the moment!

@@ -17,8 +17,8 @@ classification results to `metadata_classified_{timestamp}.csv`.
 - Create a new folder in your working directory, e.g. `YOLOv5-cls\analysis`.
 - Copy the `metadata_classified_{timestamp}.csv` file to the `analysis` folder.
 - Copy the `csv_analysis.py` script from the
-  [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-  to the `analysis` folder.
+  [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
+  GitHub repo to the `analysis` folder.
 - Navigate to the `YOLOv5-cls\analysis` folder and start the analysis script by running:
 
     ``` powershell

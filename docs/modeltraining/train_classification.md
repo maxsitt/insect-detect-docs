@@ -13,6 +13,8 @@ for more information on how to deploy the classification model and the
 [automated analysis](../deployment/analysis.md){target=_blank} for post-processing
 of the classification results.
 
+---
+
 ## YOLOv5-cls
 
 Since release [v6.2](https://github.com/ultralytics/yolov5/releases/v6.2){target=_blank},
