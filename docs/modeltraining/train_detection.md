@@ -1,16 +1,17 @@
 # Object detection model training
 
-YOLO (You Only Look Once) ([Redmon et al., 2016](https://doi.org/10.48550/arXiv.1506.02640){target=_blank})
+[YOLO](https://pjreddie.com/darknet/yolo/){target=_blank} (You Only Look Once)
+([Redmon et al., 2016](https://doi.org/10.48550/arXiv.1506.02640){target=_blank})
 is the first object detection model which combines object detection (bounding
 box prediction) and classification (associated class probabilities) into a
 single neural network. This new approach makes the model very fast and enables
-it to use for real-time inference, even with resource-constrained hardware.
+it to use for real-time inference, even on resource-constrained hardware.
 After the first release, several new YOLO versions improved the initial model
-and formed a [family of YOLO models](https://blog.roboflow.com/guide-to-yolo-models/){target=_blank}.
+and formed the ["YOLO family"](https://blog.roboflow.com/guide-to-yolo-models/){target=_blank}.
 
 ## YOLOv5
 
-**YOLOv5n is the most recommended model for the DIY camera trap at the moment!**
+**YOLOv5n** is the most recommended model for the DIY camera trap at the moment!
 
 [YOLOv5](https://github.com/ultralytics/yolov5){target=_blank}
 ([Jocher, 2020](https://doi.org/10.5281/zenodo.3908559){target=_blank})
@@ -22,8 +23,8 @@ is probably the most popular YOLO version, including models for
 
 It is highly recommended to read the
 [tips for best training results](https://github.com/ultralytics/yolov5/wiki/Tips-for-Best-Training-Results){target=_blank}
-if this is your first time training a deep learning model. Most of these tips
-are also relevant if you choose a different YOLO version.
+if this is your first time training a detection model! Most of these tips are
+also relevant if you choose a different YOLO version.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
@@ -94,7 +95,7 @@ Ultralytics, who also developed YOLOv5, claims to reach the new state-of-the-art
 new convolutions and improved image augmentation techniques during training.
 A big difference to the other YOLO models are the developer-friendly features,
 such as the integrated [CLI](https://docs.ultralytics.com/usage/cli/){target=_blank}
-and the easy-to-use [Python package](https://docs.ultralytics.com/usage/python/){target=_blank}.
+and [Python package](https://docs.ultralytics.com/usage/python/){target=_blank}.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
