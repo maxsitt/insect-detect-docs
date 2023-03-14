@@ -1,12 +1,34 @@
 # Image classification model training
 
+The recommended [processing pipeline](../deployment/detection.md#processing-pipeline){target=_blank}
+uses a [YOLOv5n](../index.md#detection-models){target=_blank} detection model
+with only one generic class ("insect"), as the low input resolution, which is
+necessary for the model to run fast enough to track flying insects, would result
+in a low classification accuracy in most cases. The detections are then cropped
+from HQ frames with a high enough resolution to enable good classification results
+in a subsequent step on your local PC.
+
+Check out the [classification instructions](../deployment/classification.md){target=_blank}
+for more information on how to deploy the classification model and the
+[automated analysis](../deployment/analysis.md){target=_blank} for post-processing
+of the classification results.
+
 ## YOLOv5-cls
 
-[YOLOv5](https://github.com/ultralytics/yolov5){target=_blank} is probably the
-easiest to use computer vision framework, including models for
-[object detection](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data){target=_blank},
-[image classification](https://github.com/ultralytics/yolov5/pull/8956){target=_blank} and
-[instance segmentation](https://github.com/ultralytics/yolov5/releases/v7.0){target=_blank}.
+Since release [v6.2](https://github.com/ultralytics/yolov5/releases/v6.2){target=_blank},
+classification model training and deployment is supported by
+[YOLOv5](https://github.com/ultralytics/yolov5){target=_blank}.
+
+To train your own image classification model, you can select between YOLOv5-cls,
+ResNet and EfficientNet
+[classification models](https://github.com/ultralytics/yolov5#classification){target=_blank},
+pretrained on the ImageNet-1k dataset. A YOLOv5s-cls model is provided in the
+[`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
+GitHub repo, trained on the
+[Insect_Detect_classification](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
+dataset. When exported to ONNX format, this model runs very fast even on a
+standard CPU, while still providing a good accuracy. Choose a bigger model
+to achieve higher classification accuracy and if speed is not so important.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
