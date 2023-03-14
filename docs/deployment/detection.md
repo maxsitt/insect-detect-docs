@@ -32,7 +32,7 @@ make it possible to run a low-quality (LQ) stream (e.g. 320x320 px) in parallel
 with a high-quality (HQ) stream (e.g. 3840x2160 px) and
 [synchronize the detections](../software/programming.md#automated-monitoring-script){target=_blank}
 made on the LQ stream with the frames from the HQ stream on-device. This
-approach enables the use of the LQ stream as input for a YOLOv5 detection model
+approach enables the use of the LQ stream as input for a YOLO detection model
 to increase the possible inference speed, which in turn also increases the
 performance and accuracy of the
 [object tracker](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank}.
@@ -110,8 +110,13 @@ event. This metadata includes:
 
 Due to a relatively low power consumption of the hardware components, the whole
 camera trap system (OAK-1 + Raspberry Pi Zero 2 W + PiJuice Zero pHAT) has a
-maximum power consumption of **< 4 W** under full load, when running the provided
+maximum power consumption of **~ 4 W** under full load, when running the provided
 [monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}.
+
+To measure the power consumption shown in the following graph, the YOLOv5n model
+with 416x416 px input resolution and 30 fps was used. With the new YOLO models
+that use a input resolution of 320x320 px and can run at **~40 fps**, the average
+peak power consumption is increased to **~810 mA** (4.05 W).
 
 <figure markdown>
   ![Insect Detect camera trap power consumption](assets/images/power_consumption.png){ width="700" }
