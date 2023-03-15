@@ -7,17 +7,17 @@ box prediction) and classification (associated class probabilities) into a
 single neural network. This new approach makes the model very fast and enables
 it to use for real-time inference, even on resource-constrained hardware.
 After the first release, several new YOLO versions improved the initial model
-and formed the ["YOLO family"](https://blog.roboflow.com/guide-to-yolo-models/){target=_blank}.
+and formed the [YOLO family](https://blog.roboflow.com/guide-to-yolo-models/){target=_blank}.
 
 Check out the provided [Python scripts](../software/programming.md){target=_blank} and the
 recommended [processing pipeline](../deployment/detection.md#processing-pipeline){target=_blank}
-for more information on how to deploy the detection models.
+for more information on how to deploy your custom trained detection model.
 
 ---
 
 ## YOLOv5
 
-**YOLOv5n** is the most recommended model for the DIY camera trap at the moment!
+**YOLOv5n** is the most recommended model for the DIY camera trap at the moment.
 
 [YOLOv5](https://github.com/ultralytics/yolov5){target=_blank}
 ([Jocher, 2020](https://doi.org/10.5281/zenodo.3908559){target=_blank})
@@ -29,19 +29,20 @@ is probably the most popular YOLO version, including models for
 
 It is highly recommended to read the
 [tips for best training results](https://github.com/ultralytics/yolov5/wiki/Tips-for-Best-Training-Results){target=_blank}
-if this is your first time training a detection model! Most of these tips are
+if this is your first time training a detection model. Most of these tips are
 also relevant if you choose a different YOLO version.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
 
-- [**YOLOv5 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}
+- [**YOLOv5 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank} &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}
   > With manual conversion to
     [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
     format for on-device inference on the Luxonis OAK.
 
 Check the [introduction](https://colab.research.google.com/){target=_blank} and
-[features overview](https://colab.research.google.com/notebooks/basic_features_overview.ipynb){target=_blank},
+[features overview](https://colab.research.google.com/notebooks/basic_features_overview.ipynb){target=_blank}
 if this is your first time using a Colab notebook.
 
 After opening the notebook, log in to your Google account and under the **File**
@@ -62,13 +63,15 @@ accelerator under **Runtime --> Change runtime type**.
 
 [YOLOv6](https://github.com/meituan/YOLOv6){target=_blank}
 ([Li et al., 2022](https://doi.org/10.48550/arXiv.2209.02976){target=_blank})
-implements several new features, e.g. a decoupled head and anchor-free training
-which can increase model performance.
+is specifically tailored for industrial applications and implements several
+new features, including a efficient decoupled head, anchor-free detection and
+optimized loss functions which can increase model performance.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
 
-- [**YOLOv6 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv6_detection_training.ipynb){target=_blank}
+- [**YOLOv6 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv6_detection_training.ipynb){target=_blank} &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv6_detection_training.ipynb){target=_blank}
   > With [automatic conversion](https://tools.luxonis.com/){target=_blank} to
     [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
     format for on-device inference on the Luxonis OAK.
@@ -86,7 +89,8 @@ convolution which can further increase model performance.
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
 
-- [**YOLOv7 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv7_detection_training.ipynb){target=_blank}
+- [**YOLOv7 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv7_detection_training.ipynb){target=_blank} &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv7_detection_training.ipynb){target=_blank}
   > With [automatic conversion](https://tools.luxonis.com/){target=_blank} to
     [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
     format for on-device inference on the Luxonis OAK.
@@ -96,17 +100,19 @@ notebook for custom training of a:
 ## YOLOv8
 
 [YOLOv8](https://github.com/ultralytics/ultralytics){target=_blank} by
-Ultralytics, who also developed YOLOv5, claims to reach the new state-of-the-art
-(SOTA) performance by integrating new features, e.g. anchor-free detection,
-new convolutions and improved image augmentation techniques during training.
-A big difference to the other YOLO models are the developer-friendly features,
-such as the integrated [CLI](https://docs.ultralytics.com/usage/cli/){target=_blank}
+[Ultralytics](https://ultralytics.com/){target=_blank}, the developers behind
+YOLOv5, claims to reach the current state-of-the-art (SOTA) performance by
+integrating new features, including anchor-free detection and a new backbone
+network and loss function. A big difference to the other YOLO models are the
+developer-friendly options, such as the integrated
+[command-line interface](https://docs.ultralytics.com/usage/cli/){target=_blank} (CLI)
 and [Python package](https://docs.ultralytics.com/usage/python/){target=_blank}.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
 
-- [**YOLOv8 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv8_detection_training.ipynb){target=_blank}
+- [**YOLOv8 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv8_detection_training.ipynb){target=_blank} &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv8_detection_training.ipynb){target=_blank}
   > With [automatic conversion](https://tools.luxonis.com/){target=_blank} to
     [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
     format for on-device inference on the Luxonis OAK.
