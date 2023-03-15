@@ -101,9 +101,9 @@ notebook for custom training of a:
 
 [YOLOv8](https://github.com/ultralytics/ultralytics){target=_blank} by
 [Ultralytics](https://ultralytics.com/){target=_blank}, the developers behind
-YOLOv5, claims to reach the current state-of-the-art (SOTA) performance by
+YOLOv5, claims to reach the current state-of-the-art performance by
 integrating new features, including anchor-free detection and a new backbone
-network and loss function. A big difference to the other YOLO models are the
+network and loss function. A big difference to other YOLO models are the
 developer-friendly options, such as the integrated
 [command-line interface](https://docs.ultralytics.com/usage/cli/){target=_blank} (CLI)
 and [Python package](https://docs.ultralytics.com/usage/python/){target=_blank}.
