@@ -30,12 +30,14 @@ GitHub repo, trained on the
 [Insect_Detect_classification](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
 dataset. When exported to ONNX format, this model runs very fast even on a
 standard CPU, while still providing a good accuracy. Choose a bigger model
-to achieve higher classification accuracy and if speed is not so important.
+to achieve potentially higher classification accuracy and if speed is not
+so important or your hardware (e.g. GPU) allows it.
 
 You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
 notebook for custom training of a:
 
-- [**YOLOv5 image classification model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}
+- [**YOLOv5 image classification model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank} &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}
   > Includes [export](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
     to [ONNX](https://onnx.ai/){target=_blank} format for faster CPU inference on your PC.
 
