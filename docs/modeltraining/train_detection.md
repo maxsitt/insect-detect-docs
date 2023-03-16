@@ -5,7 +5,7 @@
 is the first object detection model which combines object detection (bounding
 box prediction) and classification (associated class probabilities) into a
 single neural network. This new approach makes the model very fast and enables
-it to use for real-time inference, even on resource-constrained hardware.
+its use for real-time inference, even on resource-constrained hardware.
 After the first release, several new YOLO versions improved the initial model
 and formed the [YOLO family](https://blog.roboflow.com/guide-to-yolo-models/){target=_blank}.
 
