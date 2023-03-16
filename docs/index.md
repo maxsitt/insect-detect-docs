@@ -202,20 +202,20 @@ the provided Python script.
 
 ## GitHub repositories
 
-- [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
+- [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo
   > YOLO insect detection models and Python scripts for testing and
     deploying the DIY camera trap system for automated insect monitoring.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){ .md-button }
 
-- [`insect-detect-ml` GitHub repo](https://github.com/maxsitt/insect-detect-ml){target=_blank}
+- [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} GitHub repo
   > Notebooks for YOLOv5/v6/v7/v8 object detection and YOLOv5-cls image classification
     model training. YOLOv5 classification script with YOLOv5s-cls insect classification
     model. Python script for automated analysis of the metadata .csv files.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
 
-- [`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs){target=_blank}
+- [`insect-detect-docs`](https://github.com/maxsitt/insect-detect-docs){target=_blank} GitHub repo
   > Source files and assets of this documentation website, based on
     [Material for MkDocs](https://github.com/squidfunk/mkdocs-material){target=_blank}.
 
