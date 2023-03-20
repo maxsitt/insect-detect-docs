@@ -205,25 +205,25 @@ the provided Python script.
 - [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977){target=_blank}
 
-  > YOLOv5/v6/v7/v8 insect detection models and Python scripts for testing and
-    deploying the DIY camera trap system for automated insect monitoring.
+    > YOLOv5/v6/v7/v8 insect detection models and Python scripts for testing and
+      deploying the DIY camera trap system for automated insect monitoring.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){ .md-button }
 
 - [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/580963598.svg)](https://zenodo.org/badge/latestdoi/580963598){target=_blank}
 
-  > Notebooks for YOLOv5/v6/v7/v8 object detection and YOLOv5-cls image classification
-    model training. YOLOv5 classification script with YOLOv5s-cls insect classification
-    model. Python script for automated analysis of the metadata .csv files.
+    > Notebooks for YOLOv5/v6/v7/v8 object detection and YOLOv5-cls image classification
+      model training. YOLOv5 classification script with YOLOv5s-cls insect classification
+      model. Python script for automated analysis of the metadata .csv files.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
 
 - [`insect-detect-docs`](https://github.com/maxsitt/insect-detect-docs){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/580908850.svg)](https://zenodo.org/badge/latestdoi/580908850){target=_blank}
 
-  > Source files and assets of this documentation website, based on
-    [Material for MkDocs](https://github.com/squidfunk/mkdocs-material){target=_blank}.
+    > Source files and assets of this documentation website, based on
+      [Material for MkDocs](https://github.com/squidfunk/mkdocs-material){target=_blank}.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-docs/archive/refs/heads/main.zip){ .md-button }
 
@@ -234,14 +234,14 @@ the provided Python script.
 - [**Insect Detection Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7725941.svg)](https://doi.org/10.5281/zenodo.7725941){target=_blank}
 
-  > Dataset to train insect detection models, with annotated images collected in
-    2022 with the DIY camera trap and the proposed flower platform as background.
+    > Dataset to train insect detection models, with annotated images collected in
+      2022 with the DIY camera trap and the proposed flower platform as background.
 
 - [**Insect Classification Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7725970.svg)](https://doi.org/10.5281/zenodo.7725970){target=_blank}
 
-  > Dataset to train insect classification models, which mostly contains the
-    cropped bounding boxes with insects, exported from the Detection Dataset.
+    > Dataset to train insect classification models, which mostly contains the
+      cropped bounding boxes with insects, exported from the Detection Dataset.
 
 ---
 
@@ -249,25 +249,27 @@ the provided Python script.
 
 ### Detection models
 
-| Model       | size<br><sup>(pixels) | mAP<sup>val<br>50-95 | mAP<sup>val<br>50 | Precision<sup>val<br> | Recall<sup>val<br> | Speed<sup>OAK<br>(fps) | params<br><sup>(M) |
-| ----------- | --------------------- | -------------------- | ----------------- | --------------------- | ------------------ | ---------------------- | ------------------ |
-| YOLOv5n     | 320                   | 53.8                 | 96.9              | 95.5                  | 96.1               | 41                     | 1.76               |
-| YOLOv6n     | 320                   | 50.3                 | 95.1              | 96.9                  | 89.8               | 42                     | 4.63               |
-| YOLOv7-tiny | 320                   | 53.2                 | 95.7              | 94.7                  | 94.2               | 38                     | 6.01               |
-| YOLOv8n     | 320                   | 55.4                 | 94.4              | 92.2                  | 89.9               | 34                     | 3.01               |
+| Model      | size<br><sup>(pixels) | mAP<sup>val<br>50-95 | mAP<sup>val<br>50 | Precision<sup>val<br> | Recall<sup>val<br> | Speed<sup>OAK<br>(fps) |
+| ---------- | --------------------- | -------------------- | ----------------- | --------------------- | ------------------ | ---------------------- |
+| YOLOv5n    | 320                   | 53.8                 | 96.9              | 95.5                  | 96.1               | 41                     |
+| YOLOv6n    | 320                   | 50.3                 | 95.1              | 96.9                  | 89.8               | 42                     |
+| YOLOv7tiny | 320                   | 53.2                 | 95.7              | 94.7                  | 94.2               | 38                     |
+| YOLOv8n    | 320                   | 55.4                 | 94.4              | 92.2                  | 89.9               | 34                     |
 
 - All [models](https://github.com/maxsitt/insect-detect/tree/main/models){target=_blank}
   were trained to 300 epochs with batch size 32 and default hyperparameters. Reproduce the
   model training with the provided [Google Colab notebooks](https://github.com/maxsitt/insect-detect-ml#model-training).
 - Trained on [Insect_Detect_detection](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection)
-  dataset [version 7](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7),
-  downscaled to 320x320 pixel with only 1 class ("insect").
+  dataset [version 7](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7)
+  with only 1 class ("insect").
 - Model metrics (mAP, Precision, Recall) are shown for the original PyTorch (.pt) model before conversion to ONNX ->
   OpenVINO -> .blob format. Reproduce metrics by using the respective model validation method.
 - Speed (fps) is shown for the converted models (.blob 4 shaves), running on OAK-1 connected to RPi Zero 2 W (same speed with
   object tracker). Set `cam_rgb.setFps()` to the respective fps shown for each model to reproduce the speed measurements.
 
 ![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="400" }
+
+---
 
 ### Classification model
 
