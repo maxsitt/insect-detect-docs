@@ -10,11 +10,11 @@
     [DepthAI Python API reference](https://docs.luxonis.com/projects/api/en/latest/references/python/){target=_blank}.
 
 The latest versions of the Python scripts are available in the
-[`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
+[`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
 [Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
-the whole repository, extract it and change its foldername from `insect-detect-main`
-to `insect-detect`. Copy the renamed folder to the `home/pi` directory of your
-Raspberry Pi, by simply dragging & dropping it into the VS Code remote window explorer.
+the whole repository, extract it and change its foldername to `insect-detect`.
+Copy the renamed folder to the `home/pi` directory of your Raspberry Pi, by
+simply dragging & dropping it into the VS Code remote window explorer.
 
 If you run into any problems, find a bug or something that could be optimized,
 please post an [issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}
@@ -114,34 +114,34 @@ with dai.Device(pipeline, usb2Mode=True) as device: # (6)!
 
 ---
 
-## YOLOv5 preview
+## YOLO preview
 
-With the following Python script you can run a custom YOLOv5 object detection model
+With the following Python script you can run a custom YOLO object detection model
 ([.blob format](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank})
 on the OAK device with 4K HQ frames downscaled to full FOV LQ frames (e.g. 320x320
 px) as model input and show the frames together with the model output (bounding
 box, label, confidence score) in a new window.
 
 If you copied the whole
-[`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}
-to your Raspberry Pi, the provided YOLOv5n detection model and config .json will
-be used by the OAK-1 device. If you want to use your own model, change the
-`MODEL_PATH` and `CONFIG_PATH` accordingly.
+[`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+GitHub repo to your Raspberry Pi, the provided YOLOv5n detection model and
+config .json will be used by default. If you want to use a different model,
+change the `MODEL_PATH` and `CONFIG_PATH` accordingly.
 
 Run the script with:
 
 ``` bash
-python3 insect-detect/yolov5_preview.py
+python3 insect-detect/yolo_preview.py
 ```
 
 ??? info "Optional argument"
 
-    Add after `yolov5_preview.py`, separated by space:
+    Add after `yolo_preview.py`, separated by space:
 
     - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
       (%) to console
 
-``` py title="yolov5_preview.py" hl_lines="27 28 75 76 128"
+``` py title="yolo_preview.py" hl_lines="27 28 75 76 128"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -168,8 +168,8 @@ if args.print_log:
     import psutil
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob") # (1)!
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5_320.json") # (2)!
+MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob") # (1)!
+CONFIG_PATH = Path("insect-detect/models/json/yolov5_v7_320.json") # (2)!
 
 # Extract detection model metadata from config JSON
 with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -195,7 +195,7 @@ cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(40) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(41) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input + outputs
 nn = pipeline.create(dai.node.YoloDetectionNetwork) # (3)!
@@ -266,7 +266,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
             cv2.putText(frame, f"fps: {round(fps, 2)}", (4, frame.shape[0] - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
-            cv2.imshow("yolov5_preview", frame)
+            cv2.imshow("yolo_preview", frame)
             # streaming the frames via SSH (X11 forwarding) will slow down fps
             # comment out 'cv2.imshow()' and print fps to console for "true" fps
             #print(f"fps: {round(fps, 2)}")
@@ -296,7 +296,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 ---
 
-## YOLOv5 + object tracker preview
+## YOLO + object tracker preview
 
 In the following Python script an
 [ObjectTracker node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank},
@@ -310,17 +310,17 @@ tracking ID, tracking status), are shown in a new window.
 Run the script with:
 
 ``` bash
-python3 insect-detect/yolov5_tracker_preview.py
+python3 insect-detect/yolo_tracker_preview.py
 ```
 
 ??? info "Optional argument"
 
-    Add after `yolov5_tracker_preview.py`, separated by space:
+    Add after `yolo_tracker_preview.py`, separated by space:
 
     - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
       (%) to console
 
-``` py title="yolov5_tracker_preview.py" hl_lines="73 140 141 149"
+``` py title="yolo_tracker_preview.py" hl_lines="73 140 141 149"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -347,8 +347,8 @@ if args.print_log:
     import psutil
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5_320.json")
+MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
+CONFIG_PATH = Path("insect-detect/models/json/yolov5_v7_320.json")
 
 # Extract detection model metadata from config JSON
 with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -374,7 +374,7 @@ cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames for model input
 cam_rgb.setInterleaved(False)
 cam_rgb.setPreviewKeepAspectRatio(False) # squash full FOV frames to square
-cam_rgb.setFps(40) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(41) # frames per second available for focus/exposure/model input
 
 # Create detection network node and define input
 nn = pipeline.create(dai.node.YoloDetectionNetwork)
@@ -525,24 +525,24 @@ automatically at each boot (after wake up by the PiJuice Zero).
 
     If you want to try the script without the PiJuice Zero pHAT connected to
     your Raspberry Pi, use the
-    [`yolov5_tracker_save_hqsync_nopj.py`](https://github.com/maxsitt/insect-detect/blob/main/yolov5_tracker_save_hqsync_nopj.py){target=_blank}
-    script, available at the [`insect-detect` GitHub repo](https://github.com/maxsitt/insect-detect){target=_blank}.
+    [`yolo_tracker_save_hqsync_nopj.py`](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync_nopj.py){target=_blank}
+    script, available at the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
 
 Run the script with:
 
 ``` bash
-python3 insect-detect/yolov5_tracker_save_hqsync.py
+python3 insect-detect/yolo_tracker_save_hqsync.py
 ```
 
 ??? info "Optional arguments"
 
-    Add after `yolov5_tracker_save_hqsync.py`, separated by space:
+    Add after `yolo_tracker_save_hqsync.py`, separated by space:
 
     - `-raw` to additionally save full HQ frames
     - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
     - `-log` to save temperature, RPi memory/CPU and battery logs to .csv
 
-``` py title="yolov5_tracker_save_hqsync.py" hl_lines="48 191 310 311 324 337 346"
+``` py title="yolo_tracker_save_hqsync.py" hl_lines="48 191 310 311 324 337 346"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -581,8 +581,8 @@ logger = logging.getLogger() # (1)!
 sys.stderr.write = logger.error
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("./insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
-CONFIG_PATH = Path("./insect-detect/models/json/yolov5_320.json")
+MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
+CONFIG_PATH = Path("insect-detect/models/json/yolov5_v7_320.json")
 
 # Instantiate PiJuice
 pijuice = PiJuice(1, 0x14)
