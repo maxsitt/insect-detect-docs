@@ -51,10 +51,10 @@ theme:
     - header.autohide
     - navigation.footer
     - navigation.indexes
-    #- navigation.instant
+    - navigation.instant
     - navigation.top
     - navigation.tracking
-    #- search.highlight
+    - search.highlight
     - search.suggest
     - toc.follow
   palette: 
