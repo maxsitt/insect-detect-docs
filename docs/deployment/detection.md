@@ -29,7 +29,7 @@ following, an alternative approach to this problem is proposed.
 The OAK-1 camera and
 [DepthAI Python API](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}
 make it possible to run a low-quality (LQ) stream (e.g. 320x320 px) in parallel
-with a high-quality (HQ) stream (e.g. 3840x2160 px) and
+with a high-quality (HQ) stream (e.g. 1920x1080 px) and
 [synchronize the detections](../software/programming.md#automated-monitoring-script){target=_blank}
 made on the LQ stream with the frames from the HQ stream on-device. This
 approach enables the use of the LQ stream as input for a YOLO detection model
