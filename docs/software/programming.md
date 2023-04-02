@@ -125,7 +125,7 @@ With the following Python script you can run a custom YOLO object detection mode
 ([.blob format](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank})
 on the OAK device with downscaled LQ frames (e.g. 320x320 px) as model input
 and show the frames together with the model output (bounding box, label,
-confidence) in a new window.
+confidence score) in a new window.
 
 If you copied the whole
 [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
@@ -282,7 +282,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 ```
 
 1.  Specify the path to your detection model (.blob format) and config JSON
-    that the OAK is able to use it for on-device inference.
+    that the OAK can use it for on-device inference.
 2.  Adjust the camera fps to the maximum fps of the YOLO model that is used for inference
     ([more info](https://docs.luxonis.com/projects/api/en/latest/tutorials/low-latency/#lowering-camera-fps-to-match-nn-fps){target=_blank}).
 3.  More info about the
@@ -502,16 +502,16 @@ The following Python script is the main script for fully
   LQ frames (e.g. 320x320 px) is synchronized with HQ frames (e.g. 1920x1080 px) in a
   [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
-    - Using the default 1080p resolution for the HQ frames will results in an
-      inference and pipeline speed of ~12 fps, which is fast enough to track
-      moving insects. If 4K resolution is used instead, the pipeline speed will
-      decrease to ~3 fps, which reduces tracking accuracy for fast moving insects.
+  - Using the default 1080p resolution for the HQ frames will results in an
+    inference and pipeline speed of **~12 fps**, which is fast enough to track
+    moving insects. If 4K resolution is used instead, the pipeline speed will
+    decrease to **~3 fps**, which reduces tracking accuracy for fast moving insects.
 - Detections (area of the bounding box) are cropped from the synced HQ frames
   and saved to .jpg. See the optional arguments to save the full raw HQ frames
   additionally.
 - All relevant metadata from the detection model and tracker output (timestamp,
   label, confidence score, tracking ID, relative bbox coordinates, .jpg file
-  path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv)
+  path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv){target=_blank}
   file for each cropped detection.
 - Info and error (stderr) + traceback messages are written to log file and
   recording info (recording ID, start/end time, duration, number of cropped
@@ -1235,7 +1235,7 @@ print(f"Saved {frames_still} still frames to {save_path}.") # (6)!
 ```
 
 1.  You can increase the capture frequency in this line, e.g. if you want to
-    only save a still frame every 10 seconds, every minute etc.
+    only save a still frame every 10 seconds/every minute.
 2.  `THE_12_MP` = 4032x3040 pixel, which is the maximum resolution of the IMX378
     camera sensor of the OAK-1. You can use other possible
     [sensor resolutions](https://docs.luxonis.com/projects/api/en/latest/references/python/#depthai.ColorCameraProperties.SensorResolution){target=_blank}
@@ -1246,7 +1246,7 @@ print(f"Saved {frames_still} still frames to {save_path}.") # (6)!
 4.  10 fps is currently the maximum framerate supported by the OAK-1 MAX at
     full resolution (will be automatically capped).
 5.  More info about the
-    [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}
+    [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}.
 6.  If you are running this script automatically, you can also write this
     info to a log file. Check the [monitoring script](#automated-monitoring-script)
     and copy the lines at the beginning to create a logger.
@@ -1324,7 +1324,7 @@ if not args.four_k_resolution:
 cam_rgb.setFps(FPS) # frames per second available for focus/exposure
 
 # Create and configure video encoder node and define input + output
-video_enc = pipeline.create(dai.node.VideoEncoder)
+video_enc = pipeline.create(dai.node.VideoEncoder) # (1)!
 video_enc.setDefaultProfilePreset(FPS, dai.VideoEncoderProperties.Profile.H265_MAIN)
 cam_rgb.video.link(video_enc.input)
 
@@ -1368,7 +1368,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     disk_free = round(psutil.disk_usage("/").free / 1048576)
 
     # Record until recording time is finished or free disk space drops below threshold
-    while time.monotonic() < start_time + rec_time and disk_free > 200: # (1)!
+    while time.monotonic() < start_time + rec_time and disk_free > 200: # (2)!
 
         # Update free disk space (MB)
         disk_free = round(psutil.disk_usage("/").free / 1048576)
@@ -1387,12 +1387,14 @@ if args.four_k_resolution:
     print(f"\nSaved {args.min_rec_time} min 4K video with {args.frames_per_second} fps to {save_path}.")
 else:
     print(f"\nSaved {args.min_rec_time} min 1080p video with {args.frames_per_second} fps to {save_path}.")
-print(f"Free disk space left: {disk_free} MB") # (2)!
+print(f"Free disk space left: {disk_free} MB") # (3)!
 
 ```
 
-1.  Depending on the available disk space, it might make sense to change this
+1.  More info about the
+    [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}.
+2.  Depending on the available disk space, it might make sense to change this
     threshold to a higher or lower value.
-2.  If you are running this script automatically, you can also write this
+3.  If you are running this script automatically, you can also write this
     info to a log file. Check the [monitoring script](#automated-monitoring-script)
     and copy the lines at the beginning to create a logger.
