@@ -502,10 +502,6 @@ The following Python script is the main script for fully
   LQ frames (e.g. 320x320 px) is synchronized with HQ frames (e.g. 1920x1080 px) in a
   [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
-      - Using the default 1080p resolution for the HQ frames will result in an
-        inference and pipeline speed of **~12 fps**, which is fast enough to track
-        moving insects. If 4K resolution is used instead, the pipeline speed will
-        decrease to **~3 fps**, which reduces tracking accuracy for fast moving insects.
 - Detections (area of the bounding box) are cropped from the synced HQ frames
   and saved to .jpg. See the optional arguments to save the full raw HQ frames
   additionally.
@@ -524,6 +520,11 @@ The following Python script is the main script for fully
   is used for power management, which means that a recording will only be made
   if the PiJuice battery charge level is higher than a specified threshold and
   the respective recording duration is conditional on the current charge level.
+
+Using the default 1080p resolution for the HQ frames will result in an
+inference and pipeline speed of **~12 fps**, which is fast enough to track
+moving insects. If 4K resolution is used instead, the pipeline speed will
+decrease to **~3 fps**, which reduces tracking accuracy for fast moving insects.
 
 For fully automated monitoring in the field, set up a
 [cron job](../pisetup/#set-up-cron-job){target=_blank} that will run the script
