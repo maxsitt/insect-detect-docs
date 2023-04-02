@@ -2,11 +2,11 @@
 
 !!! tip "Adapt the software to your use case"
 
-    You will find all Python scripts to get started with automated insect
-    monitoring with the **Insect Detect** DIY camera trap in this section,
-    together with suggestions on possible modifications. Click on the
-    :material-plus-circle: symbol to open the code annotations for more
-    information. More details can be found at the
+    You will find all Python scripts to deploy the **Insect Detect** DIY camera
+    trap for automated insect monitoring in this section, together with
+    suggestions on possible modifications. Click on the :material-plus-circle:
+    symbol to open the code annotations for more information. More details
+    about the API that is used can be found at the
     [DepthAI Python API reference](https://docs.luxonis.com/projects/api/en/latest/references/python/){target=_blank}.
 
 The latest versions of the Python scripts are available in the
@@ -27,7 +27,7 @@ at the GitHub repo.
 This Python script will create and configure the
 [ColorCamera node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}
 to send downscaled LQ frames (e.g. 320x320 px) to the host (Raspberry Pi) and
-show them in a new window. If you are connected to the Raspberry Pi via SSH,
+show them in a new window. If you are connected to the RPi via SSH,
 [X11 forwarding](pisetup.md#configure-x11-forwarding){target=_blank} has to be
 set up together with an active
 [X server](localsetup.md#vcxsrv-windows-x-server){target=_blank} to show the
@@ -62,7 +62,7 @@ cam_rgb = pipeline.create(dai.node.ColorCamera) # (1)!
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG) # (2)
 cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P) # (3)!
 cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames
-cam_rgb.setPreviewKeepAspectRatio(False) # "squeeze" frames (16:9) to square (1:1) # (4)
+cam_rgb.setPreviewKeepAspectRatio(False) # "squeeze" frames to square # (4)
 cam_rgb.setInterleaved(False) # planar layout
 cam_rgb.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
 cam_rgb.setFps(25) # frames per second available for focus/exposure
@@ -125,7 +125,7 @@ With the following Python script you can run a custom YOLO object detection mode
 ([.blob format](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank})
 on the OAK device with downscaled LQ frames (e.g. 320x320 px) as model input
 and show the frames together with the model output (bounding box, label,
-confidence score) in a new window.
+confidence) in a new window.
 
 If you copied the whole
 [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
@@ -146,7 +146,7 @@ python3 insect-detect/yolo_preview.py
     - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
       (%) to console
 
-``` py title="yolo_preview.py" hl_lines="27 28 76 77 125"
+``` py title="yolo_preview.py" hl_lines="27 28 55 76 77 125"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -173,8 +173,8 @@ if args.print_log:
     import psutil
 
 # Set file paths to the detection model and config JSON
-MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob") # (1)!
-CONFIG_PATH = Path("insect-detect/models/json/yolov5_v7_320.json") # (2)!
+MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
+CONFIG_PATH = Path("insect-detect/models/json/yolov5_v7_320.json") # (1)!
 
 # Get detection model metadata from config JSON
 with CONFIG_PATH.open(encoding="utf-8") as f:
@@ -201,7 +201,7 @@ cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames for model input
 cam_rgb.setPreviewKeepAspectRatio(False) # "squeeze" frames (16:9) to square (1:1)
 cam_rgb.setInterleaved(False) # planar layout
 cam_rgb.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
-cam_rgb.setFps(49) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(49) # frames per second available for model input # (2)
 
 # Create detection network node and define input + outputs
 nn = pipeline.create(dai.node.YoloDetectionNetwork) # (3)!
@@ -281,10 +281,10 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 ```
 
-1.  Specify the path to your detection model (in .blob format) that the OAK is
-    able to use it for on-device inference.
-2.  Specify the path to your config .json file that you created after training
-    and converting the model.
+1.  Specify the path to your detection model (.blob format) and config JSON
+    that the OAK is able to use it for on-device inference.
+2.  Adjust the camera fps to the maximum fps of the YOLO model that is used for inference
+    ([more info](https://docs.luxonis.com/projects/api/en/latest/tutorials/low-latency/#lowering-camera-fps-to-match-nn-fps){target=_blank}).
 3.  More info about the
     [YoloDetectionNetwork node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/yolo_detection_network/){target=_blank}.
 4.  The downscaled LQ preview frames are used as model input. More info about
@@ -292,10 +292,9 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 5.  To avoid freezing of the pipeline, we will set `blocking=False` for the
     frames that are used as model input.
 6.  All metadata that is necessary to successfully run the model on-device is
-    extracted from the corresponding config .json file. However, you could also
-    change your IoU or confidence threshold in this line for experimenting with
-    different settings.
-7.  More info on
+    extracted from the corresponding config .json file. However, you could also change
+    your IoU or confidence threshold here for experimenting with different settings.
+7.  More info about
     [`cv2.putText()`](https://www.geeksforgeeks.org/python-opencv-cv2-puttext-method/){target=_blank}
     to customize your output.
 
@@ -325,7 +324,7 @@ python3 insect-detect/yolo_tracker_preview.py
     - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
       (%) to console
 
-``` py title="yolo_tracker_preview.py" hl_lines="74 139 140 145"
+``` py title="yolo_tracker_preview.py" hl_lines="55 74 139 140 145"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -380,7 +379,7 @@ cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames for model input
 cam_rgb.setPreviewKeepAspectRatio(False) # "squeeze" frames (16:9) to square (1:1)
 cam_rgb.setInterleaved(False) # planar layout
 cam_rgb.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
-cam_rgb.setFps(47) # frames per second available for focus/exposure/model input
+cam_rgb.setFps(47) # frames per second available for model input # (1)
 
 # Create detection network node and define input
 nn = pipeline.create(dai.node.YoloDetectionNetwork)
@@ -398,8 +397,8 @@ nn.setConfidenceThreshold(confidence_threshold)
 nn.setNumInferenceThreads(2)
 
 # Create and configure object tracker node and define inputs + outputs
-tracker = pipeline.create(dai.node.ObjectTracker) # (1)!
-tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS) # (2)!
+tracker = pipeline.create(dai.node.ObjectTracker) # (2)!
+tracker.setTrackerType(dai.TrackerType.ZERO_TERM_IMAGELESS) # (3)!
 #tracker.setTrackerType(dai.TrackerType.SHORT_TERM_IMAGELESS) # better for low fps
 tracker.setTrackerIdAssignmentPolicy(dai.TrackerIdAssignmentPolicy.UNIQUE_ID)
 nn.passthrough.link(tracker.inputTrackerFrame)
@@ -428,7 +427,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
     q_track = device.getOutputQueue(name="track", maxSize=4, blocking=False)
 
-    # Create start_time and counter variables to measure fps
+    # Create start_time and counter variable to measure fps
     start_time = time.monotonic()
     counter = 0
 
@@ -443,19 +442,19 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
         if track_out is not None:
             tracks = track_out.tracklets
-            counter+=1
+            counter += 1
             fps = round(counter / (time.monotonic() - start_time), 2)
             
         if frame is not None:
             for t in tracks:
-                roi = t.roi.denormalize(frame.shape[1], frame.shape[0]) # (3)!
+                roi = t.roi.denormalize(frame.shape[1], frame.shape[0]) # (4)!
                 x1 = int(roi.topLeft().x)
                 y1 = int(roi.topLeft().y)
                 x2 = int(roi.bottomRight().x)
                 y2 = int(roi.bottomRight().y)
 
                 bbox = frame_norm(frame, (t.srcImgDetection.xmin, t.srcImgDetection.ymin,
-                                          t.srcImgDetection.xmax, t.srcImgDetection.ymax)) # (4)!
+                                          t.srcImgDetection.xmax, t.srcImgDetection.ymax))
                 cv2.putText(frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 13),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
                 cv2.putText(frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 25),
@@ -480,17 +479,17 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 ```
 
-1.  More info about the
+1.  Maximum fps of the detection model is slightly lower when adding the
+    object tracker (47 fps instead of 49 fps for YOLOv5n).
+2.  More info about the
     [ObjectTracker node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank}.
-2.  More info about the supported
+3.  More info about the supported
     [tracking types](https://dlstreamer.github.io/dev_guide/object_tracking.html){target=_blank}.
-3.  You can use the bounding box coordinates from the tracker output, as
+4.  You can use the bounding box coordinates from the tracker output, as
     defined in this segment, and/or the bbox coordinates from the passthrough
-    detections to draw the bboxes on the frame. In this example we are using
-    both, try it out and check if you notice some differences in the outputs!
-4.  The bounding boxes from the passthrough detections should be more stable
-    than from the object tracker output, you can decide for yourself which one
-    is best for your use case.
+    detections to draw the bboxes on the frame. The bboxes from the passthrough
+    detections should be more stable than from the object tracker output, you
+    can decide for yourself which one is best for your use case.
 
 ---
 
@@ -503,19 +502,24 @@ The following Python script is the main script for fully
   LQ frames (e.g. 320x320 px) is synchronized with HQ frames (e.g. 1920x1080 px) in a
   [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
+    - Using the default 1080p resolution for the HQ frames will results in an
+      inference and pipeline speed of ~12 fps, which is fast enough to track
+      moving insects. If 4K resolution is used instead, the pipeline speed will
+      decrease to ~3 fps, which reduces tracking accuracy for fast moving insects.
 - Detections (area of the bounding box) are cropped from the synced HQ frames
   and saved to .jpg. See the optional arguments to save the full raw HQ frames
-  additionally (e.g. for training data collection).
+  additionally.
 - All relevant metadata from the detection model and tracker output (timestamp,
   label, confidence score, tracking ID, relative bbox coordinates, .jpg file
-  path) is saved to a metadata .csv file for each cropped detection.
+  path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv)
+  file for each cropped detection.
 - Info and error (stderr) + traceback messages are written to log file and
   recording info (recording ID, start/end time, duration, number of cropped
   detections, number of unique tracking IDs, free disk space and battery charge
   level) is written to a `record_log.csv` file for each recording interval.
 - After a recording interval is finished, or if the PiJuice battery charge
   level drops below a specified threshold, or if an error occurs, the Raspberry
-  Pi is safely shut down and waits for the next wake up from the PiJuice Zero.
+  Pi is safely shut down and waits for the next wake up alarm from the PiJuice Zero.
 - The [PiJuice I2C Command API](https://github.com/PiSupply/PiJuice/tree/master/Software#i2c-command-api){target=_blank}
   is used for power management, which means that a recording will only be made
   if the PiJuice battery charge level is higher than a specified threshold and
@@ -543,11 +547,11 @@ python3 insect-detect/yolo_tracker_save_hqsync.py
     Add after `yolo_tracker_save_hqsync.py`, separated by space:
 
     - `-4k` use 4K resolution for HQ frames (~3 fps)
-    - `-raw` to additionally save full HQ frames
+    - `-raw` to additionally save full HQ frames (e.g. for training data collection)
     - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
     - `-log` to save temperature, RPi memory/CPU and battery logs to .csv
 
-``` py title="yolo_tracker_save_hqsync.py" hl_lines="42 201 324 325 338 353 362 369"
+``` py title="yolo_tracker_save_hqsync.py" hl_lines="42 196 201 324 325 338 353 362 369"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -743,12 +747,12 @@ def store_data(frame, tracks):
                 if t == tracks[-1]:
                     timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
                     raw_path = f"{save_path}/raw/{timestamp}_raw.jpg"
-                    cv2.imwrite(raw_path, frame)
+                    cv2.imwrite(raw_path, frame) # (4)!
                     #cv2.imwrite(raw_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
         for t in tracks:
             # Don't save cropped detections if tracking status == "NEW" or "LOST" or "REMOVED"
-            if t.status.name == "TRACKED": # (4)!
+            if t.status.name == "TRACKED": # (5)!
 
                 # Save detections cropped from HQ frame to .jpg
                 bbox = frame_norm(frame, (t.srcImgDetection.xmin, t.srcImgDetection.ymin,
@@ -801,7 +805,7 @@ def store_data(frame, tracks):
                         cv2.imwrite(overlay_path, frame)
                         #cv2.imwrite(overlay_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
-def record_log(): # (5)!
+def record_log(): # (6)!
     """Write information about each recording interval to .csv file."""
     try:
         df_meta = pd.read_csv(f"{save_path}/metadata_{rec_start}.csv", encoding="utf-8")
@@ -828,7 +832,7 @@ def record_log(): # (5)!
         }
         log_rec.writerow(logs_rec)
 
-def save_logs(): # (6)!
+def save_logs(): # (7)!
     """
     Write recording ID, time, RPi CPU + OAK VPU temp, RPi available memory (MB) +
     CPU utilization (%) and PiJuice battery info + temp to .csv file.
@@ -867,11 +871,11 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     q_track = device.getOutputQueue(name="track", maxSize=4, blocking=False)
 
     # Create start_time variable to set recording time and chargelevel variable
-    chargelevel = chargelevel_start
     start_time = time.monotonic()
+    chargelevel = chargelevel_start
 
     # Set recording time conditional on PiJuice battery charge level
-    if chargelevel >= 70: # (7)!
+    if chargelevel >= 70: # (8)!
         rec_time = 60 * 40
     elif 50 <= chargelevel < 70:
         rec_time = 60 * 30
@@ -885,7 +889,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
     try:
         # Record until recording time is finished or chargelevel drops below threshold
-        while time.monotonic() < start_time + rec_time and chargelevel >= 10: # (8)!
+        while time.monotonic() < start_time + rec_time and chargelevel >= 10: # (9)!
 
             # Update PiJuice battery charge level
             chargelevel = pijuice.status.GetChargeLevel().get("data", -1)
@@ -900,7 +904,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
                 if frame is not None:
                     # Save cropped detections every second (slower if saving additional HQ frames)
                     store_data(frame, tracks)
-                    time.sleep(1) # (9)!
+                    time.sleep(1) # (10)!
 
             # Write RPi CPU + OAK VPU temp, RPi info and battery info + temp to .csv log file
             if args.save_logs:
@@ -909,7 +913,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
         # Write record logs to .csv and shutdown Raspberry Pi after recording time is finished
         record_log()
         logger.info(f"Recording {rec_id} finished | Charge level: {chargelevel}%\n")
-        subprocess.run(["sudo", "shutdown", "-h", "now"], check=True) # (10)!
+        subprocess.run(["sudo", "shutdown", "-h", "now"], check=True) # (11)!
 
     # Write record logs to .csv, log error traceback and shutdown Raspberry Pi if an error occurs
     except Exception:
@@ -920,7 +924,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 ```
 
-1.  With the logger set up, you can send any information you need (e.g. for
+1.  With the logger set up, you can write any information you need (e.g. for
     finding problems if something went wrong) to the log file. This is a good
     alternative to `print()`, if you don't have a terminal output. You can add
     your own custom logging command in any line with:
@@ -937,33 +941,36 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     the object tracker node (+ passthrough model detections) with the HQ frames
     by comparing their respective sequence numbers. The synchronized tracker
     output and HQ frame are then send to the host (RPi).
-4.  A tracked object can have 4 possible statuses: `NEW`, `TRACKED`, `LOST` and
+4.  Raw HQ frames will be saved every second if activated with `-raw`. To
+    decrease the .jpg file size, you can save them with a higher JPEG
+    compression (e.g. 70% quality instead of the default 95%) by commenting
+    out this line and using the following line.
+5.  A tracked object can have 4 possible statuses: `NEW`, `TRACKED`, `LOST` and
     `REMOVED`. It is highly recommended to save the cropped detections only
-    when the `tracking status == TRACKED`, but you could change this
+    when `tracking status == TRACKED`, but you could change this
     configuration here and e.g. write the `t.status.name` as additional column
-    to the metadata .csv file.
-5.  This function will be called after a recording interval is finished, or if
+    to the metadata .csv.
+6.  This function will be called after a recording interval is finished, or if
     an error occurs during the recording and will write some info about the
     respective recording interval to `record_log.csv`.
-6.  This function will be called if you are using the optional `-log` argument
+7.  This function will be called if you are using the optional `-log` argument
     and will save the specified logging info to a .csv file.
-7.  You can specify your own recording durations and charge level thresholds in
+8.  You can specify your own recording durations and charge level thresholds in
     this code section. The suggested values can provide an efficient recording
     behaviour if you are using the 12,000 mAh PiJuice battery and set up the
     [Wakeup Alarm](../pisetup/#pijuice-zero-configuration){target=_blank} for
     2-5 times per day. Depending on the number of Wakeups per day, as well as
-    the season and sun exposure of the solar panel, it could make sense to
-    increase or decrease the recording duration of the camera trap.
-8.  The recording will be stopped if the charge level of the PiJuice battery
+    the season and sun exposure of the solar panel, it makes sense to
+    increase or decrease the recording duration.
+9.  The recording will be stopped if the charge level of the PiJuice battery
     that is updated in each `while` loop drops below the specified threshold. You
     can adjust this threshold, e.g. when using a different battery capacity.
-9.  In this line you can change the time interval with which the cropped
+10. In this line you can change the time interval with which the cropped
     detections will be saved to .jpg. This does not affect the detection model
-    and object tracker, which are both run on-device even if no detections are
-    saved. Using `-overlay` to additionally save the full HQ frames for each
-    detection can significantly slow down the pipeline depending on the number
-    of detected objects.
-10. If you are still in the testing phase, comment out the shutdown commands in
+    and object tracker speed, which are both run on-device even if no detections
+    are saved. Using `-raw` or `-overlay` to additionally save the full HQ frames
+    can significantly slow down the pipeline and inference speed.
+11. If you are still in the testing phase, comment out the shutdown commands in
     this line and the last line by adding `#` in front of the line.
 
 ---
@@ -972,11 +979,10 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 If you want to only capture images, e.g. for training data collection, you can
 use the following script to save HQ frames (e.g. 1920x1080 px) to .jpg at a
-specified time interval (e.g. every second). Optionally, the downscaled LQ frames
-(e.g. 320x320 px) can be saved to .jpg additionally, e.g. to include them in
-the training data, as the detection model will do inference on LQ frames
-(however it is recommended downscale the annotated HQ images in Roboflow
-before training).
+specified time interval. Optionally, the downscaled LQ frames (e.g. 320x320 px)
+can be saved to .jpg additionally, e.g. to include them in the training data,
+as the detection model will do inference on LQ frames (however it is recommended
+downscale the annotated HQ images before training).
 
 Run the script with:
 
@@ -1112,10 +1118,9 @@ else:
 The following Python script enables the capture of still frames at the highest
 possible resolution of the
 [supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html){target=_blank}
-at a specified time interval (e.g. every second). This will lead to a bigger
-field of view (FOV), compared to the other scripts where the camera sensor
-is set to 4K or 1080p resolution. You can find more information on sensor
-resolution and image types at the
+at a specified time interval. This will lead to a bigger field of view (FOV),
+compared to the other scripts where the camera sensor is set to 4K or 1080p
+resolution. You can find more information on sensor resolution and image types at the
 [DepthAI API Docs](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}.
 
 Run the script with:
@@ -1154,7 +1159,7 @@ args = parser.parse_args()
 
 # Set capture frequency in seconds
 # 'CAPTURE_FREQ = 1' saves ~57 still frames per minute to .jpg (RPi Zero 2)
-CAPTURE_FREQ = 1
+CAPTURE_FREQ = 1 # (1)
 
 # Create depthai pipeline
 pipeline = dai.Pipeline()
@@ -1162,14 +1167,14 @@ pipeline = dai.Pipeline()
 # Create and configure camera node
 cam_rgb = pipeline.create(dai.node.ColorCamera)
 #cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)
-cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_12_MP) # OAK-1 (IMX378) # (1)
+cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_12_MP) # (2)!
 #cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_13_MP) # OAK-1 Lite (IMX214)
 #cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_5312X6000) # OAK-1 MAX (IMX582)
-cam_rgb.setNumFramesPool(2,2,2,2,2) # (2)!
-cam_rgb.setFps(25) # frames per second available for focus/exposure # (3)
+cam_rgb.setNumFramesPool(2,2,2,2,2) # (3)!
+cam_rgb.setFps(25) # frames per second available for focus/exposure # (4)
 
 # Create and configure video encoder node and define input + output
-still_enc = pipeline.create(dai.node.VideoEncoder) # (4)!
+still_enc = pipeline.create(dai.node.VideoEncoder) # (5)!
 still_enc.setDefaultProfilePreset(1, dai.VideoEncoderProperties.Profile.MJPEG)
 still_enc.setNumFramesPool(1)
 cam_rgb.still.link(still_enc.input)
@@ -1225,20 +1230,24 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 # Print number and path of saved still frames to console
 frames_still = len(list(Path(f"{save_path}").glob("*.jpg")))
-print(f"Saved {frames_still} still frames to {save_path}.") # (5)!
+print(f"Saved {frames_still} still frames to {save_path}.") # (6)!
 
 ```
 
-1.  `THE_12_MP` = 4032x3040 pixel. Check out other possible
-    [sensor resolutions](https://docs.luxonis.com/projects/api/en/latest/references/python/#depthai.ColorCameraProperties.SensorResolution){target=_blank}.
-2.  The maximum number of frames in all pools (raw, isp, preview, video, still)
+1.  You can increase the capture frequency in this line, e.g. if you want to
+    only save a still frame every 10 seconds, every minute etc.
+2.  `THE_12_MP` = 4032x3040 pixel, which is the maximum resolution of the IMX378
+    camera sensor of the OAK-1. You can use other possible
+    [sensor resolutions](https://docs.luxonis.com/projects/api/en/latest/references/python/#depthai.ColorCameraProperties.SensorResolution){target=_blank}
+    depending on your device type.
+3.  The maximum number of frames in all pools (raw, isp, preview, video, still)
     is set to 2, to avoid a potential out-of-memory error, especially when
     saving images with the OAK-1 MAX at 5312x6000 px.
-3.  10 fps is currently the maximum framerate supported by the OAK-1 MAX at
+4.  10 fps is currently the maximum framerate supported by the OAK-1 MAX at
     full resolution (will be automatically capped).
-4.  More info about the
+5.  More info about the
     [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}
-5.  If you are running this script automatically, you can also write this
+6.  If you are running this script automatically, you can also write this
     info to a log file. Check the [monitoring script](#automated-monitoring-script)
     and copy the lines at the beginning to create a logger.
 
@@ -1272,7 +1281,7 @@ python3 insect-detect/video_capture.py
     - `-4k` to record video in 4K resolution (3840x2160 px) (default: 1080p)
     - `-fps` to set frame rate (frames per second) for video capture (default: 25)
 
-``` py title="video_capture.py" hl_lines="89"
+``` py title="video_capture.py" hl_lines="87"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
