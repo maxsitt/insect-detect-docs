@@ -54,7 +54,7 @@ theme:
     - navigation.instant
     - navigation.top
     - navigation.tracking
-    - search.highlight
+    #- search.highlight
     - search.suggest
     - toc.follow
   palette: 
