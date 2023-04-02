@@ -66,9 +66,9 @@ in parallel with time-lapse image recordings and can thereby detect and
 classify insects in each image in real-time on the device. Filtering of false
 detections and the tracking of individual insects was performed in a subsequent
 step on a remote computer. A recent [dataset](https://doi.org/10.5281/zenodo.7395751){target=_blank}
-with annotated images was published together with a preprint by
-[Bjerge et al. (2022)](https://doi.org/10.1101/2022.10.25.513484){target=_blank},
-which can be used as an important benchmark for insect detection with complex background.
+with annotated images was published by
+[Bjerge et al. (2023)](https://doi.org/10.1371/journal.pstr.0000051){target=_blank},
+which can be used as an important benchmark for insect detection with complex backgrounds.
 
 ??? quote "The necessity of automated biodiversity monitoring"
 
@@ -143,8 +143,8 @@ attraction for specific pollinator groups (e.g. hoverflies).
 
     - non-invasive, continuous automated monitoring of flower-visiting insects
     - standardized artificial flower platform as visual attractant
-    - on-device detection and tracking with provided YOLO models (up to 42 fps)
-    - save images of detected insects cropped from high-resolution frames
+    - on-device detection and tracking with provided YOLO models (up to 60 fps)
+    - save images of detected insects cropped from high-resolution frames (12 fps)
     - low power consumption (~ 4 W) and fully solar-powered
     - automated classification and analysis in subsequent step on local PC
     - weatherproof enclosure
@@ -251,10 +251,10 @@ the provided Python script.
 
 | Model      | size<br><sup>(pixels) | mAP<sup>val<br>50-95 | mAP<sup>val<br>50 | Precision<sup>val<br> | Recall<sup>val<br> | Speed<sup>OAK<br>(fps) |
 | ---------- | --------------------- | -------------------- | ----------------- | --------------------- | ------------------ | ---------------------- |
-| YOLOv5n    | 320                   | 53.8                 | 96.9              | 95.5                  | 96.1               | 41                     |
-| YOLOv6n    | 320                   | 50.3                 | 95.1              | 96.9                  | 89.8               | 42                     |
-| YOLOv7tiny | 320                   | 53.2                 | 95.7              | 94.7                  | 94.2               | 38                     |
-| YOLOv8n    | 320                   | 55.4                 | 94.4              | 92.2                  | 89.9               | 34                     |
+| YOLOv5n    | 320                   | 53.8                 | 96.9              | 95.5                  | 96.1               | 49                     |
+| YOLOv6n    | 320                   | 50.3                 | 95.1              | 96.9                  | 89.8               | 60                     |
+| YOLOv7tiny | 320                   | 53.2                 | 95.7              | 94.7                  | 94.2               | 52                     |
+| YOLOv8n    | 320                   | 55.4                 | 94.4              | 92.2                  | 89.9               | 39                     |
 
 - All [models](https://github.com/maxsitt/insect-detect/tree/main/models){target=_blank}
   were trained to 300 epochs with batch size 32 and default hyperparameters. Reproduce the
@@ -264,8 +264,9 @@ the provided Python script.
   with only 1 class ("insect").
 - Model metrics (mAP, Precision, Recall) are shown for the original PyTorch (.pt) model before conversion to ONNX ->
   OpenVINO -> .blob format. Reproduce metrics by using the respective model validation method.
-- Speed (fps) is shown for the converted models (.blob 4 shaves), running on OAK-1 connected to RPi Zero 2 W (same speed with
-  object tracker). Set `cam_rgb.setFps()` to the respective fps shown for each model to reproduce the speed measurements.
+- Speed (fps) is shown for the converted models (.blob 4 shaves), running on OAK-1 connected to RPi Zero 2 W
+  (~2 fps slower with object tracker). Set `cam_rgb.setFps()` to the respective fps shown for each model to
+  reproduce the speed measurements.
 
 ![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="400" }
 
@@ -292,7 +293,7 @@ Until the corresponding paper will be published, you can cite this project as:
 
 ``` text
 Sittinger, M. (2022). Insect Detect - Software for automated insect monitoring
-with a DIY camera trap system (v1.5). Zenodo. https://doi.org/10.5281/zenodo.7472238
+with a DIY camera trap system (v1.6). Zenodo. https://doi.org/10.5281/zenodo.7472238
 ```
 
 [![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977){target=_blank}
