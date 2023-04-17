@@ -538,7 +538,7 @@ Now paste the following lines at the end of the crontab file:
 ``` py
 # Sleep for 30 seconds after boot to wait for all services to start, then execute Python script and
 # redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp
-@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; python3 ./insect-detect/yolo_tracker_save_hqsync.py; } >> ./insect-detect/cronjob_log.log 2>&1
+@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
 ```
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
@@ -615,7 +615,7 @@ python3 -m pip install av
     To install the `depthai` package on the RPi Zero W (v1) run:
 
     ``` bash
-    python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai
+    python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai==2.20.2.0
     ```
 
     Additionally, you will have to install the package `libusb-1.0-0-dev` with:
