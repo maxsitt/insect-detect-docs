@@ -110,13 +110,11 @@ event. This metadata includes:
 
 Due to a relatively low power consumption of the hardware components, the whole
 camera trap system (OAK-1 + Raspberry Pi Zero 2 W + PiJuice Zero pHAT) has a
-maximum power consumption of **~ 4 W** under full load, when running the provided
+mean peak power consumption of **~4.4 W** under full load, when running the provided
 [monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}.
 
-To measure the power consumption shown in the following graph, the YOLOv5n model
-with 416x416 px input resolution and 30 fps was used. With the new YOLO models
-that use a input resolution of 320x320 px and can run at **~40 fps**, the average
-peak power consumption is increased to **~810 mA** (4.05 W).
+The following graph shows the power consumption with a previous software version.
+With the latest version, the mean peak power consumption is slightly higher (~880 mA).
 
 <figure markdown>
   ![Insect Detect camera trap power consumption](assets/images/power_consumption.png){ width="700" }
