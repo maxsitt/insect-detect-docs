@@ -1,7 +1,7 @@
 # Raspberry Pi Setup
 
 Before we can use the Raspberry Pi Zero 2 W, we will first have to install
-Raspberry Pi OS Lite to the micro SD card. If you followed the steps in
+Raspberry Pi OS Lite to the microSD card. If you followed the steps in
 [Local Setup](localsetup.md){target=_blank}, you already have the Raspberry Pi
 Imager installed on your system.
 
@@ -13,9 +13,9 @@ Imager installed on your system.
     VS Code Terminal by following these steps:
 
     - [Generate a SSH key](#ssh-key-based-authentication).
-    - Go to the `C:\Users\<username>\.ssh` folder.
-    - Create a new `config.txt` file and copy the following content to it
-      (**insert your correct Windows username**):
+    - [Install Raspberry Pi OS](#raspberry-pi-os-installation) to your microSD card.
+    - Go to the `C:\Users\<username>\.ssh` folder and create a new `config.txt` file.
+    - Copy the following content to it (**insert your correct Windows username**):
 
         ``` text
         Host raspberrypi
@@ -139,7 +139,7 @@ and copy the line with the public key from `.ssh/id_rsa.pub` to a new row in
 
 ## Raspberry Pi OS installation
 
-Insert the micro SD card into your card reader and start the Raspberry Pi
+Insert the microSD card into your card reader and start the Raspberry Pi
 Imager. First, we will choose the appropriate OS.
 
 ![Raspberry Pi Imager Start](assets/images/raspberrypi_imager_start.png){ width="600" }
@@ -154,7 +154,7 @@ Here we will select the first option **Raspberry Pi OS Lite (32-bit)**.
 ![Raspberry Pi Imager choose lite OS](assets/images/raspberrypi_imager_choose_os_lite.png){ width="600" }
 
 Now we can choose the storage, where the Raspberry Pi OS will be written to.
-Here you just have to select your micro SD card.
+Here you just have to select your microSD card.
 
 ![Raspberry Pi Imager choose storage](assets/images/raspberrypi_imager_choose_storage.png){ width="600" }
 
@@ -582,13 +582,13 @@ python3 -m pip install --upgrade pip
 Upgrade the package `numpy`:
 
 ``` bash
-python3 -m pip install --upgrade numpy
+python3 -m pip install --upgrade numpy==1.24.2
 ```
 
 Install the package `pandas`:
 
 ``` bash
-python3 -m pip install pandas
+python3 -m pip install pandas==2.0.0
 ```
 
 Install the package `psutil`:
