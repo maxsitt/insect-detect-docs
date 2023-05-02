@@ -4,21 +4,22 @@
 
 ??? abstract "Required tools & components"
 
-    1. **Drilling machine**
-    2. **Metal Drill Bit 4 mm**
-    3. **Allen wrench 3 mm**
-    4. **Metal saw**
-    5. HPL Sheet (4 mm) 350x250 mm
-    6. 4x M4 20 mm Screws (internal hexagon)
-    7. 21x M4 Hex Nuts
-    8.  Aluminium Square Tube (23.5x23.5 mm), 1.5 m
-    9.  7x M4 40 mm Screws
-    10. 2x M4 60 mm Screws
-    11. 18x Flat Washer (e.g. M4 15 mm)
-    12. Pipe Clamp (60.3mm) 70 mm + screws & nuts
-    13. Pipe Clamp (60.3 mm) 350 mm + screws & nuts
-    14. Flower Platform (e.g. 500x280 mm)
-    15. *Solar Panel Bracket, Medium* (optional)
+    1. **Ruler + Permanent Marker**
+    2. **Drilling machine**
+    3. **Metal Drill Bit 4 mm**
+    4. **Allen wrench 3 mm**
+    5. **Metal saw**
+    6. HPL Sheet (4 mm) 350x250 mm
+    7. 4x M4 20 mm Screws (internal hexagon)
+    8. 21x M4 Hex Nuts
+    9.  Aluminium Square Tube (23.5x23.5 mm), 1.5 m
+    10. 7x M4 40 mm Screws
+    11. 2x M4 60 mm Screws
+    12. 18x Flat Washer (e.g. M4 15 mm)
+    13. Pipe Clamp (60.3mm) 70 mm + screws & nuts
+    14. Pipe Clamp (60.3 mm) 350 mm + screws & nuts
+    15. Flower Platform (e.g. 500x280 mm)
+    16. *Solar Panel Bracket, Medium* (optional)
 
 ---
 
@@ -86,11 +87,10 @@ to the required length of 250 mm.
 
 To attach the 250 mm piece of aluminium tube to the HPL sheet, we will need
 three of the M4 40 mm screws and hex nuts, as well as six of the flat washers.
-
-![HPL sheet Aluminium tube](assets/images/hpl_sheet_aluminium_tube.jpg){ width="600" }
-
 Put a washer under each of the screws and under each of the hex nuts to ensure
 a good stability.
+
+![HPL sheet Aluminium tube](assets/images/hpl_sheet_aluminium_tube.jpg){ width="600" }
 
 ![HPL sheet Aluminium tube fixed](assets/images/hpl_sheet_aluminium_tube_fixed.jpg){ width="600" }
 
@@ -116,22 +116,22 @@ Your ready-to-mount camera trap should look like this:
 
 ## Preparing the flower platform
 
-You can download the PDF templates for two different sizes of the artifical
-flower platform at the
-[`insect-detect-docs` GitHub repo](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform){target=_blank}.
-You will also find the [Inkscape](https://inkscape.org/){target=_blank} .svg files
-in the same folder, which you could use as template for your own platform design.
+You can download the PDF templates for two different sizes of the flower platform at the
+[`insect-detect-docs`](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform){target=_blank}
+GitHub repo. You will also find the [Inkscape](https://inkscape.org/){target=_blank}
+.svg files in the same folder, which you can use as template for your own platform design.
 
 The bigger platform (500x280 mm) should be mounted at a distance of **40 cm**
-from camera to platform, when using 4K (3840x2160 px) resolution for the HQ
-frames. The smaller platform (350x200 mm) should be mounted at a distance of
-**28 cm** from camera to platform, when using 4K resolution. The decreased
-distance will result in a higher resolution of the cropped insect images, which
-is especially useful if your group of interest is rather small (< 1 cm).
+from camera to platform, the smaller platform (350x200 mm) should be mounted
+at a distance of **28 cm** from camera to platform. This will ensure that the
+flower platform fills out the whole frame of the OAK-1 camera when using
+1080p/4K resolution for the HQ frames. Using the smaller platform at a decreased
+distance, will result in a higher resolution of the cropped insect images,
+which is especially useful if your group of interest is rather small (< 1 cm).
 
 If you want to use different platform sizes or distances from camera to your
 platform or other background, the aspect ratio of the frame where insects will
-be detected (e.g. for 4K resolution ~1:1.78) should be considered for planning.
+be detected (for 1080p/4K resolution: ~1:1.78) should be considered for planning.
 
 It is recommended to print the templates on a weather- and UV-resistant
 material, e.g. [lightweight foam board](https://bit.ly/3VATW2b){target=_blank}.
@@ -142,17 +142,15 @@ this is also recommended.
 ---
 
 Drill two 4 mm holes at the center of the short sides of your flower platform.
-In the following picture, we are using a platform with the dimensions of
-500x280 mm, which will fill the whole 4K frame of the OAK-1 camera at a
-distance of 40 cm from camera to platform. We are going to mark the positions
-for drilling at 140 mm, measured from the long side (280 mm / 2) and at 12 mm,
-measured from the short side (23.5 mm wide aluminium tube / 2).
+For the bigger platform (500x280 mm), mark the positions for drilling at 140 mm,
+measured from the long side (280 mm / 2) and at 12 mm, measured from the short
+side (23.5 mm wide aluminium tube / 2).
 
 ![Flower platform holes](assets/images/flower_platform_holes.jpg){ width="600" }
 
-For the smaller platform, the positions for drilling should be marked at 100 mm,
-measured from the long side (200 mm / 2) and at 12 mm, measured from the short
-side (23.5 mm wide aluminium tube / 2).
+For the smaller platform (350x200 mm), the positions for drilling should be
+marked at 100 mm, measured from the long side (200 mm / 2) and at 12 mm,
+measured from the short side (23.5 mm wide aluminium tube / 2).
 
 ![Flower platform small holes](assets/images/flower_platform_small_holes.jpg){ width="600" }
 
@@ -177,7 +175,7 @@ everything at the end.
 
 After the frame is prepared, place the flower platform on top of the two short
 tube pieces and align them with the holes you drilled. If your are using the
-same platform dimension and pipe clamps as in our example, you can already
+same platform dimension and pipe clamps as in this example, you can already
 adjust the platform at 55 mm, measured from the aluminium tube to the platform.
 For the smaller platform (350x200 mm) this distance should be 115 mm. Otherwise
 you can adjust the platform after everything is mounted with the provided
@@ -198,8 +196,8 @@ tube piece.
 
 ![Flower platform pipe clamp connected](assets/images/flower_platform_frame_pipeclamp.jpg){ width="600" }
 
-You can now mount the platform on any standard wooden or steel post! Tighten
-the screws after you checked the correct position with the
+You can now mount the platform on any standard wooden or steel post.
+Tighten the screws after you checked the correct position with the
 [`cam_preview.py`](../software/programming.md#oak-camera-preview){target=_blank} script.
 If possible, slightly tilt the post and camera trap system forwards, that
 rainwater can run off the platform.
@@ -216,6 +214,15 @@ camera (= enclosure) to the platform to **28 cm**.
 
 ## Mounting the solar panel
 
+It is recommended to orient the camera trap and flower platform towards the
+south to optimize the efficiency of the solar panel. You can also use an
+[app](https://play.google.com/store/apps/details?id=com.andymstone.sunpositiondemo&hl=en){target=_blank}
+or a [website](https://www.suncalc.org){target=_blank} to find the path of the
+sun at your location for a specific time of year. Check out this
+[blog article](https://blog.voltaicsystems.com/estimate-solar-irradiance-iot-device/){target=_blank}
+for more information on how to estimate the potential generated power of your
+solar panel depending on your location and time of year.
+
 There are many possible DIY solutions to mount the solar panel at the
 [best angle](https://bit.ly/3CrEAEh){target=_blank} for your location. In our
 case this is about 30° (southwestern Germany). In the following picture, we
@@ -231,14 +238,13 @@ enclosure to potentially keep it cooler during hot days.
 ![Solar panel bracket mounting](assets/images/solarpanel_mounting_bracket.jpg){ width="600" }
 
 If you are using the 500x280 mm platform, make sure that the distance between
-the camera (measured from the enclosure) to the flower platform surface is
+the camera (measured from the enclosure) and the flower platform surface is
 **40 cm**. For the smaller 350x200 mm platform, the distance between camera and
-platform should be **28 cm**. With these distances and platform sizes, the 4K
-frame in which insects are detected, will be completely filled out by the
-platform. This will make sure that insects can not move in and out of the
-frame, while walking on the platform. This would cause the object tracker to
-count every insect coming back into the frame as new individual (new tracking
-ID).
+platform should be **28 cm**. With these distances and platform sizes, the
+frame of the camera sensor in which insects are detected will be completely
+filled out by the platform. This will make sure that insects can not move in
+and out of the frame while walking on the platform, as the object tracker
+counts every insect coming back into the frame as new individual (new tracking ID).
 
 ![Camera trap flower platform mounting](assets/images/camera_trap_flower_platform_mounting.jpg){ width="500" }
 
