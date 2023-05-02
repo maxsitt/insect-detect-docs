@@ -56,7 +56,7 @@ frames and save them as individual .jpg files (e.g. every second). The
 [classification](classification.md){target=_blank} in a subsequent step on
 your local PC.
 
-![HQ frame sync cropped detection](assets/images/hq_frame_sync.gif){ width="800" }
+![HQ frame sync cropped detection](assets/images/hq_frame_sync_1080p.gif){ width="800" }
 
 Separating the detection and classification steps can also simplify dataset
 management, annotation and model training. Overall less training data is
@@ -112,9 +112,6 @@ Due to a relatively low power consumption of the hardware components, the whole
 camera trap system (OAK-1 + Raspberry Pi Zero 2 W + PiJuice Zero pHAT) has a
 mean peak power consumption of **~4.4 W** under full load, when running the provided
 [monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}.
-
-The following graph shows the power consumption with a previous software version.
-With the latest version, the mean peak power consumption is slightly higher (~880 mA).
 
 <figure markdown>
   ![Insect Detect camera trap power consumption](assets/images/power_consumption.png){ width="700" }
