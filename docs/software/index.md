@@ -12,9 +12,9 @@ to reduce energy consumption. After that we will configure the PiJuice Zero
 pHAT for precise power management and install all necessary packages to work
 with the OAK-1 camera in our Python scripts.
 
-All Python scripts that can be used for automated insect monitoring are presented
+All Python scripts for testing and deploying the camera trap can be found
 in the [Programming](programming.md){target=_blank} section, together with
-detailed explanations and hints for easy adaptation of the code to your use case.
+details and tips for adapting the code to your use case.
 
 <figure markdown>
   ![VS Code Raspberry Pi SSH X11 window](assets/images/vscode_raspberry_ssh_x11.gif){ width=700" }
