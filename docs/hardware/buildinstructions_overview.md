@@ -1,13 +1,12 @@
 # Building Instructions: Overview
 
 The following instructions will enable you to reproduce the
-[**Full Setup**](components.md#full-setup){target=_blank} of the DIY camera
-trap for automated insect monitoring. If you only want to assemble the
-[**Minimal Setup**](components.md#minimal-setup){target=_blank}, plug the solar
-panel micro USB output directly into the PiJuice Zero pHAT without using the
-Voltaic 12,800 mAh battery (+ USB cable) and skip the last steps for
-[mounting](buildinstructions_mounting.md){target=_blank} the camera trap and
-the flower platform.
+[**Full Setup**](components.md#full-setup){target=_blank} of the Insect Detect
+DIY camera trap for automated insect monitoring. If you only want to assemble
+the [**Minimal Setup**](components.md#minimal-setup){target=_blank}, plug the
+solar panel micro USB output directly into the PiJuice Zero pHAT and skip the
+last steps for [mounting](buildinstructions_mounting.md){target=_blank} the
+camera trap and flower platform.
 
 ???+ abstract "Required tools & equipment"
 
@@ -76,26 +75,27 @@ the flower platform.
 
     1. **Soldering Iron (+ Solder)** or **Hammer Header**
     2. **Pliers**
-    3. 8x Cable Tie Mount
-    4. 8x Stainless Steel Cable Tie
-    5. Silica Gel Pack 50 g
-    6. OAK-1 (OpenCV AI Kit)
-    7. Raspberry Pi Zero 2 W (+ SD card)
-    8. RPi CPU Heatsink
-    9. RPi Header
-    10. RPi Stacking Header
-    11. RPi Spacer Bolts 10 mm
-    12. RPi Spacer Bolts 20 mm
-    13. PiJuice Zero UPS pHAT
-    14. Solar Panel Extension Cable, 1 ft
-    15. Voltaic 12,800 mAh Li-Ion Battery (Full Setup only)
-    16. *2x Thermal Pad (1 mm) 50x50 mm* (optional)
-    17. *2x Heatsink 40x30 mm* (optional)
-    18. Solar Panel Micro USB Adapter
-    19. PiJuice 12,000 mAh LiPo Battery
-    20. Micro USB to USB A Adapter, angled
-    21. USB A to micro USB cable, 20 cm, angled (Full Setup only)
-    22. Solar Panel 6V 9W
+    3. 6x Cable Tie Mount
+    4. 6x Stainless Steel Cable Ties
+    5. 1x releasable Cable Tie
+    6. Silica Gel Pack 50 g
+    7. OAK-1 (OpenCV AI Kit)
+    8. Raspberry Pi Zero 2 W (+ microSD card)
+    9. RPi CPU Heatsink
+    10. RPi Header
+    11. RPi Stacking Header
+    12. RPi Spacer Bolts 10 mm
+    13. RPi Spacer Bolts 20 mm
+    14. PiJuice Zero UPS pHAT
+    15. Solar Panel Extension Cable, 1 ft
+    16. Voltaic 12,800mAh Li-Ion Battery (Full Setup only)
+    17. *2x Thermal Pad (1 mm) 50x50 mm* (optional)
+    18. *2x Heatsink 40x30 mm* (optional)
+    19. Solar Panel Micro USB Adapter
+    20. PiJuice 12,000mAh LiPo Battery
+    21. Micro USB to USB A Adapter, angled
+    22. USB A to micro USB cable, 20 cm, angled (Full Setup only)
+    23. Solar Panel 6V 9W
 
 ### Mounting setup
 
