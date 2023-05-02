@@ -22,28 +22,21 @@ you can skip this step and use your own mounting option.
 
 ??? warning "Disclaimer"
 
-    Every effort has been made to check the instructions for setting up the
-    proposed hardware and software for accuracy and completeness. However, the
-    author cannot be held responsible for any errors or omissions. The readers
-    remain responsible for their safety when building, mounting, and using the
-    tools, hardware and software described in these instructions. The readers
-    must also comply with all applicable laws and regulations regarding the
-    application and deployment of the camera trap system including the associated
-    software and deep learning models. The author of these instructions cannot
-    be held responsible for the results of action, inaction, or otherwise taken
-    as a consequence of the information provided in the instructions. All
-    products, brands and product links to any online shops are mentioned for
-    illustration purposes only and do not denote a commercial relationship
-    between the author and the commercial products/brands/shops.
+    Every effort has been made to check the instructions for accuracy and
+    completeness. However, the author cannot be held responsible for any errors
+    or omissions. The readers remain responsible for their safety when using the
+    tools, hardware and software described in the instructions for building
+    and deploying the Insect Detect camera trap. The readers must also comply
+    with all applicable laws and regulations regarding the deployment of the
+    camera trap system including the associated software and deep learning models.
+    The author of these instructions cannot be held responsible for the results
+    of action, inaction, or otherwise taken as a consequence of the information
+    provided in the instructions. All products, brands and product links to any
+    online shops are mentioned for illustration purposes only and do not denote
+    a commercial relationship between the author and the products/brands/shops.
 
 <figure markdown>
-  ![Camera trap insect detection](assets/images/insectdetect_diy_cameratrap.jpg){ width="540" }
-  <figcaption>After following the instructions for the Full Setup, your
-              insect detecting camera trap system should look like this</figcaption>
-</figure>
-
-<figure markdown>
-  ![Camera trap full setup overview](assets/images/full_setup_overview.jpg){ width="700" }
-  <figcaption>Assembling the hardware for the weatherproof, solar-powered
-              camera trap for insect monitoring is relatively simple</figcaption>
+  ![Insect Detect assembled camera trap](assets/images/full_setup_overview.jpg){ width="700" }
+  <figcaption>Fully assembled Insect Detect camera trap system
+              after following the provided instructions</figcaption>
 </figure>
