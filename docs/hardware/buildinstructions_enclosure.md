@@ -56,9 +56,8 @@ mounting plate. Be careful to not apply too much pressure!
 
 ## Drilling the enclosure holes
 
-We are finished preparing the mounting plate, so let's move on to the
-enclosure. First, we are going to mark the 14 mm hole in the lid of the
-enclosure, where the camera will see through.
+First, we are going to mark the 14 mm hole in the lid of the
+enclosure, where the camera will record through.
 
 ![Enclosure lid drill template marking](assets/images/enclosure_lid_drill_template+marking.jpg){ width="600" }
 
@@ -67,22 +66,21 @@ An assistant will come in helpful here!
 
 ![Enclosure camera hole drilling](assets/images/enclosure_camera_hole_drilling.jpg){ width="500" }
 
-You can carefully go a little bit deeper to the next drill bit step to
-automatically deburr the camera hole.
+You can carefully go a little bit deeper to the next drill bit step to deburr the camera hole.
 
 ![Enclosure camera hole](assets/images/enclosure_camera_hole.jpg){ width="500" }
 
-Only one more hole to drill! We will attach the cable gland to this 20 mm hole
-at the shorter side of the enclosure. First, let's mark the hole.
+The preparation of the enclosure lid is finished now and you can put it aside.
+We will continue with the main part of the enclosure. The cable gland will be
+attached at the shorter side of the enclosure, for which we will have to drill
+a 20 mm hole in the next step.
 
 ![Enclosure side drill template](assets/images/enclosure_side_drill_template.png){ width="600" }
 
 ![Enclosure cable hole marking](assets/images/enclosure_cable_hole_marking.jpg){ width="600" }
 
-While drilling we will go a little bit deeper this time, to the 20 mm step. If
-you have someone to watch from the side and tell you when to stop this will be
-easier. Again, you can go a little bit deeper to the next drill bit step to
-deburr the hole.
+While drilling, you will have to go a little bit deeper this time, to the 20 mm step.
+Again, you can go a little bit deeper to the next drill bit step to deburr the hole.
 
 ![Enclosure cable hole drilling](assets/images/enclosure_cable_hole_drilling.jpg){ width="500" }
 
@@ -95,7 +93,9 @@ deburr the hole.
 You can put aside the drilling machine for now, as we are finished with
 preparing the holes in the mounting plate and enclosure. In the next step, we
 will attach the PG 13.5 cable gland with the locknut at the side of the
-enclosure.
+enclosure. It is recommended to use a sealing ring at the outer side of the
+enclosure. If this did not come with your cable gland, you can use a standard
+18x2 mm O-ring for faucets from your local hardware store.
 
 ![Enclosure attach cable gland](assets/images/enclosure_attach_cable_gland.jpg){ width="500" }
 
@@ -105,7 +105,7 @@ enclosure.
 
 ## Preparing the camera hole: Protection glass
 
-To completely water-proof the enclosure, we will glue a 40x40 mm piece of 2 mm
+To completely waterproof the enclosure, we will glue a 40x40 mm piece of 2 mm
 thick acrylic glass in front of the camera hole. You will need crepe tape,
 sealing glue, some kind of spatula (e.g. end of a zip tie) and a microfiber
 cloth for cleaning the acrylic glass piece.
@@ -130,19 +130,18 @@ glue and omit the area near the camera hole.
 
 ![Enclosure camera hole glue 2](assets/images/camera_hole_glue2.jpg){ width="500" }
 
-Make sure to clean the glass piece thoroughly immediately before putting it
-onto the glued surface.
+Make sure to clean the glass piece immediately before putting it onto the glued surface.
 
 ![Enclosure camera hole glue glass](assets/images/camera_hole_glue_glass.jpg){ width="500" }
 
 Press down the glass piece and carefully squeeze out as much air as possible,
-while preventing glue to reach the camera hole.
+while preventing that glue is reaching the camera hole.
 
 ![Enclosure camera hole glue glass 2](assets/images/camera_hole_glue_glass2.jpg){ width="500" }
 
-After the acrylic glass is attached to the enclosure lid, we can add some
-sealing glue to the edges and even it out with the spatula. Make sure to put a
-little bit more of the glue at the corners of the glass piece.
+After the glass is attached to the enclosure lid, we can add some sealing glue
+to the edges and even it out with the spatula. Make sure to put a little bit
+more glue at the corners of the glass piece.
 
 ![Enclosure camera hole sealing](assets/images/camera_hole_sealing.jpg){ width="500" }
 
@@ -156,10 +155,9 @@ more difficult. Be very careful to not smear the glue while removing the tape.
 
 ![Enclosure camera hole finish](assets/images/camera_hole_finish.jpg){ width="500" }
 
-After we fixed the acrylic glass piece to the top of the lid, let it sit for
-some time to make sure the glue is hard enough to proceed. Check the
-instructions of the glue you used for the minimum amount of time required to
-harden.
+After you fixed the acrylic glass piece to the top of the lid, let it sit for
+some time to make sure the glue is hard enough to proceed. Check the instructions
+of the glue you used for the minimum amount of time required to harden.
 
 ![Enclosure camera hole glass ready](assets/images/camera_hole_glass.jpg){ width="600" }
 
@@ -172,9 +170,8 @@ sealing strip.
 
 ![Hammer Hole Punch Sealing Strip](assets/images/hammer_holepunch_sealingstrip.jpg){ width="600" }
 
-Place the 14 mm Hole Punch in the center of the piece of sealing strip and hit
-it with the hammer about two to three times. It is recommended to put a piece
-of wood or something similar underneath.
+Put the sealing strip on a piece of wood or something similar, place the 14 mm
+Hole Punch in its the center and hit it with the hammer about two to three times.
 
 ![Hole Punch Sealing Strip](assets/images/holepunch_sealingstrip.jpg){ width="500" }
 
