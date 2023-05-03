@@ -38,7 +38,7 @@ on how to build and assemble the DIY camera trap system. Only
 some standard tools are necessary, which are listed in the Hardware
 [overview](https://maxsitt.github.io/insect-detect-docs/hardware/buildinstructions_overview/).
 
-<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/hardware/assets/images/full_setup_overview.jpg" width="800">
+<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/hardware/assets/images/full_setup_overview.jpg" width="500">
 
 ---
 
@@ -92,7 +92,7 @@ The Python scripts for [classification](https://github.com/maxsitt/insect-detect
 and [.csv analysis](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py) are
 available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml) GitHub repo.
 
-<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/deployment/assets/images/hq_frame_sync.gif" width="800">
+<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/deployment/assets/images/hq_frame_sync_1080p.gif" width="800">
 
 ---
 
