@@ -573,46 +573,52 @@ we will first have to install some dependencies by running:
 sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
 ```
 
-Upgrade the package `pip`:
+Upgrade the package [`pip`](https://pypi.org/project/pip/){target=_blank}:
 
 ``` bash
 python3 -m pip install --upgrade pip
 ```
 
-Upgrade the package `numpy`:
+Upgrade the package [`numpy`](https://pypi.org/project/numpy/){target=_blank}:
 
 ``` bash
 python3 -m pip install --upgrade numpy==1.24.2
 ```
 
-Install the package `pandas`:
+Install the package [`pandas`](https://pypi.org/project/pandas/){target=_blank}:
 
 ``` bash
 python3 -m pip install pandas==2.0.0
 ```
 
-Install the package `psutil`:
+Install the package [`psutil`](https://pypi.org/project/psutil/){target=_blank}:
 
 ``` bash
 python3 -m pip install psutil
 ```
 
-Install the package `opencv-python`:
+Install the package [`APScheduler`](https://pypi.org/project/APScheduler/){target=_blank}:
 
 ``` bash
-python3 -m pip install opencv-python==4.6.0.66
+python3 -m pip install APScheduler==3.10.1
 ```
 
-Install the package [PyAV](https://github.com/PyAV-Org/PyAV){target=_blank} if you want
+Install the package [`av`](https://pypi.org/project/av/){target=_blank} if you want
 to use the [`video_capture.py`](programming.md#video-capture){target=_blank} script:
 
 ``` bash
 python3 -m pip install av
 ```
 
+Install the package [`opencv-python`](https://pypi.org/project/opencv-python/){target=_blank}:
+
+``` bash
+python3 -m pip install opencv-python==4.6.0.66
+```
+
 ??? question "Raspberry Pi Zero W (v1)"
 
-    To install the `depthai` package on the RPi Zero W (v1) run:
+    To install the [`depthai`](https://pypi.org/project/depthai/){target=_blank} package on the RPi Zero W (v1) run:
 
     ``` bash
     python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai==2.20.2.0
@@ -624,7 +630,7 @@ python3 -m pip install av
     sudo apt-get install libusb-1.0-0-dev
     ```
 
-Install the `depthai` package:
+Install the package [`depthai`](https://pypi.org/project/depthai/){target=_blank}:
 
 ``` bash
 python3 -m pip install depthai
@@ -669,9 +675,8 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
   [API Documentation](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
 - If you have any problems with the OAK device, take a look at the
   [Troubleshooting page](https://docs.luxonis.com/en/latest/pages/troubleshooting/){target=_blank}
-  or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} directly
-  from the Luxonis developers in the [forum](https://discuss.luxonis.com/){target=_blank}
-  or in the [Discord channel](https://discord.gg/luxonis){target=_blank}.
+  or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} in the
+  [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
 
 ---
 
