@@ -18,7 +18,8 @@ simply dragging & dropping it into the VS Code remote window explorer.
 
 If you run into any problems, find a bug or something that could be optimized,
 please post an [issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}
-at the GitHub repo.
+at the GitHub repo. Get OAK-specific [support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank}
+directly from Luxonis.
 
 ---
 
@@ -55,27 +56,27 @@ import cv2
 import depthai as dai
 
 # Create depthai pipeline
-pipeline = dai.Pipeline()
+pipeline = dai.Pipeline() # (1)!
 
 # Create and configure camera node and define output
-cam_rgb = pipeline.create(dai.node.ColorCamera) # (1)!
-#cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG) # (2)
-cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P) # (3)!
+cam_rgb = pipeline.create(dai.node.ColorCamera) # (2)!
+#cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG) # (3)
+cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_1080_P) # (4)!
 cam_rgb.setPreviewSize(320, 320) # downscaled LQ frames
-cam_rgb.setPreviewKeepAspectRatio(False) # "squeeze" frames to square # (4)
+cam_rgb.setPreviewKeepAspectRatio(False) # "squeeze" frames to square # (5)
 cam_rgb.setInterleaved(False) # planar layout
 cam_rgb.setColorOrder(dai.ColorCameraProperties.ColorOrder.BGR)
 cam_rgb.setFps(25) # frames per second available for focus/exposure
 
-xout_rgb = pipeline.create(dai.node.XLinkOut) # (5)!
+xout_rgb = pipeline.create(dai.node.XLinkOut) # (6)!
 xout_rgb.setStreamName("frame")
 cam_rgb.preview.link(xout_rgb.input)
 
 # Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, usb2Mode=True) as device: # (6)!
+with dai.Device(pipeline, usb2Mode=True) as device: # (7)!
 
     # Create output queue to get the frames from the output defined above
-    q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False) # (7)!
+    q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False) # (8)!
 
     # Create start_time and counter variable to measure fps
     start_time = time.monotonic()
@@ -88,7 +89,7 @@ with dai.Device(pipeline, usb2Mode=True) as device: # (6)!
         fps = round(counter / (time.monotonic() - start_time), 2)
 
         cv2.putText(frame, f"fps: {fps}", (4, frame.shape[0] - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2) # (9)!
         cv2.imshow("cam_preview", frame)
 
         # Stop script and close window by pressing "Q"
@@ -97,25 +98,30 @@ with dai.Device(pipeline, usb2Mode=True) as device: # (6)!
 
 ```
 
-1.  You can find more info about the
+1.  More info about the [Pipeline](https://docs.luxonis.com/projects/api/en/latest/components/pipeline/){target=_blank}
+    and creation of nodes.
+2.  More info about the
     [ColorCamera node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}
-    and possible configurations at the DepthAI Docs.
-2.  If your image is shown upside down (on older OAK-1 cameras), you can rotate
+    and possible configurations.
+3.  If your image is shown upside down (on older OAK-1 cameras), you can rotate
     it on-device by activating this configuration.
-3.  `THE_1080_P` = 1920x1080 pixel (aspect ratio: 16:9). You can check all
+4.  `THE_1080_P` = 1920x1080 pixel (aspect ratio: 16:9). You can check all
     [supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html){target=_blank}
     and their respective resolutions at the DepthAI Docs. IMX378 is used in the OAK-1.
-4.  More info about other possible
-    [downscaling options](https://github.com/luxonis/depthai-experiments/tree/master/gen2-full-fov-nn){target=_blank}.
-5.  The [XLinkOut node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/xlink_out/){target=_blank}
+5.  More info about other possible
+    [downscaling options](https://docs.luxonis.com/projects/api/en/latest/tutorials/maximize_fov/){target=_blank}.
+6.  The [XLinkOut node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/xlink_out/){target=_blank}
     sends data from the OAK device to the host (e.g. Raspberry Pi) via XLink.
-6.  If your host (e.g. RPi Zero 2 W) has no USB 3 port or you aren't using a
+7.  If your host (e.g. RPi Zero 2 W) has no USB 3 port or you aren't using a
     USB 3 cable, it is recommended to
     [force USB 2 communication](https://docs.luxonis.com/en/latest/pages/troubleshooting/#forcing-usb2-communication){target=_blank}
     with `usb2Mode=True`.
-7.  You can
+8.  You can
     [specify different queue configurations](https://docs.luxonis.com/projects/api/en/latest/components/device/#specifying-arguments-for-getoutputqueue-method){target=_blank},
     by changing the maximum queue size or the blocking behaviour.
+9.  More info about
+    [`cv2.putText()`](https://www.askpython.com/python-modules/opencv-puttext){target=_blank}
+    to customize your output.
 
 ---
 
@@ -141,12 +147,12 @@ python3 insect-detect/yolo_preview.py
 
 ??? info "Optional argument"
 
-    Add after `yolo_preview.py`, separated by space:
+    Add after `python3 insect-detect/yolo_preview.py`, separated by space:
 
-    - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
-      (%) to console
+    - `-log` to print available Raspberry Pi memory, RPi CPU utilization +
+      temperature, OAK memory + CPU usage and OAK chip temperature to console
 
-``` py title="yolo_preview.py" hl_lines="27 28 55 76 77 125"
+``` py title="yolo_preview.py" hl_lines="30 31 58 79 80 102 136 137"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -165,12 +171,15 @@ import numpy as np
 
 # Define optional argument
 parser = argparse.ArgumentParser()
-parser.add_argument("-log", "--print_log", action="store_true",
-    help="print RPi available memory (MB) + CPU utilization (%)")
+parser.add_argument("-log", "--print_logs", action="store_true",
+    help="print RPi available memory, RPi CPU utilization + temperature, \
+          OAK memory + CPU usage and OAK chip temperature to console")
 args = parser.parse_args()
 
-if args.print_log:
+if args.print_logs:
     import psutil
+    from apscheduler.schedulers.background import BackgroundScheduler
+    from gpiozero import CPUTemperature
 
 # Set file paths to the detection model and config JSON
 MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
@@ -226,15 +235,29 @@ nn.setIouThreshold(iou_threshold) # (6)!
 nn.setConfidenceThreshold(confidence_threshold)
 nn.setNumInferenceThreads(2)
 
-# Define function to convert relative bounding box coordinates (0-1) to pixel coordinates
+# Define functions
 def frame_norm(frame, bbox):
     """Convert relative bounding box coordinates (0-1) to pixel coordinates."""
     norm_vals = np.full(len(bbox), frame.shape[0])
     norm_vals[::2] = frame.shape[1]
     return (np.clip(np.array(bbox), 0, 1) * norm_vals).astype(int)
 
+def print_logs():
+    """Print Raspberry Pi info to console."""
+    print(f"\nAvailable RPi memory: {round(psutil.virtual_memory().available / 1048576)} MB")
+    print(f"RPi CPU utilization:  {round(psutil.cpu_percent(interval=None))} %")
+    print(f"RPi CPU temperature:  {round(CPUTemperature().temperature)} °C\n")
+
 # Connect to OAK device and start pipeline in USB2 mode
 with dai.Device(pipeline, usb2Mode=True) as device:
+
+    # Print RPi + OAK info to console every second
+    if args.print_logs:
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(print_logs, "interval", seconds=1, id="log") # (7)!
+        scheduler.start()
+        device.setLogLevel(dai.LogLevel.INFO)
+        device.setLogOutputLevel(dai.LogLevel.INFO)
 
     # Create output queues to get the frames and detections from the outputs defined above
     q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
@@ -246,34 +269,29 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
     # Get LQ frames + model output (detections) and show in new window
     while True:
-        if args.print_log:
-            print(f"Available RPi memory: {round(psutil.virtual_memory().available / 1048576)} MB")
-            print(f"RPi CPU utilization:  {psutil.cpu_percent(interval=None)}%\n")
+        if q_frame.has():
+            frame = q_frame.get().getCvFrame()
 
-        frame = q_frame.get().getCvFrame()
-        nn_out = q_nn.get()
+            if q_nn.has():
+                dets = q_nn.get().detections
+                counter += 1
+                fps = round(counter / (time.monotonic() - start_time), 2)
 
-        if nn_out is not None:
-            dets = nn_out.detections
-            counter += 1
-            fps = round(counter / (time.monotonic() - start_time), 2)
+                for detection in dets:
+                    bbox = frame_norm(frame, (detection.xmin, detection.ymin,
+                                              detection.xmax, detection.ymax))
+                    cv2.putText(frame, labels[detection.label], (bbox[0], bbox[3] + 13),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                    cv2.putText(frame, f"{round(detection.confidence, 2)}", (bbox[0], bbox[3] + 25),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                    cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2)
 
-        if frame is not None:
-            for detection in dets:
-                bbox = frame_norm(frame, (detection.xmin, detection.ymin,
-                                          detection.xmax, detection.ymax))
-                cv2.putText(frame, labels[detection.label], (bbox[0], bbox[3] + 13),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1) # (7)!
-                cv2.putText(frame, f"{round(detection.confidence, 2)}", (bbox[0], bbox[3] + 25),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-                cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2)
-
-            cv2.putText(frame, f"fps: {fps}", (4, frame.shape[0] - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
-            cv2.imshow("yolo_preview", frame)
-            #print(f"fps: {fps}")
-            # streaming the frames via SSH (X11 forwarding) will slow down fps
-            # comment out "cv2.imshow()" and print fps to console for true fps
+                cv2.putText(frame, f"fps: {fps}", (4, frame.shape[0] - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+                cv2.imshow("yolo_preview", frame)
+                #print(f"fps: {fps}")
+                # streaming the frames via SSH (X11 forwarding) will slow down fps
+                # comment out "cv2.imshow()" and print fps to console for true fps
 
         # Stop script and close window by pressing "Q"
         if cv2.waitKey(1) == ord("q"):
@@ -289,14 +307,16 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     [YoloDetectionNetwork node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/yolo_detection_network/){target=_blank}.
 4.  The downscaled LQ preview frames are used as model input. More info about
     [linking nodes](https://docs.luxonis.com/projects/api/en/latest/components/nodes/){target=_blank}.
-5.  To avoid freezing of the pipeline, we will set `blocking=False` for the
-    frames that are used as model input.
+5.  To avoid freezing of the pipeline, we will set
+    [`blocking=False`](https://docs.luxonis.com/projects/api/en/latest/components/device/#non-blocking-behaviour){target=_blank}
+    for the frames that are used as model input.
 6.  All metadata that is necessary to successfully run the model on-device is
     extracted from the corresponding config .json file. However, you could also change
     your IoU or confidence threshold here for experimenting with different settings.
-7.  More info about
-    [`cv2.putText()`](https://www.geeksforgeeks.org/python-opencv-cv2-puttext-method/){target=_blank}
-    to customize your output.
+7.  To match the output frequency of the OAK logs
+    ([`device.setLogOutputLevel()`](https://docs.luxonis.com/projects/api/en/latest/tutorials/debugging/){target=_blank}),
+    the interval for printing the RPi logs is set to one second. Increase this
+    interval for easier reading of the logs.
 
 ---
 
@@ -319,12 +339,12 @@ python3 insect-detect/yolo_tracker_preview.py
 
 ??? info "Optional argument"
 
-    Add after `yolo_tracker_preview.py`, separated by space:
+    Add after `python3 insect-detect/yolo_tracker_preview.py`, separated by space:
 
-    - `-log` to print available Raspberry Pi memory (MB) and RPi CPU utilization
-      (%) to console
+    - `-log` to print available Raspberry Pi memory, RPi CPU utilization +
+      temperature, OAK memory + CPU usage and OAK chip temperature to console
 
-``` py title="yolo_tracker_preview.py" hl_lines="55 74 139 140 145"
+``` py title="yolo_tracker_preview.py" hl_lines="30 31 58 77 135 151 152 156 157"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -343,12 +363,15 @@ import numpy as np
 
 # Define optional argument
 parser = argparse.ArgumentParser()
-parser.add_argument("-log", "--print_log", action="store_true",
-    help="print RPi available memory (MB) + CPU utilization (%)")
+parser.add_argument("-log", "--print_logs", action="store_true",
+    help="print RPi available memory, RPi CPU utilization + temperature, \
+          OAK memory + CPU usage and OAK chip temperature to console")
 args = parser.parse_args()
 
-if args.print_log:
+if args.print_logs:
     import psutil
+    from apscheduler.schedulers.background import BackgroundScheduler
+    from gpiozero import CPUTemperature
 
 # Set file paths to the detection model and config JSON
 MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
@@ -413,15 +436,29 @@ xout_tracker = pipeline.create(dai.node.XLinkOut)
 xout_tracker.setStreamName("track")
 tracker.out.link(xout_tracker.input)
 
-# Define function to convert relative bounding box coordinates (0-1) to pixel coordinates
+# Define functions
 def frame_norm(frame, bbox):
     """Convert relative bounding box coordinates (0-1) to pixel coordinates."""
     norm_vals = np.full(len(bbox), frame.shape[0])
     norm_vals[::2] = frame.shape[1]
     return (np.clip(np.array(bbox), 0, 1) * norm_vals).astype(int)
 
+def print_logs():
+    """Print Raspberry Pi info to console."""
+    print(f"\nAvailable RPi memory: {round(psutil.virtual_memory().available / 1048576)} MB")
+    print(f"RPi CPU utilization:  {round(psutil.cpu_percent(interval=None))} %")
+    print(f"RPi CPU temperature:  {round(CPUTemperature().temperature)} °C\n")
+
 # Connect to OAK device and start pipeline in USB2 mode
 with dai.Device(pipeline, usb2Mode=True) as device:
+
+    # Print RPi + OAK info to console every second
+    if args.print_logs:
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(print_logs, "interval", seconds=1, id="log")
+        scheduler.start()
+        device.setLogLevel(dai.LogLevel.INFO)
+        device.setLogOutputLevel(dai.LogLevel.INFO)
 
     # Create output queues to get the frames and tracklets + detections from the outputs defined above
     q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
@@ -433,45 +470,40 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
     # Get LQ frames + tracker output (passthrough detections) and show in new window
     while True:
-        if args.print_log:
-            print(f"Available RPi memory: {round(psutil.virtual_memory().available / 1048576)} MB")
-            print(f"RPi CPU utilization:  {psutil.cpu_percent(interval=None)}%\n")
+        if q_frame.has():
+            frame = q_frame.get().getCvFrame()
 
-        frame = q_frame.get().getCvFrame()
-        track_out = q_track.get()
+            if q_track.has():
+                tracks = q_track.get().tracklets
+                counter += 1
+                fps = round(counter / (time.monotonic() - start_time), 2)
 
-        if track_out is not None:
-            tracks = track_out.tracklets
-            counter += 1
-            fps = round(counter / (time.monotonic() - start_time), 2)
-            
-        if frame is not None:
-            for t in tracks:
-                roi = t.roi.denormalize(frame.shape[1], frame.shape[0]) # (4)!
-                x1 = int(roi.topLeft().x)
-                y1 = int(roi.topLeft().y)
-                x2 = int(roi.bottomRight().x)
-                y2 = int(roi.bottomRight().y)
+                for track in tracks:
+                    roi = track.roi.denormalize(frame.shape[1], frame.shape[0]) # (4)!
+                    x1 = int(roi.topLeft().x)
+                    y1 = int(roi.topLeft().y)
+                    x2 = int(roi.bottomRight().x)
+                    y2 = int(roi.bottomRight().y)
 
-                bbox = frame_norm(frame, (t.srcImgDetection.xmin, t.srcImgDetection.ymin,
-                                          t.srcImgDetection.xmax, t.srcImgDetection.ymax))
-                cv2.putText(frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 13),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-                cv2.putText(frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 25),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-                cv2.putText(frame, f"ID:{t.id}", (bbox[0], bbox[3] + 40),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-                cv2.putText(frame, t.status.name, (bbox[0], bbox[3] + 50),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 255, 255), 1)
-                cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2) # model bbox
-                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 130), 1) # tracker bbox
+                    bbox = frame_norm(frame, (track.srcImgDetection.xmin, track.srcImgDetection.ymin,
+                                              track.srcImgDetection.xmax, track.srcImgDetection.ymax))
+                    cv2.putText(frame, labels[track.srcImgDetection.label], (bbox[0], bbox[3] + 13),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                    cv2.putText(frame, f"{round(track.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 25),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
+                    cv2.putText(frame, f"ID:{track.id}", (bbox[0], bbox[3] + 40),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+                    cv2.putText(frame, track.status.name, (bbox[0], bbox[3] + 50),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 255, 255), 1)
+                    cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2) # model bbox
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 130), 1) # tracker bbox
 
-            cv2.putText(frame, f"fps: {fps}", (4, frame.shape[0] - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
-            cv2.imshow("tracker_preview", frame)
-            #print(f"fps: {fps}")
-            # streaming the frames via SSH (X11 forwarding) will slow down fps
-            # comment out "cv2.imshow()" and print fps to console for true fps
+                cv2.putText(frame, f"fps: {fps}", (4, frame.shape[0] - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+                cv2.imshow("tracker_preview", frame)
+                #print(f"fps: {fps}")
+                # streaming the frames via SSH (X11 forwarding) will slow down fps
+                # comment out "cv2.imshow()" and print fps to console for true fps
 
         # Stop script and close window by pressing "Q"
         if cv2.waitKey(1) == ord("q"):
@@ -479,8 +511,8 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 
 ```
 
-1.  Maximum fps of the detection model is slightly lower when adding the
-    object tracker (47 fps instead of 49 fps for YOLOv5n).
+1.  Maximum fps of the detection model is slightly lower (~2 fps) when adding
+    the object tracker.
 2.  More info about the
     [ObjectTracker node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank}.
 3.  More info about the supported
@@ -488,7 +520,7 @@ with dai.Device(pipeline, usb2Mode=True) as device:
 4.  You can use the bounding box coordinates from the tracker output, as
     defined in this segment, and/or the bbox coordinates from the passthrough
     detections to draw the bboxes on the frame. The bboxes from the passthrough
-    detections should be more stable than from the object tracker output, you
+    detections are usually more stable than from the object tracker output, you
     can decide for yourself which one is best for your use case.
 
 ---
@@ -502,9 +534,10 @@ The following Python script is the main script for fully
   LQ frames (e.g. 320x320 px) is synchronized with HQ frames (e.g. 1920x1080 px) in a
   [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
-- Detections (area of the bounding box) are cropped from the synced HQ frames
-  and saved to .jpg. See the optional arguments to save the full raw HQ frames
-  additionally.
+- Detections (area of the bounding box) are
+  [cropped](https://maxsitt.github.io/insect-detect-docs/deployment/assets/images/hq_frame_sync_1080p.gif){target=_blank}
+  from the synced HQ frames and saved to .jpg. See the optional arguments
+  to save the full raw HQ frames additionally (slower!).
 - All relevant metadata from the detection model and tracker output (timestamp,
   label, confidence score, tracking ID, relative bbox coordinates, .jpg file
   path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv){target=_blank}
@@ -522,9 +555,9 @@ The following Python script is the main script for fully
   the respective recording duration is conditional on the current charge level.
 
 Using the default 1080p resolution for the HQ frames will result in an
-inference and pipeline speed of **~12 fps**, which is fast enough to track
-moving insects. If 4K resolution is used instead, the pipeline speed will
-decrease to **~3 fps**, which reduces tracking accuracy for fast moving insects.
+pipeline speed of **~12 fps**, which is fast enough to track most insects.
+If 4K resolution is used instead, the pipeline speed will decrease to
+**~3 fps**, which reduces tracking accuracy for fast moving insects.
 
 For fully automated monitoring in the field, set up a
 [cron job](../pisetup/#set-up-cron-job){target=_blank} that will run the script
@@ -545,14 +578,15 @@ python3 insect-detect/yolo_tracker_save_hqsync.py
 
 ??? info "Optional arguments"
 
-    Add after `yolo_tracker_save_hqsync.py`, separated by space:
+    Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
     - `-4k` use 4K resolution for HQ frames (~3 fps)
     - `-raw` to additionally save full HQ frames (e.g. for training data collection)
     - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
-    - `-log` to save temperature, RPi memory/CPU and battery logs to .csv
+    - `-log` to save RPi CPU + OAK chip temperature, RPi available memory +
+      CPU utilization and battery info to .csv
 
-``` py title="yolo_tracker_save_hqsync.py" hl_lines="42 196 201 324 325 338 353 362 369"
+``` py title="yolo_tracker_save_hqsync.py" hl_lines="58 64 65 68 69 117 204 209 331 343 344 359 373 384 397"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -576,7 +610,6 @@ import depthai as dai
 import numpy as np
 import pandas as pd
 import psutil
-from gpiozero import CPUTemperature
 from pijuice import PiJuice
 
 # Create folder to save images + metadata + logs (if not already present)
@@ -587,6 +620,23 @@ logging.basicConfig(filename="insect-detect/data/script_log.log", encoding="utf-
                     format="%(asctime)s - %(levelname)s: %(message)s", level=logging.DEBUG)
 logger = logging.getLogger() # (1)!
 sys.stderr.write = logger.error
+
+# Define optional arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("-4k", "--four_k_resolution", action="store_true",
+    help="crop detections from (+ save HQ frames in) 4K resolution; default = 1080p")
+parser.add_argument("-raw", "--save_raw_frames", action="store_true",
+    help="additionally save full raw HQ frames in separate folder (e.g. for training data)")
+parser.add_argument("-overlay", "--save_overlay_frames", action="store_true",
+    help="additionally save full HQ frames with overlay (bbox + info) in separate folder")
+parser.add_argument("-log", "--save_logs", action="store_true",
+    help="save RPi CPU + OAK chip temperature, RPi available memory (MB) + \
+          CPU utilization (%) and battery info to .csv file")
+args = parser.parse_args()
+
+if args.save_logs:
+    from apscheduler.schedulers.background import BackgroundScheduler
+    from gpiozero import CPUTemperature
 
 # Instantiate PiJuice
 pijuice = PiJuice(1, 0x14)
@@ -599,18 +649,9 @@ if chargelevel_start < 10 or disk_free < 200: # (2)!
     subprocess.run(["sudo", "shutdown", "-h", "now"], check=True)
     time.sleep(5) # wait 5 seconds for RPi to shut down
 
-# Define optional arguments
-parser = argparse.ArgumentParser()
-parser.add_argument("-4k", "--four_k_resolution", action="store_true",
-    help="crop detections from (+ save HQ frames in) 4K resolution; default = 1080p")
-parser.add_argument("-raw", "--save_raw_frames", action="store_true",
-    help="additionally save full raw HQ frames in separate folder (e.g. for training data)")
-parser.add_argument("-overlay", "--save_overlay_frames", action="store_true",
-    help="additionally save full HQ frames with overlay (bbox + info) in separate folder")
-parser.add_argument("-log", "--save_logs", action="store_true",
-    help="save RPi CPU + OAK VPU temperatures, RPi available memory (MB) + \
-          CPU utilization (%) and battery info to .csv file")
-args = parser.parse_args()
+# Optional: Disable charging of PiJuice battery if charge level is higher than threshold
+#if chargelevel_start > 70: # (3)
+#    pijuice.config.SetChargingConfig({"charging_enabled": False})
 
 # Set file paths to the detection model and config JSON
 MODEL_PATH = Path("insect-detect/models/yolov5n_320_openvino_2022.1_4shave.blob")
@@ -677,7 +718,7 @@ script.inputs["tracker"].setBlocking(False)
 cam_rgb.video.link(script.inputs["frames"]) # HQ frames
 script.inputs["frames"].setBlocking(False)
 
-# Set script that will be run on-device (Luxonis OAK) # (3)
+# Set script that will be run on-device (Luxonis OAK) # (4)
 script.setScript('''
 # Create empty list to save HQ frames + sequence numbers
 lst = []
@@ -727,6 +768,7 @@ folders_dates = len([f for f in Path("insect-detect/data").glob("**/20*") if f.i
 folders_days = len([f for f in Path("insect-detect/data").glob("20*") if f.is_dir()])
 rec_id = folders_dates - folders_days
 
+# Define functions
 def frame_norm(frame, bbox):
     """Convert relative bounding box coordinates (0-1) to pixel coordinates."""
     norm_vals = np.full(len(bbox), frame.shape[0])
@@ -744,37 +786,37 @@ def store_data(frame, tracks):
 
         # Save full raw HQ frame (e.g. for training data collection)
         if args.save_raw_frames:
-            for t in tracks:
-                if t == tracks[-1]:
+            for track in tracks:
+                if track == tracks[-1]:
                     timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
                     raw_path = f"{save_path}/raw/{timestamp}_raw.jpg"
-                    cv2.imwrite(raw_path, frame) # (4)!
+                    cv2.imwrite(raw_path, frame) # (5)!
                     #cv2.imwrite(raw_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
-        for t in tracks:
+        for track in tracks:
             # Don't save cropped detections if tracking status == "NEW" or "LOST" or "REMOVED"
-            if t.status.name == "TRACKED": # (5)!
+            if track.status.name == "TRACKED": # (6)!
 
                 # Save detections cropped from HQ frame to .jpg
-                bbox = frame_norm(frame, (t.srcImgDetection.xmin, t.srcImgDetection.ymin,
-                                          t.srcImgDetection.xmax, t.srcImgDetection.ymax))
+                bbox = frame_norm(frame, (track.srcImgDetection.xmin, track.srcImgDetection.ymin,
+                                          track.srcImgDetection.xmax, track.srcImgDetection.ymax))
                 det_crop = frame[bbox[1]:bbox[3], bbox[0]:bbox[2]]
-                label = labels[t.srcImgDetection.label]
+                label = labels[track.srcImgDetection.label]
                 timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
-                crop_path = f"{save_path}/cropped/{label}/{timestamp}_{t.id}_crop.jpg"
+                crop_path = f"{save_path}/cropped/{label}/{timestamp}_{track.id}_crop.jpg"
                 cv2.imwrite(crop_path, det_crop)
 
                 # Save corresponding metadata to .csv file for each cropped detection
                 data = {
                     "rec_ID": rec_id,
                     "timestamp": timestamp,
-                    "label": labels[t.srcImgDetection.label],
-                    "confidence": round(t.srcImgDetection.confidence, 2),
-                    "track_ID": t.id,
-                    "x_min": round(t.srcImgDetection.xmin, 4),
-                    "y_min": round(t.srcImgDetection.ymin, 4),
-                    "x_max": round(t.srcImgDetection.xmax, 4),
-                    "y_max": round(t.srcImgDetection.ymax, 4),
+                    "label": label,
+                    "confidence": round(track.srcImgDetection.confidence, 2),
+                    "track_ID": track.id,
+                    "x_min": round(track.srcImgDetection.xmin, 4),
+                    "y_min": round(track.srcImgDetection.ymin, 4),
+                    "x_max": round(track.srcImgDetection.xmax, 4),
+                    "y_max": round(track.srcImgDetection.ymax, 4),
                     "file_path": crop_path
                 }
                 metadata.writerow(data)
@@ -784,29 +826,29 @@ def store_data(frame, tracks):
                 if args.save_overlay_frames:
                     # Text position, font size and thickness optimized for 1920x1080 px HQ frame size
                     if not args.four_k_resolution:
-                        cv2.putText(frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 28),
+                        cv2.putText(frame, labels[track.srcImgDetection.label], (bbox[0], bbox[3] + 28),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
-                        cv2.putText(frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 55),
+                        cv2.putText(frame, f"{round(track.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 55),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
-                        cv2.putText(frame, f"ID:{t.id}", (bbox[0], bbox[3] + 92),
+                        cv2.putText(frame, f"ID:{track.id}", (bbox[0], bbox[3] + 92),
                                     cv2.FONT_HERSHEY_SIMPLEX, 1.1, (255, 255, 255), 2)
                         cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 2)
                     # Text position, font size and thickness optimized for 3840x2160 px HQ frame size
                     else:
-                        cv2.putText(frame, labels[t.srcImgDetection.label], (bbox[0], bbox[3] + 48),
+                        cv2.putText(frame, labels[track.srcImgDetection.label], (bbox[0], bbox[3] + 48),
                                     cv2.FONT_HERSHEY_SIMPLEX, 1.7, (255, 255, 255), 3)
-                        cv2.putText(frame, f"{round(t.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 98),
+                        cv2.putText(frame, f"{round(track.srcImgDetection.confidence, 2)}", (bbox[0], bbox[3] + 98),
                                     cv2.FONT_HERSHEY_SIMPLEX, 1.6, (255, 255, 255), 3)
-                        cv2.putText(frame, f"ID:{t.id}", (bbox[0], bbox[3] + 164),
+                        cv2.putText(frame, f"ID:{track.id}", (bbox[0], bbox[3] + 164),
                                     cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 3)
                         cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0, 0, 255), 3)
-                    if t == tracks[-1]:
+                    if track == tracks[-1]:
                         timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
                         overlay_path = f"{save_path}/overlay/{timestamp}_overlay.jpg"
                         cv2.imwrite(overlay_path, frame)
                         #cv2.imwrite(overlay_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
-def record_log(): # (6)!
+def record_log(): # (7)!
     """Write information about each recording interval to .csv file."""
     try:
         df_meta = pd.read_csv(f"{save_path}/metadata_{rec_start}.csv", encoding="utf-8")
@@ -833,9 +875,9 @@ def record_log(): # (6)!
         }
         log_rec.writerow(logs_rec)
 
-def save_logs(): # (7)!
+def save_logs(): # (8)!
     """
-    Write recording ID, time, RPi CPU + OAK VPU temp, RPi available memory (MB) +
+    Write recording ID, time, RPi CPU + OAK chip temperature, RPi available memory (MB) +
     CPU utilization (%) and PiJuice battery info + temp to .csv file.
     """
     with open(f"insect-detect/data/{rec_start[:8]}/info_log_{rec_start[:8]}.csv", "a",
@@ -846,20 +888,24 @@ def save_logs(): # (7)!
              "current_batt_mA", "current_gpio_mA"])
         if log_info_file.tell() == 0:
             log_info.writeheader()
+        try:
+            temp_oak = round(device.getChipTemperature().average)
+        except RuntimeError:
+            temp_oak = "NA"
         logs_info = {
             "rec_ID": rec_id,
             "timestamp": datetime.now().strftime("%Y%m%d_%H-%M-%S"),
             "temp_pi": round(CPUTemperature().temperature),
-            "temp_oak": round(device.getChipTemperature().average),
+            "temp_oak": temp_oak,
             "pi_mem_available": round(psutil.virtual_memory().available / 1048576),
             "pi_cpu_used": psutil.cpu_percent(interval=None),
-            "power_input": pijuice.status.GetStatus().get("data", {}).get("powerInput", 0),
-            "charge_status": pijuice.status.GetStatus().get("data", {}).get("battery", 0),
+            "power_input": pijuice.status.GetStatus().get("data", {}).get("powerInput", "NA"),
+            "charge_status": pijuice.status.GetStatus().get("data", {}).get("battery", "NA"),
             "charge_level": chargelevel,
-            "temp_batt": pijuice.status.GetBatteryTemperature().get("data", 0),
-            "voltage_batt_mV": pijuice.status.GetBatteryVoltage().get("data", 0),
-            "current_batt_mA": pijuice.status.GetBatteryCurrent().get("data", 0),
-            "current_gpio_mA": pijuice.status.GetIoCurrent().get("data", 0)
+            "temp_batt": pijuice.status.GetBatteryTemperature().get("data", "NA"),
+            "voltage_batt_mV": pijuice.status.GetBatteryVoltage().get("data", "NA"),
+            "current_batt_mA": pijuice.status.GetBatteryCurrent().get("data", "NA"),
+            "current_gpio_mA": pijuice.status.GetIoCurrent().get("data", "NA")
         }
         log_info.writerow(logs_info)
         log_info_file.flush()
@@ -867,16 +913,23 @@ def save_logs(): # (7)!
 # Connect to OAK device and start pipeline in USB2 mode
 with dai.Device(pipeline, usb2Mode=True) as device:
 
+    # Write RPi + OAK + battery info to .csv log file at specified interval
+    if args.save_logs:
+        logging.getLogger("apscheduler").setLevel(logging.WARNING)
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(save_logs, "interval", seconds=30, id="log") # (9)!
+        scheduler.start()
+
     # Create output queues to get the frames and tracklets + detections from the outputs defined above
     q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
     q_track = device.getOutputQueue(name="track", maxSize=4, blocking=False)
 
-    # Create start_time variable to set recording time and chargelevel variable
+    # Create start_time variable to set recording time + chargelevel variable
     start_time = time.monotonic()
     chargelevel = chargelevel_start
 
     # Set recording time conditional on PiJuice battery charge level
-    if chargelevel >= 70: # (8)!
+    if chargelevel >= 70: # (10)!
         rec_time = 60 * 40
     elif 50 <= chargelevel < 70:
         rec_time = 60 * 30
@@ -886,41 +939,50 @@ with dai.Device(pipeline, usb2Mode=True) as device:
         rec_time = 60 * 10
     else:
         rec_time = 60 * 5
+
+    # Write info on start of recording to log file
     logger.info(f"Rec ID: {rec_id} | Rec time: {int(rec_time / 60)} min | Charge level: {chargelevel}%")
 
     try:
         # Record until recording time is finished or chargelevel drops below threshold
-        while time.monotonic() < start_time + rec_time and chargelevel >= 10: # (9)!
+        while time.monotonic() < start_time + rec_time and chargelevel >= 10: # (11)!
 
-            # Update PiJuice battery charge level
-            chargelevel = pijuice.status.GetChargeLevel().get("data", -1)
+            # Update PiJuice battery charge level (return "10" if not readable)
+            chargelevel = pijuice.status.GetChargeLevel().get("data", 10)
 
             # Get synchronized HQ frames + tracker output (passthrough detections)
-            frame = q_frame.get().getCvFrame()
-            track_out = q_track.get()
+            if q_frame.has():
+                frame = q_frame.get().getCvFrame()
 
-            if track_out is not None:
-                tracks = track_out.tracklets
+                if q_track.has():
+                    tracks = q_track.get().tracklets
 
-                if frame is not None:
                     # Save cropped detections every second (slower if saving additional HQ frames)
                     store_data(frame, tracks)
-                    time.sleep(1) # (10)!
+                    time.sleep(1) # (12)!
 
-            # Write RPi CPU + OAK VPU temp, RPi info and battery info + temp to .csv log file
-            if args.save_logs:
-                save_logs()
-
-        # Write record logs to .csv and shutdown Raspberry Pi after recording time is finished
-        record_log()
+        # Write info on end of recording to log file and write record logs to .csv
         logger.info(f"Recording {rec_id} finished | Charge level: {chargelevel}%\n")
-        subprocess.run(["sudo", "shutdown", "-h", "now"], check=True) # (11)!
+        record_log()
 
-    # Write record logs to .csv, log error traceback and shutdown Raspberry Pi if an error occurs
+        # Enable charging of PiJuice battery if charge level is lower than threshold
+        if chargelevel < 70:
+            pijuice.config.SetChargingConfig({"charging_enabled": True})
+
+        # Shutdown Raspberry Pi
+        subprocess.run(["sudo", "shutdown", "-h", "now"], check=True) # (13)!
+
+    # Write info on error during recording to log file and write record logs to .csv
     except Exception:
         logger.error(traceback.format_exc())
         logger.error(f"Error during recording {rec_id} | Charge level: {chargelevel}%\n")
         record_log()
+
+        # Enable charging of PiJuice battery if charge level is lower than threshold
+        if chargelevel < 70:
+            pijuice.config.SetChargingConfig({"charging_enabled": True})
+
+        # Shutdown Raspberry Pi
         subprocess.run(["sudo", "shutdown", "-h", "now"], check=True)
 
 ```
@@ -938,40 +1000,47 @@ with dai.Device(pipeline, usb2Mode=True) as device:
     on the SD card is below **200 MB**, no recording will be made and the
     Raspberry Pi is immediately shut down. You can specify your custom
     thresholds (e.g. when using a different battery capacity) in this line.
-3.  This script is run on the OAK device and will synchronize the output from
+3.  Activate this option only if you have two batteries installed! Disable
+    charging of the PiJuice battery if the charge level is higher than the
+    specified threshold to extend battery life. The charge level is checked
+    again at the end of the script to re-enable charging if the charge level
+    dropped below a specified threshold.
+4.  This script is run on the OAK device and will synchronize the output from
     the object tracker node (+ passthrough model detections) with the HQ frames
     by comparing their respective sequence numbers. The synchronized tracker
     output and HQ frame are then send to the host (RPi).
-4.  Raw HQ frames will be saved every second if activated with `-raw`. To
+5.  Raw HQ frames will be saved every second if activated with `-raw`. To
     decrease the .jpg file size, you can save them with a higher JPEG
     compression (e.g. 70% quality instead of the default 95%) by commenting
     out this line and using the following line.
-5.  A tracked object can have 4 possible statuses: `NEW`, `TRACKED`, `LOST` and
-    `REMOVED`. It is highly recommended to save the cropped detections only
-    when `tracking status == TRACKED`, but you could change this
-    configuration here and e.g. write the `t.status.name` as additional column
-    to the metadata .csv.
-6.  This function will be called after a recording interval is finished, or if
+6.  A tracked object can have 4 possible statuses: `NEW`, `TRACKED`, `LOST` and
+    `REMOVED`. It is highly recommended to save the cropped detections only when
+    `tracking status == TRACKED`, but you could change this configuration here and
+    e.g. write the `track.status.name` as additional column to the metadata .csv.
+7.  This function will be called after a recording interval is finished, or if
     an error occurs during the recording and will write some info about the
     respective recording interval to `record_log.csv`.
-7.  This function will be called if you are using the optional `-log` argument
+8.  This function will be called if you are using the optional `-log` argument
     and will save the specified logging info to a .csv file.
-8.  You can specify your own recording durations and charge level thresholds in
+9.  You can change the
+    [interval](https://apscheduler.readthedocs.io/en/3.x/modules/triggers/interval.html){target=_blank}
+    at which logs will be written to the log .csv file in this line.
+10. You can specify your own recording durations and charge level thresholds in
     this code section. The suggested values can provide an efficient recording
     behaviour if you are using the 12,000 mAh PiJuice battery and set up the
     [Wakeup Alarm](../pisetup/#pijuice-zero-configuration){target=_blank} for
     2-5 times per day. Depending on the number of Wakeups per day, as well as
-    the season and sun exposure of the solar panel, it makes sense to
+    the season and sun exposure of the solar panel, it can make sense to
     increase or decrease the recording duration.
-9.  The recording will be stopped if the charge level of the PiJuice battery
+11. The recording will be stopped if the charge level of the PiJuice battery
     that is updated in each `while` loop drops below the specified threshold. You
     can adjust this threshold, e.g. when using a different battery capacity.
-10. In this line you can change the time interval with which the cropped
+12. In this line you can change the time interval with which the cropped
     detections will be saved to .jpg. This does not affect the detection model
     and object tracker speed, which are both run on-device even if no detections
     are saved. Using `-raw` or `-overlay` to additionally save the full HQ frames
     can significantly slow down the pipeline and inference speed.
-11. If you are still in the testing phase, comment out the shutdown commands in
+13. If you are still in the testing phase, comment out the shutdown commands in
     this line and the last line by adding `#` in front of the line.
 
 ---
@@ -993,7 +1062,7 @@ python3 insect-detect/frame_capture.py
 
 ??? info "Optional arguments"
 
-    Add after `frame_capture.py`, separated by space:
+    Add after `python3 insect-detect/frame_capture.py`, separated by space:
 
     - `-min` to set recording time in minutes (e.g. `-min 5` for 5 min
       recording time; default = 2)
@@ -1132,7 +1201,7 @@ python3 insect-detect/still_capture.py
 
 ??? info "Optional argument"
 
-    Add after `still_capture.py`, separated by space:
+    Add after `python3 insect-detect/still_capture.py`, separated by space:
 
     - `-min` to set recording time in minutes (e.g. `-min 5` for 5 min
       recording time; default = 2)
@@ -1275,7 +1344,7 @@ python3 insect-detect/video_capture.py
 
 ??? info "Optional arguments"
 
-    Add after `video_capture.py`, separated by space:
+    Add after `python3 insect-detect/video_capture.py`, separated by space:
 
     - `-min` to set recording time in minutes (e.g. `-min 5` for 5 min
       recording time; default = 2)
