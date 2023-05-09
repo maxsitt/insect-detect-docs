@@ -143,9 +143,9 @@ all bolts and the nuts on the backside of the mounting plate.
 Before inserting the mounting plate into the enclosure, the four cable ties have
 to be aligned with the positions where the batteries will be. If you only have
 shorter cable ties, you can connect two ties for extension. Bend the cable ties
-at **12 cm**, measured from the head of the cable tie. Put them into the enclosure,
-between the mounting threads as shown in the following image, and bend the cable
-ties at the other side of the enclosure bottom.
+at **12 cm**, measured from the head of the cable tie (right side in image). Put
+them into the enclosure, between the mounting threads as shown in the following
+image, and bend the cable ties at the other side of the enclosure bottom.
 
 ![Enclosure bend cable ties](assets/images/enclosure_cable_ties_bending.jpg){ width="600" }
 
