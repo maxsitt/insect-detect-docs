@@ -552,11 +552,13 @@ to a log file together with a prepended timestamp
 
 ??? info "Optional arguments"
 
-    Add after `yolo_tracker_save_hqsync.py`, separated by space:
+    Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
-    - `-log` to save additional battery, temperature and RPi memory/CPU logs to .csv
-    - `-raw` to save cropped detections + full raw HQ frames (e.g. for training data)
-    - `-overlay` to save cropped detections + full HQ frames with overlay (bbox + info)
+    - `-4k` use 4K resolution for HQ frames (~3 fps)
+    - `-raw` to additionally save full HQ frames (e.g. for training data collection)
+    - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
+    - `-log` to save RPi CPU + OAK chip temperature, RPi available memory +
+      CPU utilization and battery info to .csv
 
 If you are still in the testing phase, it is highly recommended to comment out
 your cronjob by adding `#` in front of `@reboot`, otherwise each time you are
