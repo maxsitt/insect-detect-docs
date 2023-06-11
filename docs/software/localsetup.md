@@ -61,44 +61,35 @@ the Extensions icon in the left side bar and install the
 
 ??? question "Raspberry Pi Zero W (v1)"
 
-    The Remote - SSH  and Remote X11 extensions will not work with the
-    Raspberry Pi Zero W, as the armv6l architecture is not supported.
-    Instead, you can connect to the RPi Zero W via SSH directly in the
-    VS Code Terminal by following these steps:
+    The Remote - SSH extension will not work with the Raspberry Pi Zero W, as
+    the armv6l architecture is not supported. Instead, you can connect to the
+    RPi Zero W via SSH directly in the VS Code Terminal by following these steps:
 
     - [Generate a SSH key](pisetup.md#ssh-key-based-authentication){target=_blank}.
-    - Go to the `C:\Users\<username>\.ssh` folder.
-    - Create a new `config.txt` file and copy the following content to it
-      (**insert your correct Windows username**):
-
-        ``` text
-        Host raspberrypi
-            HostName raspberrypi
-            User pi
-            EnableSSHKeysign yes
-            IdentityFile C:\Users\<username>\.ssh\id_rsa
-            ForwardX11 yes
-            ForwardX11Trusted yes
-        ```
-
-    - If you set a different hostname than `raspberrypi` during the
-      [RPi OS installation](pisetup.md#raspberry-pi-os-installation){target=_blank},
-      please adapt it accordingly for `Host` and `HostName`.
-      Instead of the hostname, you could also insert the
-      [IP address](pisetup.md#first-boot-and-ip-address-search){target=_blank}
-      of your RPi Zero.
-    - Save the file and delete its `.txt` extension in the file properties.
-    - Connect to your RPi Zero via SSH in the VS Code Terminal by running:
+    - [Install Raspberry Pi OS](pisetup.md#raspberry-pi-os-installation){target=_blank} to your microSD card.
+    - Set the `DISPLAY` environment variable in Windows by
+      [opening](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/){target=_blank}
+      the Command Prompt (cmd) and running:
 
         ``` powershell
-        ssh pi@raspberrypi
+        setx DISPLAY "localhost:0.0"
         ```
 
-        When you are asked if you are sure you want to continue connecting,
-        type in `yes` and hit ++enter++.
+        You may have to reboot your computer for the changes to take effect.
 
-    - To paste commands to the Terminal after connecting to the RPi, use
-      right-click on your mouse.
+    - Connect to your RPi Zero via SSH and trusted X11 forwarding (`-Y`)
+      in the VS Code Terminal by running:
+
+        ``` powershell
+        ssh -Y pi@raspberrypi
+        ```
+
+        If you set a different hostname than `raspberrypi` during the
+        [RPi OS installation](pisetup.md#raspberry-pi-os-installation){target=_blank},
+        adapt it accordingly. When you are asked if you are sure you
+        want to continue connecting, type in `yes` and hit ++enter++.
+
+    - Use **right-click** to paste commands to the Pi's SSH Terminal.
     - You can check if X11 forwarding works correctly by running:
 
         ``` bash
@@ -136,7 +127,7 @@ the Extensions icon in the left side bar and install the
       [PiJuice Zero configuration](pisetup.md#pijuice-zero-configuration){target=_blank}
       and [OAK-1 configuration](pisetup.md#oak-1-configuration){target=_blank}.
     - Skip the last step to configure X11 forwarding, as this should
-      already work by enabling it in the `config` file.
+      already work by connecting via SSH and trusted X11 forwarding (`ssh -Y`).
 
 ---
 
