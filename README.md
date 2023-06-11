@@ -107,5 +107,5 @@ You can cite this repository as:
 
 ```
 Sittinger, M. (2023). Insect Detect Docs - Documentation website for the
-Insect Detect DIY camera trap system. Zenodo. https://doi.org/10.5281/zenodo.7503371
+Insect Detect DIY camera trap system (v1.1). Zenodo. https://doi.org/10.5281/zenodo.7503371
 ```
