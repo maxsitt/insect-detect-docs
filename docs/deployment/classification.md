@@ -58,7 +58,7 @@ the [YOLOv5](https://github.com/ultralytics/yolov5){target=_blank} GitHub reposi
     python.exe -m pip install -r yolov5-master/requirements.txt
     ```
 
-![YOLOv5 install requirements](assets/images/yolov5_requirements.png){ width="800" }
+    ![YOLOv5 install requirements](assets/images/yolov5_requirements.png){ width="700" }
 
 ---
 
@@ -86,10 +86,8 @@ metadata .csv files or write them to a new .csv file.
 - Navigate to the `YOLOv5-cls` folder and start the classification script by running:
 
     ``` powershell
-    python.exe yolov5-master\classify\predict_mod.py --name data_classified --weights yolov5s-cls_128.onnx --source data/**/ --img 128 --concat-csv
+    python.exe yolov5-master\classify\predict_mod.py --name data_classified --weights yolov5s-cls_128.onnx --source data/**/ --img 128 --concat-csv --sort-top1
     ```
-
-![YOLOv5 run classification](assets/images/yolov5_classify_command.png){ width="800" }
 
 !!! info "Optional arguments"
 
