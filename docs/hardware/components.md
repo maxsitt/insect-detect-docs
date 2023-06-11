@@ -62,7 +62,7 @@ in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank
     shipping costs may increase the total cost of the components.
 
     **The prices for specific components may change and this list is only a
-    snapshot in time (April 2023).**
+    snapshot in time (June 2023).**
 
 ??? info "OAK USB cable"
 
@@ -103,10 +103,10 @@ in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank
     | **2x** *Heatsink 40x30 mm* (optional)           | *2.35 &euro; x2*   | e.g. [Reichelt](https://bit.ly/3SIrxFM){target=_blank}                                                                     |
     | HPL Sheet (4 mm) 350x250 mm                     | ~5.00 &euro;       | e.g. [HPL shop](https://bit.ly/3C5zsqK){target=_blank}                                                                     |
     | Aluminium Square Tube (23.5x23.5 mm), 1.5 m     | ~16.00 &euro;      | Local hardware store (e.g. [Bauhaus](https://bit.ly/3duFdUV){target=_blank})                                               |
-    | **4x** M4 20 mm Screws (internal hexagon)       | ~2.00 &euro;       | Local hardware store (e.g. [Connex screws](https://bit.ly/3MiC9IL){target=_blank})                                         |
-    | **7x** M4 40 mm Screws                          | ~3.00 &euro;       | Local hardware store (e.g. [Connex screws](https://bit.ly/3MiC9IL){target=_blank})                                         |
-    | **2x** M4 60 mm Screws                          | ~2.00 &euro;       | Local hardware store (e.g. [Bauhaus](https://bit.ly/3rP6c17){target=_blank})                                               |
-    | **21x** M4 Hex Nuts                             | ~3.00 &euro;       | Local hardware store (e.g. [Bauhaus](https://bit.ly/3MlymKv){target=_blank})                                               |
+    | **4x** M4 20 mm Screws (internal hexagon)       | ~2.00 &euro;       | Local hardware store                                                                                                       |
+    | **7x** M4 40 mm Screws                          | ~3.00 &euro;       | Local hardware store                                                                                                       |
+    | **2x** M4 60 mm Screws                          | ~2.00 &euro;       | Local hardware store                                                                                                       |
+    | **21x** M4 Hex Nuts                             | ~3.00 &euro;       | Local hardware store                                                                                                       |
     | **18x** Flat Washer (e.g. M4 15 mm)             | ~3.00 &euro;       | Local hardware store (e.g. [Bauhaus](https://bit.ly/3VgD7Jn){target=_blank})                                               |
     | Pipe Clamp (60.3 mm) 70 mm + screws & nuts      | 5.09 &euro;        | e.g. [Traffic sign shop](https://bit.ly/3zVOYCK){target=_blank}                                                            |
     | Pipe Clamp (60.3 mm) 350 mm + screws & nuts     | 7.81 &euro;        | e.g. [Traffic sign shop](https://bit.ly/3zVOYCK){target=_blank}                                                            |
