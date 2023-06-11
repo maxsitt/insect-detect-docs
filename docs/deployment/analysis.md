@@ -25,7 +25,7 @@ classification results to `metadata_classified_{timestamp}.csv`.
     python.exe csv_analysis.py
     ```
 
-![csv analysis command](assets/images/csv_analysis_command.png){ width="600" }
+    ![csv analysis command](assets/images/csv_analysis_command.png){ width="600" }
 
 !!! info "Optional arguments"
 
