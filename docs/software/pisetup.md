@@ -7,43 +7,35 @@ Imager installed on your system.
 
 ??? question "Raspberry Pi Zero W (v1)"
 
-    The Remote - SSH  and Remote X11 extensions will not work with the
-    Raspberry Pi Zero W, as the armv6l architecture is not supported.
-    Instead, you can connect to the RPi Zero W via SSH directly in the
-    VS Code Terminal by following these steps:
+    The Remote - SSH extension will not work with the Raspberry Pi Zero W, as
+    the armv6l architecture is not supported. Instead, you can connect to the
+    RPi Zero W via SSH directly in the VS Code Terminal by following these steps:
 
     - [Generate a SSH key](#ssh-key-based-authentication).
     - [Install Raspberry Pi OS](#raspberry-pi-os-installation) to your microSD card.
-    - Go to the `C:\Users\<username>\.ssh` folder and create a new `config.txt` file.
-    - Copy the following content to it (**insert your correct Windows username**):
-
-        ``` text
-        Host raspberrypi
-            HostName raspberrypi
-            User pi
-            EnableSSHKeysign yes
-            IdentityFile C:\Users\<username>\.ssh\id_rsa
-            ForwardX11 yes
-            ForwardX11Trusted yes
-        ```
-
-    - If you set a different hostname than `raspberrypi` during the
-      [RPi OS installation](#raspberry-pi-os-installation),
-      please adapt it accordingly for `Host` and `HostName`.
-      Instead of the hostname, you could also insert the
-      [IP address](#first-boot-and-ip-address-search) of your RPi Zero.
-    - Save the file and delete its `.txt` extension in the file properties.
-    - Connect to your RPi Zero via SSH in the VS Code Terminal by running:
+    - Set the `DISPLAY` environment variable in Windows by
+      [opening](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/){target=_blank}
+      the Command Prompt (cmd) and running:
 
         ``` powershell
-        ssh pi@raspberrypi
+        setx DISPLAY "localhost:0.0"
         ```
 
-        When you are asked if you are sure you want to continue connecting,
-        type in `yes` and hit ++enter++.
+        You may have to reboot your computer for the changes to take effect.
 
-    - To paste commands to the Terminal after connecting to the RPi, use
-      right-click on your mouse.
+    - Connect to your RPi Zero via SSH and trusted X11 forwarding (`-Y`)
+      in the VS Code Terminal by running:
+
+        ``` powershell
+        ssh -Y pi@raspberrypi
+        ```
+
+        If you set a different hostname than `raspberrypi` during the
+        [RPi OS installation](#raspberry-pi-os-installation), adapt it
+        accordingly. When you are asked if you are sure you want to
+        continue connecting, type in `yes` and hit ++enter++.
+
+    - Use **right-click** to paste commands to the Pi's SSH Terminal.
     - You can check if X11 forwarding works correctly by running:
 
         ``` bash
@@ -81,7 +73,7 @@ Imager installed on your system.
       [PiJuice Zero configuration](#pijuice-zero-configuration)
       and [OAK-1 configuration](#oak-1-configuration).
     - Skip the last step to configure X11 forwarding, as this should
-      already work by enabling it in the `config` file.
+      already work by connecting via SSH and trusted X11 forwarding (`ssh -Y`).
 
 ---
 
@@ -98,9 +90,9 @@ We will start by generating a new key pair on your local Windows PC and then
 copy the public key to the Raspberry Pi with the Raspberry Pi Imager. But first
 check if there is already an SSH key on your computer by going to the
 `C:\Users\<username>\.ssh` folder. If there is a file named `id_rsa.pub` you can
-skip this step. If you can't find the `.ssh` folder or the key file, open a
-[local Terminal](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
-(Windows PowerShell) and run the following command:
+skip this step. If you can't find the `.ssh` folder or the key file,
+[open](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
+a local Terminal (Windows PowerShell) and run the following command:
 
 ``` powershell
 ssh-keygen -t rsa -b 4096
