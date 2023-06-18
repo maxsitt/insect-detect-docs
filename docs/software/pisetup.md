@@ -560,74 +560,34 @@ booting up your Raspberry Pi, it will try to run the Python script.
 
 ## OAK-1 configuration
 
-Before we can use the OAK-1 in our [Python scripts](programming.md){target=_blank},
-we will first have to install some dependencies by running:
+Before you can use the [DepthAI API](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}
+in the [Python scripts](programming.md){target=_blank} for automated insect
+monitoring on the RPi + OAK-1, you will first have to install some dependencies
+by running:
 
 ``` bash
 sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
 ```
 
-Upgrade the package [`pip`](https://pypi.org/project/pip/){target=_blank}:
-
-``` bash
-python3 -m pip install --upgrade pip
-```
-
-Upgrade the package [`numpy`](https://pypi.org/project/numpy/){target=_blank}:
-
-``` bash
-python3 -m pip install --upgrade numpy==1.24.2
-```
-
-Install the package [`pandas`](https://pypi.org/project/pandas/){target=_blank}:
-
-``` bash
-python3 -m pip install pandas==2.0.0
-```
-
-Install the package [`psutil`](https://pypi.org/project/psutil/){target=_blank}:
-
-``` bash
-python3 -m pip install psutil
-```
-
-Install the package [`APScheduler`](https://pypi.org/project/APScheduler/){target=_blank}:
-
-``` bash
-python3 -m pip install APScheduler==3.10.1
-```
-
-Install the package [`av`](https://pypi.org/project/av/){target=_blank} if you want
-to use the [`video_capture.py`](programming.md#video-capture){target=_blank} script:
-
-``` bash
-python3 -m pip install av
-```
-
-Install the package [`opencv-python`](https://pypi.org/project/opencv-python/){target=_blank}:
-
-``` bash
-python3 -m pip install opencv-python==4.6.0.66
-```
-
 ??? question "Raspberry Pi Zero W (v1)"
 
-    To install the [`depthai`](https://pypi.org/project/depthai/){target=_blank} package on the RPi Zero W (v1) run:
-
-    ``` bash
-    python3 -m pip install --extra-index-url https://artifacts.luxonis.com/artifactory/luxonis-python-release-local/ depthai==2.20.2.0
-    ```
-
-    Additionally, you will have to install the package `libusb-1.0-0-dev` with:
+    Additionally to the installed dependencies, you will have to install the
+    package `libusb-1.0-0-dev` with:
 
     ``` bash
     sudo apt-get install libusb-1.0-0-dev
     ```
 
-Install the package [`depthai`](https://pypi.org/project/depthai/){target=_blank}:
+[Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
+the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+GitHub repo, extract it and change its foldername to `insect-detect`. Copy the
+renamed folder to the `home/pi` directory of your Raspberry Pi, by simply dragging
+& dropping it into the VS Code remote window explorer (or SSH FS Workspace folder).
+
+Install all required Python packages by running:
 
 ``` bash
-python3 -m pip install depthai
+python3 -m pip install -r insect-detect/requirements.txt
 ```
 
 You can check if your OAK camera is correctly detected by running:
@@ -645,9 +605,8 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
 ??? bug "Device not found"
 
     If your device is not found, or if you get errors including something like
-    `X_LINK_DEVICE_NOT_FOUND` or `skipping X_LINK_UNBOOTED device`, you can try
-    to set new udev rules to identify the OAK device. Unplug the OAK camera,
-    then run:
+    `X_LINK_DEVICE_NOT_FOUND` or `skipping X_LINK_UNBOOTED device`, you can set
+    new udev rules to identify the OAK device. Unplug the OAK camera, then run:
 
     ``` bash
     echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
@@ -659,8 +618,8 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
     sudo udevadm control --reload-rules && sudo udevadm trigger
     ```
 
-    Plug the OAK device back into USB. If this was the cause of the error, your
-    OAK device should be correctly detected and identified now.
+    Plug the OAK device back into the USB port, it should
+    be correctly detected and identified now.
 
 - A lot more information on setting up the OAK camera and DepthAI can be found at the
   [Luxonis Docs](https://docs.luxonis.com/en/latest/pages/tutorials/first_steps/){target=_blank}.
