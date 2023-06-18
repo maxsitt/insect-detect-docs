@@ -12,9 +12,9 @@
 The latest versions of the Python scripts are available in the
 [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
 [Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
-the whole repository, extract it and change its foldername to `insect-detect`.
-Copy the renamed folder to the `home/pi` directory of your Raspberry Pi, by
-simply dragging & dropping it into the VS Code remote window explorer.
+the whole repository, extract it and change its foldername to `insect-detect`. Copy
+the renamed folder to the `home/pi` directory of your Raspberry Pi, by simply dragging
+& dropping it into the VS Code remote window explorer (or SSH FS Workspace folder).
 
 If you run into any problems, find a bug or something that could be optimized,
 please post an [issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}
@@ -73,7 +73,7 @@ xout_rgb.setStreamName("frame")
 cam_rgb.preview.link(xout_rgb.input)
 
 # Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, usb2Mode=True) as device: # (7)!
+with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device: # (7)!
 
     # Create output queue to get the frames from the output defined above
     q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False) # (8)!
@@ -112,10 +112,10 @@ with dai.Device(pipeline, usb2Mode=True) as device: # (7)!
     [downscaling options](https://docs.luxonis.com/projects/api/en/latest/tutorials/maximize_fov/){target=_blank}.
 6.  The [XLinkOut node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/xlink_out/){target=_blank}
     sends data from the OAK device to the host (e.g. Raspberry Pi) via XLink.
-7.  If your host (e.g. RPi Zero 2 W) has no USB 3 port or you aren't using a
+7.  If your host (e.g. RPi Zero 2 W) has no USB3 port or you aren't using a
     USB 3 cable, it is recommended to
-    [force USB 2 communication](https://docs.luxonis.com/en/latest/pages/troubleshooting/#forcing-usb2-communication){target=_blank}
-    with `usb2Mode=True`.
+    [force USB2 communication](https://docs.luxonis.com/en/latest/pages/troubleshooting/#forcing-usb2-communication){target=_blank}
+    by setting `maxUsbSpeed=dai.UsbSpeed.HIGH`.
 8.  You can
     [specify different queue configurations](https://docs.luxonis.com/projects/api/en/latest/components/device/#specifying-arguments-for-getoutputqueue-method){target=_blank},
     by changing the maximum queue size or the blocking behaviour.
@@ -249,7 +249,7 @@ def print_logs():
     print(f"RPi CPU temperature:  {round(CPUTemperature().temperature)} °C\n")
 
 # Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, usb2Mode=True) as device:
+with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 
     # Print RPi + OAK info to console every second
     if args.print_logs:
@@ -450,7 +450,7 @@ def print_logs():
     print(f"RPi CPU temperature:  {round(CPUTemperature().temperature)} °C\n")
 
 # Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, usb2Mode=True) as device:
+with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 
     # Print RPi + OAK info to console every second
     if args.print_logs:
@@ -617,7 +617,7 @@ Path("insect-detect/data").mkdir(parents=True, exist_ok=True)
 
 # Create logger and write info + error messages to log file
 logging.basicConfig(filename="insect-detect/data/script_log.log", encoding="utf-8",
-                    format="%(asctime)s - %(levelname)s: %(message)s", level=logging.DEBUG)
+                    format="%(asctime)s - %(levelname)s: %(message)s", level=logging.INFO)
 logger = logging.getLogger() # (1)!
 sys.stderr.write = logger.error
 
@@ -911,7 +911,7 @@ def save_logs(): # (8)!
         log_info_file.flush()
 
 # Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, usb2Mode=True) as device:
+with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 
     # Write RPi + OAK + battery info to .csv log file at specified interval
     if args.save_logs:
@@ -947,8 +947,8 @@ with dai.Device(pipeline, usb2Mode=True) as device:
         # Record until recording time is finished or chargelevel drops below threshold
         while time.monotonic() < start_time + rec_time and chargelevel >= 10: # (11)!
 
-            # Update PiJuice battery charge level (return "10" if not readable)
-            chargelevel = pijuice.status.GetChargeLevel().get("data", 11)
+            # Update PiJuice battery charge level (return "99" if not readable)
+            chargelevel = pijuice.status.GetChargeLevel().get("data", 99)
 
             # Get synchronized HQ frames + tracker output (passthrough detections)
             if q_frame.has():
@@ -1126,7 +1126,7 @@ if args.save_lq_frames:
     cam_rgb.preview.link(xout_lq.input) # LQ frame
 
 # Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, usb2Mode=True) as device:
+with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 
     # Create output queue(s) to get the frames from the output(s) defined above
     q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
@@ -1270,7 +1270,7 @@ while True:
 script.outputs["capture_still"].link(cam_rgb.inputControl)
 
 # Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, usb2Mode=True) as device:
+with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 
     # Create output queue to get the encoded still frames from the output defined above
     q_still = device.getOutputQueue(name="still", maxSize=1, blocking=False)
@@ -1403,7 +1403,7 @@ xout_vid.setStreamName("video")
 video_enc.bitstream.link(xout_vid.input)
 
 # Connect to OAK device and start pipeline
-with dai.Device(pipeline, usb2Mode=True) as device:
+with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 
     # Create output queue to get the encoded frames from the output defined above
     q_video = device.getOutputQueue(name="video", maxSize=30, blocking=True)
