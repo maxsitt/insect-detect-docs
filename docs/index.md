@@ -325,4 +325,4 @@ Many thanks to:
 
 Funding for this work was provided by the German Federal Ministry of Food and
 Agriculture in the scope of the research project
-[**MonViA**](https://www.agrarmonitoring-monvia.de/en/){target=_blank}.
+[**MonViA**](https://www.agrarmonitoring-monvia.de/en/monitoring-of-insects/beneficial-insects-in-refuge-habitats){target=_blank}.
