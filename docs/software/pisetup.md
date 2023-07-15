@@ -5,76 +5,6 @@ Raspberry Pi OS Lite to the microSD card. If you followed the steps in
 [Local Setup](localsetup.md){target=_blank}, you already have the Raspberry Pi
 Imager installed on your system.
 
-??? question "Raspberry Pi Zero W (v1)"
-
-    The Remote - SSH extension will not work with the Raspberry Pi Zero W, as
-    the armv6l architecture is not supported. Instead, you can connect to the
-    RPi Zero W via SSH directly in the VS Code Terminal by following these steps:
-
-    - [Generate a SSH key](#ssh-key-based-authentication).
-    - [Install Raspberry Pi OS](#raspberry-pi-os-installation) to your microSD card.
-    - Set the `DISPLAY` environment variable in Windows by
-      [opening](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/){target=_blank}
-      the Command Prompt (cmd) and running:
-
-        ``` powershell
-        setx DISPLAY "localhost:0.0"
-        ```
-
-        You may have to reboot your computer for the changes to take effect.
-
-    - Connect to your RPi Zero via SSH and trusted X11 forwarding (`-Y`)
-      in the VS Code Terminal by running:
-
-        ``` powershell
-        ssh -Y pi@raspberrypi
-        ```
-
-        If you set a different hostname than `raspberrypi` during the
-        [RPi OS installation](#raspberry-pi-os-installation), adapt it
-        accordingly. When you are asked if you are sure you want to
-        continue connecting, type in `yes` and hit ++enter++.
-
-    - Use **right-click** to paste commands to the Pi's SSH Terminal.
-    - You can check if X11 forwarding works correctly by running:
-
-        ``` bash
-        echo $DISPLAY
-        ```
-
-        ...which should give you the following output:
-
-        ``` bash
-        localhost:10.0
-        ```
-
-    - For a similar remote explorer experience as with the Remote - SSH extension, install the
-      [SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
-      extension.
-    - Open the SSH FS extension by clicking on the new icon in the left side bar.
-    - Create a new SSH FS configuration (Name: e.g. `rpi_zero`) with the following fields
-      (**insert your correct Windows username**):
-
-        - Host: `raspberrypi`
-        - Port: `22`
-        - Root: `~/`
-        - Username: `pi`
-        - Private key: `c:\Users\<username>\.ssh\id_rsa`
-
-    - Leave the other fields blank and save the configuration with the
-      **Save** button at the bottom.
-    - In the SSH FS extension, click on the first symbol to the right of your
-      configuration: `Add as Workspace folder`. Retry if it does not work
-      immediately. This will open the `/home/pi` folder in your VS Code explorer.
-      You can now view and edit files (e.g. [Python scripts](programming.md){target=_blank}
-      and images) directly in VS Code and drag & drop any files or folders
-      (e.g. `insect-detect`) from your PC to the RPi Zero.
-    - Follow the steps for [RPi configuration](#rpi-configuration),
-      [PiJuice Zero configuration](#pijuice-zero-configuration)
-      and [OAK-1 configuration](#oak-1-configuration).
-    - Skip the last step to configure X11 forwarding, as this should
-      already work by connecting via SSH and trusted X11 forwarding (`ssh -Y`).
-
 ---
 
 ## SSH key based authentication
@@ -204,52 +134,188 @@ and scan the IP addresses of all devices in your WiFi network.
 
 ---
 
-## Remote SSH connection
+## SSH connection and X11 forwarding
 
-If you are using Raspberry Pi Zero W (v1), please follow the instructions in
-the info box at the [top of this page](#raspberry-pi-setup) before proceeding
-to the [RPi configuration](#rpi-configuration){target=_blank}.
+For casual users the following steps are recommended, which will give you all
+necessary functions to test and deploy the DIY camera trap. For experienced
+users, who want to use the Raspberry Pi as remote development environment with
+the Remote - SSH extension, follow the steps in the info box.
 
-Open VS Code and press the green button in the bottom left to open the
-Remote-SSH extension connection settings.
+??? info "Remote-SSH & Remote X11 extension configuration"
 
-![VS Code open remote SSH](assets/images/vscode_remote_ssh.png){ width="600" }
+    === "Remote-SSH extension"
 
-Choose the first option **Connect to Host...**
+        **Not supported by RPi Zero W (v1)!**
 
-![VS Code connect remote SSH](assets/images/vscode_connect_remote.png){ width="600" }
+        Open VS Code and press the button (`Open a Remote Window`) in the
+        bottom left to open the Remote-SSH extension connection settings.
 
-Type in your user name (this is `pi` if you didn't change the default name)
-and your Pi's hostname or IP address with `@` in between (e.g. `pi@raspberrypi`
-or `pi@192.168.1.93`) and hit ++enter++.
+        ![VS Code open remote SSH](assets/images/vscode_remote_ssh.png){ width="600" }
 
-![VS Code connect remote SSH IP address](assets/images/vscode_remote_ip.png){ width="600" }
+        Choose the first option **Connect to Host...**
 
-Now VS Code will connect to the Raspberry Pi via SSH and open a new remote
-window. This might take a while during the first start, as several packages
-have to be installed on the Raspberry Pi first. When you are asked to select
-the platform of the remote host, choose **Linux**. Enter the password that you
-set in the Raspberry Pi Imager options when you are asked for it (not necessary
-if you chose public-key authentication).
+        ![VS Code connect remote SSH](assets/images/vscode_connect_remote.png){ width="600" }
 
-After these steps, the Pi SSH Terminal at the bottom will open and you can
-start with setting up your Pi! In the explorer view on the left, press
-**Open Folder** and open the home folder `/home/pi/`. You can now view and
-edit files (e.g. [Python scripts](programming.md){target=_blank} and images)
-directly in VS Code and drag & drop any files or folders (e.g. `insect-detect`)
-from your PC to the RPi Zero.
+        Type in your user name (this is `pi` if you didn't change the default name)
+        and your Pi's hostname or IP address with `@` in between (e.g. `pi@raspberrypi`
+        or `pi@192.168.1.93`) and hit ++enter++.
 
-If the Pi SSH Terminal will not automatically open after you established the
-SSH connection, go to **Terminal** in the menu bar at the top and open a
-**New Terminal**.
+        ![VS Code connect remote SSH IP address](assets/images/vscode_remote_ip.png){ width="600" }
 
-![VS Code Raspberry Pi connected](assets/images/vscode_raspberry_connected.png){ width="600" }
+        Now VS Code will connect to the Raspberry Pi via SSH and open a new remote
+        window. This might take a while during the first start, as several packages
+        have to be installed on the Raspberry Pi first. When you are asked to select
+        the platform of the remote host, choose **Linux**. Enter the password that you
+        set in the Raspberry Pi Imager options when you are asked for it (not necessary
+        if you chose public-key authentication).
 
-When you are asked to trust the authors of the files in this folder press
-**Yes** and make sure to check the option **Trust the authors of all files in
-the parent folder 'home'**.
+        After these steps, the Pi SSH Terminal at the bottom will open and you can
+        start with setting up your Pi! In the explorer view on the left, press
+        **Open Folder** and open the home folder `/home/pi/`. You can now view and
+        edit files (e.g. [Python scripts](programming.md){target=_blank} and images)
+        directly in VS Code and drag & drop any files or folders (e.g. `insect-detect`)
+        from your PC to the RPi Zero.
 
-![VS Code Raspberry Pi trust authors](assets/images/vscode_trust_authors.png){ width="600" }
+        If the Pi SSH Terminal will not automatically open after you established the
+        SSH connection, go to **Terminal** in the menu bar at the top and open a
+        **New Terminal**.
+
+        ![VS Code Raspberry Pi connected](assets/images/vscode_raspberry_connected.png){ width="600" }
+
+        When you are asked to trust the authors of the files in this folder press
+        **Yes** and make sure to check the option **Trust the authors of all files in
+        the parent folder 'home'**.
+
+        ![VS Code Raspberry Pi trust authors](assets/images/vscode_trust_authors.png){ width="600" }
+
+    === "Remote X11 extension"
+
+        Open the VS Code Extensions and install the Remote X11 extension that we
+        already installed on our local machine in [Local Setup](localsetup.md){target=_blank}
+        to the Raspberry Pi by selecting `Install in SSH:`.
+
+        ![VS Code Remote X11 install SSH](assets/images/vscode_remotex11_ssh_install.png){ width="700" }
+
+        Open the local **Remote X11 (SSH)** extension and select `Extension Settings`.
+
+        ![VS Code Remote X11 SSH settings](assets/images/vscode_remotex11_ssh_settings.png){ width="700" }
+
+        At the top you will see two tabs for `User` and `Remote [SSH: <IP-ADDRESS>]`.
+        In the `User` settings tab, make sure that the **XAuth Permission Level** is
+        set to `trusted`.
+
+        ![VS Code Remote X11 SSH settings User](assets/images/vscode_remotex11_ssh_settings_user.png){ width="700" }
+
+        Go to the `Remote [SSH: <IP-ADDRESS>]` settings tab and change the
+        **Display Command** to:
+
+        ``` text
+        echo DISPLAY=$DISPLAY
+        ```
+
+        ![VS Code Remote X11 SSH settings Remote Display](assets/images/vscode_remotex11_ssh_settings_remote_display.png){ width="700" }
+
+        Scroll down and set the **XAuth Permission Level** to `trusted`.
+
+        ![VS Code Remote X11 SSH settings Remote Authentication](assets/images/vscode_remotex11_ssh_settings_remote_auth.png){ width="700" }
+
+        Now you can start the **VcXsrv X server** by opening the `XLaunch.exe`, which
+        we installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
+        Keep all the default settings (press **Next** three times, then **Finish**) and
+        the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
+        forwarding, open a new SSH Terminal in VS Code for all changes to take effect.
+
+        ![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
+
+        We will test if the X11 forwarding from the Raspberry Pi to our Windows X
+        Server is established by running the following command:
+
+        ``` bash
+        echo $DISPLAY
+        ```
+
+        ...which should give you the following output:
+
+        ``` bash
+        localhost:10.0
+        ```
+
+        ![VS Code Remote X11 SSH test display](assets/images/vscode_remotex11_ssh_test_display.png){ width="400" }
+
+        ??? bug "X11 connection Error"
+
+            If the X11 connection is not properly working, a possible problem could be
+            an incompatible private key format. You can convert your private key to the
+            older PEM format (which will work with the Remote X11 extension) by running
+            the following command in your local Terminal (Windows PowerShell):
+
+            ``` powershell
+            ssh-keygen -p -m PEM -f .ssh/id_rsa
+            ```
+
+            Restart VcXsrv and reboot the Raspberry Pi before testing the connection
+            again with `echo $DISPLAY`.
+
+- Set the `DISPLAY` environment variable in Windows by
+  [opening](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/){target=_blank}
+  the Command Prompt (cmd) and running:
+
+    ``` powershell
+    setx DISPLAY "localhost:0.0"
+    ```
+
+    You may have to reboot your computer for the changes to take effect.
+
+- Start the **VcXsrv X server** by opening the `XLaunch.exe`, which you installed
+  after following the [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
+  Keep all the default settings (press **Next** three times, then **Finish**) and
+  the VcXsrv tray icon will appear in your taskbar.
+- Open a new Terminal in VS Code and connect to your Raspberry Pi
+  via SSH and trusted X11 forwarding (`-Y`) by running:
+
+    ``` powershell
+    ssh -Y pi@raspberrypi
+    ```
+
+    If you set a different hostname than `raspberrypi` during the
+    [RPi OS installation](#raspberry-pi-os-installation), change it
+    accordingly. When you are asked if you are sure you want to
+    continue connecting, type in `yes` and hit ++enter++.
+
+- Use **right-click** to paste commands to the Pi's SSH Terminal.
+- You can check if X11 forwarding works correctly by running:
+
+    ``` bash
+    echo $DISPLAY
+    ```
+
+    ...which should give you the following output:
+
+    ``` bash
+    localhost:10.0
+    ```
+
+- If you followed the steps in [Local Setup](localsetup.md){target=_blank}, you already have the
+  [SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
+  extension installed in VS Code.
+- Open the SSH FS extension by clicking on the folder icon at the bottom of the left side bar.
+- Create a new SSH FS configuration (`Name:` e.g. your RPi hostname) with the following fields
+  (**insert your correct Windows username**):
+
+    - Host: `raspberrypi` (or different hostname)
+    - Port: `22`
+    - Root: `~/`
+    - Username: `pi`
+    - Private key: `c:\Users\<username>\.ssh\id_rsa`
+
+- Leave the other fields blank and save the configuration with the
+  **Save** button at the bottom.
+- In the SSH FS extension, click on the first symbol to the right of your
+  configuration: `Add as Workspace folder`. Retry if it does not work
+  immediately. This will open the `/home/pi` folder in your VS Code explorer.
+  You can now view and edit files (e.g. [Python scripts](programming.md){target=_blank}
+  and images) directly in VS Code and drag & drop any files or folders
+  (e.g. `insect-detect`) from your PC to the RPi.
 
 ---
 
@@ -582,7 +648,7 @@ sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
 the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
 GitHub repo, extract it and change its foldername to `insect-detect`. Copy the
 renamed folder to the `home/pi` directory of your Raspberry Pi, by simply dragging
-& dropping it into the VS Code remote window explorer (or SSH FS Workspace folder).
+& dropping it into the SSH FS Workspace folder (or VS Code remote window explorer).
 
 Install all required Python packages by running:
 
@@ -630,80 +696,6 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
   [Troubleshooting page](https://docs.luxonis.com/en/latest/pages/troubleshooting/){target=_blank}
   or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} in the
   [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
-
----
-
-## Configure X11 forwarding
-
-In the last step, we are going to configure the X11 forwarding, which is
-necessary to show the OAK-1 camera stream that is send to the Raspberry Pi in a
-new window on our local computer.
-
-Open the VS Code Extensions and install the Remote X11 extension that we
-already installed on our local machine in [Local Setup](localsetup.md){target=_blank}
-to the Raspberry Pi by selecting `Install in SSH:`.
-
-![VS Code Remote X11 install SSH](assets/images/vscode_remotex11_ssh_install.png){ width="700" }
-
-Open the local **Remote X11 (SSH)** extension and select `Extension Settings`.
-
-![VS Code Remote X11 SSH settings](assets/images/vscode_remotex11_ssh_settings.png){ width="700" }
-
-At the top you will see two tabs for `User` and `Remote [SSH: <IP-ADDRESS>]`.
-In the `User` settings tab, make sure that the **XAuth Permission Level** is
-set to `trusted`.
-
-![VS Code Remote X11 SSH settings User](assets/images/vscode_remotex11_ssh_settings_user.png){ width="700" }
-
-Go to the `Remote [SSH: <IP-ADDRESS>]` settings tab and change the
-**Display Command** to:
-
-``` text
-echo DISPLAY=$DISPLAY
-```
-
-![VS Code Remote X11 SSH settings Remote Display](assets/images/vscode_remotex11_ssh_settings_remote_display.png){ width="700" }
-
-Scroll down and set the **XAuth Permission Level** to `trusted`.
-
-![VS Code Remote X11 SSH settings Remote Authentication](assets/images/vscode_remotex11_ssh_settings_remote_auth.png){ width="700" }
-
-Now you can start the **VcXsrv X server** by opening the `XLaunch.exe`, which
-we installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
-Keep all the default settings (press **Next** three times, then **Finish**) and
-the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
-forwarding, open a new SSH Terminal in VS Code for all changes to take effect.
-
-![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
-
-We will test if the X11 forwarding from the Raspberry Pi to our Windows X
-Server is established by running the following command:
-
-``` bash
-echo $DISPLAY
-```
-
-...which should give you the following output:
-
-``` bash
-localhost:10.0
-```
-
-![VS Code Remote X11 SSH test display](assets/images/vscode_remotex11_ssh_test_display.png){ width="400" }
-
-??? bug "X11 connection Error"
-
-    If the X11 connection is not properly working, a possible problem could be
-    an incompatible private key format. You can convert your private key to the
-    older PEM format (which will work with the Remote X11 extension) by running
-    the following command in your local Terminal (Windows PowerShell):
-
-    ``` powershell
-    ssh-keygen -p -m PEM -f .ssh/id_rsa
-    ```
-
-    Restart VcXsrv and reboot the Raspberry Pi before testing the connection
-    again with `echo $DISPLAY`.
 
 With everything set up, you can now move on to [Programming](programming.md){target=_blank}
 and use the provided Python scripts for your own automated insect monitoring pipelines!
