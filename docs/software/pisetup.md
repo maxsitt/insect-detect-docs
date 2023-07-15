@@ -240,8 +240,6 @@ the Remote - SSH extension, follow the steps in the info box.
         localhost:10.0
         ```
 
-        ![VS Code Remote X11 SSH test display](assets/images/vscode_remotex11_ssh_test_display.png){ width="400" }
-
         ??? bug "X11 connection Error"
 
             If the X11 connection is not properly working, a possible problem could be
@@ -270,8 +268,11 @@ the Remote - SSH extension, follow the steps in the info box.
   after following the [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
   Keep all the default settings (press **Next** three times, then **Finish**) and
   the VcXsrv tray icon will appear in your taskbar.
-- Open a new Terminal in VS Code and connect to your Raspberry Pi
-  via SSH and trusted X11 forwarding (`-Y`) by running:
+- Open a new Terminal in VS Code.
+
+    ![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
+
+- Connect to your Raspberry Pi via SSH and trusted X11 forwarding (`-Y`) by running:
 
     ``` powershell
     ssh -Y pi@raspberrypi
