@@ -1,9 +1,9 @@
 # Raspberry Pi Setup
 
-Before we can use the Raspberry Pi Zero 2 W, we will first have to install
-Raspberry Pi OS Lite to the microSD card. If you followed the steps in
-[Local Setup](localsetup.md){target=_blank}, you already have the Raspberry Pi
-Imager installed on your system.
+Before you can use the Raspberry Pi, you will first have to install Raspberry Pi
+OS Lite to the microSD card. If you followed the steps in [Local Setup](localsetup.md){target=_blank},
+you already have the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}
+installed on your computer.
 
 ---
 
@@ -170,28 +170,28 @@ the Remote - SSH extension, follow the steps in the info box.
         if you chose public-key authentication).
 
         After these steps, the Pi SSH Terminal at the bottom will open and you can
-        start with setting up your Pi! In the explorer view on the left, press
+        start with setting up your RPi. In the explorer view on the left, press
         **Open Folder** and open the home folder `/home/pi/`. You can now view and
         edit files (e.g. [Python scripts](programming.md){target=_blank} and images)
         directly in VS Code and drag & drop any files or folders (e.g. `insect-detect`)
         from your PC to the RPi Zero.
 
         If the Pi SSH Terminal will not automatically open after you established the
-        SSH connection, go to **Terminal** in the menu bar at the top and open a
-        **New Terminal**.
+        SSH connection, go to `Terminal` in the menu bar at the top and open a
+        `New Terminal`.
 
         ![VS Code Raspberry Pi connected](assets/images/vscode_raspberry_connected.png){ width="600" }
 
         When you are asked to trust the authors of the files in this folder press
-        **Yes** and make sure to check the option **Trust the authors of all files in
-        the parent folder 'home'**.
+        `Yes` and make sure to check the option `Trust the authors of all files in
+        the parent folder 'home'`.
 
         ![VS Code Raspberry Pi trust authors](assets/images/vscode_trust_authors.png){ width="600" }
 
     === "Remote X11 extension"
 
-        Open the VS Code Extensions and install the Remote X11 extension that we
-        already installed on our local machine in [Local Setup](localsetup.md){target=_blank}
+        Open the VS Code Extensions and install the Remote X11 extension that you
+        already installed to your computer in [Local Setup](localsetup.md){target=_blank}
         to the Raspberry Pi by selecting `Install in SSH:`.
 
         ![VS Code Remote X11 install SSH](assets/images/vscode_remotex11_ssh_install.png){ width="700" }
@@ -220,14 +220,14 @@ the Remote - SSH extension, follow the steps in the info box.
         ![VS Code Remote X11 SSH settings Remote Authentication](assets/images/vscode_remotex11_ssh_settings_remote_auth.png){ width="700" }
 
         Now you can start the **VcXsrv X server** by opening the `XLaunch.exe`, which
-        we installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
+        you installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
         Keep all the default settings (press **Next** three times, then **Finish**) and
         the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
         forwarding, open a new SSH Terminal in VS Code for all changes to take effect.
 
         ![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
 
-        We will test if the X11 forwarding from the Raspberry Pi to our Windows X
+        You can test if the X11 forwarding from the Raspberry Pi to our Windows X
         Server is established by running the following command:
 
         ``` bash
@@ -297,21 +297,19 @@ the Remote - SSH extension, follow the steps in the info box.
 
 - If you followed the steps in [Local Setup](localsetup.md){target=_blank}, you already have the
   [SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
-  extension installed in VS Code.
-- Open the SSH FS extension by clicking on the folder icon at the bottom of the left side bar.
-- Create a new SSH FS configuration (`Name:` e.g. your RPi hostname) with the following fields
-  (**insert your correct Windows username**):
+  extension installed. Open the extension by clicking on the folder icon in the left side bar.
+- Create a new SSH FS configuration (`Name:` your RPi hostname) with the following fields:
 
     - Host: `raspberrypi` (or different hostname)
     - Port: `22`
     - Root: `~/`
     - Username: `pi`
-    - Private key: `c:\Users\<username>\.ssh\id_rsa`
+    - Private key: `c:\Users\<username>\.ssh\id_rsa` (insert your Windows username)
 
 - Leave the other fields blank and save the configuration with the
   **Save** button at the bottom.
 - In the SSH FS extension, click on the first symbol to the right of your
-  configuration: `Add as Workspace folder`. Retry if it does not work
+  configuration (`Add as Workspace folder`). Retry if it does not work
   immediately. This will open the `/home/pi` folder in your VS Code explorer.
   You can now view and edit files (e.g. [Python scripts](programming.md){target=_blank}
   and images) directly in VS Code and drag & drop any files or folders
