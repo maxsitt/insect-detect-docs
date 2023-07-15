@@ -14,7 +14,7 @@ The latest versions of the Python scripts are available in the
 [Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
 the whole repository, extract it and change its foldername to `insect-detect`. Copy
 the renamed folder to the `home/pi` directory of your Raspberry Pi, by simply dragging
-& dropping it into the VS Code remote window explorer (or SSH FS Workspace folder).
+& dropping it into the SSH FS Workspace folder (or VS Code remote window explorer).
 
 If you run into any problems, find a bug or something that could be optimized,
 please post an [issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}
@@ -29,12 +29,10 @@ This Python script will create and configure the
 [ColorCamera node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}
 to send downscaled LQ frames (e.g. 320x320 px) to the host (Raspberry Pi) and
 show them in a new window. If you are connected to the RPi via SSH,
-[X11 forwarding](pisetup.md#configure-x11-forwarding){target=_blank} has to be
+[X11 forwarding](pisetup.md#ssh-connection-and-x11-forwarding){target=_blank} has to be
 set up together with an active
 [X server](localsetup.md#vcxsrv-windows-x-server){target=_blank} to show the
-frames in a window on your local PC. If you are using the Raspberry Pi Zero W (v1),
-make sure that you followed the steps in the info box at the top of the
-[Raspberry Pi Setup](pisetup.md){target=_blank} page.
+frames in a window on your local PC.
 
 Run the script with:
 
@@ -112,7 +110,7 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device: # (7)!
     [downscaling options](https://docs.luxonis.com/projects/api/en/latest/tutorials/maximize_fov/){target=_blank}.
 6.  The [XLinkOut node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/xlink_out/){target=_blank}
     sends data from the OAK device to the host (e.g. Raspberry Pi) via XLink.
-7.  If your host (e.g. RPi Zero 2 W) has no USB3 port or you aren't using a
+7.  If your host (e.g. RPi Zero 2 W) has no USB 3 port or you aren't using a
     USB 3 cable, it is recommended to
     [force USB2 communication](https://docs.luxonis.com/en/latest/pages/troubleshooting/#forcing-usb2-communication){target=_blank}
     by setting `maxUsbSpeed=dai.UsbSpeed.HIGH`.
