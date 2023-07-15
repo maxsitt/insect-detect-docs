@@ -29,12 +29,12 @@ to your computer. More information on how to set up VS Code can be found in the
 [official Docs](https://code.visualstudio.com/Docs/setup/setup-overview){target=_blank}.
 Using Visual Studio Code to connect to your Raspberry Pi via
 [SSH](https://en.wikipedia.org/wiki/Secure_Shell){target=_blank} is highly
-recommended. For casual users, install the VS Code extensions listed under `Basic`.
+recommended. For casual users, install the extensions listed under `Basic`.
 
 For experienced users, connecting and working exclusively via the Terminal
 (e.g. Windows PowerShell) is also possible. If you want to use the Raspberry
 Pi Zero 2 W as a remote development environment, install the VS Code extensions
-listed under `Advanced` (**Not supported by RPi Zero W (v1)!**).
+listed under `Advanced`.
 
 ???+ info "Recommended Extensions"
 
@@ -49,7 +49,8 @@ listed under `Advanced` (**Not supported by RPi Zero W (v1)!**).
 
         - [Remote - SSH](https://bit.ly/3dw6tSI){target=_blank} extension to
           use the Raspberry Pi Zero 2 W as a remote development environment
-          with more functions, including Pylint support.
+          with more functions, including Pylint support. **Not supported by
+          RPi Zero W (v1)!**
         - [Remote X11](https://bit.ly/3A6BNz1){target=_blank} extension to
           forward the OAK-1 camera stream received from the Raspberry Pi via
           X11 and show it on your local PC. Required if you are using the
@@ -70,8 +71,8 @@ sent to the Raspberry Pi on your local computer, you will need to install a X
 server if you are communicating with the RPi via SSH. Start the X server with
 the `XLaunch.exe` and keep all the default settings. After that you will see a
 tray icon in the taskbar and running e.g. one of the
-[preview](programming.md#oak-camera-preview) scripts will open the OAK-1 camera
-stream in a new VcXsrv window on your local computer.
+[preview](programming.md#oak-camera-preview){target=_blank} scripts will open
+the OAK-1 camera stream in a new VcXsrv window on your computer.
 
 ---
 
