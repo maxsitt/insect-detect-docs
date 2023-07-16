@@ -267,11 +267,7 @@ combined results.
       as forwarding the frames will slow down the received message output and thereby fps. If you are using a
       Raspberry Pi 4 B connected to a screen, fps will be correctly shown in the livestream (see gif).
 
-<figure markdown>
-  ![On-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="300" }
-  <figcaption>YOLOv5n insect detection model running together with an
-              object tracker on the OAK-1 camera, connected to a RPi 4 B </figcaption>
-</figure>
+![On-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="300" }
 
 ---
 
