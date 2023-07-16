@@ -10,6 +10,8 @@ This website provides instructions on hardware assembly, software setup,
 programming, model training and deployment of a DIY camera trap that can
 be used for automated insect monitoring.
 
+---
+
 ## Background
 
 Long-term monitoring data at a high spatiotemporal resolution is essential to
@@ -20,7 +22,7 @@ as well as to design effective conservation strategies
 Automated monitoring methods can extend the ecologists' toolbox and acquire
 high-quality data with less time/labor input compared to traditional methods
 ([Besson et al., 2022](https://doi.org/10.1111/ele.14123){target=_blank}).
-If standardized and easily accessible and reproducible, these methods could
+If standardized, easily accessible and reproducible, these methods could
 furthermore decentralize monitoring efforts and strengthen the integration
 of independent biodiversity observations (Citizen Science)
 ([K&uuml;hl et al., 2020](https://doi.org/10.1016/j.oneear.2020.09.010){target=_blank}).
@@ -57,7 +59,9 @@ time-lapse image recordings with subsequent on-device insect detection/classific
 and tracking implemented during post-processing. The appearance and detection of
 an insect can be also used as trigger to automatically start a recording. This can
 drastically reduce the amount of data that has to be stored, by integrating the
-information extraction into the recording process.
+information extraction into the recording process. The hereafter presented DIY
+camera trap supports on-device detection and tracking of insects, combined with
+high-resolution frame synchronization in real time.
 
 ??? quote "The necessity of automated biodiversity monitoring"
 
@@ -107,7 +111,7 @@ attraction for insects and leads to higher detection and tracking accuracy with
 less data requirement for model training. Because of the flat design, the posture
 of insects landing on the platform is more uniform, which can lead to better
 classification results and less images required for model training. In ongoing
-research efforts different materials, shapes and colors are tested to enhance
+research efforts, different materials, shapes and colors are tested to enhance
 the visual attraction for specific pollinator groups.
 
 !!! success "Implemented functions"
@@ -125,7 +129,6 @@ the visual attraction for specific pollinator groups.
 
 !!! failure "Not implemented (yet)"
 
-    - high attraction of the flower platform for a wide range of insect taxa
     - on-device classification and analysis
     - real-time data transfer (e.g. via LTE/LoRaWAN module)
     - comparison with traditional monitoring methods (validation)
@@ -151,17 +154,16 @@ without prior knowledge or specific hardware requirements and free of charge.
 
 ---
 
-In the [**Hardware**](hardware/index.md){target=_blank} section of this website
+In the [**Hardware**](hardware/index.md){target=_blank} section of this website,
 you will find a list with all required [components](hardware/components.md){target=_blank}
 and detailed [instructions](hardware/buildinstructions_enclosure.md){target=_blank}
-on how to build and assemble the camera trap system. Only some standard tools
-are necessary, which are listed in the Hardware
-[overview](hardware/buildinstructions_overview.md){target=_blank}.
+on how to assemble the camera trap system. Only some standard tools are necessary, which
+are listed in the Hardware [overview](hardware/buildinstructions_overview.md){target=_blank}.
 
 In the [**Software**](software/index.md){target=_blank} section, all steps to
 get the camera trap up and running are explained. You will start with installing
 the necessary software on your [local PC](software/localsetup.md){target=_blank},
-to communicate with the Raspberry Pi Zero 2 W. After the Raspberry Pi is
+to communicate with the Raspberry Pi. After the Raspberry Pi is
 [configured](software/pisetup.md){target=_blank}, details about the Python
 scripts and tips on customization to different use cases can be found in the
 [Programming](software/programming.md){target=_blank} part.
@@ -177,7 +179,7 @@ training can be done in [Google Colab](https://colab.research.google.com/){targe
 where you will have access to a free cloud GPU for fast training. This means
 all you need is a Google account, no special hardware is required.
 
-The **Deployment** section will give you details on each step of the processing
+The **Deployment** section contains details about each step of the processing
 pipeline, from on-device [detection](deployment/detection.md){target=_blank}
 and tracking, to [classification](deployment/classification.md){target=_blank}
 of the cropped insect images on your local PC and subsequent automated
@@ -248,19 +250,28 @@ combined results.
 | YOLOv7tiny | 320                   | 53.2                 | 95.7              | 94.7                  | 94.2               | 52                     |
 | YOLOv8n    | 320                   | 55.4                 | 94.4              | 92.2                  | 89.9               | 39                     |
 
-- All [models](https://github.com/maxsitt/insect-detect/tree/main/models){target=_blank}
-  were trained to 300 epochs with batch size 32 and default hyperparameters. Reproduce the
-  model training with the provided [Google Colab notebooks](https://github.com/maxsitt/insect-detect-ml#model-training).
-- Trained on [Insect_Detect_detection](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection)
-  dataset [version 7](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7)
-  with only 1 class ("insect").
-- Model metrics (mAP, Precision, Recall) are shown for the original PyTorch (.pt) model before conversion to ONNX ->
-  OpenVINO -> .blob format. Reproduce metrics by using the respective model validation method.
-- Speed (fps) is shown for the converted models (.blob), running on OAK-1 connected to RPi Zero 2 W
-  (~2 fps slower with object tracker). Set `cam_rgb.setFps()` to the respective fps shown for each model to
-  reproduce the speed measurements.
+??? note "Table Notes"
 
-    ![on-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="300" }
+    - All [models](https://github.com/maxsitt/insect-detect/tree/main/models){target=_blank} were trained
+      to 300 epochs with batch size 32 and default hyperparameters. Reproduce the model training with
+      the provided [Google Colab notebooks](https://github.com/maxsitt/insect-detect-ml#model-training).
+    - Trained on [Insect_Detect_detection](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection)
+      dataset [version 7](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7)
+      with only 1 class ("insect").
+    - Model metrics (mAP, Precision, Recall) are shown for the original PyTorch (.pt) model before conversion
+      to ONNX -> OpenVINO -> .blob format. Reproduce metrics by using the respective model validation method.
+    - Speed (fps) is shown for the converted models (.blob), running on OAK-1 connected to RPi Zero 2 W
+      (~2 fps slower with object tracker). Set `cam_rgb.setFps()` to the respective fps shown for each
+      model to reproduce the speed measurements.
+    - While connected via SSH (X11 forwarding of the frames), print fps to the console and comment out `cv2.imshow()`,
+      as forwarding the frames will slow down the received message output and thereby fps. If you are using a
+      Raspberry Pi 4 B connected to a screen, fps will be correctly shown in the livestream (see gif).
+
+<figure markdown>
+  ![On-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="300" }
+  <figcaption>YOLOv5n insect detection model running together with an
+              object tracker on the OAK-1 camera, connected to a RPi 4 B </figcaption>
+</figure>
 
 ---
 
@@ -270,12 +281,14 @@ combined results.
 | --------------------- | --------------------- | ------------------------- | ------------------------- |
 | **YOLOv5s-cls**       | 128                   | 0.9835                    | 1                         |
 
-- The [model](https://github.com/maxsitt/insect-detect-ml/blob/main/yolov5s-cls_128.onnx){target=_blank}
-  was trained to 100 epochs with batch size 64 and default hyperparameters. Reproduce the model training with the provided
-  [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}.
-- Trained on [Insect_Detect_classification](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
-  dataset [version 2](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/dataset/2){target=_blank}
-  with 7 classes ([class balance](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/health){target=_blank}).
+??? note "Table Notes"
+
+    - The [model](https://github.com/maxsitt/insect-detect-ml/blob/main/yolov5s-cls_128.onnx){target=_blank}
+      was trained to 100 epochs with batch size 64 and default hyperparameters. Reproduce the model training with the provided
+      [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}.
+    - Trained on [Insect_Detect_classification](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
+      dataset [version 2](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/dataset/2){target=_blank}
+      with 7 classes ([class balance](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/health){target=_blank}).
 
 ---
 
