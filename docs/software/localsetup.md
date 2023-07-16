@@ -1,6 +1,6 @@
 # Local Software Setup
 
-???+ warning "Local OS"
+??? warning "Local OS"
 
     All of the software and installation processes were only tested on a
     **Windows 11** computer. For Mac and Linux users some software may be very
