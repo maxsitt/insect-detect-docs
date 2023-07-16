@@ -33,12 +33,14 @@ are asked to enter a passphrase, hit ++enter++ twice. Now that we have generated
 the private and public SSH keys, we can select **public-key authentication** in
 the advanced options of the Raspberry Pi Imager in the next steps.
 
-If you want to connect your Raspberry Pi to multiple local machines with SSH
-key based authentication, you can simply generate a key pair for each local PC
-and copy the line with the public key from `.ssh/id_rsa.pub` to a new row in
-`/home/pi/.ssh/authorized_keys`.
+!!! tip ""
 
-![Raspberry Pi add SSH key](assets/images/vscode_raspberry_add_ssh_key.png){ width="600" }
+    If you want to connect your Raspberry Pi to multiple local machines with SSH
+    key based authentication, you can simply generate a key pair for each local PC
+    and copy the line with the public key from `.ssh/id_rsa.pub` to a new row in
+    `/home/pi/.ssh/authorized_keys`.
+
+    ![Raspberry Pi add SSH key](assets/images/vscode_raspberry_add_ssh_key.png){ width="600" }
 
 ??? info "SSH key authentication after SD card setup"
 
@@ -119,18 +121,20 @@ Wait until the green LED stops blinking (about 5 min) before moving on.
 
 ![PiJuice Zero buttons](https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png){ width="500" }
 
-You can connect to the RPi via SSH by using the hostname, that you set during
-the RPi OS installation (e.g. `raspberrypi`) in the [following step](#remote-ssh-connection).
-If you did not set a hostname or don't know it, you will have to connect to the
-RPi by using its IP address.
+!!! tip ""
 
-To be able to connect to the Pi in VS Code via SSH without using the hostname,
-we will first have to find its IP address in the WiFi network. There are
-[several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address){target=_blank}
-to achieve this, probably one of the easiest solutions is to install
-[Fing](https://www.fing.com/){target=_blank} on your PC or smartphone (you
-don't need an account to use the [Fing App](https://www.fing.com/products/fing-app){target=_blank})
-and scan the IP addresses of all devices in your WiFi network.
+    You can connect to the RPi via SSH by using the hostname, that you set during
+    the RPi OS installation (e.g. `raspberrypi`) in the [following step](#ssh-connection-and-x11-forwarding).
+    If you did not set a hostname or don't know it, you will have to connect to the
+    RPi by using its IP address.
+
+    To be able to connect to the Pi in VS Code via SSH without using the hostname,
+    we will first have to find its IP address in the WiFi network. There are
+    [several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address){target=_blank}
+    to achieve this, probably one of the easiest solutions is to install
+    [Fing](https://www.fing.com/){target=_blank} on your PC or smartphone (you
+    don't need an account to use the [Fing App](https://www.fing.com/products/fing-app){target=_blank})
+    and scan the IP addresses of all devices in your WiFi network.
 
 ---
 
@@ -138,8 +142,8 @@ and scan the IP addresses of all devices in your WiFi network.
 
 For casual users the following steps are recommended, which will give you all
 necessary functions to test and deploy the DIY camera trap. For experienced
-users, who want to use the Raspberry Pi as remote development environment with
-the Remote - SSH extension, follow the steps in the info box.
+users, who want to use the Raspberry Pi as remote development environment,
+follow the steps in the info box.
 
 ??? info "Remote-SSH & Remote X11 extension configuration"
 
@@ -598,15 +602,6 @@ Now paste the following lines at the end of the crontab file:
 @reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
 ```
 
-Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
-++enter++.
-
-This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure
-that all important services are ready. It will then run the provided Python
-script and append all error messages redirected to the standard output (`2>&1`)
-to a log file together with a prepended timestamp
-(`printf "\%s " "$(date +"\%F \%T")"`).
-
 ??? info "Optional arguments"
 
     Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
@@ -617,9 +612,20 @@ to a log file together with a prepended timestamp
     - `-log` to save RPi CPU + OAK chip temperature, RPi available memory +
       CPU utilization and battery info to .csv
 
-If you are still in the testing phase, it is highly recommended to comment out
-your cronjob by adding `#` in front of `@reboot`, otherwise each time you are
-booting up your Raspberry Pi, it will try to run the Python script.
+Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
+++enter++.
+
+This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure
+that all important services are ready. It will then run the provided Python
+script and append all error messages redirected to the standard output (`2>&1`)
+to a log file together with a prepended timestamp
+(`printf "\%s " "$(date +"\%F \%T")"`).
+
+!!! tip ""
+
+    If you are still in the testing phase, it is highly recommended to comment out
+    your cronjob by adding `#` in front of `@reboot`, otherwise each time you are
+    booting up your Raspberry Pi, it will try to run the Python script.
 
 ---
 
@@ -686,15 +692,17 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
     Plug the OAK device back into the USB port, it should
     be correctly detected and identified now.
 
-- A lot more information on setting up the OAK camera and DepthAI can be found at the
-  [Luxonis Docs](https://docs.luxonis.com/en/latest/pages/tutorials/first_steps/){target=_blank}.
-- If you want to learn more about the OAK and DepthAI, also check out the
-  [FAQ](https://docs.luxonis.com/en/latest/pages/faq/){target=_blank} and
-  [API Documentation](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
-- If you have any problems with the OAK device, take a look at the
-  [Troubleshooting page](https://docs.luxonis.com/en/latest/pages/troubleshooting/){target=_blank}
-  or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} in the
-  [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
+!!! tip ""
 
-With everything set up, you can now move on to [Programming](programming.md){target=_blank}
+    - A lot more information on setting up the OAK camera and DepthAI can be found at the
+      [Luxonis Docs](https://docs.luxonis.com/en/latest/pages/tutorials/first_steps/){target=_blank}.
+    - If you want to learn more about the OAK and DepthAI, also check out the
+      [FAQ](https://docs.luxonis.com/en/latest/pages/faq/){target=_blank} and
+      [API Documentation](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
+    - If you have any problems with the OAK device, take a look at the
+      [Troubleshooting page](https://docs.luxonis.com/en/latest/pages/troubleshooting/){target=_blank}
+      or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} in the
+      [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
+
+With everything set up, you can now move on to [**Programming**](programming.md){target=_blank}
 and use the provided Python scripts for your own automated insect monitoring pipelines!
