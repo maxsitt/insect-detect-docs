@@ -8,7 +8,7 @@
 
 ## Full Setup
 
-For a total cost of about **675 &euro;**, the full hardware setup includes all
+For a total cost of about **660 &euro;**, the full hardware setup includes all
 necessary components for continuous automated monitoring of insects in the
 field during a whole season with the proposed flower platform as background.
 
@@ -27,7 +27,7 @@ or with your custom design and is mounted on the same post.
 
 ## Minimal Setup
 
-For a total cost of about **492 &euro;**, the minimal hardware setup includes
+For a total cost of about **490 &euro;**, the minimal hardware setup includes
 all necessary components for continuous automated monitoring of insects in the
 field with decreased storage/battery capacity and a custom mounting option.
 
@@ -43,7 +43,7 @@ the camera trap on a tripod and focus it on a different background.
 ## Test Setup
 
 If you only want to test the basic hardware and software capabilities in the
-lab, for about **189 &euro;** you can already get started. As there is no
+lab, for about **180 &euro;** you can already get started. As there is no
 PiJuice Zero pHAT and battery included in this setup, an additional power
 supply will be necessary. To test the
 [automated monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}
@@ -62,7 +62,7 @@ in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank
     shipping costs may increase the total cost of the components.
 
     **The prices for specific components may change and this list is only a
-    snapshot in time (June 2023).**
+    snapshot in time (July 2023).**
 
 ??? info "OAK USB cable"
 
@@ -73,28 +73,28 @@ in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank
 
     | Component                                       | Price              | Product Link                                                                                                               |
     | ----------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-    | OAK-1 (OpenCV AI Kit)                           | 147.56 &euro;      | e.g. [Luxonis shop](https://bit.ly/3Ew7PbM){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank}              |
-    | Raspberry Pi Zero 2 W                           | 22.50 &euro;       | [rpilocator](https://rpilocator.com/?cat=PIZERO){target=_blank}                                                            |
-    | Micro SDXC card 256 GB                          | 32.99 &euro;       | e.g. [Conrad](https://bit.ly/3Z5tNsA){target=_blank}                                                                       |
+    | OAK-1 (OpenCV AI Kit)                           | 141.28 &euro;      | e.g. [Luxonis shop](https://bit.ly/3Ew7PbM){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank}              |
+    | Raspberry Pi Zero 2 W                           | 22.50 &euro;       | [rpilocator](https://rpilocator.com){target=_blank}                                                                        |
+    | Micro SDXC card 256 GB                          | 29.99 &euro;       | e.g. [Conrad](https://bit.ly/3Z5tNsA){target=_blank}                                                                       |
     | Micro USB to USB A adapter, angled              | 5.50 &euro;        | e.g. [Reichelt](https://bit.ly/3SIgDjk){target=_blank}                                                                     |
     | USB A to micro USB cable, 20 cm, angled         | 5.60 &euro;        | e.g. [Reichelt](https://bit.ly/3VnO3VS){target=_blank}                                                                     |
     | RPi CPU Heatsink                                | 1.20 &euro;        | e.g. [Reichelt](https://bit.ly/3zTKIUA){target=_blank}                                                                     |
     | RPi Header                                      | 0.95 &euro;        | e.g. [Reichelt](https://bit.ly/3SIdSyu){target=_blank}                                                                     |
     | RPi Stacking Header                             | 1.60 &euro;        | e.g. [Reichelt](https://bit.ly/3VeXdDW){target=_blank}                                                                     |
-    | RPi Spacer Bolts 10 mm                          | 3.30 &euro;        | e.g. [Reichelt](https://bit.ly/3zVuSbM){target=_blank}                                                                     |
-    | RPi Spacer Bolts 20 mm                          | 3.30 &euro;        | e.g. [Reichelt](https://bit.ly/3QCdFuT){target=_blank}                                                                     |
-    | **2x** *Thermal Pad (1 mm) 50x50 mm* (optional) | *4.79 &euro; x2*   | e.g. [Reichelt](https://bit.ly/3QCnkSb){target=_blank}                                                                     |
+    | RPi Spacer Bolts 10 mm                          | 3.50 &euro;        | e.g. [Reichelt](https://bit.ly/3zVuSbM){target=_blank}                                                                     |
+    | RPi Spacer Bolts 20 mm                          | 3.50 &euro;        | e.g. [Reichelt](https://bit.ly/3QCdFuT){target=_blank}                                                                     |
+    | **2x** *Thermal Pad (1 mm) 50x50 mm* (optional) | *4.99 &euro; x2*   | e.g. [Conrad](https://shorturl.at/BSXZ4){target=_blank}                                                                    |
     | PiJuice Zero UPS pHAT                           | 52.65 &euro;       | e.g. [Pi Supply](https://bit.ly/3rMiKXb){target=_blank} or [Distrelec](https://bit.ly/3dtoC3K){target=_blank}              |
     | PiJuice 12,000mAh LiPo Battery                  | 38.26 &euro;       | e.g. [Pi Supply](https://bit.ly/3fT0Sak){target=_blank} or [Distrelec](https://bit.ly/3vZGiKw){target=_blank}              |
     | Fibox PC 162513 Enclosure                       | 48.99 &euro;       | e.g. [Conrad](https://bit.ly/3hOlOR3){target=_blank} or [Distrelec](https://bit.ly/3JX82FC){target=_blank}                 |
-    | Fibox TM 1625 Mounting Plate                    | 6.64 &euro;        | e.g. [Distrelec](https://bit.ly/3QmVhqf){target=_blank} or [Conrad](https://bit.ly/3BVGf5t){target=_blank}                 |
+    | Fibox TM 1625 Mounting Plate                    | 7.49 &euro;        | e.g. [Conrad](https://bit.ly/3BVGf5t){target=_blank} or [Distrelec](https://bit.ly/3QmVhqf){target=_blank}                 |
     | Cable Gland PG 13.5                             | 0.99 &euro;        | e.g. [Reichelt](https://bit.ly/3LDfV5q){target=_blank}                                                                     |
     | Cable Gland PG 13.5 Locknut                     | 0.23 &euro;        | e.g. [Reichelt](https://bit.ly/3HndDVp){target=_blank}                                                                     |
     | **8x** Stainless Steel Cable Tie                | 5.30 &euro;        | e.g. [Reichelt](https://bit.ly/3LhR7OS){target=_blank}                                                                     |
     | **6x** Cable Tie Mount                          | 1.59 &euro; **x6** | e.g. [Reichelt](https://bit.ly/3Nm92qw){target=_blank}                                                                     |
     | Acrylic Glas (2 mm) 40x40 mm                    | ~5.00 &euro;       | e.g. [S-Polytec](https://bit.ly/3dkMGWh){target=_blank}                                                                    |
     | EPDM Sealing Strip 20x5 mm                      | 5.22 &euro;        | e.g. [Amazon](https://amzn.to/3pcBM7J){target=_blank}                                                                      |
-    | Silica Gel Pack 50 g                            | 13.99 &euro;       | e.g. [Amazon](https://amzn.to/3JR5zfV){target=_blank}                                                                      |
+    | Silica Gel Pack 50 g                            | 15.99 &euro;       | e.g. [Amazon](https://amzn.to/3JR5zfV){target=_blank}                                                                      |
     | Solar Panel 6V 9W                               | 98.30 &euro;       | e.g. [Voltaic Systems](https://bit.ly/3VdIyZN){target=_blank} or [Kiwi Electronics](https://bit.ly/3QI5AVl){target=_blank} |
     | *Solar Panel Bracket, Medium* (optional)        | *11.75 &euro;*     | e.g. [Voltaic Systems](https://bit.ly/3Ths3tK){target=_blank} or [Kiwi Electronics](https://bit.ly/3v5NWCb){target=_blank} |
     | Solar Panel Extension Cable, 1 ft               | ~7.00 &euro;       | e.g. [Voltaic Systems](https://bit.ly/3CRUGZm){target=_blank} or [Funky Leisure](https://bit.ly/3CTGAqs){target=_blank}    |
@@ -110,52 +110,52 @@ in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank
     | **18x** Flat Washer (e.g. M4 15 mm)             | ~3.00 &euro;       | Local hardware store (e.g. [Bauhaus](https://bit.ly/3VgD7Jn){target=_blank})                                               |
     | Pipe Clamp (60.3 mm) 70 mm + screws & nuts      | 5.09 &euro;        | e.g. [Traffic sign shop](https://bit.ly/3zVOYCK){target=_blank}                                                            |
     | Pipe Clamp (60.3 mm) 350 mm + screws & nuts     | 7.81 &euro;        | e.g. [Traffic sign shop](https://bit.ly/3zVOYCK){target=_blank}                                                            |
-    | Flower Platform (e.g. 500x280 mm)               | ~24.00 &euro;      | e.g. [Print shop](https://bit.ly/3QlFJTA){target=_blank}                                                                   |
-    | **Total cost**                                  | **~675 &euro;**    |                                                                                                                            |
-    | *Total cost with optional components*           | *~701 &euro;*      |                                                                                                                            |
+    | Flower Platform (e.g. 350x200 mm)               | ~17.00 &euro;      | e.g. [Print shop](https://bit.ly/3QlFJTA){target=_blank}                                                                   |
+    | **Total cost**                                  | **~662 &euro;**    |                                                                                                                            |
+    | *Total cost with optional components*           | *~688 &euro;*      |                                                                                                                            |
 
 === "Minimal Setup"
 
     | Component                                | Price              | Product Link                                                                                                               |
     | ---------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-    | OAK-1 (OpenCV AI Kit)                    | 147.56 &euro;      | e.g. [Luxonis shop](https://bit.ly/3Ew7PbM){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank}              |
-    | Raspberry Pi Zero 2 W                    | 22.50 &euro;       | [rpilocator](https://rpilocator.com/?cat=PIZERO){target=_blank}                                                            |
-    | Micro SDHC Card 32 GB                    | 9.95 &euro;        | e.g. [Reichelt](https://bit.ly/3QghI06){target=_blank}                                                                     |
+    | OAK-1 (OpenCV AI Kit)                    | 141.28 &euro;      | e.g. [Luxonis shop](https://bit.ly/3Ew7PbM){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank}              |
+    | Raspberry Pi Zero 2 W                    | 22.50 &euro;       | [rpilocator](https://rpilocator.com){target=_blank}                                                                        |
+    | Micro SDHC Card 32 GB                    | 8.95 &euro;        | e.g. [Reichelt](https://bit.ly/3QghI06){target=_blank}                                                                     |
     | Micro USB to USB A Adapter, angled       | 5.50 &euro;        | e.g. [Reichelt](https://bit.ly/3SIgDjk){target=_blank}                                                                     |
     | RPi CPU Heatsink                         | 1.20 &euro;        | e.g. [Reichelt](https://bit.ly/3zTKIUA){target=_blank}                                                                     |
     | RPi Header                               | 0.95 &euro;        | e.g. [Reichelt](https://bit.ly/3SIdSyu){target=_blank}                                                                     |
     | RPi Stacking Header                      | 1.60 &euro;        | e.g. [Reichelt](https://bit.ly/3VeXdDW){target=_blank}                                                                     |
-    | RPi Spacer Bolts 10 mm                   | 3.30 &euro;        | e.g. [Reichelt](https://bit.ly/3zVuSbM){target=_blank}                                                                     |
-    | RPi Spacer Bolts 20 mm                   | 3.30 &euro;        | e.g. [Reichelt](https://bit.ly/3QCdFuT){target=_blank}                                                                     |
-    | *Thermal Pad (1 mm) 50x50 mm* (optional) | *4.79 &euro;*      | e.g. [Reichelt](https://bit.ly/3QCnkSb){target=_blank}                                                                     |
+    | RPi Spacer Bolts 10 mm                   | 3.50 &euro;        | e.g. [Reichelt](https://bit.ly/3zVuSbM){target=_blank}                                                                     |
+    | RPi Spacer Bolts 20 mm                   | 3.50 &euro;        | e.g. [Reichelt](https://bit.ly/3QCdFuT){target=_blank}                                                                     |
+    | *Thermal Pad (1 mm) 50x50 mm* (optional) | *4.99 &euro;*      | e.g. [Conrad](https://shorturl.at/BSXZ4){target=_blank}                                                                    |
     | PiJuice Zero UPS pHAT                    | 52.65 &euro;       | e.g. [Pi Supply](https://bit.ly/3rMiKXb){target=_blank} or [Distrelec](https://bit.ly/3dtoC3K){target=_blank}              |
     | PiJuice 12,000mAh LiPo Battery           | 38.26 &euro;       | e.g. [Pi Supply](https://bit.ly/3fT0Sak){target=_blank} or [Distrelec](https://bit.ly/3vZGiKw){target=_blank}              |
     | Fibox PC 162513 Enclosure                | 48.99 &euro;       | e.g. [Conrad](https://bit.ly/3hOlOR3){target=_blank} or [Distrelec](https://bit.ly/3JX82FC){target=_blank}                 |
-    | Fibox TM 1625 Mounting Plate             | 6.64 &euro;        | e.g. [Distrelec](https://bit.ly/3QmVhqf){target=_blank} or [Conrad](https://bit.ly/3BVGf5t){target=_blank}                 |
+    | Fibox TM 1625 Mounting Plate             | 7.49 &euro;        | e.g. [Conrad](https://bit.ly/3BVGf5t){target=_blank} or [Distrelec](https://bit.ly/3QmVhqf){target=_blank}                 |
     | Cable Gland PG 13.5                      | 0.99 &euro;        | e.g. [Reichelt](https://bit.ly/3LDfV5q){target=_blank}                                                                     |
     | Cable Gland PG 13.5 Locknut              | 0.23 &euro;        | e.g. [Reichelt](https://bit.ly/3HndDVp){target=_blank}                                                                     |
     | **6x** Stainless Steel Cable Tie         | 5.30 &euro;        | e.g. [Reichelt](https://bit.ly/3LhR7OS){target=_blank}                                                                     |
     | **6x** Cable Tie Mount                   | 1.59 &euro; **x6** | e.g. [Reichelt](https://bit.ly/3Nm92qw){target=_blank}                                                                     |
     | Acrylic Glas (2 mm) 40x40 mm             | ~5.00 &euro;       | e.g. [S-Polytec](https://bit.ly/3dkMGWh){target=_blank}                                                                    |
     | EPDM Sealing Strip 20x5 mm               | 5.22 &euro;        | e.g. [Amazon](https://amzn.to/3pcBM7J){target=_blank}                                                                      |
-    | Silica Gel Pack 50 g                     | 13.99 &euro;       | e.g. [Amazon](https://amzn.to/3JR5zfV){target=_blank}                                                                      |
+    | Silica Gel Pack 50 g                     | 15.99 &euro;       | e.g. [Amazon](https://amzn.to/3JR5zfV){target=_blank}                                                                      |
     | Solar Panel 6V 9W                        | 98.30 &euro;       | e.g. [Voltaic Systems](https://bit.ly/3VdIyZN){target=_blank} or [Kiwi Electronics](https://bit.ly/3QI5AVl){target=_blank} |
     | *Solar Panel Bracket, Medium* (optional) | *11.75 &euro;*     | e.g. [Voltaic Systems](https://bit.ly/3Ths3tK){target=_blank} or [Kiwi Electronics](https://bit.ly/3v5NWCb){target=_blank} |
     | Solar Panel Extension Cable, 1 ft        | ~7.00 &euro;       | e.g. [Voltaic Systems](https://bit.ly/3CRUGZm){target=_blank} or [Funky Leisure](https://bit.ly/3CTGAqs){target=_blank}    |
     | Solar Panel Micro USB Adapter            | 3.88 &euro;        | e.g. [Voltaic Systems](https://bit.ly/3s237et){target=_blank} or [Kiwi Electronics](https://bit.ly/3Ew9FJB){target=_blank} |
-    | **Total cost**                           | **~492 &euro;**    |                                                                                                                            |
-    | *Total cost with optional components*    | *~508 &euro;*      |                                                                                                                            |
+    | **Total cost**                           | **~488 &euro;**    |                                                                                                                            |
+    | *Total cost with optional components*    | *~505 &euro;*      |                                                                                                                            |
 
 === "Test Setup"
 
     | Component             | Price             | Product Link                                                                                                  |
     | --------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------- |
-    | OAK-1 (OpenCV AI Kit) | 147.56 &euro;     | e.g. [Luxonis shop](https://bit.ly/3Ew7PbM){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank} |
-    | Raspberry Pi Zero 2 W | 22.50 &euro;      | [rpilocator](https://rpilocator.com/?cat=PIZERO){target=_blank}                                               |
-    | Micro SDHC Card 32 GB | 9.95 &euro;       | e.g. [Reichelt](https://bit.ly/3QghI06){target=_blank}                                                        |
+    | OAK-1 (OpenCV AI Kit) | 141.28 &euro;     | e.g. [Luxonis shop](https://bit.ly/3Ew7PbM){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank} |
+    | Raspberry Pi Zero 2 W | 22.50 &euro;      | [rpilocator](https://rpilocator.com){target=_blank}                                                           |
+    | Micro SDHC Card 32 GB | 8.95 &euro;       | e.g. [Reichelt](https://bit.ly/3QghI06){target=_blank}                                                        |
     | RPi Micro USB Adapter | 1.85 &euro;       | e.g. [Reichelt](https://bit.ly/3pbJPlp){target=_blank}                                                        |
-    | RPi Power Supply      | 7.25 &euro;       | e.g. [Reichelt](https://bit.ly/3w30QBV){target=_blank}                                                        |
-    | **Total cost**        | **~189 &euro;**   |                                                                                                               |
+    | RPi Power Supply      | 7.99 &euro;       | e.g. [Reichelt](https://bit.ly/3w30QBV){target=_blank}                                                        |
+    | **Total cost**        | **~183 &euro;**   |                                                                                                               |
 
 ---
 
