@@ -704,5 +704,5 @@ Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
       or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} in the
       [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
 
-With everything set up, you can now move on to [**Programming**](programming.md){target=_blank}
-and use the provided Python scripts for your own automated insect monitoring pipelines!
+With everything set up, you can now move on to [**Programming**](programming.md) and
+use the provided Python scripts for your own automated insect monitoring pipelines!
