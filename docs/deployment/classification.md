@@ -3,118 +3,142 @@
 The **Insect Detect** DIY camera trap for automated insect monitoring will
 yield cropped detections of individual insects saved as .jpg files and relevant
 [metadata](detection.md#metadata-csv){target=_blank} saved to .csv for each
-recording event when using the provided script for
+recording interval when using the provided script for
 [automated monitoring](../software/programming.md#automated-monitoring-script){target=_blank}.
 
 The recommended [processing pipeline](detection.md#processing-pipeline){target=_blank}
 uses a [YOLOv5n](../index.md#detection-models){target=_blank} detection model with
-only one generic class ("insect"), as the low input resolution, which is necessary
-for the model to run fast enough to track flying insects, would result in a low
-classification accuracy in most cases. The detections are then cropped from HQ frames
-with a high enough resolution to enable good classification results in a subsequent
-step on your local PC, using a [YOLOv5s-cls](../index.md#classification-model){target=_blank}
+only one generic class ("insect"). The low input resolution enables a high inference
+speed, which is necessary to reliably track moving/flying insects. The detected and
+tracked insects are then cropped from synchronized HQ frames, which increases
+classification accuracy due to the higher resolution and less background noise.
+
+The saved insect images are classified in a subsequent step on your local PC,
+using a [YOLOv5s-cls](../index.md#classification-model){target=_blank}
 image classification model exported to
 [ONNX format](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
 for faster CPU inference.
 
 ---
 
-## Local setup
+## Installation
 
-??? warning "Local OS"
-
-    All of the software and installation processes were only tested on a
-    **Windows 11** computer. For Mac and Linux users some some steps might
-    be different to what is shown in these instructions.
-    
-    If you run into any problems with the software setup, please
-    [post an issue](https://github.com/maxsitt/insect-detect-ml/issues){target=_blank}
-    at the GitHub repo.
-
-To be able to run the image classification and subsequent
-[analysis](analysis.md){target=_blank} Python scripts on your computer,
-install [Python 3.11](https://www.python.org/downloads/windows/){target=_blank}
-to your PC. If you followed the steps in the
-[Software](../software/localsetup.md){target=_blank} section, you already have
-[VS Code](../software/localsetup.md#visual-studio-code){target=_blank}
-installed together with the [Python](https://bit.ly/2Zm3Ypq){target=_blank}
-extension. Activate Python in VS Code by pressing ++f1++ to open the Command Palette
-and start typing the `Python: Select Interpreter` command and select it. You can find a
-[Getting started tutorial](https://code.visualstudio.com/docs/python/python-tutorial){target=_blank}
-and more information on
-[Python in VS Code](https://code.visualstudio.com/docs/languages/python){target=_blank}
-at the official VS Code website.
-
-After VS Code and Python are installed on your system,
-[download](https://github.com/ultralytics/yolov5/archive/refs/heads/master.zip){target=_blank}
-the [YOLOv5](https://github.com/ultralytics/yolov5){target=_blank} GitHub repository.
+If you followed the steps in [Local Setup](../software/localsetup.md#python){target=_blank},
+you already have [Python](https://www.python.org/){target=_blank} installed on your computer.
 
 - Create the new folder `C:\Users\<username>\YOLOv5-cls`.
-- Extract the `yolov5-master.zip` file to the folder `C:\Users\<username>\YOLOv5-cls`.
-- Open a new Terminal (PowerShell) in VS Code, navigate to the `YOLOv5-cls` folder
-  and install the required Python packages for YOLOv5 by running:
+- [Download](https://github.com/maxsitt/yolov5/archive/refs/heads/master.zip){target=_blank}
+  the custom YOLOv5 repo and extract it to the `YOLOv5-cls` folder.
+- Open a new Terminal (PowerShell) and navigate to the `YOLOv5-cls` folder:
+
+    ``` powershell
+    cd YOLOv5-cls
+    ```
+
+- Update the [`pip`](https://pypi.org/project/pip/){target=_blank} package:
+
+    ``` powershell
+    python.exe -m pip install --upgrade pip
+    ```
+
+- Install the required packages by running:
 
     ``` powershell
     python.exe -m pip install -r yolov5-master/requirements.txt
     ```
 
-    ![YOLOv5 install requirements](assets/images/yolov5_requirements.png){ width="700" }
+??? info "Set up an isolated Python environment"
+
+    You can [create a virtual environment](https://virtualenv.pypa.io/en/latest/user_guide.html){target=_blank}
+    before installing the required packages for YOLOv5 to avoid version and dependency
+    conflicts of the packages, especially if you are working on different Python projects.
+
+    - Install [`virtualenv`](https://virtualenv.pypa.io/en/latest/){target=_blank}:
+
+        ``` powershell
+        python.exe -m pip install virtualenv
+        ```
+
+    - Navigate to the `YOLOv5-cls` folder:
+
+        ``` powershell
+        cd YOLOv5-cls
+        ```
+
+    - Create a new Python environment (folder in your current directory):
+
+        ``` powershell
+        virtualenv --python python3.11.4 env_yolov5
+        ```
+
+        If you are using a different Python version, change it accordingly.
+    - Activate the environment by running:
+
+        ``` powershell
+        .\env_yolov5\Scripts\activate
+        ```
+
+    - Now all packages will be installed only in the virtual environment,
+      which you have to activate everytime you want to run a script that
+      depends on these packages.
+    - You can deactivate the virtual environment by running:
+
+        ``` powershell
+        deactivate
+        ```
 
 ---
 
 ## Run image classification
 
-To be able to use the direct output (.jpg images and .csv metadata) from the
-[automated monitoring](../software/programming.md#automated-monitoring-script){target=_blank} script,
-[download](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){target=_blank}
-the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} GitHub repository.
-We will use the
-[`predict_mod.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/predict_mod.py){target=_blank}
-script together with the `yolov5s-cls_128.onnx` image classification model
-to classify all cropped insect images in the `data` folder from your
-Raspberry Pi and append the classification results to the merged
-metadata .csv files or write them to a new .csv file.
+We will use the modified
+[`classify/predict.py`](https://github.com/maxsitt/yolov5/blob/master/classify/predict.py){target=_blank}
+script from the [custom YOLOv5](https://github.com/maxsitt/yolov5){target=_blank}
+repo together with the provided `yolov5s-cls_128.onnx` image classification model
+to classify all insect images in the `data` folder (camera trap output) and write
+the results to the merged metadata .csv files.
 
+- [Download](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){target=_blank}
+  the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
+  repo and extract it to the `YOLOv5-cls` folder.
 - Copy your `data` folder, saved from the Raspberry Pi's SD card (e.g. with the
   [DiskInternals LinuxReader](../software/localsetup.md#diskinternals-linuxreader){target=_blank})
   into the `YOLOv5-cls` folder. Please make sure that **only cropped detections**
-  are present, if you additionally saved full HQ frames (with `-raw` or
-  `-overlay`), save them to a different directory and delete them before
+  are present! If you additionally saved full HQ frames, delete them before
   running the classification script.
-- Copy the `predict_mod.py` script to `YOLOv5-cls\yolov5-master\classify`.
-- Copy the `yolov5s-cls_128.onnx` model into the `YOLOv5-cls` folder.
 - Navigate to the `YOLOv5-cls` folder and start the classification script by running:
 
     ``` powershell
-    python.exe yolov5-master\classify\predict_mod.py --name data_classified --weights yolov5s-cls_128.onnx --source data/**/ --img 128 --concat-csv --sort-top1
+    python.exe yolov5-master\classify\predict.py --name camtrap1 --source data/**/ --weights insect-detect-ml/yolov5s-cls_128.onnx --img 128 --sort-top1 --concat-csv
     ```
 
-!!! info "Optional arguments"
+    Change the `--name` of your prediction run accordingly, e.g. by including
+    information about the camera trap location and collection date of the images.
 
+??? info "Optional arguments"
+
+    - `--sort-top1` to sort classified images to folders with predicted top1
+      class as folder name and do not write results on to image as text (which
+      is the default configuration)
     - `--concat-csv` to concatenate all metadata .csv files and
       append classification results to new columns
     - `--new-csv` to create a new .csv file with classification results,
       e.g. if no metadata .csv files are available
-    - `--sort-top1` to sort classified images to folders with predicted top1
-      class as folder name and do not write results on to image as text (which
-      is the default configuration)
     - `--save-txt` to save the classification results to individual .txt files
       for each image
 
-All metadata .csv files in the `data` folder will be concatenated,
-classification results (top3 classes + probabilities) written to new columns
-and saved as single `metadata_classified_{timestamp}.csv` file in the
-`YOLOv5-cls` folder. If you used `--sort-top1` as optional argument, you will
-find the images sorted to top1 class in the directory
-`YOLOv5-cls\yolov5-master\runs\predict-cls\data_classified\top1_classes`. This
-allows for a quick identification of edge cases (e.g. insect taxa that were
-classified to the wrong class) and these images can be used to
+All results are saved to `yolov5-master\runs\predict-cls\{name}`. Use the
+`results\{name}_metadata_classified.csv` for [analysis](analysis.md){target=_blank}
+and post-processing of the merged results in the last step.
+
+If you used `--sort-top1` as optional argument, you will find the classified images
+sorted to folders with the predicted top1 class as folder name in `top1_classes`.
+This allows for a quick identification of edge cases and these images can be used to
 [retrain](../modeltraining/train_classification.md){target=_blank} your classification model.
 
-The classified metadata .csv file still contains multiple rows for each tracked insect
-(= `track_ID`). In the [last processing step](analysis.md){target=_blank}, we will use the
+The `{name}_metadata_classified.csv` file still contains multiple rows for each tracked insect
+(= `track_ID`). In the last [processing step](analysis.md){target=_blank}, you will use the
 [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
-script to automatically analyze the classified metadata .csv file and calculate
-the respective class with the overall highest probability for each tracked insect.
-This step will yield the final .csv file in which each row corresponds to an
-individual tracked insect.
+script to automatically post-process the metadata .csv file and calculate the respective class
+with the overall highest probability for each tracked insect. This will yield the final
+.csv file, in which each row corresponds to an individual tracked insect.
