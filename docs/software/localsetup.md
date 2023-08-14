@@ -93,3 +93,20 @@ partition format is not compatible with Windows.
 - Keep the **Save Files** option, choose your output folder and select both
   options **Save directory structure** and **Extract file date from metadata**.
   After that, the data you selected will be copied to your computer.
+
+---
+
+## Python
+
+[Download Python 3.11](https://www.python.org/downloads/windows/){target=_blank}
+and install it to your computer. You will need Python to run the scripts for
+[classification](../deployment/classification.md){target=_blank} of the captured
+insect images and subsequent [analysis](../deployment/analysis.md){target=_blank}
+and post-processing of the metadata. If you have the [Python](https://bit.ly/2Zm3Ypq){target=_blank}
+extension installed in VS Code, you can activate Python in VS Code by pressing
+++f1++ to open the Command Palette and running the `Python: Select Interpreter` command.
+You can find a
+[Getting started tutorial](https://code.visualstudio.com/docs/python/python-tutorial){target=_blank}
+and more information on
+[Python in VS Code](https://code.visualstudio.com/docs/languages/python){target=_blank}
+at the official VS Code Docs.
