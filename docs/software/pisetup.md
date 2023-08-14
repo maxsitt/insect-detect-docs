@@ -1,48 +1,47 @@
 # Raspberry Pi Setup
 
 Before you can use the Raspberry Pi, you will first have to install Raspberry Pi
-OS Lite to the microSD card. If you followed the steps in [Local Setup](localsetup.md){target=_blank},
-you already have the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}
+OS Lite to the microSD card. If you followed the steps in
+[Local Setup](localsetup.md#raspberry-pi-imager){target=_blank}, you already have
+the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}
 installed on your computer.
 
 ---
 
 ## SSH key based authentication
 
-If you will be using the Raspberry Pi - OAK combination for testing and
-development and don't want to type in your password all the time, it is
-recommended to set up SSH key based authentication. You can find more details
-on this topic and instructions for macOS or Linux in the
+It is recommended to use SSH key based authentication for communication with your
+Raspberry Pi. You can find more details on this topic and instructions for macOS/Linux in the
 [VS Code Docs](https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication){target=_blank} and
 [Raspberry Pi Docs](https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access){target=_blank}.
 
-We will start by generating a new key pair on your local Windows PC and then
-copy the public key to the Raspberry Pi with the Raspberry Pi Imager. But first
-check if there is already an SSH key on your computer by going to the
+First check if there is already an SSH key on your computer by going to the
 `C:\Users\<username>\.ssh` folder. If there is a file named `id_rsa.pub` you can
-skip this step. If you can't find the `.ssh` folder or the key file,
-[open](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
+skip this step and move on to [RPi OS installation](#raspberry-pi-os-installation).
+If you can't find the `.ssh` folder or the key file, you will have to generate
+a new SSH key pair on your local PC.
+[Open](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
 a local Terminal (Windows PowerShell) and run the following command:
 
 ``` powershell
 ssh-keygen -t rsa -b 4096
 ```
 
-Save the key to `C:\Users\<username>/.ssh/id_rsa` by hitting ++enter++. When you
-are asked to enter a passphrase, hit ++enter++ twice. Now that we have generated
-the private and public SSH keys, we can select **public-key authentication** in
-the advanced options of the Raspberry Pi Imager in the next steps.
+Save the key to the default location `C:\Users\<username>/.ssh/id_rsa` by hitting ++enter++.
+When you are asked to enter a passphrase, leave the field empty and hit ++enter++ twice.
+You have now generated a private and public SSH key, and will be able to select
+**public-key authentication** during the [RPi OS installation](#raspberry-pi-os-installation).
 
 !!! tip ""
 
-    If you want to connect your Raspberry Pi to multiple local machines with SSH
-    key based authentication, you can simply generate a key pair for each local PC
-    and copy the line with the public key from `.ssh/id_rsa.pub` to a new row in
-    `/home/pi/.ssh/authorized_keys`.
+    If you want to connect your Raspberry Pi to multiple local PCs with SSH
+    key based authentication, generate an SSH key pair on each local PC and
+    copy the line with the public key from `/.ssh/id_rsa.pub` on your PC to
+    a new row in `/home/pi/.ssh/authorized_keys` on your Raspberry Pi.
 
     ![Raspberry Pi add SSH key](assets/images/vscode_raspberry_add_ssh_key.png){ width="600" }
 
-??? info "SSH key authentication after SD card setup"
+??? info "SSH key based authentication after SD card setup"
 
     If you already have the SD card prepared without public-key authentication,
     you can still configure this by following the steps above to generate the
@@ -53,11 +52,10 @@ the advanced options of the Raspberry Pi Imager in the next steps.
     cat ~/.ssh/id_rsa.pub | ssh pi@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
     ```
 
-    Please make sure to enter the correct **IP address** of your Raspberry Pi! You
-    will be asked to enter the Pi's password and after you hit ++enter++ your
-    public SSH key will be saved to `/home/pi/.ssh/authorized_keys`. After that
-    you won't be asked to enter your password again, as the authentication is
-    now based on the SSH key pair.
+    Please make sure to enter the correct `IP address` (or hostname) of your
+    Raspberry Pi. After entering your RPi password, your public SSH key will be
+    saved to `/home/pi/.ssh/authorized_keys`. After that you won't be asked to
+    enter your password again, as the authentication is now based on the SSH key.
 
 ---
 
@@ -87,14 +85,16 @@ options.
 
 ![Raspberry Pi Imager Start settings](assets/images/raspberrypi_imager_start_settings.png){ width="600" }
 
-- Set the hostname, e.g. to the default `raspberrypi`. If you will be deploying
-  multiple Raspberry Pis, you should give each a unique hostname.
+- Set the hostname (default: `raspberrypi`). If you will be deploying multiple camera
+  traps, you should give each a unique hostname (e.g. `camtrap1`, `camtrap2` etc.).
 - Enable SSH with public-key authentication.
 - Set the username and password. It is recommended to use the default `pi`
   as username.
-- If not already filled out, enter your local WiFi SSID and password, to be
-  able to connect to the Pi via SSH immediately after the first boot. Don't
-  forget to select the correct Wireless LAN country in the dropdown menu below.
+- Enter your WiFi SSID and password, to be able to connect to the Pi via SSH
+  immediately after the first boot. In some cases it might be beneficial to use a
+  [mobile hotspot](https://support.microsoft.com/en-us/windows/use-your-windows-pc-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85#WindowsVersion=Windows_11){target=_blank}
+  from your PC (e.g. to share restricted WiFi, multiple WiFis or Ethernet).
+  Select the correct Wireless LAN country in the dropdown menu below.
 - Set the locale settings to your time zone and keyboard layout, then press **SAVE**.
 
 ![Raspberry Pi Imager settings](assets/images/raspberrypi_imager_settings.png){ width="600" }
@@ -128,12 +128,11 @@ Wait until the green LED stops blinking (about 5 min) before moving on.
     If you did not set a hostname or don't know it, you will have to connect to the
     RPi by using its IP address.
 
-    To be able to connect to the Pi in VS Code via SSH without using the hostname,
-    we will first have to find its IP address in the WiFi network. There are
+    To be able to connect to the Pi via SSH without using the hostname,
+    you will first have to find its IP address in the WiFi network. There are
     [several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address){target=_blank}
     to achieve this, probably one of the easiest solutions is to install
-    [Fing](https://www.fing.com/){target=_blank} on your PC or smartphone (you
-    don't need an account to use the [Fing App](https://www.fing.com/products/fing-app){target=_blank})
+    the [Fing App](https://www.fing.com/products/fing-app){target=_blank}
     and scan the IP addresses of all devices in your WiFi network.
 
 ---
@@ -346,10 +345,9 @@ Reboot the Raspberry Pi after all updates were successfully installed with:
 sudo reboot
 ```
 
-After the reboot you may have to reload the remote VS Code window (or establish
-a new SSH connection if you are using RPi Zero W (v1)). When the Raspberry Pi
-terminal is back and active again, we will change some of the RPi settings
-(use the arrow keys to navigate) with:
+After the reboot you will have to establish a new SSH connection. When the
+Raspberry Pi SSH Terminal is back and active again, we will change some of
+the RPi settings (use the arrow keys to navigate) with:
 
 ``` bash
 sudo raspi-config
@@ -359,17 +357,22 @@ sudo raspi-config
 
 - Under `1 System Options` --> `Wireless LAN` you can add additional WiFi SSIDs
   and passwords, e.g. if you want to connect to a Hotspot from your phone while
-  in the field.
+  in the field. All WiFi settings are stored in `wpa_supplicant.conf`. You can
+  also edit them directly by running:
+
+    ``` bash
+    sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+    ```
+
 - Go back to the main menu and select `3 Interface Options` --> `I5 I2C` and
   enable the I2C interface. We will need this for communication with the
   PiJuice Zero pHAT.
 - Next, go to `4 Performance Options` --> `P2 GPU Memory` and change the value
   from `64` to `16`. As we are using the RPi Lite OS version without desktop
   environment, we won't need more memory for graphical features and more RAM
-  will be available for our programs.
-- Under `6 Advanced Options` choose `A1 Expand Filesystem` to ensure that all
-  of the SD card space will be available. This might only be necessary for SD
-  cards with a lot of storage, but won't harm anyway.
+  will be available.
+- Under `6 Advanced Options`, choose `A1 Expand Filesystem` to ensure that all
+  of the SD card space will be available.
 - Also under `6 Advanced Options`, select `A2 GL driver`, which will install
   several packages (confirm with ++y+enter++). After the packages are installed,
   you can select the first option `G1 Legacy` in the raspi-config window, which
@@ -409,8 +412,7 @@ under the options you just changed:
 dtoverlay=disable-bt
 ```
 
-Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
-++enter++.
+Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
 ![VS Code RPi config.txt](assets/images/vscode_config_txt.png){ width="600" }
 
@@ -428,8 +430,7 @@ Add the following lines above `exit 0`:
 /usr/bin/tvservice -o
 ```
 
-Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
-++enter++.
+Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
 ![VS Code RPi rc.local HDMI](assets/images/vscode_rclocal_hdmi.png){ width="600" }
 
@@ -454,8 +455,7 @@ management and wake-up control. If you want to try the system without the
 PiJuice Zero connected to the Raspberry Pi, you can skip this and the following
 step and directly continue with the [OAK-1 configuration](#oak-1-configuration).
 
-To begin, we will have to install the PiJuice package and its dependencies by
-running the following in the SSH Terminal:
+First install the PiJuice package and its dependencies by running:
 
 ``` bash
 sudo apt-get install pijuice-base
@@ -480,9 +480,7 @@ From now on we want to use the built-in RTC
 of the PiJuice Zero board as primary hardware clock to wake up the Raspberry Pi
 at specific times when it is not connected to the internet. For this, we will
 have to manually load the RTC driver at each boot by modifying the
-`/boot/config.txt` file.
-
-Open the `config.txt` file with:
+`/boot/config.txt` file with:
 
 ``` bash
 sudo nano /boot/config.txt
@@ -495,8 +493,7 @@ Add the following lines at the end of the text file:
 dtoverlay=i2c-rtc,ds1307=1
 ```
 
-Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
-++enter++.
+Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
 ![config.txt PiJuice RTC driver](assets/images/pijuice_rtc_driver.png){ width="600" }
 
@@ -565,11 +562,17 @@ automate the camera trap recordings. The PiJuice wakeup alarm clock is set in
 UTC time, so you have to convert the wake-up times to your time zone (in our
 case UTC+2). As you can see in the example below, we set our Wakeup Alarm to
 `Every day` at `Hour` `7;10;13;16` UTC time, which means that the PiJuice will
-wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Don't
-forget to activate `Wakeup enabled` and press `Set alarm` to save your
-specified wake-up times.
+wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Activate
+`Wakeup enabled` and press `Set alarm` to save your specified wake-up times.
 
 ![VS Code PiJuice Wakeup Alarm](assets/images/pijuice_wakeup_alarm.png){ width="500" }
+
+!!! tip ""
+
+    During summer it might make sense to not record around noon, as many insects
+    are not active during the hottest daytime. Also the temperature in the camera
+    trap enclosure will be lower if the RPi and OAK-1 are not running, which can
+    increase the charging efficiency of the batteries.
 
 With this we are finished with the PiJuice Zero pHAT configuration and we can
 set up the cron job that will execute the monitoring script at boot in the next
@@ -606,14 +609,14 @@ Now paste the following lines at the end of the crontab file:
 
     Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
-    - `-4k` use 4K resolution for HQ frames (~3 fps)
-    - `-raw` to additionally save full HQ frames (e.g. for training data collection)
-    - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
+    - `-square` save cropped detections with aspect ratio 1:1 (**recommended!**)
+    - `-4k` use 4K resolution for HQ frames (~3.4 fps)
+    - `-raw` to additionally save full HQ frames (~4.5 fps)
+    - `-overlay` to additionally save full HQ frames with overlay (~4.5 fps)
     - `-log` to save RPi CPU + OAK chip temperature, RPi available memory +
       CPU utilization and battery info to .csv
 
-Exit the editor with ++ctrl+x++ and save the changes with ++y++ and then
-++enter++.
+Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
 This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure
 that all important services are ready. It will then run the provided Python
