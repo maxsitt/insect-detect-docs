@@ -34,6 +34,24 @@ set up together with an active
 [X server](localsetup.md#vcxsrv-windows-x-server){target=_blank} to show the
 frames in a window on your local PC.
 
+??? bug "libGL error"
+
+    After starting the preview scripts, you might get the following error:
+
+    ``` bash
+    libGL error: No matching fbConfigs or visuals found
+    libGL error: failed to load driver: swrast
+    ```
+
+    You can ignore this error, as everything will still work as expected.
+    To avoid printing of the error messages, install the
+    [mesa-utils](https://packages.debian.org/en/bullseye/mesa-utils){target=_blank}
+    package by running:
+
+    ``` bash
+    sudo apt-get install mesa-utils
+    ```
+
 Run the script with:
 
 ``` bash
