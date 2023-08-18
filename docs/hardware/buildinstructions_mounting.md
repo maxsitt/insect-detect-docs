@@ -28,6 +28,8 @@
 We are going to start by marking the four positions where the enclosure will be
 fixed in the center of the HPL sheet and the three positions where the
 aluminium tube and pipe clamp will be attached for mounting on a tubular post.
+Place the enclosure on the marks and look through the holes in the enclosure
+to check their correct position before drilling.
 
 ![HPL sheet drill template](assets/images/hpl_sheet_drill_template_marking.jpg){ width="600" }
 
