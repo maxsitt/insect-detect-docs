@@ -224,8 +224,8 @@ follow the steps in the info box.
 
         Now you can start the **VcXsrv X server** by opening the `XLaunch.exe`, which
         you installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
-        Keep all the default settings (press **Next** three times, then **Finish**) and
-        the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
+        Keep all the [default settings](localsetup.md#vcxsrv-windows-x-server){target=_blank}
+        and the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
         forwarding, open a new SSH Terminal in VS Code for all changes to take effect.
 
         ![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
