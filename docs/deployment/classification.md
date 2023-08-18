@@ -9,11 +9,11 @@ recording interval when using the provided script for
 The recommended [processing pipeline](detection.md#processing-pipeline){target=_blank}
 uses a [YOLOv5n](../index.md#detection-models){target=_blank} detection model with
 only one generic class ("insect"). The low input resolution enables a high inference
-speed, which is necessary to reliably track moving/flying insects. The detected and
-tracked insects are then cropped from synchronized HQ frames, which increases
-classification accuracy due to the higher resolution and less background noise.
+speed, which is necessary to reliably track moving/flying insects. Images of the
+detected and tracked insects are then cropped from synchronized HQ frames, which
+increases classification accuracy due to the higher resolution and less background noise.
 
-The saved insect images are classified in a subsequent step on your local PC,
+The saved insect images are classified in a subsequent step on your local PC, by
 using a [YOLOv5s-cls](../index.md#classification-model){target=_blank}
 image classification model exported to
 [ONNX format](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
@@ -35,7 +35,7 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
     cd YOLOv5-cls
     ```
 
-- Update the [`pip`](https://pypi.org/project/pip/){target=_blank} package:
+- Update [`pip`](https://pypi.org/project/pip/){target=_blank}:
 
     ``` powershell
     python.exe -m pip install --upgrade pip
@@ -94,18 +94,17 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
 We will use the modified
 [`classify/predict.py`](https://github.com/maxsitt/yolov5/blob/master/classify/predict.py){target=_blank}
 script from the [custom YOLOv5](https://github.com/maxsitt/yolov5){target=_blank}
-repo together with the provided `yolov5s-cls_128.onnx` image classification model
-to classify all insect images in the `data` folder (camera trap output) and write
-the results to the merged metadata .csv files.
+repo together with the provided image classification model to classify all insect
+images in the `data` folder (camera trap output) and write the results to the
+merged metadata .csv files.
 
 - [Download](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){target=_blank}
   the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
   repo and extract it to the `YOLOv5-cls` folder.
-- Copy your `data` folder, saved from the Raspberry Pi's SD card (e.g. with the
-  [DiskInternals LinuxReader](../software/localsetup.md#diskinternals-linuxreader){target=_blank})
-  into the `YOLOv5-cls` folder. Please make sure that **only cropped detections**
-  are present! If you additionally saved full HQ frames, delete them before
-  running the classification script.
+- Copy your `data` folder, [saved](../software/localsetup.md#diskinternals-linuxreader){target=_blank}
+  from the Raspberry Pi's SD card to the `YOLOv5-cls` folder. Make sure that
+  **only cropped detections** are present! If you additionally saved full
+  HQ frames, delete them before running the classification script.
 - Navigate to the `YOLOv5-cls` folder and start the classification script by running:
 
     ``` powershell
@@ -129,14 +128,14 @@ the results to the merged metadata .csv files.
 
 All results are saved to `yolov5-master\runs\predict-cls\{name}`. Use the
 `results\{name}_metadata_classified.csv` for [analysis](analysis.md){target=_blank}
-and post-processing of the merged results in the last step.
+and post-processing in the last step.
 
 If you used `--sort-top1` as optional argument, you will find the classified images
 sorted to folders with the predicted top1 class as folder name in `top1_classes`.
 This allows for a quick identification of edge cases and these images can be used to
 [retrain](../modeltraining/train_classification.md){target=_blank} your classification model.
 
-The `{name}_metadata_classified.csv` file still contains multiple rows for each tracked insect
+The `{name}_metadata_classified.csv` still contains multiple rows for each tracked insect
 (= `track_ID`). In the last [processing step](analysis.md){target=_blank}, you will use the
 [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
 script to automatically post-process the metadata .csv file and calculate the respective class
