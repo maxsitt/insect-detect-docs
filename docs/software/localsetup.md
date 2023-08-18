@@ -69,20 +69,41 @@ listed under `Advanced`.
 install it to your computer. To be able to see the OAK-1 camera stream that is
 sent to the Raspberry Pi on your local computer, you will need to install a X
 server if you are communicating with the RPi via SSH. Start the X server with
-the `XLaunch.exe` and keep all the default settings. After that you will see a
-tray icon in the taskbar and running e.g. one of the
-[preview](programming.md#oak-camera-preview){target=_blank} scripts will open
-the OAK-1 camera stream in a new VcXsrv window on your computer.
+the `XLaunch.exe` and keep all the default settings:
+
+- **Select display settings**
+
+    - :fontawesome-solid-circle-dot: Multiple windows
+    - Display number: `-1`
+
+- **Select how to start clients**
+
+    - :fontawesome-solid-circle-dot: Start no client
+
+- **Extra settings**
+
+    - :fontawesome-regular-square-check: Clipboard
+
+        - :fontawesome-regular-square-check: Primary Selection
+
+    - :fontawesome-regular-square-check: Native opengl
+
+After that you will see the VcXsrv tray icon in the taskbar and running e.g.
+one of the [preview](programming.md#oak-camera-preview){target=_blank} scripts
+will open the OAK-1 camera stream in a new VcXsrv window on your computer.
 
 ---
 
 ## DiskInternals LinuxReader
 
 [Download DiskInternals LinuxReader](https://www.diskinternals.com/linux-reader/){target=_blank}
-and install it to your computer. You will use DiskInternals LinuxReader to
+and install it to your computer. You can use DiskInternals LinuxReader to
 save data from the Raspberry Pi's SD card to your local computer. This is
 only necessary if you are not using a Linux-based OS, as the Linux
 partition format is not compatible with Windows.
+
+After collecting the microSD card from your camera trap, follow these steps to
+save the captured images:
 
 - Insert the Raspberry Pi's microSD card in your card reader and open the program.
   You will see two partitions on the SD card: `boot` and `rootfs`.
