@@ -7,7 +7,7 @@
     suggestions on possible modifications. Click on the :material-plus-circle:
     symbol to open the code annotations for more information. More details
     about the API that is used can be found at the
-    [DepthAI Python API reference](https://docs.luxonis.com/projects/api/en/latest/references/python/){target=_blank}.
+    [DepthAI API Docs](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
 
 The latest versions of the Python scripts are available in the
 [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
@@ -20,6 +20,30 @@ If you run into any problems, find a bug or something that could be optimized,
 please post an [issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}
 at the GitHub repo. Get OAK-specific [support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank}
 directly from Luxonis.
+
+??? bug "X_LINK_DEVICE_ALREADY_IN_USE"
+
+    If you try to run a script and the following error occurs:
+
+    ``` bash
+    RuntimeError: Failed to connect to device, error message: X_LINK_DEVICE_ALREADY_IN_USE
+    ```
+
+    ...chances are high that a previously started script (e.g. because of an
+    active cron job at boot) is still running in the background. You can see
+    all currently running processes by using Raspberry Pi's task manager
+    [htop](https://en.wikipedia.org/wiki/Htop){target=_blank}. Start the
+    task manager by running:
+
+    ``` bash
+    htop
+    ```
+
+    If one of the Python scripts that is using the OAK-1 camera is currently
+    running, press ++f9++ with the script selected (usually one of the processes
+    with highest CPU utilization at the top). This will open the `SIGTERM` option
+    and by confirming with ++enter++ the script will be stopped. Close htop by
+    pressing ++q++.
 
 ---
 
@@ -36,7 +60,7 @@ frames in a window on your local PC.
 
 ??? bug "libGL error"
 
-    After starting the preview scripts, you might get the following error:
+    When running one of the preview scripts, you might get the following error:
 
     ``` bash
     libGL error: No matching fbConfigs or visuals found
@@ -57,6 +81,9 @@ Run the script with:
 ``` bash
 python3 insect-detect/cam_preview.py
 ```
+
+Stop the script by hitting ++q++ with the preview window selected, or by
+pressing ++ctrl+c++ in the Terminal.
 
 ``` py title="cam_preview.py" hl_lines="18 20 21 24"
 '''
@@ -167,6 +194,9 @@ python3 insect-detect/yolo_preview.py
 
     - `-log` to print available Raspberry Pi memory, RPi CPU utilization +
       temperature, OAK memory + CPU usage and OAK chip temperature to console
+
+Stop the script by hitting ++q++ with the preview window selected, or by
+pressing ++ctrl+c++ in the Terminal.
 
 ``` py title="yolo_preview.py" hl_lines="30 31 58 79 80 102 136 137"
 '''
@@ -360,6 +390,9 @@ python3 insect-detect/yolo_tracker_preview.py
     - `-log` to print available Raspberry Pi memory, RPi CPU utilization +
       temperature, OAK memory + CPU usage and OAK chip temperature to console
 
+Stop the script by hitting ++q++ with the preview window selected, or by
+pressing ++ctrl+c++ in the Terminal.
+
 ``` py title="yolo_tracker_preview.py" hl_lines="30 31 58 77 135 151 152 156 157"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
@@ -550,29 +583,30 @@ The following Python script is the main script for fully
   LQ frames (e.g. 320x320 px) is synchronized with HQ frames (e.g. 1920x1080 px) in a
   [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
   on-device, using the respective sequence numbers.
-- Detections (area of the bounding box) are
+- Detections (bounding box area) are
   [cropped](https://maxsitt.github.io/insect-detect-docs/deployment/assets/images/hq_frame_sync_1080p.gif){target=_blank}
-  from the synced HQ frames and saved to .jpg. See the optional arguments
-  to save the full raw HQ frames additionally (slower!).
+  from synced HQ frames and saved to .jpg.
+    - Activate the option `-square` to save cropped detections with aspect ratio 1:1 (recommended).
+    - Activate the option `-raw` to save full raw HQ frames additionally (slower).
 - All relevant metadata from the detection model and tracker output (timestamp,
   label, confidence score, tracking ID, relative bbox coordinates, .jpg file
   path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv){target=_blank}
   file for each cropped detection.
-- Info and error (stderr) + traceback messages are written to log file and
-  recording info (recording ID, start/end time, duration, number of cropped
-  detections, number of unique tracking IDs, free disk space and battery charge
-  level) is written to a `record_log.csv` file for each recording interval.
+- Info and error messages are written to log file. Recording info (recording
+  ID, start/end time, duration, number of cropped detections, number of unique
+  tracking IDs, free disk space and battery charge level) is written to a
+  `record_log.csv` file for each recording interval.
+- The [PiJuice I2C Command API](https://github.com/PiSupply/PiJuice/tree/master/Software#i2c-command-api){target=_blank}
+  is used for power management. A recording will only be made if the PiJuice
+  battery charge level is higher than a specified threshold. The respective
+  recording duration is conditional on the current charge level.
 - After a recording interval is finished, or if the PiJuice battery charge
   level drops below a specified threshold, or if an error occurs, the Raspberry
   Pi is safely shut down and waits for the next wake up alarm from the PiJuice Zero.
-- The [PiJuice I2C Command API](https://github.com/PiSupply/PiJuice/tree/master/Software#i2c-command-api){target=_blank}
-  is used for power management, which means that a recording will only be made
-  if the PiJuice battery charge level is higher than a specified threshold and
-  the respective recording duration is conditional on the current charge level.
 
 Using the default 1080p resolution for the HQ frames will result in an
 pipeline speed of **~12 fps**, which is fast enough to track most insects.
-If 4K resolution is used instead, the pipeline speed will decrease to
+If 4K resolution is used instead (`-4k`), the pipeline speed will decrease to
 **~3 fps**, which reduces tracking accuracy for fast moving insects.
 
 For fully automated monitoring in the field, set up a
@@ -596,13 +630,16 @@ python3 insect-detect/yolo_tracker_save_hqsync.py
 
     Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
-    - `-4k` use 4K resolution for HQ frames (~3 fps)
-    - `-raw` to additionally save full HQ frames (e.g. for training data collection)
-    - `-overlay` to additionally save full HQ frames with overlay (bbox + info)
-    - `-log` to save RPi CPU + OAK chip temperature, RPi available memory +
+    - `-4k` use 4K resolution for HQ frames (~3.4 fps)
+    - `-square` save cropped detections with aspect ratio 1:1 (recommended!)
+    - `-raw` additionally save full HQ frames (e.g. for training data collection)
+    - `-overlay` additionally save full HQ frames with overlay (bbox + info)
+    - `-log` write RPi CPU + OAK chip temperature, RPi available memory +
       CPU utilization and battery info to .csv
 
-``` py title="yolo_tracker_save_hqsync.py" hl_lines="58 64 65 68 69 117 204 209 331 343 344 359 373 384 397"
+Stop the script by pressing ++ctrl+c++ in the Terminal.
+
+``` py title="yolo_tracker_save_hqsync.py" hl_lines="60 66 67 70 71 119 231 236 361 369 370 392 410 421 434"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -641,6 +678,8 @@ sys.stderr.write = logger.error
 parser = argparse.ArgumentParser()
 parser.add_argument("-4k", "--four_k_resolution", action="store_true",
     help="crop detections from (+ save HQ frames in) 4K resolution; default = 1080p")
+parser.add_argument("-square", "--square_bbox_crop", action="store_true",
+    help="save cropped detections with aspect ratio 1:1")
 parser.add_argument("-raw", "--save_raw_frames", action="store_true",
     help="additionally save full raw HQ frames in separate folder (e.g. for training data)")
 parser.add_argument("-overlay", "--save_overlay_frames", action="store_true",
@@ -791,6 +830,31 @@ def frame_norm(frame, bbox):
     norm_vals[::2] = frame.shape[1]
     return (np.clip(np.array(bbox), 0, 1) * norm_vals).astype(int)
 
+def make_bbox_square(bbox): # (5)!
+    """Increase bbox size on both sides of the minimum dimension, or only on one side if localized at frame margin."""
+    bbox_width = bbox[2] - bbox[0]
+    bbox_height = bbox[3] - bbox[1]
+    bbox_diff = (max(bbox_width, bbox_height) - min(bbox_width, bbox_height)) // 2
+    if bbox_width < bbox_height:
+        if bbox[0] - bbox_diff < 0:
+            det_crop = frame[bbox[1]:bbox[3], 0:bbox[2] + (bbox_diff * 2 - bbox[0])]
+        elif not args.four_k_resolution and bbox[2] + bbox_diff > 1920:
+            det_crop = frame[bbox[1]:bbox[3], bbox[0] - (bbox_diff * 2 - (1920 - bbox[2])):1920]
+        elif args.four_k_resolution and bbox[2] + bbox_diff > 3840:
+            det_crop = frame[bbox[1]:bbox[3], bbox[0] - (bbox_diff * 2 - (3840 - bbox[2])):3840]
+        else:
+            det_crop = frame[bbox[1]:bbox[3], bbox[0] - bbox_diff:bbox[2] + bbox_diff]
+    else:
+        if bbox[1] - bbox_diff < 0:
+            det_crop = frame[0:bbox[3] + (bbox_diff * 2 - bbox[1]), bbox[0]:bbox[2]]
+        elif not args.four_k_resolution and bbox[3] + bbox_diff > 1080:
+            det_crop = frame[bbox[1] - (bbox_diff * 2 - (1080 - bbox[3])):1080, bbox[0]:bbox[2]]
+        elif args.four_k_resolution and bbox[3] + bbox_diff > 2160:
+            det_crop = frame[bbox[1] - (bbox_diff * 2 - (2160 - bbox[3])):2160, bbox[0]:bbox[2]]
+        else:
+            det_crop = frame[bbox[1] - bbox_diff:bbox[3] + bbox_diff, bbox[0]:bbox[2]]
+    return det_crop
+
 def store_data(frame, tracks):
     """Save cropped detections (+ full HQ frames) to .jpg and tracker output to metadata .csv."""
     with open(f"{save_path}/metadata_{rec_start}.csv", "a", encoding="utf-8") as metadata_file:
@@ -806,17 +870,20 @@ def store_data(frame, tracks):
                 if track == tracks[-1]:
                     timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
                     raw_path = f"{save_path}/raw/{timestamp}_raw.jpg"
-                    cv2.imwrite(raw_path, frame) # (5)!
+                    cv2.imwrite(raw_path, frame) # (6)!
                     #cv2.imwrite(raw_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
         for track in tracks:
             # Don't save cropped detections if tracking status == "NEW" or "LOST" or "REMOVED"
-            if track.status.name == "TRACKED": # (6)!
+            if track.status.name == "TRACKED": # (7)!
 
                 # Save detections cropped from HQ frame to .jpg
                 bbox = frame_norm(frame, (track.srcImgDetection.xmin, track.srcImgDetection.ymin,
                                           track.srcImgDetection.xmax, track.srcImgDetection.ymax))
-                det_crop = frame[bbox[1]:bbox[3], bbox[0]:bbox[2]]
+                if args.square_bbox_crop:
+                    det_crop = make_bbox_square(bbox)
+                else:
+                    det_crop = frame[bbox[1]:bbox[3], bbox[0]:bbox[2]]
                 label = labels[track.srcImgDetection.label]
                 timestamp = datetime.now().strftime("%Y%m%d_%H-%M-%S.%f")
                 crop_path = f"{save_path}/cropped/{label}/{timestamp}_{track.id}_crop.jpg"
@@ -864,7 +931,7 @@ def store_data(frame, tracks):
                         cv2.imwrite(overlay_path, frame)
                         #cv2.imwrite(overlay_path, frame, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
-def record_log(): # (7)!
+def record_log(): # (8)!
     """Write information about each recording interval to .csv file."""
     try:
         df_meta = pd.read_csv(f"{save_path}/metadata_{rec_start}.csv", encoding="utf-8")
@@ -891,7 +958,7 @@ def record_log(): # (7)!
         }
         log_rec.writerow(logs_rec)
 
-def save_logs(): # (8)!
+def save_logs(): # (9)!
     """
     Write recording ID, time, RPi CPU + OAK chip temperature, RPi available memory (MB) +
     CPU utilization (%) and PiJuice battery info + temp to .csv file.
@@ -933,19 +1000,15 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
     if args.save_logs:
         logging.getLogger("apscheduler").setLevel(logging.WARNING)
         scheduler = BackgroundScheduler()
-        scheduler.add_job(save_logs, "interval", seconds=30, id="log") # (9)!
+        scheduler.add_job(save_logs, "interval", seconds=30, id="log") # (10)!
         scheduler.start()
 
-    # Create output queues to get the frames and tracklets + detections from the outputs defined above
-    q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
-    q_track = device.getOutputQueue(name="track", maxSize=4, blocking=False)
-
-    # Create start_time variable to set recording time + chargelevel variable
-    start_time = time.monotonic()
+    # Create empty list to save charge level (if < 10) and set charge level
+    lst_chargelevel = []
     chargelevel = chargelevel_start
 
     # Set recording time conditional on PiJuice battery charge level
-    if chargelevel >= 70: # (10)!
+    if chargelevel >= 70: # (11)!
         rec_time = 60 * 40
     elif 50 <= chargelevel < 70:
         rec_time = 60 * 30
@@ -959,12 +1022,21 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
     # Write info on start of recording to log file
     logger.info(f"Rec ID: {rec_id} | Rec time: {int(rec_time / 60)} min | Charge level: {chargelevel}%")
 
-    try:
-        # Record until recording time is finished or chargelevel drops below threshold
-        while time.monotonic() < start_time + rec_time and chargelevel >= 10: # (11)!
+    # Create output queues to get the frames and tracklets + detections from the outputs defined above
+    q_frame = device.getOutputQueue(name="frame", maxSize=4, blocking=False)
+    q_track = device.getOutputQueue(name="track", maxSize=4, blocking=False)
 
-            # Update PiJuice battery charge level (return "99" if not readable)
+    # Set start time of recording
+    start_time = time.monotonic()
+
+    try:
+        # Record until recording time is finished or charge level dropped below threshold for 10 times
+        while time.monotonic() < start_time + rec_time and len(lst_chargelevel) < 10: # (12)!
+
+            # Update charge level (return "99" if not readable and write to list if < 10)
             chargelevel = pijuice.status.GetChargeLevel().get("data", 99)
+            if chargelevel < 10:
+                lst_chargelevel.append(chargelevel)
 
             # Get synchronized HQ frames + tracker output (passthrough detections)
             if q_frame.has():
@@ -973,9 +1045,11 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
                 if q_track.has():
                     tracks = q_track.get().tracklets
 
-                    # Save cropped detections every second (slower if saving additional HQ frames)
+                    # Save cropped detections (slower if saving additional HQ frames)
                     store_data(frame, tracks)
-                    time.sleep(1) # (12)!
+
+            # Wait for 1 second
+            time.sleep(1) # (13)!
 
         # Write info on end of recording to log file and write record logs to .csv
         logger.info(f"Recording {rec_id} finished | Charge level: {chargelevel}%\n")
@@ -986,7 +1060,7 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
             pijuice.config.SetChargingConfig({"charging_enabled": True})
 
         # Shutdown Raspberry Pi
-        subprocess.run(["sudo", "shutdown", "-h", "now"], check=True) # (13)!
+        subprocess.run(["sudo", "shutdown", "-h", "now"], check=True) # (14)!
 
     # Write info on error during recording to log file and write record logs to .csv
     except Exception:
@@ -1025,38 +1099,46 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
     the object tracker node (+ passthrough model detections) with the HQ frames
     by comparing their respective sequence numbers. The synchronized tracker
     output and HQ frame are then send to the host (RPi).
-5.  Raw HQ frames will be saved every second if activated with `-raw`. To
+5.  If activated with `-square`, this function will increase the bounding box
+    size on both sides of the minimum dimension, or only on one side if the
+    insect is localized at the frame margin. The cropped detections will thereby
+    always have an aspect ratio of 1:1. This can improve classification model
+    training and inference, as the images are not stretched during resizing
+    and no distortion is added.
+6.  Raw HQ frames will be saved every second if activated with `-raw`. To
     decrease the .jpg file size, you can save them with a higher JPEG
     compression (e.g. 70% quality instead of the default 95%) by commenting
     out this line and using the following line.
-6.  A tracked object can have 4 possible statuses: `NEW`, `TRACKED`, `LOST` and
+7.  A tracked object can have 4 possible statuses: `NEW`, `TRACKED`, `LOST` and
     `REMOVED`. It is highly recommended to save the cropped detections only when
     `tracking status == TRACKED`, but you could change this configuration here and
     e.g. write the `track.status.name` as additional column to the metadata .csv.
-7.  This function will be called after a recording interval is finished, or if
+8.  This function will be called after a recording interval is finished, or if
     an error occurs during the recording and will write some info about the
     respective recording interval to `record_log.csv`.
-8.  This function will be called if you are using the optional `-log` argument
+9.  This function will be called if you are using the optional `-log` argument
     and will save the specified logging info to a .csv file.
-9.  You can change the
+10. You can change the
     [interval](https://apscheduler.readthedocs.io/en/3.x/modules/triggers/interval.html){target=_blank}
     at which logs will be written to the log .csv file in this line.
-10. You can specify your own recording durations and charge level thresholds in
+11. You can specify your own recording durations and charge level thresholds in
     this code section. The suggested values can provide an efficient recording
     behaviour if you are using the 12,000 mAh PiJuice battery and set up the
     [Wakeup Alarm](../pisetup/#pijuice-zero-configuration){target=_blank} for
-    2-5 times per day. Depending on the number of Wakeups per day, as well as
+    3-6 times per day. Depending on the number of Wakeups per day, as well as
     the season and sun exposure of the solar panel, it can make sense to
     increase or decrease the recording duration.
-11. The recording will be stopped if the charge level of the PiJuice battery
-    that is updated in each `while` loop drops below the specified threshold. You
-    can adjust this threshold, e.g. when using a different battery capacity.
-12. In this line you can change the time interval with which the cropped
+12. The recording will be stopped after the recording time is finished or if the
+    charge level of the PiJuice battery drops below the specified threshold for
+    more than ten times. This will avoid immediate stopping of the recording if
+    the PiJuice battery charge level is falsely returned < 10, which can happen
+    from time to time.
+13. In this line you can change the time interval with which the cropped
     detections will be saved to .jpg. This does not affect the detection model
     and object tracker speed, which are both run on-device even if no detections
     are saved. Using `-raw` or `-overlay` to additionally save the full HQ frames
     can significantly slow down the pipeline and inference speed.
-13. If you are still in the testing phase, comment out the shutdown commands in
+14. If you are still in the testing phase, comment out the shutdown commands in
     this line and the last line by adding `#` in front of the line.
 
 ---
@@ -1084,6 +1166,8 @@ python3 insect-detect/frame_capture.py
       recording time; default = 2)
     - `-4k` to save HQ frames in 4K resolution (3840x2160 px; default = 1080p)
     - `-lq` to additionally save downscaled LQ frames (e.g. 320x320 px)
+
+Stop the script by pressing ++ctrl+c++ in the Terminal.
 
 ``` py title="frame_capture.py" hl_lines="28"
 '''
@@ -1221,6 +1305,8 @@ python3 insect-detect/still_capture.py
 
     - `-min` to set recording time in minutes (e.g. `-min 5` for 5 min
       recording time; default = 2)
+
+Stop the script by pressing ++ctrl+c++ in the Terminal.
 
 ``` py title="still_capture.py" hl_lines="23 31 35"
 '''
@@ -1366,6 +1452,8 @@ python3 insect-detect/video_capture.py
       recording time; default = 2)
     - `-4k` to record video in 4K resolution (3840x2160 px) (default: 1080p)
     - `-fps` to set frame rate (frames per second) for video capture (default: 25)
+
+Stop the script by pressing ++ctrl+c++ in the Terminal.
 
 ``` py title="video_capture.py" hl_lines="87"
 '''
