@@ -110,8 +110,9 @@ Raspberry Pi.
 If you already have the PiJuice Zero pHAT (+ PiJuice battery) connected to your
 Raspberry Pi, insert the micro USB cable (connected to your battery, laptop or
 power supply) into the PiJuice USB micro input. Power on the Raspberry Pi with
-a short single press on the PiJuice **SW1** button (on the left and marked
-green in the following picture).
+a short single press on the PiJuice **SW1** button (on the left and marked green
+in the following picture). More information:
+[PiJuice power button and LEDs](https://github.com/PiSupply/PiJuice#buttons-and-leds){target=_blank}.
 
 If your are working without the PiJuice at the moment, insert your micro
 USB cable connected to a power supply, battery or laptop into the **PWR IN**
@@ -609,11 +610,11 @@ Now paste the following lines at the end of the crontab file:
 
     Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
-    - `-square` save cropped detections with aspect ratio 1:1 (**recommended!**)
     - `-4k` use 4K resolution for HQ frames (~3.4 fps)
-    - `-raw` to additionally save full HQ frames (~4.5 fps)
-    - `-overlay` to additionally save full HQ frames with overlay (~4.5 fps)
-    - `-log` to save RPi CPU + OAK chip temperature, RPi available memory +
+    - `-square` save cropped detections with aspect ratio 1:1 (recommended!)
+    - `-raw` additionally save full HQ frames (e.g. for training data collection)
+    - `-overlay` additionally save full HQ frames with overlay (bbox + info)
+    - `-log` write RPi CPU + OAK chip temperature, RPi available memory +
       CPU utilization and battery info to .csv
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
