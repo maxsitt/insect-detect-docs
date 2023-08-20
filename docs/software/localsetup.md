@@ -71,21 +71,19 @@ sent to the Raspberry Pi on your local computer, you will need to install a X
 server if you are communicating with the RPi via SSH. Start the X server with
 the `XLaunch.exe` and keep all the default settings:
 
-- **Select display settings**
+1.  **Select display settings**:
 
-    - :fontawesome-solid-circle-dot: Multiple windows
+    - :fontawesome-regular-square-check: Multiple windows
     - Display number: `-1`
 
-- **Select how to start clients**
+2.  **Select how to start clients**:
 
-    - :fontawesome-solid-circle-dot: Start no client
+    - :fontawesome-regular-square-check: Start no client
 
-- **Extra settings**
+3.  **Extra settings**:
 
     - :fontawesome-regular-square-check: Clipboard
-
         - :fontawesome-regular-square-check: Primary Selection
-
     - :fontawesome-regular-square-check: Native opengl
 
 After that you will see the VcXsrv tray icon in the taskbar and running e.g.
