@@ -586,8 +586,8 @@ The following Python script is the main script for fully
 - Detections (bounding box area) are
   [cropped](https://maxsitt.github.io/insect-detect-docs/deployment/assets/images/hq_frame_sync_1080p.gif){target=_blank}
   from synced HQ frames and saved to .jpg.
-    - Activate the option `-square` to save cropped detections with aspect ratio 1:1 (recommended).
-    - Activate the option `-raw` to save full raw HQ frames additionally (slower).
+    - Activate the option `-square` to save cropped detections with aspect ratio 1:1
+    - Activate the option `-raw` to save full raw HQ frames additionally (slower)
 - All relevant metadata from the detection model and tracker output (timestamp,
   label, confidence score, tracking ID, relative bbox coordinates, .jpg file
   path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv){target=_blank}
@@ -1130,9 +1130,8 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
     increase or decrease the recording duration.
 12. The recording will be stopped after the recording time is finished or if the
     charge level of the PiJuice battery drops below the specified threshold for
-    more than ten times. This will avoid immediate stopping of the recording if
-    the PiJuice battery charge level is falsely returned < 10, which can happen
-    from time to time.
+    over ten seconds. This avoids immediate stopping of the recording if the
+    battery charge level is falsely returned < 10, which can happen sometimes.
 13. In this line you can change the time interval with which the cropped
     detections will be saved to .jpg. This does not affect the detection model
     and object tracker speed, which are both run on-device even if no detections
