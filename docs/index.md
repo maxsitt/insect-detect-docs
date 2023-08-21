@@ -208,8 +208,8 @@ combined results.
   [![DOI](https://zenodo.org/badge/580963598.svg)](https://zenodo.org/badge/latestdoi/580963598){target=_blank}
 
     > Notebooks for YOLOv5/v6/v7/v8 object detection and YOLOv5-cls image classification
-      model training. YOLOv5 classification script with YOLOv5s-cls insect classification
-      model. Python script for automated post-processing and analysis of the metadata .csv files.
+      model training. YOLOv5s-cls insect classification model and Python script for
+      automated post-processing and analysis of the results.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
 
@@ -220,6 +220,13 @@ combined results.
       [Material for MkDocs](https://github.com/squidfunk/mkdocs-material){target=_blank}.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-docs/archive/refs/heads/main.zip){ .md-button }
+
+- [`yolov5`](https://github.com/maxsitt/yolov5){target=_blank}
+
+    > YOLOv5 fork with modifications to improve classification model training, validation
+      and prediction. Adapted to data captured with the Insect Detect DIY camera trap.
+
+      [Download :fontawesome-brands-github:](https://github.com/maxsitt/yolov5/archive/refs/heads/master.zip){ .md-button }
 
 ---
 
