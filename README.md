@@ -88,9 +88,10 @@ from [on-device detection](https://maxsitt.github.io/insect-detect-docs/deployme
 tracking, to [classification](https://maxsitt.github.io/insect-detect-docs/deployment/classification/)
 of the cropped insect images on your local PC and subsequent automated post-processing and
 [analysis](https://maxsitt.github.io/insect-detect-docs/deployment/analysis/) of the combined results.
-The Python scripts for [classification](https://github.com/maxsitt/insect-detect-ml/blob/main/predict_mod.py)
-and [.csv analysis](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py) are
-available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml) GitHub repo.
+The Python script for [classification](https://github.com/maxsitt/yolov5/blob/master/classify/predict.py)
+of the captured insect images is available in the [custom YOLOv5](https://github.com/maxsitt/yolov5) fork.
+Python scripts for post-processing and [analysis](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py)
+of the results are available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml) GitHub repo.
 
 <img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/deployment/assets/images/hq_frame_sync_1080p.gif" width="800">
 
