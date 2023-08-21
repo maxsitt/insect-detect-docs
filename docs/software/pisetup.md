@@ -111,8 +111,8 @@ If you already have the PiJuice Zero pHAT (+ PiJuice battery) connected to your
 Raspberry Pi, insert the micro USB cable (connected to your battery, laptop or
 power supply) into the PiJuice USB micro input. Power on the Raspberry Pi with
 a short single press on the PiJuice **SW1** button (on the left and marked green
-in the following picture). More information:
-[PiJuice power button and LEDs](https://github.com/PiSupply/PiJuice#buttons-and-leds){target=_blank}.
+in the following picture). More info:
+[PiJuice power button and LED](https://github.com/PiSupply/PiJuice#buttons-and-leds){target=_blank}.
 
 If your are working without the PiJuice at the moment, insert your micro
 USB cable connected to a power supply, battery or laptop into the **PWR IN**
