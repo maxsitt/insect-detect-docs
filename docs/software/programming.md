@@ -68,13 +68,7 @@ frames in a window on your local PC.
     ```
 
     You can ignore this error, as everything will still work as expected.
-    To avoid printing of the error messages, install the
-    [mesa-utils](https://packages.debian.org/en/bullseye/mesa-utils){target=_blank}
-    package by running:
-
-    ``` bash
-    sudo apt-get install mesa-utils
-    ```
+    It will only be printed to the console once after each boot.
 
 Run the script with:
 
