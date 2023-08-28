@@ -115,7 +115,7 @@ prediction results to the merged metadata .csv files.
         Change the `--name` of your prediction run accordingly, e.g. by including
         information about the camera trap location and collection date of the images.
         Instead of copying the `insect-detect/data` folder to the `YOLOv5-cls`
-        folder, you can also use its full path for `--source`.
+        folder, you can also insert its full path after `--source`.
 
 ??? info "Optional arguments"
 
@@ -139,11 +139,12 @@ which each row corresponds to an individual tracked insect.
 
 !!! tip ""
 
-    If you used `--sort-top1` as optional argument, you will find the insect images
-    sorted to folders with the predicted top1 class as folder name in `top1_classes`.
-    This allows for a quick identification of edge cases and these images can be used to
-    [retrain](../modeltraining/train_classification.md){target=_blank} your classification
-    model. By using `--sort-prob` additionally, the images will be sorted by top1
-    probability first and then by top1 class. This can give you more information about
-    cases where the model is unsure about its prediction. Adding images with a low
-    probability to your training dataset can increase classification accuracy over time.
+    If you used `--sort-top1` as optional argument, the insect images are sorted
+    to folders with the predicted top1 class as folder name. This allows for a
+    quick identification of edge cases and these images can be used to
+    [retrain](../modeltraining/train_classification.md){target=_blank} your
+    classification model. By using `--sort-prob` additionally, the images are
+    sorted by top1 probability first and then by top1 class. This can give you
+    more information about cases where the model is unsure about its prediction.
+    Adding images with a low probability to your training dataset can increase
+    classification accuracy over time.
