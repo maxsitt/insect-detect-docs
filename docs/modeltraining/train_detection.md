@@ -32,24 +32,16 @@ It is highly recommended to read the
 if this is your first time training a detection model. Most of these tips are
 also relevant if you choose a different YOLO version.
 
-You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
-notebook for custom training of a:
+- **YOLOv5 detection model training** &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training.ipynb){target=_blank}
 
-- [**YOLOv5 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank} &nbsp;
-  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_detection_training_OAK_conversion.ipynb){target=_blank}
-  > With manual conversion to
-    [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
-    format for on-device inference on the Luxonis OAK.
+    > The PyTorch model weights can be converted to [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion/){target=_blank}
+      format at [tools.luxonis.com](https://tools.luxonis.com/){target=_blank} for on-device inference
+      with the [Luxonis OAK](https://docs.luxonis.com/projects/hardware/en/latest/){target=_blank} devices.
 
 Check the [introduction](https://colab.research.google.com/){target=_blank} and
 [features overview](https://colab.research.google.com/notebooks/basic_features_overview.ipynb){target=_blank}
 if this is your first time using a Colab notebook.
-
-After opening the notebook, log in to your Google account and under the **File**
-menu choose **Save a copy in Drive**. Now you can change the code and adapt the
-training procedure to your use case if desired. Before connecting to a Google
-Colab cloud instance, make sure to check that **GPU** is selected as Hardware
-accelerator under **Runtime --> Change runtime type**.
 
 <figure markdown>
   ![Google Colab YOLOv5 training](assets/images/google_colab_train.png){ width="800" }
@@ -67,14 +59,12 @@ is specifically tailored for industrial applications and implements several
 new features, including a efficient decoupled head, anchor-free detection and
 optimized loss functions which can increase model performance.
 
-You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
-notebook for custom training of a:
+- **YOLOv6 detection model training** &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv6_detection_training.ipynb){target=_blank}
 
-- [**YOLOv6 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv6_detection_training.ipynb){target=_blank} &nbsp;
-  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv6_detection_training.ipynb){target=_blank}
-  > With [automatic conversion](https://tools.luxonis.com/){target=_blank} to
-    [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
-    format for on-device inference on the Luxonis OAK.
+    > The PyTorch model weights can be converted to [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion/){target=_blank}
+      format at [tools.luxonis.com](https://tools.luxonis.com/){target=_blank} for on-device inference
+      with the [Luxonis OAK](https://docs.luxonis.com/projects/hardware/en/latest/){target=_blank} devices.
 
 ---
 
@@ -86,14 +76,12 @@ implements new features, e.g. Extended-ELAN (E-ELAN) to enhance the learning
 ability of the network, improved model scaling techniques and re-parameterized
 convolution which can further increase model performance.
 
-You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
-notebook for custom training of a:
+- **YOLOv7 detection model training** &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv7_detection_training.ipynb){target=_blank}
 
-- [**YOLOv7 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv7_detection_training.ipynb){target=_blank} &nbsp;
-  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv7_detection_training.ipynb){target=_blank}
-  > With [automatic conversion](https://tools.luxonis.com/){target=_blank} to
-    [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
-    format for on-device inference on the Luxonis OAK.
+    > The PyTorch model weights can be converted to [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion/){target=_blank}
+      format at [tools.luxonis.com](https://tools.luxonis.com/){target=_blank} for on-device inference
+      with the [Luxonis OAK](https://docs.luxonis.com/projects/hardware/en/latest/){target=_blank} devices.
 
 ---
 
@@ -108,11 +96,9 @@ developer-friendly options, such as the integrated
 [command-line interface](https://docs.ultralytics.com/usage/cli/){target=_blank} (CLI)
 and [Python package](https://docs.ultralytics.com/usage/python/){target=_blank}.
 
-You can use the provided [Google Colab](https://colab.research.google.com/){target=_blank}
-notebook for custom training of a:
+- **YOLOv8 detection model training** &nbsp;
+  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv8_detection_training.ipynb){target=_blank}
 
-- [**YOLOv8 object detection model**](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv8_detection_training.ipynb){target=_blank} &nbsp;
-  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv8_detection_training.ipynb){target=_blank}
-  > With [automatic conversion](https://tools.luxonis.com/){target=_blank} to
-    [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank}
-    format for on-device inference on the Luxonis OAK.
+    > The PyTorch model weights can be converted to [.blob](https://docs.luxonis.com/en/latest/pages/model_conversion/){target=_blank}
+      format at [tools.luxonis.com](https://tools.luxonis.com/){target=_blank} for on-device inference
+      with the [Luxonis OAK](https://docs.luxonis.com/projects/hardware/en/latest/){target=_blank} devices.
