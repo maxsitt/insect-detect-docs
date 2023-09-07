@@ -207,9 +207,9 @@ combined results.
 - [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/580963598.svg)](https://zenodo.org/badge/latestdoi/580963598){target=_blank}
 
-    > Notebooks for YOLOv5/v6/v7/v8 object detection and YOLOv5-cls image classification
-      model training. YOLOv5s-cls insect classification model and Python script for
-      automated post-processing and analysis of the results.
+    > Notebooks for object detection and image classification model
+      training. Insect classification model. Python scripts for
+      automated post-processing and analysis of the camera trap data.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
 
@@ -235,14 +235,14 @@ combined results.
 - [**Insect Detection Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7725941.svg)](https://doi.org/10.5281/zenodo.7725941){target=_blank}
 
-    > Dataset to train insect detection models, with annotated images collected in
+    > Dataset to train insect detection models. Contains annotated images collected in
       2022 with the DIY camera trap and the proposed flower platform as background.
 
-- [**Insect Classification Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank} &nbsp;
-  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7725970.svg)](https://doi.org/10.5281/zenodo.7725970){target=_blank}
+- [**Insect Classification Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification_v2){target=_blank} &nbsp;
+  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8325384.svg)](https://doi.org/10.5281/zenodo.8325384){target=_blank}
 
-    > Dataset to train insect classification models, which mostly contains the
-      cropped bounding boxes with insects, exported from the Detection Dataset.
+    > Dataset to train insect classification models. Contains images mostly
+      collected in 2023 with several DIY camera traps.
 
 ---
 
@@ -280,18 +280,26 @@ combined results.
 
 ### Classification model
 
-| Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Top5 Accuracy<sup>val<br> |
-| --------------------- | --------------------- | ------------------------- | ------------------------- |
-| **YOLOv5s-cls**       | 128                   | 0.9835                    | 1                         |
+| Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Precision<sup>val<br> | Recall<sup>val<br> | F1 score<sup>val<br> |
+| --------------------- | --------------------- | ------------------------- | --------------------- | ------------------ | -------------------- |
+| EfficientNet-B0       | 128                   | 0.978                     | 0.979                 | 0.972              | 0.975                |
 
 ??? note "Table Notes"
 
-    - The [model](https://github.com/maxsitt/insect-detect-ml/blob/main/yolov5s-cls_128.onnx){target=_blank}
-      was trained to 100 epochs with batch size 64 and default hyperparameters. Reproduce the model training with the provided
+    - The [model](https://github.com/maxsitt/insect-detect-ml/tree/main/models){target=_blank}
+      was trained with image size 128 to 15 epochs with batch size 64 and default
+      settings and hyperparameters. Reproduce the model training with the provided
       [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}.
-    - Trained on [Insect_Detect_classification](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
-      dataset [version 2](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/dataset/2){target=_blank}
-      with 7 classes ([class balance](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification/health){target=_blank}).
+    - Trained on [Insect Detect - insect classification dataset v2](https://doi.org/10.5281/zenodo.8325383){target=_blank}
+      with 27 classes. To reproduce the dataset split, keep the default settings in the Colab notebook
+      (train/val/test ratio = 0.7/0.2/0.1, random seed = 1).
+    - Dataset can be explored at [Roboflow Universe](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification_v2){target=_blank}.
+      Export from Roboflow compresses the images and can lead to a decreased model accuracy.
+      It is recommended to use the uncompressed dataset from [Zenodo](https://doi.org/10.5281/zenodo.8325383){target=_blank}.
+    - Full model metrics are available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml/tree/main#classification-model){target=_blank}
+      GitHub repo.
+
+![EfficientNet-B0 confusion matrix](assets/images/efficientnet-b0_confusion_matrix_val.png){ width="800" }
 
 ---
 
