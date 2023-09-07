@@ -16,7 +16,7 @@ exported to [ONNX format](https://github.com/ultralytics/yolov5/issues/251){targ
 for faster CPU inference.
 
 Check out the [classification instructions](../deployment/classification.md){target=_blank}
-for more information on how to deploy the classification model.
+for more info on how to deploy your classification model.
 
 ---
 
@@ -29,11 +29,9 @@ classification model training and deployment is supported by
 To train your own image classification model, you can select between YOLOv5-cls,
 ResNet and EfficientNet
 [classification models](https://github.com/ultralytics/yolov5#classification){target=_blank},
-pretrained on the ImageNet-1k dataset. A YOLOv5s-cls model is provided in the
+pretrained on the ImageNet-1k dataset. A EfficientNet-B0 model is provided in the
 [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-GitHub repo, trained on the
-[Insect_Detect_classification](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification){target=_blank}
-dataset.
+GitHub repo.
 
 - **YOLOv5 classification model training** &nbsp;
   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}
