@@ -579,9 +579,10 @@ The following Python script is the main script for fully
   on-device, using the respective sequence numbers.
 - Detections (bounding box area) are
   [cropped](https://maxsitt.github.io/insect-detect-docs/deployment/assets/images/hq_frame_sync_1080p.gif){target=_blank}
-  from synced HQ frames and saved to .jpg.
-    - Activate the option `-square` to save cropped detections with aspect ratio 1:1
-    - Activate the option `-raw` to save full raw HQ frames additionally (slower)
+  from synced HQ frames and saved to .jpg. By default, cropped detections are saved
+  with aspect ratio 1:1 (`-crop square`) which increases classification accuracy,
+  as the images are not stretched during resizing and no distortion is added.
+  Use option `-crop tight` to keep original bbox size with variable aspect ratio.
 - All relevant metadata from the detection model and tracker output (timestamp,
   label, confidence score, tracking ID, relative bbox coordinates, .jpg file
   path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv){target=_blank}
@@ -624,16 +625,17 @@ python3 insect-detect/yolo_tracker_save_hqsync.py
 
     Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
-    - `-4k` use 4K resolution for HQ frames (~3.4 fps)
-    - `-square` save cropped detections with aspect ratio 1:1 (recommended!)
-    - `-raw` additionally save full HQ frames (e.g. for training data collection)
-    - `-overlay` additionally save full HQ frames with overlay (bbox + info)
-    - `-log` write RPi CPU + OAK chip temperature, RPi available memory +
-      CPU utilization and battery info to .csv
+    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default = 1080p)
+    - `-crop` save cropped detections with aspect ratio 1:1 (default = `-crop square`)
+              or keep original bbox size with variable aspect ratio (`-crop tight`)
+    - `-raw` additionally save HQ frames to .jpg (e.g. for training data collection)
+    - `-overlay` additionally save HQ frames with overlay (bbox + info) to .jpg
+    - `-log` write RPi CPU + OAK chip temperature, RPi available
+             memory + CPU utilization and battery info to .csv
 
 Stop the script by pressing ++ctrl+c++ in the Terminal.
 
-``` py title="yolo_tracker_save_hqsync.py" hl_lines="60 66 67 70 71 119 231 236 361 369 370 392 410 421 434"
+``` py title="yolo_tracker_save_hqsync.py" hl_lines="61 67 68 71 72 120 232 237 362 370 371 393 411 422 435"
 '''
 Author:   Maximilian Sittinger (https://github.com/maxsitt)
 License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
@@ -672,8 +674,9 @@ sys.stderr.write = logger.error
 parser = argparse.ArgumentParser()
 parser.add_argument("-4k", "--four_k_resolution", action="store_true",
     help="crop detections from (+ save HQ frames in) 4K resolution; default = 1080p")
-parser.add_argument("-square", "--square_bbox_crop", action="store_true",
-    help="save cropped detections with aspect ratio 1:1")
+parser.add_argument("-crop", "--crop_bbox", choices=["square", "tight"], default="square", type=str,
+    help="save cropped detections with aspect ratio 1:1 ('-crop square') or \
+          keep original bbox size with variable aspect ratio ('-crop tight')")
 parser.add_argument("-raw", "--save_raw_frames", action="store_true",
     help="additionally save full raw HQ frames in separate folder (e.g. for training data)")
 parser.add_argument("-overlay", "--save_overlay_frames", action="store_true",
@@ -874,7 +877,7 @@ def store_data(frame, tracks):
                 # Save detections cropped from HQ frame to .jpg
                 bbox = frame_norm(frame, (track.srcImgDetection.xmin, track.srcImgDetection.ymin,
                                           track.srcImgDetection.xmax, track.srcImgDetection.ymax))
-                if args.square_bbox_crop:
+                if args.crop_bbox == "square":
                     det_crop = make_bbox_square(bbox)
                 else:
                     det_crop = frame[bbox[1]:bbox[3], bbox[0]:bbox[2]]
@@ -1093,12 +1096,11 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
     the object tracker node (+ passthrough model detections) with the HQ frames
     by comparing their respective sequence numbers. The synchronized tracker
     output and HQ frame are then send to the host (RPi).
-5.  If activated with `-square`, this function will increase the bounding box
-    size on both sides of the minimum dimension, or only on one side if the
-    insect is localized at the frame margin. The cropped detections will thereby
-    always have an aspect ratio of 1:1. This can improve classification model
-    training and inference, as the images are not stretched during resizing
-    and no distortion is added.
+5.  This function will increase the bounding box size on both sides of the minimum
+    dimension, or only on one side if the insect is localized at the frame margin.
+    The cropped detections will thereby always have an aspect ratio of 1:1. This
+    can improve classification model training and inference, as the images are
+    not stretched during resizing and no distortion is added.
 6.  Raw HQ frames will be saved every second if activated with `-raw`. To
     decrease the .jpg file size, you can save them with a higher JPEG
     compression (e.g. 70% quality instead of the default 95%) by commenting
