@@ -41,7 +41,7 @@ You have now generated a private and public SSH key, and will be able to select
 
     ![Raspberry Pi add SSH key](assets/images/vscode_raspberry_add_ssh_key.png){ width="600" }
 
-??? info "SSH key based authentication after SD card setup"
+??? info "Optional: SSH key based authentication after SD card setup"
 
     If you already have the SD card prepared without public-key authentication,
     you can still configure this by following the steps above to generate the
@@ -145,7 +145,7 @@ necessary functions to test and deploy the DIY camera trap. For experienced
 users, who want to use the Raspberry Pi as remote development environment,
 follow the steps in the info box.
 
-??? info "Remote-SSH & Remote X11 extension configuration"
+??? info "Optional: Remote-SSH & Remote X11 extension configuration"
 
     === "Remote-SSH extension"
 
@@ -610,12 +610,13 @@ Now paste the following lines at the end of the crontab file:
 
     Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
-    - `-4k` use 4K resolution for HQ frames (~3.4 fps)
-    - `-square` save cropped detections with aspect ratio 1:1 (recommended!)
-    - `-raw` additionally save full HQ frames (e.g. for training data collection)
-    - `-overlay` additionally save full HQ frames with overlay (bbox + info)
-    - `-log` write RPi CPU + OAK chip temperature, RPi available memory +
-      CPU utilization and battery info to .csv
+    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default = 1080p)
+    - `-crop` save cropped detections with aspect ratio 1:1 (default = `-crop square`)
+              or keep original bbox size with variable aspect ratio (`-crop tight`)
+    - `-raw` additionally save HQ frames to .jpg (e.g. for training data collection)
+    - `-overlay` additionally save HQ frames with overlay (bbox + info) to .jpg
+    - `-log` write RPi CPU + OAK chip temperature, RPi available
+             memory + CPU utilization and battery info to .csv
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
@@ -644,7 +645,7 @@ by running:
 sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
 ```
 
-??? question "Raspberry Pi Zero W (v1)"
+??? question "Only Raspberry Pi Zero W (v1)"
 
     Additionally to the installed dependencies, you will have to install the
     package `libusb-1.0-0-dev` with:
