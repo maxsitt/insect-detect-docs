@@ -299,7 +299,7 @@ combined results.
     - Full model metrics are available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml/tree/main#classification-model){target=_blank}
       GitHub repo.
 
-![EfficientNet-B0 confusion matrix](assets/images/efficientnet-b0_confusion_matrix_val.png){ width="800" }
+![EfficientNet-B0 confusion matrix](assets/images/efficientnet-b0_confusion_matrix_val.png){ width="700" }
 
 ---
 
