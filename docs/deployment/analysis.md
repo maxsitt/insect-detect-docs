@@ -1,54 +1,68 @@
 # Deployment: Analysis
 
-As the `metadata_classified_{timestamp}.csv` file, generated during the
+As the `*metadata_classified.csv` file, generated during the
 [classification](classification.md){target=_blank} step, still contains multiple
 rows for each tracked insect (= `track_ID`), we will use the provided
 [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
-script to automatically analyze the classified metadata .csv file. This final
-processing step will yield a `metadata_classified_{timestamp}_top1.csv` file,
+script for metadata post-processing and analysis. This final
+processing step will yield a `*metadata_classified_top1_final.csv` file,
 in which each row corresponds to an individual tracked insect and its
 classification result with the overall highest probability.
 
+---
+
+## Installation
+
 It is assumed that you already followed the instructions in the
 [classification](classification.md){target=_blank} step and successfully ran the
-`predict_mod.py` script to classify the cropped insect detections and wrote the
-classification results to `metadata_classified_{timestamp}.csv`.
+[`classify/predict.py`](https://github.com/maxsitt/yolov5/blob/master/classify/predict.py){target=_blank}
+script to classify the cropped insect images and wrote the classification
+results to `*metadata_classified.csv`.
 
-- Create a new folder in your working directory, e.g. `YOLOv5-cls\analysis`.
-- Copy the `metadata_classified_{timestamp}.csv` file to the `analysis` folder.
-- Copy the `csv_analysis.py` script from the
-  [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-  GitHub repo to the `analysis` folder.
-- Navigate to the `YOLOv5-cls\analysis` folder and start the analysis script by running:
+- Navigate to the `YOLOv5-cls` folder, in which you already downloaded the
+  [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} repo.
+- Install the required packages by running:
 
     ``` powershell
-    python.exe csv_analysis.py
+    python.exe -m pip install -r insect-detect-ml/requirements.txt
     ```
 
-    ![csv analysis command](assets/images/csv_analysis_command.png){ width="600" }
+---
 
-!!! info "Optional arguments"
+## Run metadata analysis
 
-    - `-width` to set absolute ("true") frame width in mm to calculate
-      absolute bbox size in mm (e.g. `-width 500` if you are using the provided
-      [flower platform](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform/flower_platform_big_500x280){target=_blank}
-      dimensions; default of 1 gives relative bbox size)
-    - `-height` to set absolute ("true") frame height in mm to calculate
-      absolute bbox size in mm (e.g. `-height 280` if you are using the provided
-      [flower platform](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform/flower_platform_big_500x280){target=_blank}
-      dimensions; default of 1 gives relative bbox size)
-    - `-min_tracks` to remove tracking IDs with less than the specified number
-      of images (e.g. `-min_tracks 1` to keep the original data; default = 3)
-    - `-max_tracks` to remove tracking IDs with more than the specified number
-      of images (default = 1800)
+- Navigate to the `YOLOv5-cls` folder and start the analysis script by running:
+
+    ``` powershell
+    python.exe insect-detect-ml/csv_analysis.py -csv yolov5-master/runs/predict-cls/<name>/results -width 350 -height 200
+    ```
+
+    !!! tip ""
+
+        Insert the correct name of your prediction run at `<name>`. If you used
+        a platform with a different size as the recommended small platform (350x200 mm),
+        change `-width` and `-height` to your respective frame width/hight in mm.
+
+    !!! info "Optional arguments"
+
+        - `-csv [path]` path to folder containing metadata .csv file(s), will
+                        return the last metadata .csv file in alphabetical order
+        - `-width [mm]` absolute frame width in mm to calculate "true"
+                        bbox size [mm] (default of 1 gives relative bbox size)
+        - `-height [mm]` absolute frame height in mm to calculate "true"
+                         bbox size [mm] (default of 1 gives relative bbox size)
+        - `-min_tracks [number]` remove tracking IDs with less than the
+                                 specified number of images (default = 3)
+        - `-max_tracks [number]` remove tracking IDs with more than the
+                                 specified number of images (default = 1800)
 
 By default, all tracked insects (= `track_ID`) with less than 3 or more than 1800
-images will be removed before saving the final `metadata_classified*_top1.csv`.
+images will be removed before saving the `*metadata_classified_top1_final.csv`.
 This can exclude many false tracking IDs, e.g. insects moving too fast to be
 correctly tracked ("jumping" IDs) or objects that are lying on the platform and
-are incorrectly detected as insects. Depending on the speed and accuracy of the
+are incorrectly detected as insects. Depending on the speed/accuracy of the
 deployed detection model and the respective recording duration, adjusting these
-thresholds (by using the optional arguments `-min_tracks` and/or `-max_tracks`) can
+thresholds (by using the arguments `-min_tracks` and/or `-max_tracks`) can
 result in a more accurate estimation of insect abundance/activity (= platform visits).
 
 ---
@@ -58,66 +72,86 @@ result in a more accurate estimation of insect abundance/activity (= platform vi
 The [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
 script will:
 
-1.  **Sort metadata**:
-    - read the `metadata_classified*.csv` file from the current directory into a
-      pandas DataFrame
-    - calculate the relative (or absolute, if frame width/height in mm is given)
-      bounding box sizes and bbox length (= longer side) + bbox width (= shorter side)
-    - save the metadata sorted by recording ID, tracking ID and timestamp
-      successively (ascending) to `metadata_classified*_sorted.csv`
+1. Sort metadata:
 
-2.  **Group the metadata by tracking ID per recording ID and calculate for each tracking ID**:
-    - total number of images
-    - number of images per top1 class
-    - mean classification probability for each top1 class
-    - weighted mean classification probability for each top1 class
-    - mean bbox length and bbox width for each top1 class
-    - save the metadata sorted by recording ID, tracking ID and weighted
-      probability successively (ascending) as `metadata_classified*_top1_all.csv`
+   - read the `*metadata_classified.csv` file into pandas DataFrame
+   - calculate the relative (or absolute, if frame width/height in mm is given)
+     bounding box sizes and bbox length (= longer side) + bbox width (= shorter side)
+   - save metadata sorted by recording ID, tracking ID and timestamp
+     successively (ascending) to `*metadata_classified_sorted.csv`
 
-3.  **Group the metadata by tracking ID per recording ID and calculate for each tracking ID**:
-    - mean detection confidence score
-    - first and last timestamp (start/end time)
-    - duration [s] of the tracking (end time - start time)
-    - for the top1 class with the highest weighted probability:
-        - number of images
-        - name
-        - mean classification probability
-        - weighted classification probability
-        - mean bounding box length and width
-    - remove tracking IDs with less or more than the specified number of images
-    - save the metadata calculated for each tracking ID (per recording ID) as
-      `metadata_classified*_top1.csv`
+2. Group metadata by tracking ID per recording ID and calculate for each tracking ID:
 
-4.  **Save some info about the analysis run to** `metadata_classified*_analysis_info.csv`
+   - number of images per top1 class
+   - total number of images per tracking ID
+   - mean classification probability for each top1 class
+   - weighted mean classification probability for each top1 class
+   - mean bbox length and bbox width for each top1 class
+   - save metadata sorted by recording ID, tracking ID (ascending) and weighted
+     probability (descending) successively to `*metadata_classified_top1_all.csv`
 
-5.  **Create and save some basic plots for a quick first data overview**
+3. Group metadata by tracking ID per recording ID and calculate for each tracking ID:
+
+   - total number of images
+   - date from first timestamp
+   - first and last timestamp (start/end time)
+   - duration [s] (end time - start time)
+   - mean detection confidence
+   - for the top1 class with the highest weighted probability:
+     - number of images
+     - name
+     - mean classification probability
+     - weighted classification probability
+     - mean bounding box length and width
+   - remove tracking IDs with less or more than the specified number of images
+   - save metadata calculated for each tracking ID (per recording ID) to
+     `*metadata_classified_top1_final.csv`
+
+4. Save some info about the analysis run to `*metadata_classified_analysis_info.csv`
+
+5. Create and save some basic plots for a quick first data overview
 
 ---
 
 ## Overview plots
 
-Several plots are generated by the `csv_analysis.py` script that can give a
-first overview of the analyzed data. This is however no alternative to a
-thorough exploration and analysis of the data, e.g. with
-[R](https://cran.r-project.org/){target=_blank}.
+Several plots are generated by the
+[`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
+script that can give a first overview of the post-processed metadata. For more
+in-depth statistics, the `*metadata_classified_top1_final.csv` file should be
+analyzed with software such as [R + RStudio](https://posit.co/download/rstudio-desktop/){target=_blank}.
 
-![Plot top1 classes per recording](assets/images/top1_classes_per_rec.png){ width="500" }
+The plot `top1_mean_det_conf.png` can be used to find cases (e.g. small beetles
+in the following example) for which the deployed detection model has a low
+confidence score and additional annotated images could increase model accuracy.
 
-You could run the `csv_analysis.py` script with the optional argument
-`-min_tracks 1` to not remove any tracking IDs with less then a specified
-number of images. The following plot can then be used for a visual inspection
-of the distribution of the number of images per tracking ID.
+![Plot mean detection confidence](assets/images/top1_mean_det_conf.png){ width="700" }
 
-![Plot images per tracking ID](assets/images/imgs_per_track.png){ width="500" }
+The plot `top1_per_rec.png` gives a quick overview of the top1 classes per
+recording. In the following example, lower numbers of insects at recording
+intervals early in the day can be noticed. Also an increase of images
+classified as dirt (`none_dirt`) can be observed in later recording intervals.
 
-The duration per tracking ID could additionally be used for filtering the data
-in a subsequent step.
+![Plot top1 classes per recording](assets/images/top1_per_rec.png){ width="700" }
 
-![Plot duration per tracking ID](assets/images/duration_per_track.png){ width="500" }
+The plot `imgs_per_track.png` (or also `duration_per_track.png`) gives you
+information about the distribution of the number of images (= tracking duration)
+per tracking ID. By default, all tracked insects with less than 3 or more than
+1800 images will be removed before saving the `*metadata_classified_top1_final.csv`.
+You could run the `csv_analysis.py` script with the arguments `-min_tracks 1` and
+`-max_tracks 9999` to plot all tracking IDs and include them in the final .csv file.
 
-To find cases where the classification model could be further enhanced by
-[retraining](../modeltraining/train_classification.md){target=_blank} with new image
-data, you can take a look at the mean classification probability per top1 class.
+![Plot images per tracking ID](assets/images/imgs_per_track.png){ width="700" }
 
-![Plot mean prob per top1 class](assets/images/top1_classes_mean_prob.png){ width="500" }
+To find cases where the accuracy of the classification model could be improved by
+[retraining](../modeltraining/train_classification.md){target=_blank} with
+additional images added to the basic dataset, you can inspect the plots
+`top1_prob.png` and `top1_prob_mean.png`. In the following example, a relatively
+low classification probability can be noticed for the classes `hfly_myathr` (but
+also only few images), `hfly_eristal`, `beetle` and `bee_apis`. The classified
+and sorted images in the folder `top1_classes` should be inspected in cases of
+such low probabilities to find false classification results.
+
+![Boxplot prob per top1 class](assets/images/top1_prob.png){ width="700" }
+
+![Plot mean prob per top1 class](assets/images/top1_prob_mean.png){ width="700" }
