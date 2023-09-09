@@ -23,7 +23,7 @@ files for post-processing and [analysis](analysis.md){target=_blank} in the last
 If you followed the steps in [Local Setup](../software/localsetup.md#python){target=_blank},
 you already have [Python](https://www.python.org/){target=_blank} installed on your computer.
 
-??? info "Set up an isolated Python environment"
+??? info "Optional: Set up an isolated Python environment"
 
     You can [create a virtual environment](https://virtualenv.pypa.io/en/latest/user_guide.html){target=_blank}
     before installing the required packages for YOLOv5 to avoid version and dependency
@@ -91,10 +91,10 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
 
 We will use the modified
 [`classify/predict.py`](https://github.com/maxsitt/yolov5/blob/master/classify/predict.py){target=_blank}
-script from the custom [`yolov5`](https://github.com/maxsitt/yolov5){target=_blank}
-repo together with the provided classification model to classify all insect
-images in the `insect-detect/data` folder (camera trap output) and add the
-prediction results to the merged metadata .csv files.
+script from the custom [`yolov5`](https://github.com/maxsitt/yolov5){target=_blank} repo
+together with the provided [classification model](../index.md#classification-model){target=_blank}
+to classify all insect images in the `insect-detect/data` folder (camera trap output)
+and add the prediction results to the merged metadata .csv files.
 
 - [Download](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){target=_blank}
   the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
@@ -117,21 +117,21 @@ prediction results to the merged metadata .csv files.
         Instead of copying the `insect-detect/data` folder to the `YOLOv5-cls`
         folder, you can also insert its full path after `--source`.
 
-??? info "Optional arguments"
+    ??? info "Optional arguments"
 
-    - `--sort-top1` sort images to folders with predicted top1 class as folder name
-      and do not write results on to image as text (which is the default configuration)
-    - `--sort-prob` sort images first by probability and then by top1 class
-      (requires `--sort-top1`)
-    - `--concat-csv` concatenate all metadata .csv files and
-      append classification results to new columns
-    - `--new-csv` create a new .csv file with classification results,
-      e.g. if no metadata .csv files are available
-    - `--save-txt` to save the classification results to individual .txt files
-      for each image
+        - `--sort-top1` sort images to folders with predicted top1 class as folder name
+          and do not write results on to image as text (which is the default configuration)
+        - `--sort-prob` sort images first by probability and then by top1 class
+          (requires `--sort-top1`)
+        - `--concat-csv` concatenate all metadata .csv files and
+          append classification results to new columns
+        - `--new-csv` create a new .csv file with classification results,
+          e.g. if no metadata .csv files are available
+        - `--save-txt` to save the classification results to individual .txt files
+          for each image
 
 All results are saved to `yolov5-master/runs/predict-cls/{name}`. The
-`results/{name}_metadata_classified.csv` still contains multiple rows for each
+`*metadata_classified.csv` still contains multiple rows for each
 tracked insect (= `track_ID`). During post-processing and [analysis](analysis.md){target=_blank}
 in the last step, the respective class with the overall highest probability is
 calculated for each tracked insect. This will create the final .csv file, in
