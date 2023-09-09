@@ -15,7 +15,7 @@ your local PC, by using a [classification model](../index.md#classification-mode
 exported to [ONNX format](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
 for faster CPU inference.
 
-Check out the [classification instructions](../deployment/classification.md){target=_blank}
+Read the [classification instructions](../deployment/classification.md){target=_blank}
 for more info on how to deploy your classification model.
 
 ---
@@ -27,11 +27,11 @@ classification model training and deployment is supported by
 [YOLOv5](https://github.com/ultralytics/yolov5){target=_blank}.
 
 To train your own image classification model, you can select between YOLOv5-cls,
-ResNet and EfficientNet
-[classification models](https://github.com/ultralytics/yolov5#classification){target=_blank},
-pretrained on the ImageNet-1k dataset. A EfficientNet-B0 model is provided in the
-[`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-GitHub repo.
+ResNet and EfficientNet classification
+[models](https://github.com/ultralytics/yolov5#classification){target=_blank},
+pretrained on the ImageNet-1k dataset. An
+[EfficientNet-B0](../index.md#classification-model){target=_blank} model is provided in the
+[`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} GitHub repo.
 
 - **YOLOv5 classification model training** &nbsp;
   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}
