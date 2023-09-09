@@ -71,7 +71,7 @@ in a more accurate estimation of insect abundance/activity (= platform visits).
 The [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
 script will:
 
-1.  Sort metadata:
+1.  **Sort metadata**:
 
     - read the `*metadata_classified.csv` file into pandas DataFrame
     - calculate the relative (or absolute, if frame width/height in mm is given)
@@ -79,7 +79,7 @@ script will:
     - save metadata sorted by recording ID, tracking ID and timestamp
       successively (ascending) to `*metadata_classified_sorted.csv`
 
-2.  Group metadata by tracking ID per recording ID and calculate for each tracking ID:
+2.  **Group metadata by tracking ID per recording ID and calculate for each tracking ID**:
 
     - number of images per top1 class
     - total number of images per tracking ID
@@ -89,7 +89,7 @@ script will:
     - save metadata sorted by recording ID, tracking ID (ascending) and weighted
       probability (descending) successively to `*metadata_classified_top1_all.csv`
 
-3.  Group metadata by tracking ID per recording ID and calculate for each tracking ID:
+3.  **Group metadata by tracking ID per recording ID and calculate for each tracking ID**:
 
     - total number of images
     - date from first timestamp
@@ -97,18 +97,18 @@ script will:
     - duration [s] (end time - start time)
     - mean detection confidence
     - for the top1 class with the highest weighted probability:
-      - number of images
-      - name
-      - mean classification probability
-      - weighted classification probability
-      - mean bounding box length and width
+        - number of images
+        - name
+        - mean classification probability
+        - weighted classification probability
+        - mean bounding box length and width
     - remove tracking IDs with less or more than the specified number of images
     - save metadata calculated for each tracking ID (per recording ID) to
       `*metadata_classified_top1_final.csv`
 
-4.  Save some info about the analysis run to `*metadata_classified_analysis_info.csv`
+4.  **Save some info about the analysis run to** `*metadata_classified_analysis_info.csv`
 
-5.  Create and save some basic plots for a quick first data overview
+5.  **Create and save some basic plots for a quick first data overview**
 
 ---
 
@@ -136,9 +136,9 @@ dirt (`none_dirt`) can be observed in later recordings.
 The plot `imgs_per_track.png` gives you information about the distribution of
 the number of images (= tracking duration) per tracking ID. By default, all
 tracked insects with less than 3 or more than 1800 images will be removed before
-saving the `*metadata_classified_top1_final.csv`. You could run the
-`csv_analysis.py` script with the arguments `-min_tracks 1` and `-max_tracks 9999`
-to plot all tracking IDs and include them in the final .csv file.
+saving the final .csv file. You could run the `csv_analysis.py` script with the
+arguments `-min_tracks 1` and `-max_tracks 9999` to plot all tracking IDs and
+include them in the final .csv file.
 
 ![Plot images per tracking ID](assets/images/imgs_per_track.png){ width="700" }
 
