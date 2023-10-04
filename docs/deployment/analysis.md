@@ -16,7 +16,7 @@ classification result with the overall highest probability.
 It is assumed that you already followed the instructions in the
 [classification](classification.md){target=_blank} step and successfully ran the
 [`classify/predict.py`](https://github.com/maxsitt/yolov5/blob/master/classify/predict.py){target=_blank}
-script to classify the cropped insect images and wrote the classification
+script to classify the cropped insect images and write the classification
 results to `*metadata_classified.csv`.
 
 - Navigate to the `YOLOv5-cls` folder, in which you downloaded the
@@ -24,7 +24,7 @@ results to `*metadata_classified.csv`.
 - Install the required packages by running:
 
     ``` powershell
-    python.exe -m pip install -r insect-detect-ml/requirements.txt
+    python.exe -m pip install -r insect-detect-ml-main/requirements.txt
     ```
 
 ---
@@ -34,7 +34,7 @@ results to `*metadata_classified.csv`.
 - Navigate to the `YOLOv5-cls` folder and start the analysis script by running:
 
     ``` powershell
-    python.exe insect-detect-ml/csv_analysis.py -csv yolov5-master/runs/predict-cls/<name>/results -width 350 -height 200
+    python.exe insect-detect-ml-main/csv_analysis.py -csv yolov5-master/runs/predict-cls/<name>/results -width 350 -height 200
     ```
 
     !!! tip ""
@@ -126,7 +126,7 @@ confidence score and additional annotated images could increase model accuracy.
 
 ![Plot mean detection confidence](assets/images/top1_mean_det_conf.png){ width="700" }
 
-The plot `top1_per_rec.png` gives a quick overview of the top1 classes per
+The plot `top1_per_rec.png` gives a overview of the top1 classes per
 recording. In the following example, lower numbers of insects at recordings
 early in the day can be noticed. Also an increase of images classified as
 dirt (`none_dirt`) can be observed in later recordings.
