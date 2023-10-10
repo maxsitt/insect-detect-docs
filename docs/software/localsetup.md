@@ -117,8 +117,9 @@ save the captured images:
 
 ## Python
 
-[Download Python 3.11](https://www.python.org/downloads/windows/){target=_blank}
-and install it to your computer. You will need Python to run the scripts for
+[Download Python 3.11.6](https://www.python.org/downloads/release/python-3116/){target=_blank}
+and install it to your computer. The latest version 3.12 is not yet supported
+by some packages. You will need Python to run the scripts for
 [classification](../deployment/classification.md){target=_blank} of the captured
 insect images and subsequent [analysis](../deployment/analysis.md){target=_blank}
 and post-processing of the metadata. If you have the [Python](https://bit.ly/2Zm3Ypq){target=_blank}
