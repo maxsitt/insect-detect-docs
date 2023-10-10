@@ -44,7 +44,7 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
     - Create a new Python environment (folder in your current directory):
 
         ``` powershell
-        virtualenv --python python3.11.4 env_yolov5
+        virtualenv --python python3.11.6 env_yolov5
         ```
 
         If you are using a different Python version, change it accordingly.
@@ -53,6 +53,16 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
         ``` powershell
         .\env_yolov5\Scripts\activate
         ```
+
+        If you cannot run the activate script because of your Execution Policy
+        settings, open a new PowerShell as administrator and run the following:
+
+        ``` powershell
+        Set-ExecutionPolicy RemoteSigned
+        ```
+
+        You can find more info [here](https://virtualenv.pypa.io/en/latest/user_guide.html#activators){target=_blank}
+        and [here](https://stackoverflow.com/questions/18713086/virtualenv-wont-activate-on-windows){target=_blank}.
 
     - Now all packages will be installed only in the virtual environment,
       which you have to activate everytime you want to run a script that
