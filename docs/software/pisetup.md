@@ -71,7 +71,11 @@ other Raspberry Pi OS based images.
 
 ![Raspberry Pi Imager choose OS](assets/images/raspberrypi_imager_choose_os.png){ width="600" }
 
-Here we will select the first option **Raspberry Pi OS Lite (32-bit)**.
+Select the option **Raspberry Pi OS (Legacy) Lite** (Debian Bullseye). The new Raspberry Pi OS
+([Debian Bookworm](https://www.raspberrypi.com/news/bookworm-the-new-version-of-raspberry-pi-os/){target=_blank}),
+released 2023-10-10, introduces several changes including the setup and configuration
+options. Until we tested the new version and updated the following instructions
+accordingly, install the Legacy version for now.
 
 ![Raspberry Pi Imager choose lite OS](assets/images/raspberrypi_imager_choose_os_lite.png){ width="600" }
 
