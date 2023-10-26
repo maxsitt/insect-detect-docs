@@ -15,97 +15,125 @@ Raspberry Pi. You can find more details on this topic and instructions for macOS
 [VS Code Docs](https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication){target=_blank} and
 [Raspberry Pi Docs](https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access){target=_blank}.
 
-First check if there is already an SSH key on your computer by going to the
-`C:\Users\<username>\.ssh` folder. If there is a file named `id_rsa.pub` you can
-skip this step and move on to [RPi OS installation](#raspberry-pi-os-installation).
-If you can't find the `.ssh` folder or the key file, you will have to generate
-a new SSH key pair on your local PC.
-[Open](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
-a local Terminal (Windows PowerShell) and run the following command:
+Since [version 1.8.1](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.8.1){target=_blank}
+of the Raspberry Pi Imager, you can now easily generate a new SSH key pair during
+Raspberry Pi OS installation in the next step. If you still want to generate your
+SSH key pair manually or set up SSH key based authentication after SD card setup,
+follow the steps in the info box.
 
-``` powershell
-ssh-keygen -t rsa -b 4096
-```
+??? info "Generate SSH key manually"
 
-Save the key to the default location `C:\Users\<username>/.ssh/id_rsa` by hitting ++enter++.
-When you are asked to enter a passphrase, leave the field empty and hit ++enter++ twice.
-You have now generated a private and public SSH key, and will be able to select
-**public-key authentication** during the [RPi OS installation](#raspberry-pi-os-installation).
-
-!!! tip ""
-
-    If you want to connect your Raspberry Pi to multiple local PCs with SSH
-    key based authentication, generate an SSH key pair on each local PC and
-    copy the line with the public key from `/.ssh/id_rsa.pub` on your PC to
-    a new row in `/home/pi/.ssh/authorized_keys` on your Raspberry Pi.
-
-    ![Raspberry Pi add SSH key](assets/images/vscode_raspberry_add_ssh_key.png){ width="600" }
-
-??? info "Optional: SSH key based authentication after SD card setup"
-
-    If you already have the SD card prepared without public-key authentication,
-    you can still configure this by following the steps above to generate the
-    key pair and then (while connected to your Raspberry Pi via SSH) running
-    the following command in your local Terminal (Windows PowerShell):
+    First check if there is already an SSH key pair on your computer by going to
+    the `C:\Users\<username>\.ssh` folder. If there are two files named `id_rsa`
+    and `id_rsa.pub` you can skip this step and move on to
+    [RPi OS installation](#raspberry-pi-os-installation). If you can't find the `.ssh`
+    folder or the key files, you will have to generate a new SSH key pair on your PC.
+    [Open](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
+    a local Terminal (Windows PowerShell) and run the following command:
 
     ``` powershell
-    cat ~/.ssh/id_rsa.pub | ssh pi@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+    ssh-keygen -t rsa -b 4096
     ```
 
-    Please make sure to enter the correct `IP address` (or hostname) of your
-    Raspberry Pi. After entering your RPi password, your public SSH key will be
-    saved to `/home/pi/.ssh/authorized_keys`. After that you won't be asked to
-    enter your password again, as the authentication is now based on the SSH key.
+    Save the key to the default location `C:\Users\<username>/.ssh/id_rsa` by
+    hitting ++enter++. When you are asked to enter a passphrase, leave the field
+    empty and hit ++enter++ twice. You have now generated a private and public
+    SSH key. The public SSH key should be automatically inserted during the
+    [RPi OS installation](#raspberry-pi-os-installation) in the next step, if
+    you choose public-key authentication.
+
+    !!! tip ""
+
+        If you want to connect your Raspberry Pi to multiple local PCs with SSH
+        key based authentication, generate an SSH key pair on each local PC and
+        copy the line with the public key from `/.ssh/id_rsa.pub` on your PC to
+        a new row in `/home/pi/.ssh/authorized_keys` on your Raspberry Pi.
+
+        ![Raspberry Pi add SSH key](assets/images/vscode_raspberry_add_ssh_key.png){ width="600" }
+
+    ??? info "Optional: SSH key based authentication after SD card setup"
+
+        If you already have the SD card prepared without public-key authentication,
+        you can still configure this by following the steps above to generate the
+        key pair and then (while connected to your Raspberry Pi via SSH) running
+        the following command in your local Terminal (Windows PowerShell):
+
+        ``` powershell
+        cat ~/.ssh/id_rsa.pub | ssh pi@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+        ```
+
+        Please make sure to enter the correct `IP address` (or hostname) of your
+        Raspberry Pi. After entering your RPi password, your public SSH key will be
+        saved to `/home/pi/.ssh/authorized_keys`. After that you won't be asked to
+        enter your password again, as the authentication is now based on the SSH key.
 
 ---
 
 ## Raspberry Pi OS installation
 
-Insert the microSD card into your card reader and start the Raspberry Pi
-Imager. First, we will choose the appropriate OS.
+Insert the microSD card into your card reader and open the Raspberry Pi
+Imager. Start with selecting your device (Raspberry Pi model).
 
-![Raspberry Pi Imager Start](assets/images/raspberrypi_imager_start.png){ width="600" }
+![Raspberry Pi Imager choose device](assets/images/raspberrypi_imager_device.png){ width="700" }
 
-We don't want to install the default OS with Desktop, so you have to go to the
-other Raspberry Pi OS based images.
+If you are using the recommended model Raspberry Pi Zero 2 W, select it.
 
-![Raspberry Pi Imager choose OS](assets/images/raspberrypi_imager_choose_os.png){ width="600" }
+![Raspberry Pi Imager RPi Zero 2 W](assets/images/raspberrypi_imager_rpizero2w.png){ width="700" }
+
+Choose the RPi OS in the next step. We don't want to install the default OS with
+Desktop, so you have to go to the other Raspberry Pi OS based images.
+
+![Raspberry Pi Imager choose OS](assets/images/raspberrypi_imager_choose_os.png){ width="700" }
 
 Select the option **Raspberry Pi OS (Legacy) Lite** (Debian Bullseye). The new Raspberry Pi OS
 ([Debian Bookworm](https://www.raspberrypi.com/news/bookworm-the-new-version-of-raspberry-pi-os/){target=_blank}),
 released 2023-10-10, introduces several changes including the setup and configuration
-options. Until we tested the new version and updated the following instructions
-accordingly, install the Legacy version for now.
+options. It is not yet recommended and tested with the software.
 
-![Raspberry Pi Imager choose lite OS](assets/images/raspberrypi_imager_choose_os_lite.png){ width="600" }
+![Raspberry Pi Imager choose lite OS](assets/images/raspberrypi_imager_choose_os_lite.png){ width="700" }
 
-Now we can choose the storage, where the Raspberry Pi OS will be written to.
-Here you just have to select your microSD card.
+You can now choose the storage. Select your microSD card, which
+will be formatted during the Raspberry Pi OS installation.
 
-![Raspberry Pi Imager choose storage](assets/images/raspberrypi_imager_choose_storage.png){ width="600" }
+![Raspberry Pi Imager choose storage](assets/images/raspberrypi_imager_choose_storage.png){ width="700" }
 
-Click the settings button on the bottom right to change some of the default
-options.
+Hit the **Next** button and choose **Edit settings** when you are
+asked if you would like to apply OS customisation settings.
 
-![Raspberry Pi Imager Start settings](assets/images/raspberrypi_imager_start_settings.png){ width="600" }
+![Raspberry Pi Imager edit settings](assets/images/raspberrypi_imager_edit_settings.png){ width="700" }
+
+Change the following settings under the **General** tab:
 
 - Set the hostname (default: `raspberrypi`). If you will be deploying multiple camera
   traps, you should give each a unique hostname (e.g. `camtrap1`, `camtrap2` etc.).
-- Enable SSH with public-key authentication.
-- Set the username and password. It is recommended to use the default `pi`
-  as username.
-- Enter your WiFi SSID and password, to be able to connect to the Pi via SSH
+- Set the username and password. Use the default `pi` as username.
+- Enter your WiFi SSID and password, to be able to connect to the RPi via SSH
   immediately after the first boot. In some cases it might be beneficial to use a
   [mobile hotspot](https://support.microsoft.com/en-us/windows/use-your-windows-pc-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85#WindowsVersion=Windows_11){target=_blank}
   from your PC (e.g. to share restricted WiFi, multiple WiFis or Ethernet).
-  Select the correct Wireless LAN country in the dropdown menu below.
-- Set the locale settings to your time zone and keyboard layout, then press **SAVE**.
+- Select the correct Wireless LAN country in the dropdown menu below.
+- Set the locale settings to your time zone and keyboard layout.
 
-![Raspberry Pi Imager settings](assets/images/raspberrypi_imager_settings.png){ width="600" }
+![Raspberry Pi Imager settings general](assets/images/raspberrypi_imager_settings_general.png){ width="600" }
 
-You can now write the correctly configured Raspberry Pi OS Lite to your SD
-card. After the writing process is finished, insert the SD card into your
-Raspberry Pi.
+Change the following settings under the **Services** tab:
+
+- Enable SSH with public-key authentication.
+- If you didn't already generate an SSH key pair, press **Run SSH-Keygen**
+  to generate a new SSH key pair. The public key will be automatically
+  inserted in the text field.
+
+![Raspberry Pi Imager settings services](assets/images/raspberrypi_imager_settings_services.png){ width="600" }
+
+You can keep the default settings under the **Options** tab. Hit **Save**
+and choose **Yes** when you are asked if you would like to apply your
+OS customisation settings.
+
+![Raspberry Pi Imager settings options](assets/images/raspberrypi_imager_settings_options.png){ width="600" }
+
+You can now write the correctly configured Raspberry Pi OS Lite to your
+microSD card. After the writing process is finished, insert the SD card
+into your Raspberry Pi.
 
 ---
 
