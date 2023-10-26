@@ -117,7 +117,7 @@ and add the prediction results to the merged metadata .csv files.
 - Navigate to the `YOLOv5-cls` folder and start the classification script by running:
 
     ``` powershell
-    python.exe yolov5-master/classify/predict.py --name camtrap1 --source insect-detect/data/**/ --weights insect-detect-ml-main/models/efficientnet-b0_128.onnx --img 128 --sort-top1 --sort-prob --concat-csv
+    python.exe yolov5-master/classify/predict.py --name camtrap1 --source insect-detect/data/**/ --weights insect-detect-ml-main/models/efficientnet-b0_imgsz128.onnx --img 128 --sort-top1 --sort-prob --concat-csv
     ```
 
     !!! tip ""
