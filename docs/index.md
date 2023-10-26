@@ -282,12 +282,12 @@ combined results.
 
 | Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Precision<sup>val<br> | Recall<sup>val<br> | F1 score<sup>val<br> |
 | --------------------- | --------------------- | ------------------------- | --------------------- | ------------------ | -------------------- |
-| EfficientNet-B0       | 128                   | 0.978                     | 0.979                 | 0.972              | 0.975                |
+| EfficientNet-B0       | 128                   | 0.98                      | 0.979                 | 0.974              | 0.976                |
 
 ??? note "Table Notes"
 
     - The [model](https://github.com/maxsitt/insect-detect-ml/tree/main/models){target=_blank}
-      was trained with image size 128 to 15 epochs with batch size 64 and default
+      was trained with image size 128 to 20 epochs with batch size 64 and default
       settings and hyperparameters. Reproduce the model training with the provided
       [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}.
     - Trained on [Insect Detect - insect classification dataset v2](https://doi.org/10.5281/zenodo.8325383){target=_blank}
@@ -321,7 +321,7 @@ All Python scripts are licensed under the GNU General Public License v3.0
 Until the corresponding paper will be published, you can cite this project as:
 
 ``` text
-Sittinger, M. (2022). Insect Detect - Software for automated insect monitoring
+Sittinger, M. (2023). Insect Detect - Software for automated insect monitoring
 with a DIY camera trap system (v1.6). Zenodo. https://doi.org/10.5281/zenodo.7472238
 ```
 
