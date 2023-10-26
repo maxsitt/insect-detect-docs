@@ -15,11 +15,10 @@ Raspberry Pi. You can find more details on this topic and instructions for macOS
 [VS Code Docs](https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication){target=_blank} and
 [Raspberry Pi Docs](https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access){target=_blank}.
 
-Since [version 1.8.1](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.8.1){target=_blank}
-of the Raspberry Pi Imager, you can now easily generate a new SSH key pair during
-Raspberry Pi OS installation in the next step. If you still want to generate your
-SSH key pair manually or set up SSH key based authentication after SD card setup,
-follow the steps in the info box.
+Since [v1.8.1](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.8.1){target=_blank}
+of the Raspberry Pi Imager, you can now easily generate a new SSH key pair during the
+Raspberry Pi OS installation. If you want to generate your SSH key pair manually or
+set up SSH key based authentication after SD card setup, follow the steps in the info box.
 
 ??? info "Generate SSH key manually"
 
@@ -114,7 +113,7 @@ Change the following settings under the **General** tab:
 - Select the correct Wireless LAN country in the dropdown menu below.
 - Set the locale settings to your time zone and keyboard layout.
 
-![Raspberry Pi Imager settings general](assets/images/raspberrypi_imager_settings_general.png){ width="600" }
+![Raspberry Pi Imager settings general](assets/images/raspberrypi_imager_settings_general.png){ width="500" }
 
 Change the following settings under the **Services** tab:
 
@@ -123,17 +122,17 @@ Change the following settings under the **Services** tab:
   to generate a new SSH key pair. The public key will be automatically
   inserted in the text field.
 
-![Raspberry Pi Imager settings services](assets/images/raspberrypi_imager_settings_services.png){ width="600" }
+![Raspberry Pi Imager settings services](assets/images/raspberrypi_imager_settings_services.png){ width="500" }
 
 You can keep the default settings under the **Options** tab. Hit **Save**
 and choose **Yes** when you are asked if you would like to apply your
 OS customisation settings.
 
-![Raspberry Pi Imager settings options](assets/images/raspberrypi_imager_settings_options.png){ width="600" }
-
 You can now write the correctly configured Raspberry Pi OS Lite to your
 microSD card. After the writing process is finished, insert the SD card
 into your Raspberry Pi.
+
+![Raspberry Pi Imager settings options](assets/images/raspberrypi_imager_settings_options.png){ width="500" }
 
 ---
 
