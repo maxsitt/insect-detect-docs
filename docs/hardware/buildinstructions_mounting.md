@@ -127,19 +127,17 @@ The bigger platform (500x280 mm) should be mounted at a distance of **40 cm**
 from camera to platform, the smaller platform (350x200 mm) should be mounted
 at a distance of **28 cm** from camera to platform. This will ensure that the
 flower platform fills out the whole frame of the OAK-1 camera when using
-1080p/4K resolution for the HQ frames. Using the smaller platform at a decreased
-distance, will result in a higher resolution of the cropped insect images,
-which is especially useful if your group of interest is rather small (< 1 cm).
+1080p/4K resolution for the HQ frames. Using the smaller platform at a lower
+distance will result in a higher resolution of the cropped insect images and
+is recommended for most use cases.
 
 If you want to use different platform sizes or distances from camera to your
 platform or other background, the aspect ratio of the frame where insects will
 be detected (for 1080p/4K resolution: ~1:1.78) should be considered for planning.
 
 It is recommended to print the templates on a weather- and UV-resistant
-material, e.g. [lightweight foam board](https://bit.ly/3VATW2b){target=_blank}.
-There are many online print shops that can do this for you. If it is possible
-to add a matt UV coating (e.g. at this [print shop](https://bit.ly/3QlFJTA){target=_blank}),
-this is also recommended.
+material, e.g. [lightweight foam board](https://bit.ly/3QlFJTA){target=_blank} or
+[acrylic glass](https://www.wir-machen-druck.de/acrylplatte-mit-echtglasbeschichtung-in-freier-groesse-rechteckig-einseitig-40farbig-bedruckt.html){target=_blank}.
 
 ---
 
@@ -200,9 +198,9 @@ tube piece.
 
 You can now mount the platform on any standard wooden or steel post.
 Tighten the screws after you checked the correct position with the
-[`cam_preview.py`](../software/programming.md#oak-camera-preview){target=_blank} script.
-If possible, slightly tilt the post and camera trap system forwards, that
-rainwater can run off the platform.
+[`cam_preview.py`](../software/programming.md#oak-camera-preview){target=_blank}
+script. If possible, slightly tilt the post and camera trap system forwards,
+that rainwater can run off the platform.
 
 ![Flower platform mounted](assets/images/flower_platform_mounted.jpg){ width="700" }
 
