@@ -24,22 +24,22 @@ important options, which are shown in the [next section](pisetup.md){target=_bla
 
 ## Visual Studio Code
 
-[Download VS Code](https://code.visualstudio.com/){target=_blank} and install it
-to your computer. More information on how to set up VS Code can be found in the
-[official Docs](https://code.visualstudio.com/Docs/setup/setup-overview){target=_blank}.
+[Download VS Code](https://code.visualstudio.com/){target=_blank} and install
+it to your computer. Install all recommended extensions listed under `Basic`.
 Using Visual Studio Code to connect to your Raspberry Pi via
 [SSH](https://en.wikipedia.org/wiki/Secure_Shell){target=_blank} is highly
-recommended. For casual users, install the extensions listed under `Basic`.
+recommended. More information on how to set up VS Code can be found in the
+[official Docs](https://code.visualstudio.com/Docs/setup/setup-overview){target=_blank}.
 
-For experienced users, connecting and working exclusively via the Terminal
-(e.g. Windows PowerShell) is also possible. If you want to use the Raspberry
-Pi Zero 2 W as a remote development environment, install the VS Code extensions
-listed under `Advanced`.
+If you want to use the Raspberry Pi Zero 2 W as a remote development environment,
+install the VS Code extensions listed under `Advanced` (not recommended for normal users).
 
 ???+ info "Recommended Extensions"
 
     === "Basic"
 
+        - [Python](https://bit.ly/2Zm3Ypq){target=_blank}
+          extension for working with Python scripts.
         - [SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
           extension to mount the `/home/pi` folder as local workspace folder in VS Code.
         - [Excel Viewer](https://bit.ly/3DNAsjM){target=_blank} extension
@@ -55,9 +55,6 @@ listed under `Advanced`.
           forward the OAK-1 camera stream received from the Raspberry Pi via
           X11 and show it on your local PC. Required if you are using the
           Remote - SSH extension instead of connecting via the Terminal.
-        - [Python](https://bit.ly/2Zm3Ypq){target=_blank} and
-          [Pylance](https://bit.ly/3s4qKTF){target=_blank} extensions if you are
-          working with Python scripts.
         - [Save Commands](https://bit.ly/3NntHsb){target=_blank} extension if you
           want to save some often used terminal commands for direct execution.
 
@@ -101,31 +98,41 @@ only necessary if you are not using a Linux-based OS, as the Linux
 partition format is not compatible with Windows.
 
 After collecting the microSD card from your camera trap, follow these steps to
-save the captured images:
+save the captured images and metadata:
 
-- Insert the Raspberry Pi's microSD card in your card reader and open the program.
-  You will see two partitions on the SD card: `boot` and `rootfs`.
-- Double-click on the `rootfs` partition and navigate to
-  `/home/pi/insect-detect/data` to see all log files and recorded images.
-- Select everything you want to download to your PC and click the **Save**
-  button in the upper menu bar.
+- Insert the Raspberry Pi's microSD card into your card reader and open DiskInternals
+  LinuxReader. You will see two partitions on the SD card: `boot` and `rootfs`.
+- Double-click on the `rootfs` partition and navigate to the `/home/pi` folder.
+- Select the `insect-detect` folder and click the **Save** button in the upper
+  menu bar to copy it to your PC.
 - Keep the **Save Files** option, choose your output folder and select both
   options **Save directory structure** and **Extract file date from metadata**.
-  After that, the data you selected will be copied to your computer.
 
 ---
 
 ## Python
 
-[Download Python 3.11.6](https://www.python.org/downloads/release/python-3116/){target=_blank}
-and install it to your computer. The latest version 3.12 is not yet supported
+[Download Python 3.11.6](https://www.python.org/ftp/python/3.11.6/python-3.11.6-amd64.exe){target=_blank}
+and install it to your computer, while keeping all the default settings
+(select **Install Now**). The latest version 3.12 is not yet supported
 by some packages. You will need Python to run the scripts for
 [classification](../deployment/classification.md){target=_blank} of the captured
 insect images and subsequent [analysis](../deployment/analysis.md){target=_blank}
-and post-processing of the metadata. If you have the [Python](https://bit.ly/2Zm3Ypq){target=_blank}
-extension installed in VS Code, you can activate Python in VS Code by pressing
-++f1++ to open the Command Palette and running the `Python: Select Interpreter` command.
-You can find a
+and post-processing of the metadata.
+
+We are going to use the
+[Python Launcher](https://docs.python.org/3.11/using/windows.html#python-launcher-for-windows){target=_blank}
+for Windows to run Python scripts with the `py` command. You can check if the
+Python Launcher works correctly and display the installed Python version(s),
+by opening a Terminal (e.g. Windows PowerShell) and running:
+
+``` powershell
+py --list
+```
+
+After installing the [Python](https://bit.ly/2Zm3Ypq){target=_blank} extension,
+you can activate Python in VS Code by opening the Command Palette with
+++ctrl+shift+p++ and running the `Python: Select Interpreter` command. You can find a
 [Getting started tutorial](https://code.visualstudio.com/docs/python/python-tutorial){target=_blank}
 and more information on
 [Python in VS Code](https://code.visualstudio.com/docs/languages/python){target=_blank}
