@@ -24,7 +24,7 @@ results to `*metadata_classified.csv`.
 - Install the required packages by running:
 
     ``` powershell
-    python.exe -m pip install -r insect-detect-ml-main/requirements.txt
+    py -m pip install -r insect-detect-ml-main/requirements.txt
     ```
 
 ---
@@ -34,7 +34,7 @@ results to `*metadata_classified.csv`.
 - Navigate to the `YOLOv5-cls` folder and start the analysis script by running:
 
     ``` powershell
-    python.exe insect-detect-ml-main/csv_analysis.py -csv yolov5-master/runs/predict-cls/<name>/results -width 350 -height 200
+    py insect-detect-ml-main/csv_analysis.py -csv yolov5-master/runs/predict-cls/<name>/results -width 350 -height 200
     ```
 
     !!! tip ""
