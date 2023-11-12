@@ -32,7 +32,7 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
     - Install [`virtualenv`](https://virtualenv.pypa.io/en/latest/){target=_blank}:
 
         ``` powershell
-        python.exe -m pip install virtualenv
+        py -m pip install virtualenv
         ```
 
     - Navigate to the `YOLOv5-cls` folder:
@@ -44,10 +44,9 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
     - Create a new Python environment (folder in your current directory):
 
         ``` powershell
-        virtualenv --python python3.11.6 env_yolov5
+        py -m virtualenv env_yolov5
         ```
 
-        If you are using a different Python version, change it accordingly.
     - Activate the environment by running:
 
         ``` powershell
@@ -86,13 +85,13 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
 - Update [`pip`](https://pypi.org/project/pip/){target=_blank}:
 
     ``` powershell
-    python.exe -m pip install --upgrade pip
+    py -m pip install --upgrade pip
     ```
 
 - Install the required packages by running:
 
     ``` powershell
-    python.exe -m pip install -r yolov5-master/requirements.txt
+    py -m pip install -r yolov5-master/requirements.txt
     ```
 
 ---
@@ -117,7 +116,7 @@ and add the prediction results to the merged metadata .csv files.
 - Navigate to the `YOLOv5-cls` folder and start the classification script by running:
 
     ``` powershell
-    python.exe yolov5-master/classify/predict.py --name camtrap1 --source insect-detect/data/**/ --weights insect-detect-ml-main/models/efficientnet-b0_imgsz128.onnx --img 128 --sort-top1 --sort-prob --concat-csv
+    py yolov5-master/classify/predict.py --name camtrap1 --source insect-detect/data/**/ --weights insect-detect-ml-main/models/efficientnet-b0_imgsz128.onnx --img 128 --sort-top1 --sort-prob --concat-csv
     ```
 
     !!! tip ""
