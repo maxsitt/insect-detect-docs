@@ -84,9 +84,8 @@ If you don't already have a Raspberry Pi Zero 2 W with attached header, you
 will have to solder a header to it. Before doing that, make sure to stick the
 heatsink on the CPU of your Raspberry. This will keep the header sitting flush
 against the Raspberry Pi as you solder it. If this is your first time soldering,
-you can find detailed instructions [here](https://bit.ly/3AsZMdg){target=_blank}
-and [here](https://bit.ly/3pr6kCO){target=_blank}. As alternative to soldering
-the header, you could also use a
+you can find detailed instructions [here](https://bit.ly/3pr6kCO){target=_blank}.
+As alternative to soldering the header, you could also use a
 [Hammer Header](https://shop.pimoroni.com/products/gpio-hammer-header){target=_blank}.
 
 After attaching the CPU heatsink and soldering or hammering the header, your
