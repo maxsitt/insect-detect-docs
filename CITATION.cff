@@ -1,14 +1,24 @@
 cff-version: 1.2.0
-message: "If you use this resource, please cite it as below."
+type: manual
+message: If you use this resource, please cite it as below.
+title: >-
+  Insect Detect Docs - Documentation website
+  for the Insect Detect DIY camera trap system
 authors:
   - family-names: Sittinger
     given-names: Maximilian
-    orcid: https://orcid.org/0000-0002-4096-8556
-title: >-
-  "Insect Detect Docs - Documentation website
-  for the Insect Detect DIY camera trap system"
+    orcid: "https://orcid.org/0000-0002-4096-8556"
 version: 1.1
-doi: 10.5281/zenodo.7503371
 date-released: 2023-06-11
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.7503371
+    description: >-
+      This DOI represents all versions, and
+      will always resolve to the latest one.
+  - type: url
+    value: "https://github.com/maxsitt/insect-detect-docs/releases/tag/v1.1"
+    description: GitHub release URL of current version.
 license: CC-BY-SA-4.0
+repository-code: "https://github.com/maxsitt/insect-detect-docs"
 url: "https://maxsitt.github.io/insect-detect-docs/"
