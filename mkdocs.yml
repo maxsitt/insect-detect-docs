@@ -99,8 +99,6 @@ extra:
       link: https://orcid.org/0000-0002-4096-8556
     - icon: fontawesome/brands/researchgate
       link: https://researchgate.net/profile/Maximilian-Sittinger
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/M_Sittinger
     - icon: fontawesome/regular/envelope
       link: mailto:maximilian.sittinger@julius-kuehn.de
 
