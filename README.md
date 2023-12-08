@@ -105,9 +105,9 @@ International License ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa
 
 ## Citation
 
-You can cite this repository as:
+You can cite this project as:
 
 ```
-Sittinger, M. (2023). Insect Detect Docs - Documentation website for the
-Insect Detect DIY camera trap system (v1.1). Zenodo. https://doi.org/10.5281/zenodo.7503371
+Sittinger, M., Uhler, J., Pink, M. & Herz, A. (2023). Insect Detect: An open-source DIY camera trap
+for automated insect monitoring [Preprint]. bioRxiv. https://doi.org/10.1101/2023.12.05.570242
 ```
