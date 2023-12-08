@@ -4,6 +4,7 @@
 
 [![DOI](https://zenodo.org/badge/580908850.svg)](https://zenodo.org/badge/latestdoi/580908850)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![DOI bioRxiv](https://img.shields.io/badge/bioRxiv-10.1101%2F2023.12.05.570242-B31B1B)](https://doi.org/10.1101/2023.12.05.570242)
 
 This repository contains the Markdown source files and assets (images, screenshots) of
 the [**Insect Detect Docs**](https://maxsitt.github.io/insect-detect-docs/) 📑 website,
