@@ -318,14 +318,14 @@ All Python scripts are licensed under the GNU General Public License v3.0
 
 ## Citation
 
-Until the corresponding paper will be published, you can cite this project as:
+[![DOI bioRxiv](https://img.shields.io/badge/bioRxiv-10.1101%2F2023.12.05.570242-B31B1B)](https://doi.org/10.1101/2023.12.05.570242){target=_blank}
+
+You can cite this project as:
 
 ``` text
-Sittinger, M. (2023). Insect Detect - Software for automated insect monitoring
-with a DIY camera trap system (v1.6). Zenodo. https://doi.org/10.5281/zenodo.7472238
+Sittinger, M., Uhler, J., Pink, M. & Herz, A. (2023). Insect Detect: An open-source DIY camera trap
+for automated insect monitoring [Preprint]. bioRxiv. https://doi.org/10.1101/2023.12.05.570242
 ```
-
-[![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977){target=_blank}
 
 ---
 
