@@ -676,6 +676,12 @@ by running:
 sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
 ```
 
+Additionally, install the package `libopenblas-dev`:
+
+```
+sudo apt-get install libopenblas-dev
+```
+
 ??? question "Only Raspberry Pi Zero W (v1)"
 
     Additionally to the installed dependencies, you will have to install the
