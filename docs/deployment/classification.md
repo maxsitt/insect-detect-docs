@@ -94,9 +94,11 @@ you already have [Python](https://www.python.org/){target=_blank} installed on y
     py -m pip install -r yolov5-master/requirements.txt
     ```
 
-    If you are running the image classification on a computer with CUDA-enabled
-    GPU, please edit the `requirements.txt` file and change `onnxruntime` to
-    `onnxruntime-gpu` before installing the packages.
+    !!! tip ""
+
+        If you are running the image classification on a computer with CUDA-enabled
+        GPU, please edit the `requirements.txt` file and change `onnxruntime` to
+        `onnxruntime-gpu` before installing the packages.
 
 ---
 
