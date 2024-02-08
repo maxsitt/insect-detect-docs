@@ -39,7 +39,7 @@ repo_url: https://github.com/maxsitt/insect-detect-docs
 edit_uri: ""
 
 # Copyright
-copyright: Copyright &copy; 2022 - 2023 Maximilian Sittinger
+copyright: Copyright &copy; 2022 - 2024 Maximilian Sittinger
 
 # Configuration
 theme:
@@ -100,7 +100,7 @@ extra:
     - icon: fontawesome/brands/researchgate
       link: https://researchgate.net/profile/Maximilian-Sittinger
     - icon: fontawesome/regular/envelope
-      link: mailto:maximilian.sittinger@julius-kuehn.de
+      link: mailto:maximilian.sittinger@idiv.de
 
 # Extensions
 markdown_extensions:
