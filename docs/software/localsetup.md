@@ -112,13 +112,12 @@ save the captured images and metadata:
 
 ## Python
 
-[Download Python 3.11.6](https://www.python.org/ftp/python/3.11.6/python-3.11.6-amd64.exe){target=_blank}
+[Download Python 3.11.8](https://www.python.org/ftp/python/3.11.8/python-3.11.8-amd64.exe){target=_blank}
 and install it to your computer, while keeping all the default settings
 (select **Install Now**). The latest version 3.12 is not yet supported
 by some packages. You will need Python to run the scripts for
 [classification](../deployment/classification.md){target=_blank} of the captured
-insect images and subsequent [analysis](../deployment/analysis.md){target=_blank}
-and post-processing of the metadata.
+insect images and subsequent metadata [post-processing](../deployment/post-processing.md){target=_blank}.
 
 We are going to use the
 [Python Launcher](https://docs.python.org/3.11/using/windows.html#python-launcher-for-windows){target=_blank}
