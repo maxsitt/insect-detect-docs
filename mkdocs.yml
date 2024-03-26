@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2023 Maximilian Sittinger <maximilian.sittinger@julius-kuehn.de>
+# Copyright (c) 2022-2024 Maximilian Sittinger <maximilian.sittinger@idiv.de>
 
 # License: CC BY-SA 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -147,4 +147,4 @@ nav:
   - Deployment:
     - Detection: deployment/detection.md
     - Classification: deployment/classification.md
-    - Analysis: deployment/analysis.md
+    - Post-Processing: deployment/post-processing.md
