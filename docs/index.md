@@ -119,9 +119,9 @@ the visual attraction for specific pollinator groups.
     - non-invasive, continuous automated monitoring of flower-visiting insects
     - standardized artificial flower platform as visual attractant
     - on-device detection and tracking with provided YOLO models (up to 60 fps)
-    - save images of detected insects cropped from high-resolution frames (~12 fps)
+    - save images of detected insects cropped from high-resolution frames (~13 fps)
     - low power consumption (~4.4 W) and fully solar-powered
-    - automated classification and analysis in subsequent step on local PC
+    - automated classification and post-processing in subsequent step on local PC
     - weatherproof enclosure
     - easy to build and deploy with low-cost off-the-shelf hardware components
     - completely open-source software with detailed documentation
@@ -129,7 +129,7 @@ the visual attraction for specific pollinator groups.
 
 !!! failure "Not implemented (yet)"
 
-    - on-device classification and analysis
+    - on-device classification and metadata post-processing
     - real-time data transfer (e.g. via LTE/LoRaWAN module)
     - comparison with traditional monitoring methods (validation)
 
@@ -182,8 +182,8 @@ all you need is a Google account, no special hardware is required.
 The **Deployment** section contains details about each step of the processing
 pipeline, from on-device [detection](deployment/detection.md){target=_blank}
 and tracking, to [classification](deployment/classification.md){target=_blank}
-of the cropped insect images on your local PC and subsequent automated
-post-processing and [analysis](deployment/analysis.md){target=_blank} of the
+of the cropped insect images on your local PC and subsequent metadata
+[post-processing](deployment/post-processing.md){target=_blank} of the
 combined results.
 
 <figure markdown>
@@ -207,9 +207,8 @@ combined results.
 - [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/580963598.svg)](https://zenodo.org/badge/latestdoi/580963598){target=_blank}
 
-    > Notebooks for object detection and image classification model
-      training. Insect classification model. Python scripts for
-      automated post-processing and analysis of the camera trap data.
+    > Notebooks for object detection and image classification model training.
+      Insect classification model. Python scripts for data post-processing.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect-ml/archive/refs/heads/main.zip){ .md-button }
 

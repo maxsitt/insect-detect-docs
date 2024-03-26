@@ -79,7 +79,7 @@ event. This metadata includes:
   tracking IDs will restart from 1 for each recording interval and the metadata
   .csv files will be merged during the automated
   [classification step](classification.md){target=_blank}.
-- `timestamp` with exact recording time (format: `%Y%m%d_%H-%M-%S.%f`).
+- `timestamp` with exact recording time.
 - `label` is negligible if a detection model with only one class is used, but
   enables the deployment of a multi-class detection model.
 - `confidence` score can be used to evaluate the quality of the detection
@@ -90,13 +90,13 @@ event. This metadata includes:
   second), many images can exist of an individual tracked insect, dependent on
   its duration of stay on the flower platform. All of these images are classified
   in the [next step](classification.md){target=_blank} and the class with the
-  overall highest probability is then calculated in the final step by using the
-  [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank} script.
+  highest weighted probability is then calculated in the final step by using the
+  [`process_metadata.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/process_metadata.py){target=_blank} script.
 - `x_min`, `y_min`, `x_max`, `y_max` relative bounding box coordinates.
   These coordinates make it possible to calculate the relative bounding box
   size. If the absolute frame dimensions (e.g. size of the flower platform in mm)
-  are used as arguments for the
-  [`csv_analysis.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/csv_analysis.py){target=_blank}
+  are used as argument for the
+  [`process_metadata.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/process_metadata.py){target=_blank}
   script, the absolute average bounding box size in mm is calculated for each detection.
 - `file_path` to the cropped detection, saved as .jpg.
 

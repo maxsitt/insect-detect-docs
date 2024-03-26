@@ -13,8 +13,8 @@ cropped detections of individual insects are saved as .jpg files and relevant
 recording interval. The insect images can be classified in a subsequent step on
 your local PC, by using a [classification model](../index.md#classification-model){target=_blank}
 exported to [ONNX format](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
-for faster CPU inference. The prediction results are added to the merged metadata .csv
-files for post-processing and [analysis](analysis.md){target=_blank} in the last step.
+for faster CPU inference. The classification results are added to the merged metadata
+.csv files for [post-processing](post-processing.md){target=_blank} in the last step.
 
 ---
 
@@ -140,10 +140,6 @@ and add the prediction results to the merged metadata .csv files.
           (requires `--sort-top1`)
         - `--concat-csv` concatenate all metadata .csv files and
           append classification results to new columns
-        - `--new-csv` create a new .csv file with classification results,
-          e.g. if no metadata .csv files are available
-        - `--save-txt` to save the classification results to individual .txt files
-          for each image
 
     ??? bug "Image Not Found"
 
@@ -155,11 +151,11 @@ and add the prediction results to the merged metadata .csv files.
         ```
 
         This error can be caused by corrupt .jpg images, that are rarely generated during image capture. Run the
-        [`check_images.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/check_images.py){target=_blank}
+        [`process_images.py`](https://github.com/maxsitt/insect-detect-ml/blob/main/process_images.py){target=_blank}
         script to find corrupt images in the data folder and move them to a new folder with:
 
         ``` powershell
-        py insect-detect-ml-main/check_images.py -data insect-detect/data/
+        py insect-detect-ml-main/process_images.py -source insect-detect/data
         ```
 
         After removing the corrupt .jpg images, the classification
@@ -167,10 +163,10 @@ and add the prediction results to the merged metadata .csv files.
 
 All results are saved to `yolov5-master/runs/predict-cls/{name}`. The
 `*metadata_classified.csv` still contains multiple rows for each
-tracked insect (= `track_ID`). During post-processing and [analysis](analysis.md){target=_blank}
-in the last step, the respective class with the overall highest probability is
-calculated for each tracked insect. This will create the final .csv file, in
-which each row corresponds to an individual tracked insect.
+tracked insect (= `track_ID`). During [post-processing](post-processing.md){target=_blank}
+in the last step, the respective class with the highest weighted probability
+is calculated for each tracked insect. This will create the final .csv file,
+in which each row corresponds to an individual tracked insect.
 
 !!! tip ""
 
