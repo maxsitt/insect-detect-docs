@@ -490,7 +490,7 @@ step and directly continue with the [OAK-1 configuration](#oak-1-configuration).
 First install the PiJuice package and its dependencies by running:
 
 ``` bash
-sudo apt-get install pijuice-base
+sudo apt install pijuice-base
 ```
 
 When you are asked if you want to continue, confirm with ++y+enter++.
@@ -679,7 +679,7 @@ sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
 Additionally, install the package `libopenblas-dev`:
 
 ```
-sudo apt-get install libopenblas-dev
+sudo apt install libopenblas-dev
 ```
 
 ??? question "Only Raspberry Pi Zero W (v1)"
@@ -688,7 +688,7 @@ sudo apt-get install libopenblas-dev
     package `libusb-1.0-0-dev` with:
 
     ``` bash
-    sudo apt-get install libusb-1.0-0-dev
+    sudo apt install libusb-1.0-0-dev
     ```
 
 [Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
