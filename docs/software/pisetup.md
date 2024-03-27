@@ -634,20 +634,23 @@ Now paste the following lines at the end of the crontab file:
 ``` py
 # Sleep for 30 seconds after boot to wait for all services to start, then execute Python script and
 # redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp
-@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
+@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py; } >> insect-detect/cronjob_log.log 2>&1
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
+    Add after `python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py`, separated by space:
 
-    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default = 1080p)
-    - `-crop` save cropped detections with aspect ratio 1:1 (default = `-crop square`)
+    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default: 1080p)
+    - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
+    - `-ae` use bounding box coordinates from detections to set auto exposure region
+    - `-crop` save cropped detections with aspect ratio 1:1 (default: `-crop square`)
               or keep original bbox size with variable aspect ratio (`-crop tight`)
-    - `-raw` additionally save HQ frames to .jpg (e.g. for training data collection)
-    - `-overlay` additionally save HQ frames with overlay (bbox + info) to .jpg
+    - `-raw` additionally save full HQ frames to .jpg (e.g. for training data collection)
+    - `-overlay` additionally save full HQ frames with overlays (bbox + info) to .jpg
     - `-log` write RPi CPU + OAK chip temperature, RPi available
              memory + CPU utilization and battery info to .csv
+    - `-zip` store data in an uncompressed .zip file for each day and delete original directory
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
