@@ -9,6 +9,13 @@
     about the API that is used can be found at the
     [DepthAI API Docs](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
 
+!!! bug ""
+
+    2024-03-27: The scripts in this section are currently out of date! Will be updated soon.
+
+    Please check the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+    GitHub repo for the latest updates.
+
 The latest versions of the Python scripts are available in the
 [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
 [Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
@@ -575,8 +582,8 @@ The following Python script is the main script for fully
 
 - The object tracker output (+ passthrough detections) from inference on downscaled
   LQ frames (e.g. 320x320 px) is synchronized with HQ frames (e.g. 1920x1080 px) in a
-  [script node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/script/){target=_blank}
-  on-device, using the respective sequence numbers.
+  [sync node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/sync_node/){target=_blank}
+  on-device, using the respective message timestamps.
 - Detections (bounding box area) are
   [cropped](https://maxsitt.github.io/insect-detect-docs/deployment/assets/images/hq_frame_sync_1080p.gif){target=_blank}
   from synced HQ frames and saved to .jpg. By default, cropped detections are saved
@@ -600,7 +607,7 @@ The following Python script is the main script for fully
   Pi is safely shut down and waits for the next wake up alarm from the PiJuice Zero.
 
 Using the default 1080p resolution for the HQ frames will result in an
-pipeline speed of **~12 fps**, which is fast enough to track most insects.
+pipeline speed of **~13 fps**, which is fast enough to track many insects.
 If 4K resolution is used instead (`-4k`), the pipeline speed will decrease to
 **~3 fps**, which reduces tracking accuracy for fast moving insects.
 
@@ -612,26 +619,29 @@ automatically at each boot (after wake up by the PiJuice Zero).
 
     If you want to try the script without the PiJuice Zero pHAT connected to
     your Raspberry Pi, use the
-    [`yolo_tracker_save_hqsync_nopj.py`](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync_nopj.py){target=_blank}
-    script, available at the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
+    [`yolo_tracker_save_hqsync.py`](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync.py){target=_blank}
+    script, available in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
 
 Run the script with:
 
 ``` bash
-python3 insect-detect/yolo_tracker_save_hqsync.py
+python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
+    Add after `python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py`, separated by space:
 
-    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default = 1080p)
-    - `-crop` save cropped detections with aspect ratio 1:1 (default = `-crop square`)
+    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default: 1080p)
+    - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
+    - `-ae` use bounding box coordinates from detections to set auto exposure region
+    - `-crop` save cropped detections with aspect ratio 1:1 (default: `-crop square`)
               or keep original bbox size with variable aspect ratio (`-crop tight`)
-    - `-raw` additionally save HQ frames to .jpg (e.g. for training data collection)
-    - `-overlay` additionally save HQ frames with overlay (bbox + info) to .jpg
+    - `-raw` additionally save full HQ frames to .jpg (e.g. for training data collection)
+    - `-overlay` additionally save full HQ frames with overlays (bbox + info) to .jpg
     - `-log` write RPi CPU + OAK chip temperature, RPi available
              memory + CPU utilization and battery info to .csv
+    - `-zip` store data in an uncompressed .zip file for each day and delete original directory
 
 Stop the script by pressing ++ctrl+c++ in the Terminal.
 
