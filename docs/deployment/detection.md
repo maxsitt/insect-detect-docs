@@ -56,7 +56,7 @@ frames and save them as individual .jpg files (e.g. every second). The
 [classification](classification.md){target=_blank} in a subsequent step on
 your local PC.
 
-![HQ frame sync cropped detection](assets/images/hq_frame_sync_1080p.gif){ width="800" }
+![HQ frame sync cropped detection](assets/images/hq_frame_sync_1080p.jpg){ width="800" }
 
 Separating the detection and classification steps can also simplify dataset
 management, annotation and model training. Overall less training data is
