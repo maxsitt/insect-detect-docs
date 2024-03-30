@@ -94,7 +94,7 @@ of the captured insect images is available in the custom [`yolov5`](https://gith
 A Python script for metadata [post-processing](https://github.com/maxsitt/insect-detect-ml/blob/main/process_metadata.py)
 is available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml) GitHub repo.
 
-<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/deployment/assets/images/hq_frame_sync_1080p.gif" width="800">
+<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/deployment/assets/images/hq_sync_pipeline.png" width="800">
 
 ---
 
