@@ -40,3 +40,8 @@ you can skip this step and use your own mounting option.
   <figcaption>Fully assembled Insect Detect camera trap system
               after following the provided instructions</figcaption>
 </figure>
+
+<figure markdown>
+  ![Insect Detect hardware schematic](assets/images/hardware_schematic.png){ width="700" }
+  <figcaption>Hardware schematic to illustrate connections between components</figcaption>
+</figure>

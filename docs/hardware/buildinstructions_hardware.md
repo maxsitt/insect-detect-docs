@@ -234,6 +234,8 @@ the OAK-1 package.
 
 ![Enclosure Hardware overview](assets/images/enclosure_hardware_overview.jpg){ width="700" }
 
+![Insect Detect hardware schematic](assets/images/hardware_schematic.png){ width="700" }
+
 If you are going for the [Minimal Setup](components.md#minimal-setup){target=_blank}
 you are now finished! Don't close the lid yet, as we need to
 [set up the software](../software/index.md){target=_blank} in the next steps.
