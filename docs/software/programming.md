@@ -612,7 +612,7 @@ If 4K resolution is used instead (`-4k`), the pipeline speed will decrease to
 **~3 fps**, which reduces tracking accuracy for fast moving insects.
 
 For fully automated monitoring in the field, set up a
-[cron job](../pisetup/#set-up-cron-job){target=_blank} that will run the script
+[cron job](pisetup.md#set-up-cron-job){target=_blank} that will run the script
 automatically at each boot (after wake up by the PiJuice Zero).
 
 ??? question "No PiJuice Zero?"
@@ -1130,7 +1130,7 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 11. You can specify your own recording durations and charge level thresholds in
     this code section. The suggested values can provide an efficient recording
     behaviour if you are using the 12,000 mAh PiJuice battery and set up the
-    [Wakeup Alarm](../pisetup/#pijuice-zero-configuration){target=_blank} for
+    [Wakeup Alarm](pisetup.md#pijuice-zero-configuration){target=_blank} for
     3-6 times per day. Depending on the number of Wakeups per day, as well as
     the season and sun exposure of the solar panel, it can make sense to
     increase or decrease the recording duration.
