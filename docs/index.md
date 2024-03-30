@@ -279,14 +279,14 @@ combined results.
 
 ### Classification model
 
-| Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>val<br> | Precision<sup>val<br> | Recall<sup>val<br> | F1 score<sup>val<br> |
-| --------------------- | --------------------- | ------------------------- | --------------------- | ------------------ | -------------------- |
-| EfficientNet-B0       | 128                   | 0.98                      | 0.979                 | 0.974              | 0.976                |
+| Model<br><sup>(.onnx) | size<br><sup>(pixels) | Top1 Accuracy<sup>test<br> | Precision<sup>test<br> | Recall<sup>test<br> | F1 score<sup>test<br> |
+| --------------------- | --------------------- | -------------------------- | ---------------------- | ------------------- | --------------------- |
+| EfficientNet-B0       | 128                   | 0.972                      | 0.971                  | 0.967               | 0.969                 |
 
 ??? note "Table Notes"
 
     - The [model](https://github.com/maxsitt/insect-detect-ml/tree/main/models){target=_blank}
-      was trained with image size 128 to 20 epochs with batch size 64 and default
+      was trained to 20 epochs with image size 128, batch size 64 and default
       settings and hyperparameters. Reproduce the model training with the provided
       [Google Colab notebook](https://colab.research.google.com/github/maxsitt/insect-detect-ml/blob/main/notebooks/YOLOv5_classification_training.ipynb){target=_blank}.
     - Trained on [Insect Detect - insect classification dataset v2](https://doi.org/10.5281/zenodo.8325383){target=_blank}
@@ -298,20 +298,30 @@ combined results.
     - Full model metrics are available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml/tree/main#classification-model){target=_blank}
       GitHub repo.
 
-![EfficientNet-B0 confusion matrix](assets/images/efficientnet-b0_confusion_matrix_val.png){ width="700" }
+    ![EfficientNet-B0 confusion matrix test split](assets/images/efficientnet-b0_confusion_matrix_test.png){ width="700" }
+
+<figure markdown>
+  ![Classification model classes](assets/images/classification_classes.png){ width="700" }
+  <figcaption>The classification model includes 22 insect taxa/groups, one class for
+              "other" arthropods and four classes for non-arthropod detections</figcaption>
+</figure>
 
 ---
 
 ## License
 
-![CC BY-SA 4.0 license](https://i.creativecommons.org/l/by-sa/4.0/88x31.png){ align=right }
-
 This documentation website and its content is licensed under the Creative
 Commons Attribution-ShareAlike 4.0 International License
 ([CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/){target=_blank}).
 
-All Python scripts are licensed under the GNU General Public License v3.0
+Python scripts from the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+GitHub repo are licensed under the GNU General Public License v3.0
 ([GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/){target=_blank}).
+
+Python scripts and Jupyter notebooks from the
+[`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
+GitHub repo are licensed under the GNU Affero General Public License v3.0
+([GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/){target=_blank}).
 
 ---
 
