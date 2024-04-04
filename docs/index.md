@@ -2,6 +2,8 @@
 
 ![Insect Detect Logo](assets/logo.png){ width="500" }
 
+[![DOI PLOS ONE](https://img.shields.io/badge/PLOS%20ONE-10.1371%2Fjournal.pone.0295474-BD3094)](https://doi.org/10.1371/journal.pone.0295474){target=_blank}
+
 <span style="font-size: 140%; font-weight: bold">
 Build your own insect-detecting camera trap!
 </span>
@@ -308,32 +310,32 @@ combined results.
 
 ---
 
-## License
+## Licenses
 
-This documentation website and its content is licensed under the Creative
-Commons Attribution-ShareAlike 4.0 International License
+This documentation website and its content is licensed under the terms of
+the Creative Commons Attribution-ShareAlike 4.0 International License
 ([CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/){target=_blank}).
 
-Python scripts from the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
-GitHub repo are licensed under the GNU General Public License v3.0
+Resources from the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+GitHub repository are licensed under the terms of the GNU General Public License v3.0
 ([GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/){target=_blank}).
 
-Python scripts and Jupyter notebooks from the
+Resources from the
 [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
-GitHub repo are licensed under the GNU Affero General Public License v3.0
+GitHub repository and [`yolov5`](https://github.com/maxsitt/yolov5){target=_blank}
+fork are licensed under the terms of the GNU Affero General Public License v3.0
 ([GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/){target=_blank}).
 
 ---
 
 ## Citation
 
-[![DOI bioRxiv](https://img.shields.io/badge/bioRxiv-10.1101%2F2023.12.05.570242-B31B1B)](https://doi.org/10.1101/2023.12.05.570242){target=_blank}
+[![DOI PLOS ONE](https://img.shields.io/badge/PLOS%20ONE-10.1371%2Fjournal.pone.0295474-BD3094)](https://doi.org/10.1371/journal.pone.0295474){target=_blank}
 
-You can cite this project as:
+If you use resources from this project, please cite our paper:
 
 ``` text
-Sittinger, M., Uhler, J., Pink, M. & Herz, A. (2023). Insect Detect: An open-source DIY camera trap
-for automated insect monitoring [Preprint]. bioRxiv. https://doi.org/10.1101/2023.12.05.570242
+Sittinger M, Uhler J, Pink M, Herz A (2024) Insect detect: An open-source DIY camera trap for automated insect monitoring. PLoS ONE 19(4): e0295474. https://doi.org/10.1371/journal.pone.0295474
 ```
 
 ---
@@ -356,6 +358,6 @@ Many thanks to:
   [**automated monitoring community**](https://www.wildlabs.net/groups/autonomous-camera-traps-insects){target=_blank}
   for inspiring ideas and feedback.
 
-Funding for this work was provided by the German Federal Ministry of Food and
-Agriculture in the scope of the research project
-[**MonViA**](https://www.agrarmonitoring-monvia.de/en/monitoring-of-insects/beneficial-insects-in-refuge-habitats){target=_blank}.
+This work is part of the joint project "National Monitoring of Biodiversity in Agricultural Landscapes"
+([**MonViA**](https://www.agrarmonitoring-monvia.de/en/monitoring-of-insects/beneficial-insects-in-refuge-habitats){target=_blank})
+of the German Federal Ministry of Food and Agriculture.
