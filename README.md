@@ -1,10 +1,10 @@
 # Insect Detect Docs - DIY camera trap documentation
 
-<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/assets/logo.png" width="500">
+<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/assets/logo.png" width="540">
 
-[![DOI](https://zenodo.org/badge/580908850.svg)](https://zenodo.org/badge/latestdoi/580908850)
+[![DOI PLOS ONE](https://img.shields.io/badge/PLOS%20ONE-10.1371%2Fjournal.pone.0295474-BD3094)](https://doi.org/10.1371/journal.pone.0295474)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
-[![DOI bioRxiv](https://img.shields.io/badge/bioRxiv-10.1101%2F2023.12.05.570242-B31B1B)](https://doi.org/10.1101/2023.12.05.570242)
+[![DOI Zenodo](https://zenodo.org/badge/580908850.svg)](https://zenodo.org/badge/latestdoi/580908850)
 
 This repository contains the Markdown source files and assets (images, screenshots) of
 the [**Insect Detect Docs**](https://maxsitt.github.io/insect-detect-docs/) 📑 website,
@@ -100,14 +100,13 @@ is available in the [`insect-detect-ml`](https://github.com/maxsitt/insect-detec
 
 ## License
 
-The documentation website and its content is licensed under the Creative Commons Attribution-ShareAlike 4.0
+This repository is licensed under the terms of the Creative Commons Attribution-ShareAlike 4.0
 International License ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
 
 ## Citation
 
-You can cite this project as:
+If you use resources from this repository, please cite our paper:
 
 ```
-Sittinger, M., Uhler, J., Pink, M. & Herz, A. (2023). Insect Detect: An open-source DIY camera trap
-for automated insect monitoring [Preprint]. bioRxiv. https://doi.org/10.1101/2023.12.05.570242
+Sittinger M, Uhler J, Pink M, Herz A (2024) Insect detect: An open-source DIY camera trap for automated insect monitoring. PLoS ONE 19(4): e0295474. https://doi.org/10.1371/journal.pone.0295474
 ```
