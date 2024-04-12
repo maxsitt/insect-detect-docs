@@ -646,7 +646,8 @@ Now paste the following lines at the end of the crontab file:
     - `-ae` use bounding box coordinates from detections to set auto exposure region
     - `-crop` save cropped detections with aspect ratio 1:1 (default: `-crop square`)
               or keep original bbox size with variable aspect ratio (`-crop tight`)
-    - `-raw` additionally save full HQ frames to .jpg (e.g. for training data collection)
+    - `-full` additionally save full HQ frames to .jpg together with cropped detections
+              (`-full det`) or at specified frequency, independent of detections (`-full freq`)
     - `-overlay` additionally save full HQ frames with overlays (bbox + info) to .jpg
     - `-log` write RPi CPU + OAK chip temperature, RPi available
              memory + CPU utilization and battery info to .csv
