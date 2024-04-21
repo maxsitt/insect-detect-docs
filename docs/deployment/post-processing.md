@@ -35,7 +35,7 @@ results to `*metadata_classified.csv`.
 - Navigate to the `YOLOv5-cls` folder and start the post-processing script by running:
 
     ``` powershell
-    py insect-detect-ml-main/process_metadata.py -source yolov5-master/runs/predict-cls/<NAME>/results -size 350 200 -images 3 1800
+    py insect-detect-ml-main/process_metadata.py -source "yolov5-master/runs/predict-cls/<NAME>/results" -size 350 200 -images 3 1800
     ```
 
     !!! tip ""
