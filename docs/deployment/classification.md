@@ -155,7 +155,7 @@ and add the prediction results to the merged metadata .csv files.
         script to find corrupt images in the data folder and move them to a new folder with:
 
         ``` powershell
-        py insect-detect-ml-main/process_images.py -source insect-detect/data
+        py insect-detect-ml-main/process_images.py -source "insect-detect/data"
         ```
 
         After removing the corrupt .jpg images, the classification
