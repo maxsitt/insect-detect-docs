@@ -73,7 +73,7 @@ in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank
 
     | Component                                       | Price              | Product Link                                                                                                               |
     | ----------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-    | OAK-1 (OpenCV AI Kit)                           | 145.99 &euro;      | e.g. [Luxonis shop](https://bit.ly/3Ew7PbM){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank}              |
+    | OAK-1 Auto-Focus (OpenCV AI Kit)                | 145.99 &euro;      | e.g. [Luxonis shop](https://shop.luxonis.com/collections/usb/products/oak-1?variant=42664380334303){target=_blank} or [Mouser](https://bit.ly/3dl8ukF){target=_blank} |
     | Raspberry Pi Zero 2 W                           | ~22.00 &euro;      | [rpilocator](https://rpilocator.com){target=_blank}                                                                        |
     | Micro SDXC card 256 GB                          | 28.99 &euro;       | e.g. [Conrad](https://bit.ly/3Z5tNsA){target=_blank}                                                                       |
     | Micro USB to USB A adapter, angled              | 5.50 &euro;        | e.g. [Reichelt](https://bit.ly/3SIgDjk){target=_blank}                                                                     |
