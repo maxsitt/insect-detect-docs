@@ -1,0 +1,2110 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Insect Detect: DIY camera trap for continuous automated insect monitoring -  Documentation and build instructions">
+      
+      
+        <meta name="author" content="Maximilian Sittinger">
+      
+      
+        <link rel="canonical" href="https://maxsitt.github.io/insect-detect-docs/software/pisetup/">
+      
+      
+        <link rel="prev" href="../localsetup/">
+      
+      
+        <link rel="next" href="../programming/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>Raspberry Pi Setup - Insect Detect Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#raspberry-pi-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Insect Detect Docs" class="md-header__button md-logo" aria-label="Insect Detect Docs" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Insect Detect Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Raspberry Pi Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Insect Detect Docs" class="md-nav__button md-logo" aria-label="Insect Detect Docs" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Insect Detect Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../hardware/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Version 2024
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Version 2024
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Building Instructions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Building Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_enclosures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enclosure Preparation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_mounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mounting Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_field_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Field Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Version 2023
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Version 2023
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Building Instructions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Building Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_enclosure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preparing the Enclosure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integrating the Hardware
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_mounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mounting Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../localsetup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Local Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Raspberry Pi Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Raspberry Pi Setup
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-key-based-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH key based authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi-os-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi OS installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-boot-and-ip-address-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      First boot and IP address search
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-connection-and-x11-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH connection and X11 forwarding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rpi-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPi configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pijuice-zero-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      PiJuice Zero configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-cron-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up Cron Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oak-1-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      OAK-1 configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Model Training
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Model Training
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/annotation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/train_detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/train_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/post-processing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Post-Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-key-based-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH key based authentication
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#raspberry-pi-os-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Raspberry Pi OS installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-boot-and-ip-address-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      First boot and IP address search
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-connection-and-x11-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSH connection and X11 forwarding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rpi-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      RPi configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pijuice-zero-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      PiJuice Zero configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-cron-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up Cron Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oak-1-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      OAK-1 configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="raspberry-pi-setup">Raspberry Pi Setup<a class="headerlink" href="#raspberry-pi-setup" title="Anchor link to this section">&para;</a></h1>
+<p>Before you can use the Raspberry Pi, you will first have to install Raspberry Pi
+OS Lite to the microSD card. If you followed the steps in
+<a href="../localsetup/#raspberry-pi-imager" target="_blank">Local Setup</a>, you already have
+the <a href="https://www.raspberrypi.com/software/" target="_blank">Raspberry Pi Imager</a>
+installed on your computer.</p>
+<hr />
+<h2 id="ssh-key-based-authentication">SSH key based authentication<a class="headerlink" href="#ssh-key-based-authentication" title="Anchor link to this section">&para;</a></h2>
+<p>It is recommended to use SSH key based authentication for communication with your
+Raspberry Pi. You can find more details on this topic and instructions for macOS/Linux in the
+<a href="https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication" target="_blank">VS Code Docs</a> and
+<a href="https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access" target="_blank">Raspberry Pi Docs</a>.</p>
+<p>Since <a href="https://github.com/raspberrypi/rpi-imager/releases/tag/v1.8.1" target="_blank">v1.8.1</a>
+of the Raspberry Pi Imager, you can now easily generate a new SSH key pair during the
+Raspberry Pi OS installation. If you want to generate your SSH key pair manually or
+set up SSH key based authentication after SD card setup, follow the steps in the info box.</p>
+<details class="info">
+<summary>Generate SSH key manually</summary>
+<p>First check if there is already an SSH key pair on your computer by going to
+the <code>C:\Users\&lt;username&gt;\.ssh</code> folder. If there are two files named <code>id_rsa</code>
+and <code>id_rsa.pub</code> you can skip this step and move on to
+<a href="#raspberry-pi-os-installation">RPi OS installation</a>. If you can't find the <code>.ssh</code>
+folder or the key files, you will have to generate a new SSH key pair on your PC.
+<a href="https://www.digitalcitizen.life/open-windows-terminal/" target="_blank">Open</a>
+a local Terminal (Windows PowerShell) and run the following command:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ssh-keygen</span> <span class="n">-t</span> <span class="n">rsa</span> <span class="n">-b</span> <span class="n">4096</span>
+</span></code></pre></div>
+<p>Save the key to the default location <code>C:\Users\&lt;username&gt;/.ssh/id_rsa</code> by
+hitting <span class="keys"><kbd class="key-enter">Enter</kbd></span>. When you are asked to enter a passphrase, leave the field
+empty and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> twice. You have now generated a private and public
+SSH key. The public SSH key should be automatically inserted during the
+<a href="#raspberry-pi-os-installation">RPi OS installation</a> in the next step, if
+you choose public-key authentication.</p>
+<div class="admonition tip">
+<p>If you want to connect your Raspberry Pi to multiple local PCs with SSH
+key based authentication, generate an SSH key pair on each local PC and
+copy the line with the public key from <code>/.ssh/id_rsa.pub</code> on your PC to
+a new row in <code>/home/pi/.ssh/authorized_keys</code> on your Raspberry Pi.</p>
+<p><a class="glightbox" href="../assets/images/vscode_raspberry_add_ssh_key.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi add SSH key" src="../assets/images/vscode_raspberry_add_ssh_key.png" width="600" /></a></p>
+</div>
+<details class="info">
+<summary>Optional: SSH key based authentication after SD card setup</summary>
+<p>If you already have the SD card prepared without public-key authentication,
+you can still configure this by following the steps above to generate the
+key pair and then (while connected to your Raspberry Pi via SSH) running
+the following command in your local Terminal (Windows PowerShell):</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cat </span><span class="p">~/.</span><span class="n">ssh</span><span class="p">/</span><span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span> <span class="p">|</span> <span class="n">ssh</span> <span class="n">pi</span><span class="p">@&lt;</span><span class="n">IP-ADDRESS</span><span class="p">&gt;</span> <span class="s1">&#39;mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys&#39;</span>
+</span></code></pre></div>
+<p>Please make sure to enter the correct <code>IP address</code> (or hostname) of your
+Raspberry Pi. After entering your RPi password, your public SSH key will be
+saved to <code>/home/pi/.ssh/authorized_keys</code>. After that you won't be asked to
+enter your password again, as the authentication is now based on the SSH key.</p>
+</details>
+</details>
+<hr />
+<h2 id="raspberry-pi-os-installation">Raspberry Pi OS installation<a class="headerlink" href="#raspberry-pi-os-installation" title="Anchor link to this section">&para;</a></h2>
+<p>Insert the microSD card into your card reader and open the Raspberry Pi
+Imager. Start with selecting your device (Raspberry Pi model).</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_device.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager choose device" src="../assets/images/raspberrypi_imager_device.png" width="700" /></a></p>
+<p>If you are using the recommended model Raspberry Pi Zero 2 W, select it.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_rpizero2w.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager RPi Zero 2 W" src="../assets/images/raspberrypi_imager_rpizero2w.png" width="700" /></a></p>
+<p>Choose the RPi OS in the next step. We don't want to install the default OS with
+Desktop, so you have to go to the other Raspberry Pi OS based images.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_choose_os.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager choose OS" src="../assets/images/raspberrypi_imager_choose_os.png" width="700" /></a></p>
+<p>Select the option <strong>Raspberry Pi OS (Legacy) Lite</strong> (Debian Bullseye). The new Raspberry Pi OS
+(<a href="https://www.raspberrypi.com/news/bookworm-the-new-version-of-raspberry-pi-os/" target="_blank">Debian Bookworm</a>),
+released 2023-10-10, introduces several changes including the setup and configuration
+options. It is not yet recommended and tested with the software.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_choose_os_lite.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager choose lite OS" src="../assets/images/raspberrypi_imager_choose_os_lite.png" width="700" /></a></p>
+<p>You can now choose the storage. Select your microSD card, which
+will be formatted during the Raspberry Pi OS installation.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_choose_storage.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager choose storage" src="../assets/images/raspberrypi_imager_choose_storage.png" width="700" /></a></p>
+<p>Hit the <strong>Next</strong> button and choose <strong>Edit settings</strong> when you are
+asked if you would like to apply OS customisation settings.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_edit_settings.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager edit settings" src="../assets/images/raspberrypi_imager_edit_settings.png" width="700" /></a></p>
+<p>Change the following settings under the <strong>General</strong> tab:</p>
+<ul>
+<li>Set the hostname (default: <code>raspberrypi</code>). If you will be deploying multiple camera
+  traps, you should give each a unique hostname (e.g. <code>camtrap1</code>, <code>camtrap2</code> etc.).</li>
+<li>Set the username and password. Use the default <code>pi</code> as username.</li>
+<li>Enter your WiFi SSID and password, to be able to connect to the RPi via SSH
+  immediately after the first boot. In some cases it might be beneficial to use a
+  <a href="https://support.microsoft.com/en-us/windows/use-your-windows-pc-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85#WindowsVersion=Windows_11" target="_blank">mobile hotspot</a>
+  from your PC (e.g. to share restricted WiFi, multiple WiFis or Ethernet).</li>
+<li>Select the correct Wireless LAN country in the dropdown menu below.</li>
+<li>Set the locale settings to your time zone and keyboard layout.</li>
+</ul>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings_general.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager settings general" src="../assets/images/raspberrypi_imager_settings_general.png" width="500" /></a></p>
+<p>Change the following settings under the <strong>Services</strong> tab:</p>
+<ul>
+<li>Enable SSH with public-key authentication.</li>
+<li>If you didn't already generate an SSH key pair, press <strong>Run SSH-Keygen</strong>
+  to generate a new SSH key pair. The public key will be automatically
+  inserted in the text field.</li>
+</ul>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings_services.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager settings services" src="../assets/images/raspberrypi_imager_settings_services.png" width="500" /></a></p>
+<p>You can keep the default settings under the <strong>Options</strong> tab. Hit <strong>Save</strong>
+and choose <strong>Yes</strong> when you are asked if you would like to apply your
+OS customisation settings.</p>
+<p>You can now write the correctly configured Raspberry Pi OS Lite to your
+microSD card. After the writing process is finished, insert the SD card
+into your Raspberry Pi.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings_options.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager settings options" src="../assets/images/raspberrypi_imager_settings_options.png" width="500" /></a></p>
+<hr />
+<h2 id="first-boot-and-ip-address-search">First boot and IP address search<a class="headerlink" href="#first-boot-and-ip-address-search" title="Anchor link to this section">&para;</a></h2>
+<p>If you already have the PiJuice Zero pHAT (+ PiJuice battery) connected to your
+Raspberry Pi, insert the micro USB cable (connected to your battery, laptop or
+power supply) into the PiJuice USB micro input. Power on the Raspberry Pi with
+a short single press on the PiJuice <strong>SW1</strong> button (on the left and marked green
+in the following picture). More info:
+<a href="https://github.com/PiSupply/PiJuice#buttons-and-leds" target="_blank">PiJuice power button and LED</a>.</p>
+<p>If your are working without the PiJuice at the moment, insert your micro
+USB cable connected to a power supply, battery or laptop into the <strong>PWR IN</strong>
+USB micro input on the outer side of the Raspberry Pi. The first boot will
+take a little bit longer, as all of the custom configuration has to be enabled.
+Wait until the green LED stops blinking (about 5 min) before moving on.</p>
+<p><a class="glightbox" href="https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="PiJuice Zero buttons" src="https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png" width="500" /></a></p>
+<div class="admonition tip">
+<p>You can connect to the RPi via SSH by using the hostname, that you set during
+the RPi OS installation (e.g. <code>raspberrypi</code>) in the <a href="#ssh-connection-and-x11-forwarding">following step</a>.
+If you did not set a hostname or don't know it, you will have to connect to the
+RPi by using its IP address.</p>
+<p>To be able to connect to the Pi via SSH without using the hostname,
+you will first have to find its IP address in the WiFi network. There are
+<a href="https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address" target="_blank">several ways</a>
+to achieve this, probably one of the easiest solutions is to install
+the <a href="https://www.fing.com/products/fing-app" target="_blank">Fing App</a>
+and scan the IP addresses of all devices in your WiFi network.</p>
+</div>
+<hr />
+<h2 id="ssh-connection-and-x11-forwarding">SSH connection and X11 forwarding<a class="headerlink" href="#ssh-connection-and-x11-forwarding" title="Anchor link to this section">&para;</a></h2>
+<p>For casual users the following steps are recommended, which will give you all
+necessary functions to test and deploy the DIY camera trap. For experienced
+users, who want to use the Raspberry Pi as remote development environment,
+follow the steps in the info box.</p>
+<details class="info">
+<summary>Optional: Remote-SSH &amp; Remote X11 extension configuration</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Remote-SSH extension</label><label for="__tabbed_1_2">Remote X11 extension</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Not supported by RPi Zero W (v1)!</strong></p>
+<p>Open VS Code and press the button (<code>Open a Remote Window</code>) in the
+bottom left to open the Remote-SSH extension connection settings.</p>
+<p><a class="glightbox" href="../assets/images/vscode_remote_ssh.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code open remote SSH" src="../assets/images/vscode_remote_ssh.png" width="600" /></a></p>
+<p>Choose the first option <strong>Connect to Host...</strong></p>
+<p><a class="glightbox" href="../assets/images/vscode_connect_remote.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code connect remote SSH" src="../assets/images/vscode_connect_remote.png" width="600" /></a></p>
+<p>Type in your user name (this is <code>pi</code> if you didn't change the default name)
+and your Pi's hostname or IP address with <code>@</code> in between (e.g. <code>pi@raspberrypi</code>
+or <code>pi@192.168.1.93</code>) and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_remote_ip.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code connect remote SSH IP address" src="../assets/images/vscode_remote_ip.png" width="600" /></a></p>
+<p>Now VS Code will connect to the Raspberry Pi via SSH and open a new remote
+window. This might take a while during the first start, as several packages
+have to be installed on the Raspberry Pi first. When you are asked to select
+the platform of the remote host, choose <strong>Linux</strong>. Enter the password that you
+set in the Raspberry Pi Imager options when you are asked for it (not necessary
+if you chose public-key authentication).</p>
+<p>After these steps, the Pi SSH Terminal at the bottom will open and you can
+start with setting up your RPi. In the explorer view on the left, press
+<strong>Open Folder</strong> and open the home folder <code>/home/pi/</code>. You can now view and
+edit files (e.g. <a href="../programming/" target="_blank">Python scripts</a> and images)
+directly in VS Code and drag &amp; drop any files or folders (e.g. <code>insect-detect</code>)
+from your PC to the RPi Zero.</p>
+<p>If the Pi SSH Terminal will not automatically open after you established the
+SSH connection, go to <code>Terminal</code> in the menu bar at the top and open a
+<code>New Terminal</code>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_raspberry_connected.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Raspberry Pi connected" src="../assets/images/vscode_raspberry_connected.png" width="600" /></a></p>
+<p>When you are asked to trust the authors of the files in this folder press
+<code>Yes</code> and make sure to check the option <code>Trust the authors of all files in
+the parent folder 'home'</code>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_trust_authors.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Raspberry Pi trust authors" src="../assets/images/vscode_trust_authors.png" width="600" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>Open the VS Code Extensions and install the Remote X11 extension that you
+already installed to your computer in <a href="../localsetup/" target="_blank">Local Setup</a>
+to the Raspberry Pi by selecting <code>Install in SSH:</code>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_remotex11_ssh_install.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Remote X11 install SSH" src="../assets/images/vscode_remotex11_ssh_install.png" width="700" /></a></p>
+<p>Open the local <strong>Remote X11 (SSH)</strong> extension and select <code>Extension Settings</code>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_remotex11_ssh_settings.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Remote X11 SSH settings" src="../assets/images/vscode_remotex11_ssh_settings.png" width="700" /></a></p>
+<p>At the top you will see two tabs for <code>User</code> and <code>Remote [SSH: &lt;IP-ADDRESS&gt;]</code>.
+In the <code>User</code> settings tab, make sure that the <strong>XAuth Permission Level</strong> is
+set to <code>trusted</code>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_remotex11_ssh_settings_user.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Remote X11 SSH settings User" src="../assets/images/vscode_remotex11_ssh_settings_user.png" width="700" /></a></p>
+<p>Go to the <code>Remote [SSH: &lt;IP-ADDRESS&gt;]</code> settings tab and change the
+<strong>Display Command</strong> to:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>echo DISPLAY=$DISPLAY
+</span></code></pre></div>
+<p><a class="glightbox" href="../assets/images/vscode_remotex11_ssh_settings_remote_display.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Remote X11 SSH settings Remote Display" src="../assets/images/vscode_remotex11_ssh_settings_remote_display.png" width="700" /></a></p>
+<p>Scroll down and set the <strong>XAuth Permission Level</strong> to <code>trusted</code>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_remotex11_ssh_settings_remote_auth.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Remote X11 SSH settings Remote Authentication" src="../assets/images/vscode_remotex11_ssh_settings_remote_auth.png" width="700" /></a></p>
+<p>Now you can start the <strong>VcXsrv X server</strong> by opening the <code>XLaunch.exe</code>, which
+you installed in <a href="../localsetup/#vcxsrv-windows-x-server" target="_blank">Local Setup</a>.
+Keep all the <a href="../localsetup/#vcxsrv-windows-x-server" target="_blank">default settings</a>
+and the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
+forwarding, open a new SSH Terminal in VS Code for all changes to take effect.</p>
+<p><a class="glightbox" href="../assets/images/vscode_new_terminal.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code new Terminal" src="../assets/images/vscode_new_terminal.png" width="700" /></a></p>
+<p>You can test if the X11 forwarding from the Raspberry Pi to our Windows X
+Server is established by running the following command:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$DISPLAY</span>
+</span></code></pre></div>
+<p>...which should give you the following output:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>localhost:10.0
+</span></code></pre></div>
+<details class="bug">
+<summary>X11 connection Error</summary>
+<p>If the X11 connection is not properly working, a possible problem could be
+an incompatible private key format. You can convert your private key to the
+older PEM format (which will work with the Remote X11 extension) by running
+the following command in your local Terminal (Windows PowerShell):</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">ssh-keygen</span> <span class="n">-p</span> <span class="n">-m</span> <span class="n">PEM</span> <span class="o">-f</span> <span class="p">.</span><span class="n">ssh</span><span class="p">/</span><span class="n">id_rsa</span>
+</span></code></pre></div>
+<p>Restart VcXsrv and reboot the Raspberry Pi before testing the connection
+again with <code>echo $DISPLAY</code>.</p>
+</details>
+</div>
+</div>
+</div>
+</details>
+<ul>
+<li>
+<p>Set the <code>DISPLAY</code> environment variable in Windows by
+  <a href="https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/" target="_blank">opening</a>
+  the Command Prompt (cmd) and running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">setx</span> <span class="n">DISPLAY</span> <span class="s2">&quot;localhost:0.0&quot;</span>
+</span></code></pre></div>
+<p>You may have to reboot your computer for the changes to take effect.</p>
+</li>
+<li>
+<p>Start the <strong>VcXsrv X server</strong> by opening the <code>XLaunch.exe</code>, which you installed
+  after following the <a href="../localsetup/#vcxsrv-windows-x-server" target="_blank">Local Setup</a>.
+  Keep all the default settings (press <strong>Next</strong> three times, then <strong>Finish</strong>) and
+  the VcXsrv tray icon will appear in your taskbar.</p>
+</li>
+<li>
+<p>Open a new Terminal in VS Code.</p>
+<p><a class="glightbox" href="../assets/images/vscode_new_terminal.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code new Terminal" src="../assets/images/vscode_new_terminal.png" width="700" /></a></p>
+</li>
+<li>
+<p>Connect to your Raspberry Pi via SSH and trusted X11 forwarding (<code>-Y</code>) by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">ssh</span> <span class="n">-Y</span> <span class="n">pi</span><span class="nv">@raspberrypi</span>
+</span></code></pre></div>
+<p>If you set a different hostname than <code>raspberrypi</code> during the
+<a href="#raspberry-pi-os-installation">RPi OS installation</a>, change it
+accordingly. When you are asked if you are sure you want to
+continue connecting, type in <code>yes</code> and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+</li>
+<li>
+<p>Use <strong>right-click</strong> to paste commands to the Pi's SSH Terminal.</p>
+</li>
+<li>
+<p>You can check if X11 forwarding works correctly by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$DISPLAY</span>
+</span></code></pre></div>
+<p>...which should give you the following output:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>localhost:10.0
+</span></code></pre></div>
+</li>
+<li>
+<p>If you followed the steps in <a href="../localsetup/" target="_blank">Local Setup</a>, you already have the
+  <a href="https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs" target="_blank">SSH FS</a>
+  extension installed. Open the extension by clicking on the folder icon in the left side bar.</p>
+</li>
+<li>
+<p>Create a new SSH FS configuration (<code>Name:</code> your RPi hostname) with the following fields:</p>
+<ul>
+<li>Host: <code>raspberrypi</code> (or different hostname)</li>
+<li>Port: <code>22</code></li>
+<li>Root: <code>~/</code></li>
+<li>Username: <code>pi</code></li>
+<li>Private key: <code>c:\Users\&lt;username&gt;\.ssh\id_rsa</code> (insert your Windows username)</li>
+</ul>
+</li>
+<li>
+<p>Leave the other fields blank and save the configuration with the
+  <strong>Save</strong> button at the bottom.</p>
+</li>
+<li>In the SSH FS extension, click on the first symbol to the right of your
+  configuration (<code>Add as Workspace folder</code>). Retry if it does not work
+  immediately. This will open the <code>/home/pi</code> folder in your VS Code explorer.
+  You can now view and edit files (e.g. <a href="../programming/" target="_blank">Python scripts</a>
+  and images) directly in VS Code and drag &amp; drop any files or folders
+  (e.g. <code>insect-detect</code>) from your PC to the RPi.</li>
+</ul>
+<hr />
+<h2 id="rpi-configuration">RPi configuration<a class="headerlink" href="#rpi-configuration" title="Anchor link to this section">&para;</a></h2>
+<p>We will start with updating all standard packages by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span></code></pre></div>
+<p>...in the Pi SSH Terminal, followed by:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>full-upgrade
+</span></code></pre></div>
+<p>When you are asked if you want to continue, confirm with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_raspberry_update.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code Raspberry Pi update" src="../assets/images/vscode_raspberry_update.png" width="600" /></a></p>
+<p>Reboot the Raspberry Pi after all updates were successfully installed with:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<p>After the reboot you will have to establish a new SSH connection. When the
+Raspberry Pi SSH Terminal is back and active again, we will change some of
+the RPi settings (use the arrow keys to navigate) with:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>raspi-config
+</span></code></pre></div>
+<p><a class="glightbox" href="../assets/images/vscode_raspi_config.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code raspi config" src="../assets/images/vscode_raspi_config.png" width="600" /></a></p>
+<ul>
+<li>
+<p>Under <code>1 System Options</code> &rarr; <code>Wireless LAN</code> you can add additional WiFi SSIDs
+  and passwords, e.g. if you want to connect to a Hotspot from your phone while
+  in the field. All WiFi settings are stored in <code>wpa_supplicant.conf</code>. You can
+  also edit them directly by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/wpa_supplicant/wpa_supplicant.conf
+</span></code></pre></div>
+</li>
+<li>
+<p>Go back to the main menu and select <code>3 Interface Options</code> &rarr; <code>I5 I2C</code> and
+  enable the I2C interface. We will need this for communication with the
+  PiJuice Zero pHAT.</p>
+</li>
+<li>Next, go to <code>4 Performance Options</code> &rarr; <code>P2 GPU Memory</code> and change the value
+  from <code>64</code> to <code>16</code>. As we are using the RPi Lite OS version without desktop
+  environment, we won't need more memory for graphical features and more RAM
+  will be available.</li>
+<li>Under <code>6 Advanced Options</code>, choose <code>A1 Expand Filesystem</code> to ensure that all
+  of the SD card space will be available.</li>
+<li>Also under <code>6 Advanced Options</code>, select <code>A2 GL driver</code>, which will install
+  several packages (confirm with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>). After the packages are installed,
+  you can select the first option <code>G1 Legacy</code> in the raspi-config window, which
+  will disable the new KMS video driver for 3D graphics in RPi OS Bullseye.</li>
+</ul>
+<p>After these changes are made, select <code>Finish</code> in the bottom right of the main
+menu and reboot.</p>
+<hr />
+<p>In the next step, we will disable some features that we won't need to decrease
+the RPi power consumption. In the Pi SSH Terminal run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/boot/config.txt
+</span></code></pre></div>
+<p>We will disable audio, camera/display auto detects and Bluetooth, by making the
+following changes in the <code>config.txt</code> file (use the arrow keys to navigate):</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Enable audio (loads snd_bcm2835)</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">dtparam</span><span class="o">=</span><span class="n">audio</span><span class="o">=</span><span class="n">off</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Automatically load overlays for detected cameras</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">camera_auto_detect</span><span class="o">=</span><span class="mi">0</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># Automatically load overlays for detected DSI displays</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">display_auto_detect</span><span class="o">=</span><span class="mi">0</span>
+</span></code></pre></div>
+<p>Copy and paste (use right-click to paste) the following two lines directly
+under the options you just changed:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Disable Bluetooth</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">dtoverlay</span><span class="o">=</span><span class="n">disable</span><span class="o">-</span><span class="n">bt</span>
+</span></code></pre></div>
+<p>Exit the editor with <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> and save the changes with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_config_txt.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code RPi config.txt" src="../assets/images/vscode_config_txt.png" width="600" /></a></p>
+<p>The last thing we can do to decrease the power consumption, is to disable HDMI
+at each boot. In the SSH Terminal run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/rc.local
+</span></code></pre></div>
+<p>Add the following lines above <code>exit 0</code>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Disable HDMI at boot</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">tvservice</span> <span class="o">-</span><span class="n">o</span>
+</span></code></pre></div>
+<p>Exit the editor with <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> and save the changes with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p><a class="glightbox" href="../assets/images/vscode_rclocal_hdmi.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code RPi rc.local HDMI" src="../assets/images/vscode_rclocal_hdmi.png" width="600" /></a></p>
+<p>Reboot the Raspberry Pi for all changes to take effect:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<p>If you want to shutdown your Raspberry Pi, run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>shutdown<span class="w"> </span>-h<span class="w"> </span>now
+</span></code></pre></div>
+<hr />
+<h2 id="pijuice-zero-configuration">PiJuice Zero configuration<a class="headerlink" href="#pijuice-zero-configuration" title="Anchor link to this section">&para;</a></h2>
+<p>In the next steps, we will configure the PiJuice Zero for efficient power
+management and wake-up control. If you want to try the system without the
+PiJuice Zero connected to the Raspberry Pi, you can skip this and the following
+step and directly continue with the <a href="#oak-1-configuration">OAK-1 configuration</a>.</p>
+<p>First install the PiJuice package and its dependencies by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>pijuice-base
+</span></code></pre></div>
+<p>When you are asked if you want to continue, confirm with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>After the installation you can check if the PiJuice Zero is correctly detected
+by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
+<p>If you see an entry at address <code>14</code> and <code>68</code>, the connection to the PiJuice is
+now established.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_i2cdetect.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice i2cdetect" src="../assets/images/pijuice_i2cdetect.png" width="500" /></a></p>
+<p>From now on we want to use the built-in RTC
+(<a href="https://en.wikipedia.org/wiki/Real-time_clock" target="_blank">real-time clock</a>)
+of the PiJuice Zero board as primary hardware clock to wake up the Raspberry Pi
+at specific times when it is not connected to the internet. For this, we will
+have to manually load the RTC driver at each boot by modifying the
+<code>/boot/config.txt</code> file with:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/boot/config.txt
+</span></code></pre></div>
+<p>Add the following lines at the end of the text file:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Load PiJuice RTC driver at boot</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">dtoverlay</span><span class="o">=</span><span class="n">i2c</span><span class="o">-</span><span class="n">rtc</span><span class="p">,</span><span class="n">ds1307</span><span class="o">=</span><span class="mi">1</span>
+</span></code></pre></div>
+<p>Exit the editor with <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> and save the changes with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_rtc_driver.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="config.txt PiJuice RTC driver" src="../assets/images/pijuice_rtc_driver.png" width="600" /></a></p>
+<p>Reboot the Raspberry Pi:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<p>After the reboot run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
+<p>You should now see <code>UU</code> at address 68, which means that the RTC driver was
+successfully loaded and the PiJuice RTC will now be used as hardware clock.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_i2cdetect_rtc.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice i2cdetect RTC" src="../assets/images/pijuice_i2cdetect_rtc.png" width="500" /></a></p>
+<p>You can check if the date and time is correct with:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>sudo<span class="w"> </span>hwclock<span class="w"> </span>-r
+</span></code></pre></div>
+<hr />
+<p>We will now configure the PiJuice Zero through its command line interface
+by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>pijuice_cli
+</span></code></pre></div>
+<p><a class="glightbox" href="../assets/images/pijuice_cli.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice CLI" src="../assets/images/pijuice_cli.png" width="500" /></a></p>
+<ul>
+<li>Start with checking if the firmware is up to date by going to the <code>Firmware</code>
+  tab (use the arrow keys to navigate). If there is a new version available,
+  <code>Update</code> the firmware.</li>
+<li>Next, go to the <code>Battery profile</code> tab and check if the correct profile is
+  selected. If you are using the 12,000 mAh battery, this should be
+  <code>PJLIPO_12000</code>. Scroll down and change <code>Temperature sense</code> to <code>NTC</code>.
+  This will make sure that the battery temperature is correctly estimated.
+  Save the changed settings with <code>Apply settings</code>.</li>
+<li>
+<p>Go to the <code>System Task</code> tab, activate <code>Software Halt Power Off</code> and set the
+  <code>Delay period [seconds]</code> to <code>20</code>. With this setting activated, the power to
+  the Raspberry Pi will be cut off 20 seconds after a software shutdown has
+  occured. This will make sure that the OS can complete the shutdown process
+  without potential SD card corruption.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_system_task.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice System Task" src="../assets/images/pijuice_system_task.png" width="500" /></a></p>
+</li>
+<li>
+<p>Optional: Depending on your hardware setup, under the <code>Battery profile</code> tab
+  you could decrease the <code>Termination current [mA]</code> to e.g. <code>100</code> if you are
+  using a solar panel as direct input into the PiJuice Zero
+  (<a href="../../hardware/components/#minimal-setup" target="_blank"><strong>Minimal Setup</strong></a>
+  without Voltaic battery).</p>
+</li>
+</ul>
+<p>The most important settings are now applied. You can get a lot more information
+about all of the other settings at the
+<a href="https://github.com/PiSupply/PiJuice/tree/master/Software#pijuice-cli" target="_blank">PiJuice GitHub repo</a>.</p>
+<p>In the last step, we will set the <code>Wakeup Alarm</code> to specified times to fully
+automate the camera trap recordings. The PiJuice wakeup alarm clock is set in
+UTC time, so you have to convert the wake-up times to your time zone (in our
+case UTC+2). As you can see in the example below, we set our Wakeup Alarm to
+<code>Every day</code> at <code>Hour</code> <code>7;10;13;16</code> UTC time, which means that the PiJuice will
+wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Activate
+<code>Wakeup enabled</code> and press <code>Set alarm</code> to save your specified wake-up times.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_wakeup_alarm.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice Wakeup Alarm" src="../assets/images/pijuice_wakeup_alarm.png" width="500" /></a></p>
+<div class="admonition tip">
+<p>During summer it might make sense to not record around noon, as many insects
+are not active during the hottest daytime. Also the temperature in the camera
+trap enclosure will be lower if the RPi and OAK-1 are not running, which can
+increase the charging efficiency of the batteries.</p>
+</div>
+<p>With this we are finished with the PiJuice Zero pHAT configuration and we can
+set up the cron job that will execute the monitoring script at boot in the next
+step.</p>
+<hr />
+<h2 id="set-up-cron-job">Set up Cron Job<a class="headerlink" href="#set-up-cron-job" title="Anchor link to this section">&para;</a></h2>
+<p>Because the Raspberry Pi should run the
+<a href="../programming/#automated-monitoring-script" target="_blank">Python script</a> for
+automated insect monitoring on its own after being woken up by the PiJuice, we
+have to set up a cron job that will be executed at each boot. You can find more
+information about cron, crontab and cron jobs
+<a href="https://en.wikipedia.org/wiki/Cron" target="_blank">here</a>.</p>
+<p>Open the crontab file for editing by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>crontab<span class="w"> </span>-e
+</span></code></pre></div>
+<p>When you are asked to choose an editor, type in <code>1</code> and confirm with <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>Now paste the following lines at the end of the crontab file:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Sleep for 30 seconds after boot to wait for all services to start, then execute Python script and</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="c1"># redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nd">@reboot</span> <span class="n">sleep</span> <span class="mi">30</span> <span class="o">&amp;&amp;</span> <span class="p">{</span> <span class="n">printf</span> <span class="s2">&quot;\</span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="s2">&quot;$(date +&quot;</span>\<span class="o">%</span><span class="n">F</span> \<span class="o">%</span><span class="n">T</span><span class="s2">&quot;)&quot;</span><span class="p">;</span> <span class="n">python3</span> <span class="n">insect</span><span class="o">-</span><span class="n">detect</span><span class="o">/</span><span class="n">yolo_tracker_save_hqsync_pijuice</span><span class="o">.</span><span class="n">py</span><span class="p">;</span> <span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="n">insect</span><span class="o">-</span><span class="n">detect</span><span class="o">/</span><span class="n">cronjob_log</span><span class="o">.</span><span class="n">log</span> <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span>
+</span></code></pre></div>
+<details class="info">
+<summary>Optional arguments</summary>
+<p>Add after <code>python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py</code>, separated by space:</p>
+<ul>
+<li><code>-4k</code> crop detections from (+ save HQ frames in) 4K resolution (default: 1080p)</li>
+<li><code>-af CM_MIN CM_MAX</code> set auto focus range in cm (min distance, max distance)</li>
+<li><code>-ae</code> use bounding box coordinates from detections to set auto exposure region</li>
+<li><code>-crop</code> save cropped detections with aspect ratio 1:1 (default: <code>-crop square</code>)
+          or keep original bbox size with variable aspect ratio (<code>-crop tight</code>)</li>
+<li><code>-full</code> additionally save full HQ frames to .jpg together with cropped detections
+          (<code>-full det</code>) or at specified frequency, independent of detections (<code>-full freq</code>)</li>
+<li><code>-overlay</code> additionally save full HQ frames with overlays (bbox + info) to .jpg</li>
+<li><code>-log</code> write RPi CPU + OAK chip temperature, RPi available
+         memory + CPU utilization and battery info to .csv</li>
+<li><code>-zip</code> store data in an uncompressed .zip file for each day and delete original directory</li>
+</ul>
+</details>
+<p>Exit the editor with <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> and save the changes with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>This cron job will wait for 30 seconds after boot (<code>sleep 30</code>) to make sure
+that all important services are ready. It will then run the provided Python
+script and append all error messages redirected to the standard output (<code>2&gt;&amp;1</code>)
+to a log file together with a prepended timestamp
+(<code>printf "\%s " "$(date +"\%F \%T")"</code>).</p>
+<div class="admonition tip">
+<p>If you are still in the testing phase, it is highly recommended to comment out
+your cronjob by adding <code>#</code> in front of <code>@reboot</code>, otherwise each time you are
+booting up your Raspberry Pi, it will try to run the Python script.</p>
+</div>
+<hr />
+<h2 id="oak-1-configuration">OAK-1 configuration<a class="headerlink" href="#oak-1-configuration" title="Anchor link to this section">&para;</a></h2>
+<p>Before you can use the <a href="https://docs.luxonis.com/projects/api/en/latest/" target="_blank">DepthAI API</a>
+in the <a href="../programming/" target="_blank">Python scripts</a> for automated insect
+monitoring on the RPi + OAK-1, you will first have to install some dependencies
+by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>sudo<span class="w"> </span>curl<span class="w"> </span>-fL<span class="w"> </span>https://docs.luxonis.com/install_dependencies.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</span></code></pre></div>
+<p>Additionally, install the package <code>libopenblas-dev</code>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>sudo apt install libopenblas-dev
+</span></code></pre></div>
+<details class="question">
+<summary>Only Raspberry Pi Zero W (v1)</summary>
+<p>Additionally to the installed dependencies, you will have to install the
+package <code>libusb-1.0-0-dev</code> with:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libusb-1.0-0-dev
+</span></code></pre></div>
+</details>
+<p><a href="https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip" target="_blank">Download</a>
+the <a href="https://github.com/maxsitt/insect-detect" target="_blank"><code>insect-detect</code></a>
+GitHub repo, extract it and change its foldername to <code>insect-detect</code>. Copy the
+renamed folder to the <code>home/pi</code> directory of your Raspberry Pi, by simply dragging
+&amp; dropping it into the SSH FS Workspace folder (or VS Code remote window explorer).</p>
+<p>Install all required Python packages by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>insect-detect/requirements.txt
+</span></code></pre></div>
+<p>You can check if your OAK camera is correctly detected by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>lsusb<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>MyriadX
+</span></code></pre></div>
+<p>...which should give you the following output:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Bus<span class="w"> </span><span class="m">001</span><span class="w"> </span>Device<span class="w"> </span><span class="m">002</span>:<span class="w"> </span>ID<span class="w"> </span>03e7:2485<span class="w"> </span>Intel<span class="w"> </span>Movidius<span class="w"> </span>MyriadX
+</span></code></pre></div>
+<details class="bug">
+<summary>Device not found</summary>
+<p>If your device is not found, or if you get errors including something like
+<code>X_LINK_DEVICE_NOT_FOUND</code> or <code>skipping X_LINK_UNBOOTED device</code>, you can set
+new udev rules to identify the OAK device. Unplug the OAK camera, then run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;03e7&quot;, MODE=&quot;0666&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/udev/rules.d/80-movidius.rules
+</span></code></pre></div>
+<p>...followed by:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>sudo<span class="w"> </span>udevadm<span class="w"> </span>control<span class="w"> </span>--reload-rules<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>udevadm<span class="w"> </span>trigger
+</span></code></pre></div>
+<p>Plug the OAK device back into the USB port, it should
+be correctly detected and identified now.</p>
+</details>
+<div class="admonition tip">
+<ul>
+<li>A lot more information on setting up the OAK camera and DepthAI can be found at the
+  <a href="https://docs.luxonis.com/en/latest/pages/tutorials/first_steps/" target="_blank">Luxonis Docs</a>.</li>
+<li>If you want to learn more about the OAK and DepthAI, also check out the
+  <a href="https://docs.luxonis.com/en/latest/pages/faq/" target="_blank">FAQ</a> and
+  <a href="https://docs.luxonis.com/projects/api/en/latest/" target="_blank">API Documentation</a>.</li>
+<li>If you have any problems with the OAK device, take a look at the
+  <a href="https://docs.luxonis.com/en/latest/pages/troubleshooting/" target="_blank">Troubleshooting page</a>
+  or get <a href="https://docs.luxonis.com/en/latest/pages/support/" target="_blank">Support</a> in the
+  <a href="https://discuss.luxonis.com/" target="_blank">Luxonis Forum</a>.</li>
+</ul>
+</div>
+<p>With everything set up, you can now move on to <a href="../programming/"><strong>Programming</strong></a> and
+use the provided Python scripts for your own automated insect monitoring pipelines!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../localsetup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Local Setup">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Local Setup
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../programming/" class="md-footer__link md-footer__link--next" aria-label="Next: Programming">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Programming
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2025 Maximilian Sittinger
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/maxsitt" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://orcid.org/0000-0002-4096-8556" target="_blank" rel="noopener" title="orcid.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91 0-41.64-26.54-76.9-84.67-76.9M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8m-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57 19.64 19.64 0 0 1-19.57 19.57M300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://researchgate.net/profile/Maximilian-Sittinger" target="_blank" rel="noopener" title="researchgate.net" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 32v448h448V32zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9m-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:maximilian.sittinger@idiv.de" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "header.autohide", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
