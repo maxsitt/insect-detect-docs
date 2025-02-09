@@ -1,5 +1,20 @@
 # Building Instructions: Overview
 
+??? warning "Disclaimer"
+
+    Every effort has been made to check the instructions for accuracy and
+    completeness. However, the author cannot be held responsible for any errors
+    or omissions. The readers remain responsible for their safety when using the
+    tools, hardware and software described in the instructions for building
+    and deploying the Insect Detect camera trap. The readers must also comply
+    with all applicable laws and regulations regarding the deployment of the
+    camera trap system including the associated software and deep learning models.
+    The author of these instructions cannot be held responsible for the results
+    of action, inaction, or otherwise taken as a consequence of the information
+    provided in the instructions. All products, brands and product links to any
+    online shops are mentioned for illustration purposes only and do not denote
+    a commercial relationship between the author and the products/brands/shops.
+
 The following instructions will enable you to reproduce the
 [**Full Setup**](components.md#full-setup){target=_blank} of the Insect Detect
 DIY camera trap for automated insect monitoring. If you only want to assemble

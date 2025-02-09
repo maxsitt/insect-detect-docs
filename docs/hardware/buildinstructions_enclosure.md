@@ -1,4 +1,4 @@
-# Preparing the enclosure
+# Preparing the Enclosure
 
 ## What you will need
 

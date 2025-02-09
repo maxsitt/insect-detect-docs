@@ -11,20 +11,19 @@ the [**Insect Detect Docs**](https://maxsitt.github.io/insect-detect-docs/) 📑
 based on [Material for MkDocs](https://github.com/squidfunk/mkdocs-material).
 
 The `PDF_templates` folder contains
-[drilling templates](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/drilling_templates)
-that can be used while [building](https://maxsitt.github.io/insect-detect-docs/hardware/buildinstructions_enclosure/)
-the DIY camera trap and templates for the small and big
-[flower platform](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform)
-that is used as visual attractant and background for the automated insect monitoring.
+[drilling templates](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/drilling_templates/version_2024)
+that can be used while [building](https://maxsitt.github.io/insect-detect-docs/hardware/2024_buildinstructions_enclosures/)
+the DIY camera trap.
 
 The Insect Detect DIY camera trap system is composed of low-cost off-the-shelf hardware components
 ([Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/),
-[Luxonis OAK-1](https://docs.luxonis.com/projects/hardware/en/latest/pages/BW1093.html),
+[Luxonis OAK-1](https://docs.luxonis.com/hardware/products/OAK-1),
+[Witty Pi 4 L3V7](https://www.uugear.com/product/witty-pi-4-l3v7/) or
 [PiJuice Zero pHAT](https://uk.pi-supply.com/products/pijuice-zero)), combined with
 open source software and can be easily assembled and set up with the
 [provided instructions](https://maxsitt.github.io/insect-detect-docs/).
 
-<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/hardware/assets/images/insectdetect_diy_cameratrap.jpg" width="400">
+<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/hardware/assets/images/2024_mount_camtrap_platform.jpg" width="400">
 
 ---
 
@@ -32,14 +31,14 @@ open source software and can be easily assembled and set up with the
 
 In the [**Hardware**](https://maxsitt.github.io/insect-detect-docs/hardware/)
 section of the documentaton website, you will find a list with all required
-[components](https://maxsitt.github.io/insect-detect-docs/hardware/components/)
+[components](https://maxsitt.github.io/insect-detect-docs/hardware/2024_components/)
 and detailed step-by-step
-[instructions](https://maxsitt.github.io/insect-detect-docs/hardware/buildinstructions_enclosure/)
+[instructions](https://maxsitt.github.io/insect-detect-docs/hardware/2024_buildinstructions_enclosures/)
 on how to build and assemble the DIY camera trap system. Only
 some standard tools are necessary, which are listed in the Hardware
-[overview](https://maxsitt.github.io/insect-detect-docs/hardware/buildinstructions_overview/).
+[overview](https://maxsitt.github.io/insect-detect-docs/hardware/2024_buildinstructions_overview/).
 
-<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/hardware/assets/images/full_setup_overview.jpg" width="500">
+<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/hardware/assets/images/2024_enclosures_connected.jpg" width="500">
 
 ---
 
@@ -108,5 +107,5 @@ International License ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa
 If you use resources from this repository, please cite our paper:
 
 ```
-Sittinger M, Uhler J, Pink M, Herz A (2024) Insect detect: An open-source DIY camera trap for automated insect monitoring. PLoS ONE 19(4): e0295474. https://doi.org/10.1371/journal.pone.0295474
+Sittinger M, Uhler J, Pink M, Herz A (2024) Insect detect: An open-source DIY camera trap for automated insect monitoring. PLOS ONE 19(4): e0295474. https://doi.org/10.1371/journal.pone.0295474
 ```

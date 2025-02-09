@@ -89,28 +89,26 @@ high-resolution frame synchronization in real time.
 ## Overview
 
 <figure markdown>
-  ![Insect Detect camera trap](hardware/assets/images/insectdetect_diy_cameratrap.jpg){ width="540" }
-  <figcaption>The solar-powered DIY camera trap can be used for continuous
-              automated monitoring of flower-visiting insects</figcaption>
+  ![Insect Detect 2024 Mount Camera Trap Platform](hardware/assets/images/2024_mount_camtrap_platform.jpg){ width="500" }
+  <figcaption>The solar-powered DIY camera trap (version 2024) can be used
+              for continuous automated monitoring of flower-visiting insects</figcaption>
 </figure>
 
 The **Insect Detect** DIY camera trap for automated insect monitoring is
 composed of low-cost off-the-shelf hardware
-[components](hardware/components.md#list-of-components){target=_blank},
-combined with open-source [software](https://github.com/maxsitt/insect-detect){target=_blank}
-and can be easily assembled and set up with the provided instructions. All
-[Python scripts](software/programming.md){target=_blank} for testing and
-deploying the system can be customized to different use cases by changing only
-a few lines of code. The labeled [datasets](#datasets) and provided [models](#models)
-for insect detection and classification can be used as starting point to
+[components](hardware/2024_components.md){target=_blank}, combined with
+open-source [software](https://github.com/maxsitt/insect-detect){target=_blank}
+and can be easily assembled and set up with the provided instructions. The
+annotated [datasets](#datasets) and provided [models](#models) for insect
+detection and classification can be used as starting point to
 [train](modeltraining/train_detection.md){target=_blank} your own models,
 e.g. adapted to different backgrounds or insect taxa.
 
 The use of an artificial
-[flower platform](https://github.com/maxsitt/insect-detect-docs/tree/main/PDF_templates/flower_platform){target=_blank}
+[platform](hardware/2024_buildinstructions_mounting.md#2-platform){target=_blank}
 provides a homogeneous and constant background, which standardizes the visual
 attraction for insects and leads to higher detection and tracking accuracy with
-less data requirement for model training. Because of the flat design, the posture
+less data required for model training. Because of the flat design, the posture
 of insects landing on the platform is more uniform, which can lead to better
 classification results and less images required for model training. In ongoing
 research efforts, different materials, shapes and colors are tested to enhance
@@ -120,11 +118,11 @@ the visual attraction for specific pollinator groups.
 
     - non-invasive, continuous automated monitoring of flower-visiting insects
     - standardized artificial flower platform as visual attractant
-    - on-device detection and tracking with provided YOLO models (up to 60 fps)
-    - save images of detected insects cropped from high-resolution frames (~13 fps)
-    - low power consumption (~4.4 W) and fully solar-powered
+    - on-device detection and tracking in real time with provided YOLO models
+    - save images of detected insects cropped from high-resolution frames (4K)
+    - low power consumption (~3.8 W) and fully solar-powered
     - automated classification and post-processing in subsequent step on local PC
-    - weatherproof enclosure
+    - weatherproof enclosures and highly customizable mounting setup
     - easy to build and deploy with low-cost off-the-shelf hardware components
     - completely open-source software with detailed documentation
     - instructions and notebooks to train and deploy custom models
@@ -132,8 +130,7 @@ the visual attraction for specific pollinator groups.
 !!! failure "Not implemented (yet)"
 
     - on-device classification and metadata post-processing
-    - real-time data transfer (e.g. via LTE/LoRaWAN module)
-    - comparison with traditional monitoring methods (validation)
+    - remote data transfer (e.g. via NB-IoT or LTE module)
 
 ---
 
@@ -157,10 +154,10 @@ without prior knowledge or specific hardware requirements and free of charge.
 ---
 
 In the [**Hardware**](hardware/index.md){target=_blank} section of this website,
-you will find a list with all required [components](hardware/components.md){target=_blank}
-and detailed [instructions](hardware/buildinstructions_enclosure.md){target=_blank}
+you will find a list with all required [components](hardware/2024_components.md){target=_blank}
+and detailed [instructions](hardware/2024_buildinstructions_enclosures.md){target=_blank}
 on how to assemble the camera trap system. Only some standard tools are necessary, which
-are listed in the Hardware [overview](hardware/buildinstructions_overview.md){target=_blank}.
+are listed in the Hardware [overview](hardware/2024_buildinstructions_overview.md){target=_blank}.
 
 In the [**Software**](software/index.md){target=_blank} section, all steps to
 get the camera trap up and running are explained. You will start with installing
@@ -173,8 +170,8 @@ scripts and tips on customization to different use cases can be found in the
 The **Model Training** section will show you tools to
 [annotate](modeltraining/annotation.md){target=_blank} your own images and use
 these to train your custom [object detection models](modeltraining/train_detection.md){target=_blank}
-that can be deployed on the [OAK-1](https://docs.luxonis.com/projects/hardware/en/latest/pages/BW1093.html){target=_blank}
-camera. To classify the cropped insect images, you can train your custom
+that can be deployed on the OAK-1 camera. To classify the cropped insect images,
+you can train your custom
 [image classification model](modeltraining/train_classification.md){target=_blank}
 in the next step that can be run on your local PC (no GPU necessary). All of the model
 training can be done in [Google Colab](https://colab.research.google.com/){target=_blank},
@@ -187,12 +184,6 @@ and tracking, to [classification](deployment/classification.md){target=_blank}
 of the cropped insect images on your local PC and subsequent metadata
 [post-processing](deployment/post-processing.md){target=_blank} of the
 combined results.
-
-<figure markdown>
-  ![OAK-1 Raspberry Pi PiJuice Zero](assets/images/oak_rpi_pijuice.jpg){ width="540" }
-  <figcaption>The OAK-1 camera, Raspberry Pi Zero 2 W and PiJuice Zero pHAT
-              provide all necessary hardware functions in a tiny form factor</figcaption>
-</figure>
 
 ---
 
@@ -335,29 +326,5 @@ fork are licensed under the terms of the GNU Affero General Public License v3.0
 If you use resources from this project, please cite our paper:
 
 ``` text
-Sittinger M, Uhler J, Pink M, Herz A (2024) Insect detect: An open-source DIY camera trap for automated insect monitoring. PLoS ONE 19(4): e0295474. https://doi.org/10.1371/journal.pone.0295474
+Sittinger M, Uhler J, Pink M, Herz A (2024) Insect detect: An open-source DIY camera trap for automated insect monitoring. PLOS ONE 19(4): e0295474. https://doi.org/10.1371/journal.pone.0295474
 ```
-
----
-
-## Acknowledgements
-
-Many thanks to:
-
-- [**Dr. Annette Herz**](https://www.julius-kuehn.de/en/bi/staff/p/s/annette-herz/){target=_blank}
-  and all lab members for constant feedback and support.
-- [**Simon Feiertag**](https://www.selvavida.com/){target=_blank} for taking
-  many of the pictures shown on this website.
-- [**Sebastian Sittinger**](https://de.linkedin.com/in/sebastian-sittinger-a29183b9){target=_blank}
-  for helping with the design and build of the first prototype.
-- [**Jana Weber**](https://www.researchgate.net/profile/Jana-Weber-6){target=_blank}
-  for drawing the hoverfly
-  ([*Scaeva pyrastri*](https://en.wikipedia.org/wiki/Scaeva_pyrastri){target=_blank})
-  in the Insect Detect logo.
-- Everyone in the
-  [**automated monitoring community**](https://www.wildlabs.net/groups/autonomous-camera-traps-insects){target=_blank}
-  for inspiring ideas and feedback.
-
-This work is part of the joint project "National Monitoring of Biodiversity in Agricultural Landscapes"
-([**MonViA**](https://www.agrarmonitoring-monvia.de/en/monitoring-of-insects/beneficial-insects-in-refuge-habitats){target=_blank})
-of the German Federal Ministry of Food and Agriculture.

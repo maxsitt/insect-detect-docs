@@ -1,11 +1,10 @@
-# Copyright (c) 2022-2024 Maximilian Sittinger <maximilian.sittinger@idiv.de>
+# Copyright (c) 2022-2025 Maximilian Sittinger <maximilian.sittinger@idiv.de>
 
 # License: CC BY-SA 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
-
 # You are free to share (copy and redistribute the material in any medium or
-# format) and adapt (remix, transform, and build upon the material for any
-# purpose, even commercially) the software and associated documentation under
-# the following terms:
+# format for any purpose, even commercially) and adapt (remix, transform, and
+# build upon the material for any purpose, even commercially) the software and
+# associated documentation under the following terms:
 # Attribution: You must give appropriate credit, provide a link to the license,
 # and indicate if changes were made. You may do so in any reasonable manner,
 # but not in any way that suggests the licensor endorses you or your use.
@@ -13,17 +12,6 @@
 # distribute your contributions under the same license as the original.
 # No additional restrictions: You may not apply legal terms or technological
 # measures that legally restrict others from doing anything the license permits.
-
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-# IN THE SOFTWARE.
 
 # Project information
 site_name: Insect Detect Docs
@@ -39,7 +27,7 @@ repo_url: https://github.com/maxsitt/insect-detect-docs
 edit_uri: ""
 
 # Copyright
-copyright: Copyright &copy; 2022 - 2024 Maximilian Sittinger
+copyright: Copyright &copy; 2022 - 2025 Maximilian Sittinger
 
 # Configuration
 theme:
@@ -82,15 +70,9 @@ theme:
 plugins:
   - search
   - glightbox:
-      touchNavigation: true
-      loop: false
-      effect: none
-      width: "100%"
-      height: auto
-      zoomable: true
-      draggable: true
+      width: 90%
 
-# Customization
+# Additional configuration
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -101,6 +83,8 @@ extra:
       link: https://researchgate.net/profile/Maximilian-Sittinger
     - icon: fontawesome/regular/envelope
       link: mailto:maximilian.sittinger@idiv.de
+extra_css:
+  - stylesheets/extra.css
 
 # Extensions
 markdown_extensions:
@@ -113,8 +97,8 @@ markdown_extensions:
       permalink_title: Anchor link to this section
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -130,12 +114,21 @@ nav:
   - Introduction: index.md
   - Hardware:
     - hardware/index.md
-    - Components: hardware/components.md
-    - Building Instructions:
-      - Overview: hardware/buildinstructions_overview.md
-      - Preparing the enclosure: hardware/buildinstructions_enclosure.md
-      - Integrating the Hardware: hardware/buildinstructions_hardware.md
-      - Mounting Setup: hardware/buildinstructions_mounting.md
+    - Version 2024:
+      - Components: hardware/2024_components.md
+      - Building Instructions:
+        - Overview: hardware/2024_buildinstructions_overview.md
+        - Enclosure Preparation: hardware/2024_buildinstructions_enclosures.md
+        - Hardware Integration: hardware/2024_buildinstructions_hardware.md
+        - Mounting Setup: hardware/2024_buildinstructions_mounting.md
+      - Field Deployment: hardware/2024_field_deployment.md
+    - Version 2023:
+      - Components: hardware/components.md
+      - Building Instructions:
+        - Overview: hardware/buildinstructions_overview.md
+        - Preparing the Enclosure: hardware/buildinstructions_enclosure.md
+        - Integrating the Hardware: hardware/buildinstructions_hardware.md
+        - Mounting Setup: hardware/buildinstructions_mounting.md
   - Software:
     - software/index.md
     - Local Setup: software/localsetup.md
