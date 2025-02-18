@@ -1,16 +1,11 @@
 # Software
 
-In the Software section we will start by installing some software on your
-[local PC](localsetup.md){target=_blank} that will be necessary to set up the
-Raspberry Pi, work with [Python scripts](programming.md){target=_blank} in a
-remote development environment via SSH in VS Code and stream the video output
-from the OAK camera to your local PC via X11 forwarding.
+In the Software section, we will start by installing some software on your
+[local PC](localsetup.md){target=_blank} that is required to set up the
+Raspberry Pi, communicate with it and work with Python scripts.
 
-In the [Raspberry Pi Setup](pisetup.md){target=_blank}, we will configure all
-important settings of the Raspberry Pi Zero 2 W and change some options, e.g.
-to reduce energy consumption. After that we will configure the PiJuice Zero
-pHAT for precise power management and install all necessary packages to work
-with the OAK-1 camera in our Python scripts.
+In [Raspberry Pi Setup](pisetup.md){target=_blank}, all steps to set up the
+Raspberry Pi, Power Managers and associated software are explained in detail.
 
 All Python scripts for testing and deploying the camera trap can be found
 in the [Programming](programming.md){target=_blank} section, together with

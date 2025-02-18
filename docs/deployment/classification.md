@@ -115,7 +115,7 @@ and add the prediction results to the merged metadata .csv files.
   the [`insect-detect-ml`](https://github.com/maxsitt/insect-detect-ml){target=_blank}
   repo and extract it to the `YOLOv5-cls` folder.
 - Copy your `insect-detect/data` folder,
-  [saved](../software/localsetup.md#diskinternals-linuxreader){target=_blank}
+  [saved](../software/localsetup.md#diskinternals-linux-reader){target=_blank}
   from the Raspberry Pi's SD card to the `YOLOv5-cls` folder. Make sure that
   **only cropped detections** are present! If you additionally saved full
   HQ frames, delete them before running the classification script.

@@ -35,14 +35,15 @@ Detect DIY camera trap for automated insect monitoring (version 2024).
     12. Metal Drill Bit (4 mm + 6 mm) - for Enclosures, HPL Sheets and Aluminium Square Tube
     13. Metal Drill Bit (8 mm) - if holes in Steel L-profile are smaller than 8 mm
     14. Wood Drill Bit (3 mm + 4 mm) - for Mounting Plates
-    15. Allen Keys (3 mm, 5 mm, 6 mm)
-    16. Crosshead Screwdrivers (small for M2.5 screws + large for enclosure screws)
-    17. Flathead Screwdriver (to open electronics enclosure lid)
-    18. Pliers
-    19. Microfiber Cloth
-    20. Soldering Iron (+ Solder)
-    21. Mounting Putty (e.g. patafix or Blu Tack)
-    22. Wire Stripper Tool (or scissors if not available)
+    15. Metal Saw (if Steel L-profile needs to be cut to 50 cm length)
+    16. Allen Keys (3 mm, 5 mm, 6 mm)
+    17. Crosshead Screwdrivers (small for M2.5 screws + large for enclosure screws)
+    18. Flathead Screwdriver (to open electronics enclosure lid)
+    19. Pliers
+    20. Microfiber Cloth
+    21. Soldering Iron (+ Solder)
+    22. Mounting Putty (e.g. patafix or Blu Tack)
+    23. Wire Stripper Tool (or scissors if not available)
 
 ---
 
@@ -146,6 +147,7 @@ Detect DIY camera trap for automated insect monitoring (version 2024).
     2. Allen Keys (3 mm, 5 mm, 6 mm)
     3. Crosshead Screwdriver
     4. Drilling Machine + 8 mm Metal Drill Bit (if holes in Steel L-profile are smaller than 8 mm)
+    5. Metal Saw (if Steel L-profile needs to be cut to 50 cm length)
 
     **Components**
 

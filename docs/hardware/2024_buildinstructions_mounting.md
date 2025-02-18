@@ -8,6 +8,7 @@
     2. Allen Keys (3 mm, 5 mm, 6 mm)
     3. Crosshead Screwdriver
     4. Drilling Machine + 8 mm Metal Drill Bit (if holes in Steel L-profile are smaller than 8 mm)
+    5. Metal Saw (if Steel L-profile needs to be cut to 50 cm length)
 
     **Components**
 
@@ -108,9 +109,10 @@ the lever, you can change its position without loosening the screw.
 ### 1.2 Soil Anchor
 
 We are using a 50 cm perforated steel L-profile as soil anchor for the camera
-trap mount. You may find a L-profile with 8 mm (or larger) holes, which is
-perfect. If the holes are smaller, you will need to drill two holes with a 8 mm
-metal drill bit, as shown in the following image.
+trap mount. Depending on the length of your L-profile, you might need to cut it
+to 50 cm using a metal saw. You may find a L-profile with 8 mm (or larger) holes,
+which is perfect. If the holes are smaller, you will need to drill two holes with
+a 8 mm metal drill bit, as shown in the following image.
 
 ![Steel L-profile Holes](assets/images/2024_steel_profile_holes.jpg){ width="600" }
 

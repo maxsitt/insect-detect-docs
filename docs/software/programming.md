@@ -1,5 +1,12 @@
 # Programming
 
+!!! warning "Outdated Script Versions"
+
+    The versions of the Python scripts shown in this subsection are currently
+    **not up-to-date** with the versions in the
+    [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+    GitHub repo. Will be updated as soon as possible.
+
 !!! tip "Adapt the software to your use case"
 
     You will find all Python scripts to deploy the **Insect Detect** DIY camera
@@ -65,7 +72,7 @@ The following Python script will create and configure the
 [ColorCamera](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}
 node to send downscaled LQ frames (e.g. 320x320 px) to the host (Raspberry Pi)
 and show them in a new window. If you are connected to the RPi via SSH,
-[X11 forwarding](pisetup.md#ssh-connection-and-x11-forwarding){target=_blank}
+[X11 forwarding](pisetup.md#set-up-x11-forwarding){target=_blank}
 has to be set up, together with an started and active
 [X server](localsetup.md#vcxsrv-windows-x-server){target=_blank}
 to show the frames in a window on your local PC.
@@ -749,7 +756,7 @@ If 4K resolution is used instead (`-4k`), the pipeline speed will decrease to
 **~3 fps**, which reduces tracking accuracy for fast moving insects.
 
 For fully automated monitoring in the field, set up a
-[cron job](pisetup.md#set-up-cron-job){target=_blank} that will run the script
+[cron job](pisetup.md#schedule-cron-job){target=_blank} that will run the script
 automatically after each boot (after wake up by the PiJuice Zero).
 
 ??? question "No PiJuice Zero?"
@@ -1219,7 +1226,7 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 5.  You can specify your own recording durations and charge level thresholds in
     this code section. The suggested values can provide an efficient recording
     behaviour if you are using the 12,000 mAh PiJuice battery and set up the
-    [Wakeup Alarm](pisetup.md#pijuice-zero-configuration){target=_blank} for
+    [Wakeup Alarm](pisetup.md#configure-pijuice-zero){target=_blank} for
     3-6 times per day. Depending on the number of Wakeups per day, as well as
     the season and sun exposure of the solar panel, it can make sense to
     increase or decrease the recording duration.

@@ -1,375 +1,225 @@
 # Raspberry Pi Setup
 
-Before you can use the Raspberry Pi, you will first have to install Raspberry Pi
-OS Lite to the microSD card. If you followed the steps in
-[Local Setup](localsetup.md#raspberry-pi-imager){target=_blank}, you already have
-the [Raspberry Pi Imager](https://www.raspberrypi.com/software/){target=_blank}
-installed on your computer.
+## Install Raspberry Pi OS
+
+Insert the microSD card into your card reader and start the Raspberry Pi Imager.
+
+First, use `CHOOSE DEVICE` to select your Raspberry Pi model (`Raspberry Pi Zero 2 W`
+in our case). Continue with `CHOOSE OS` to select the operating system.
+
+![Raspberry Pi Imager Choose OS](assets/images/raspberrypi_imager_choose_os.png){ width="700" }
+
+Go to `Raspberry Pi OS (other)` to show the Lite OS versions.
+
+![Raspberry Pi Imager Choose OS Other](assets/images/raspberrypi_imager_choose_os_other.png){ width="700" }
+
+Select `Raspberry Pi OS Lite (32-bit)` (based on Debian 12 Bookworm with Python 3.11).
+
+![Raspberry Pi Imager Choose OS Lite](assets/images/raspberrypi_imager_choose_os_lite.png){ width="700" }
+
+Continue with `CHOOSE STORAGE` and select your microSD card.
+
+![Raspberry Pi Imager Choose Storage](assets/images/raspberrypi_imager_choose_storage.png){ width="700" }
+
+Hit `NEXT` and select `EDIT SETTINGS` to customize your OS setup.
+
+![Raspberry Pi Imager Edit Settings](assets/images/raspberrypi_imager_settings.png){ width="700" }
+
+Configure the following settings under the `GENERAL` tab:
+
+- `Set hostname`: For multiple camera traps, give each one a unique hostname.
+  Note the hostname, as you will need it to connect to the RPi via SSH.
+- `Set username and password`: Keep the default `pi` as username. Choose a
+  simple password (we won't use it after setting up SSH key based authentication
+  in the next step).
+- `Configure wireless LAN`: Enter your Wi-Fi credentials (e.g. 2.4 GHz
+  [mobile hotspot](https://support.microsoft.com/en-us/windows/use-your-windows-device-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85){target=_blank}).
+- Select the correct `Wireless LAN country`.
+- `Set locale settings` to your time zone and keyboard layout.
+
+    ![Raspberry Pi Imager Settings General](assets/images/raspberrypi_imager_settings_general.png){ width="500" }
+
+Configure the following settings under the `SERVICES` tab:
+
+- Activate `Enable SSH` and `Allow public-key authentication only`.
+- Hit `RUN SSH-KEYGEN` if you didn't already generate a SSH key pair before.
+  The public key will be automatically inserted in the text field.
+
+    ![Raspberry Pi Imager Settings Services](assets/images/raspberrypi_imager_settings_services.png){ width="700" }
+
+Keep the default settings under the `OPTIONS` tab and hit `SAVE`.
+
+![Raspberry Pi Imager Settings Options](assets/images/raspberrypi_imager_settings_options.png){ width="500" }
+
+Hit `YES` to apply the customized OS settings. Confirm again with `YES` that all
+existing data on your microSD card will be erased when writing the image.
+
+![Raspberry Pi Imager Apply Settings](assets/images/raspberrypi_imager_settings_apply.png){ width="700" }
+
+**Insert the microSD card into the Raspberry Pi after the OS installation is finished.**
 
 ---
 
-## SSH key based authentication
+## Turn On Raspberry Pi
 
-It is recommended to use SSH key based authentication for communication with your
-Raspberry Pi. You can find more details on this topic and instructions for macOS/Linux in the
-[VS Code Docs](https://code.visualstudio.com/docs/remote/troubleshooting#_configuring-key-based-authentication){target=_blank} and
-[Raspberry Pi Docs](https://www.raspberrypi.com/documentation/computers/remote-access.html#passwordless-ssh-access){target=_blank}.
-
-Since [v1.8.1](https://github.com/raspberrypi/rpi-imager/releases/tag/v1.8.1){target=_blank}
-of the Raspberry Pi Imager, you can now easily generate a new SSH key pair during the
-Raspberry Pi OS installation. If you want to generate your SSH key pair manually or
-set up SSH key based authentication after SD card setup, follow the steps in the info box.
-
-??? info "Generate SSH key manually"
-
-    First check if there is already an SSH key pair on your computer by going to
-    the `C:\Users\<username>\.ssh` folder. If there are two files named `id_rsa`
-    and `id_rsa.pub` you can skip this step and move on to
-    [RPi OS installation](#raspberry-pi-os-installation). If you can't find the `.ssh`
-    folder or the key files, you will have to generate a new SSH key pair on your PC.
-    [Open](https://www.digitalcitizen.life/open-windows-terminal/){target=_blank}
-    a local Terminal (Windows PowerShell) and run the following command:
-
-    ``` powershell
-    ssh-keygen -t rsa -b 4096
-    ```
-
-    Save the key to the default location `C:\Users\<username>/.ssh/id_rsa` by
-    hitting ++enter++. When you are asked to enter a passphrase, leave the field
-    empty and hit ++enter++ twice. You have now generated a private and public
-    SSH key. The public SSH key should be automatically inserted during the
-    [RPi OS installation](#raspberry-pi-os-installation) in the next step, if
-    you choose public-key authentication.
-
-    !!! tip ""
-
-        If you want to connect your Raspberry Pi to multiple local PCs with SSH
-        key based authentication, generate an SSH key pair on each local PC and
-        copy the line with the public key from `/.ssh/id_rsa.pub` on your PC to
-        a new row in `/home/pi/.ssh/authorized_keys` on your Raspberry Pi.
-
-        ![Raspberry Pi add SSH key](assets/images/vscode_raspberry_add_ssh_key.png){ width="600" }
-
-    ??? info "Optional: SSH key based authentication after SD card setup"
-
-        If you already have the SD card prepared without public-key authentication,
-        you can still configure this by following the steps above to generate the
-        key pair and then (while connected to your Raspberry Pi via SSH) running
-        the following command in your local Terminal (Windows PowerShell):
-
-        ``` powershell
-        cat ~/.ssh/id_rsa.pub | ssh pi@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
-        ```
-
-        Please make sure to enter the correct `IP address` (or hostname) of your
-        Raspberry Pi. After entering your RPi password, your public SSH key will be
-        saved to `/home/pi/.ssh/authorized_keys`. After that you won't be asked to
-        enter your password again, as the authentication is now based on the SSH key.
+If you are not using a power management board, insert a Micro-USB cable
+connected to a power supply, battery or laptop into the **PWR IN** Micro-USB
+input of the Raspberry Pi, which will trigger it to turn on. The first boot
+can take a little bit longer (up to 5 min).
 
 ---
 
-## Raspberry Pi OS installation
+### Witty Pi 4 L3V7
 
-Insert the microSD card into your card reader and open the Raspberry Pi
-Imager. Start with selecting your device (Raspberry Pi model).
+If you integrated the
+[LED button](../hardware/2024_buildinstructions_hardware.md#13-led-button){target=_blank},
+press it once to turn on the Raspberry Pi. If you don't have an external button,
+press the button on the Witty Pi board to turn on the Raspberry Pi.
 
-![Raspberry Pi Imager choose device](assets/images/raspberrypi_imager_device.png){ width="700" }
+:material-circle:{ .circle_green } Green LED: battery fully charged indicator
 
-If you are using the recommended model Raspberry Pi Zero 2 W, select it.
+:material-circle:{ .circle_blue } Blue LED: battery charging indicator
 
-![Raspberry Pi Imager RPi Zero 2 W](assets/images/raspberrypi_imager_rpizero2w.png){ width="700" }
+:material-circle:{ .circle_red } Red LED: power indicator
 
-Choose the RPi OS in the next step. We don't want to install the default OS with
-Desktop, so you have to go to the other Raspberry Pi OS based images.
+:material-circle:{ .circle_yellow } On/Off Button
 
-![Raspberry Pi Imager choose OS](assets/images/raspberrypi_imager_choose_os.png){ width="700" }
+![Witty Pi Button LEDs](assets/images/wittypi_button_leds.jpg){ width="600" }
 
-Select the option **Raspberry Pi OS (Legacy) Lite** (Debian Bullseye). The new Raspberry Pi OS
-([Debian Bookworm](https://www.raspberrypi.com/news/bookworm-the-new-version-of-raspberry-pi-os/){target=_blank}),
-released 2023-10-10, introduces several changes including the setup and configuration
-options. It is not yet recommended and tested with the software.
+If the red LED on the Witty Pi board is turned on, the Raspberry Pi is powered
+via the GPIO pins by either the USB-C input (if 5V battery pack is connected
+and charged) or the 3.7V battery pack (5V battery pack not connected or empty).
 
-![Raspberry Pi Imager choose lite OS](assets/images/raspberrypi_imager_choose_os_lite.png){ width="700" }
+After installing and configuring the Witty Pi software, the power to the
+Raspberry Pi will be cut 25 seconds after a shutdown command is received
+and the red LED will turn off.
 
-You can now choose the storage. Select your microSD card, which
-will be formatted during the Raspberry Pi OS installation.
+More info:
+[Witty Pi 4 L3V7 User Manual](https://www.uugear.com/doc/WittyPi4L3V7_UserManual.pdf){target=_blank}
 
-![Raspberry Pi Imager choose storage](assets/images/raspberrypi_imager_choose_storage.png){ width="700" }
+??? bug "Red LED stays on"
 
-Hit the **Next** button and choose **Edit settings** when you are
-asked if you would like to apply OS customisation settings.
-
-![Raspberry Pi Imager edit settings](assets/images/raspberrypi_imager_edit_settings.png){ width="700" }
-
-Change the following settings under the **General** tab:
-
-- Set the hostname (default: `raspberrypi`). If you will be deploying multiple camera
-  traps, you should give each a unique hostname (e.g. `camtrap1`, `camtrap2` etc.).
-- Set the username and password. Use the default `pi` as username.
-- Enter your WiFi SSID and password, to be able to connect to the RPi via SSH
-  immediately after the first boot. In some cases it might be beneficial to use a
-  [mobile hotspot](https://support.microsoft.com/en-us/windows/use-your-windows-pc-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85#WindowsVersion=Windows_11){target=_blank}
-  from your PC (e.g. to share restricted WiFi, multiple WiFis or Ethernet).
-- Select the correct Wireless LAN country in the dropdown menu below.
-- Set the locale settings to your time zone and keyboard layout.
-
-![Raspberry Pi Imager settings general](assets/images/raspberrypi_imager_settings_general.png){ width="500" }
-
-Change the following settings under the **Services** tab:
-
-- Enable SSH with public-key authentication.
-- If you didn't already generate an SSH key pair, press **Run SSH-Keygen**
-  to generate a new SSH key pair. The public key will be automatically
-  inserted in the text field.
-
-![Raspberry Pi Imager settings services](assets/images/raspberrypi_imager_settings_services.png){ width="500" }
-
-You can keep the default settings under the **Options** tab. Hit **Save**
-and choose **Yes** when you are asked if you would like to apply your
-OS customisation settings.
-
-You can now write the correctly configured Raspberry Pi OS Lite to your
-microSD card. After the writing process is finished, insert the SD card
-into your Raspberry Pi.
-
-![Raspberry Pi Imager settings options](assets/images/raspberrypi_imager_settings_options.png){ width="500" }
+    If the Raspberry Pi is turned off, but the red LED on the Witty Pi board
+    still stays on after 25 seconds, the button will not be responsive as the
+    Witty Pi assumes that the RPi is still turned on. This can happen if the
+    Witty Pi software is not yet installed or if there is a problem with the
+    GPIO connection (check for faulty solder joints). In this case, you will
+    need to unplug both batteries (USB-C and 3.7V) and connect them again to
+    reset the Witty Pi board.
 
 ---
 
-## First boot and IP address search
+### PiJuice Zero
 
-If you already have the PiJuice Zero pHAT (+ PiJuice battery) connected to your
-Raspberry Pi, insert the micro USB cable (connected to your battery, laptop or
-power supply) into the PiJuice USB micro input. Power on the Raspberry Pi with
-a short single press on the PiJuice **SW1** button (on the left and marked green
-in the following picture). More info:
-[PiJuice power button and LED](https://github.com/PiSupply/PiJuice#buttons-and-leds){target=_blank}.
+Turn on the Raspberry Pi with a short single press on the PiJuice **SW1**
+button (marked green on the left side of the following picture).
 
-If your are working without the PiJuice at the moment, insert your micro
-USB cable connected to a power supply, battery or laptop into the **PWR IN**
-USB micro input on the outer side of the Raspberry Pi. The first boot will
-take a little bit longer, as all of the custom configuration has to be enabled.
-Wait until the green LED stops blinking (about 5 min) before moving on.
+More info:
+[PiJuice Buttons and LEDs](https://github.com/PiSupply/PiJuice#buttons-and-leds){target=_blank}
 
-![PiJuice Zero buttons](https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png){ width="500" }
+![PiJuice Zero buttons](https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png){ width="600" }
+
+---
+
+## Set up X11 forwarding
+
+To show the camera live stream with OpenCV on your PC, you will have to set up
+X11 forwarding.
+
+To set the `DISPLAY` environment variable in Windows,
+[open cmd](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/){target=_blank}
+and run:
+
+``` powershell
+setx DISPLAY "localhost:0.0"
+```
+
+Reboot your computer for the changes to take effect. You only have to do this once.
+
+Follow the instructions in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}
+to install and start the **VcXsrv X server**.
+
+---
+
+## Connect RPi via SSH
 
 !!! tip ""
 
-    You can connect to the RPi via SSH by using the hostname, that you set during
-    the RPi OS installation (e.g. `raspberrypi`) in the [following step](#ssh-connection-and-x11-forwarding).
-    If you did not set a hostname or don't know it, you will have to connect to the
-    RPi by using its IP address.
+    You can connect to the RPi via SSH by using the hostname that you set during
+    the RPi OS installation. If this does not work, you will have to use its IP
+    address instead. There are
+    [several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#ip-address){target=_blank}
+    to find the RPi's IP address, one of the easiest solutions is to install
+    the [Fing App](https://www.fing.com/app/){target=_blank} and scan the IP
+    addresses of all devices in your Wi-Fi network.
 
-    To be able to connect to the Pi via SSH without using the hostname,
-    you will first have to find its IP address in the WiFi network. There are
-    [several ways](https://www.raspberrypi.com/documentation/computers/remote-access.html#how-to-find-your-ip-address){target=_blank}
-    to achieve this, probably one of the easiest solutions is to install
-    the [Fing App](https://www.fing.com/products/fing-app){target=_blank}
-    and scan the IP addresses of all devices in your WiFi network.
+Open a new Terminal in VS Code. Use **right-click** to paste commands to the Terminal.
 
----
+![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
 
-## SSH connection and X11 forwarding
-
-For casual users the following steps are recommended, which will give you all
-necessary functions to test and deploy the DIY camera trap. For experienced
-users, who want to use the Raspberry Pi as remote development environment,
-follow the steps in the info box.
-
-??? info "Optional: Remote-SSH & Remote X11 extension configuration"
-
-    === "Remote-SSH extension"
-
-        **Not supported by RPi Zero W (v1)!**
-
-        Open VS Code and press the button (`Open a Remote Window`) in the
-        bottom left to open the Remote-SSH extension connection settings.
-
-        ![VS Code open remote SSH](assets/images/vscode_remote_ssh.png){ width="600" }
-
-        Choose the first option **Connect to Host...**
-
-        ![VS Code connect remote SSH](assets/images/vscode_connect_remote.png){ width="600" }
-
-        Type in your user name (this is `pi` if you didn't change the default name)
-        and your Pi's hostname or IP address with `@` in between (e.g. `pi@raspberrypi`
-        or `pi@192.168.1.93`) and hit ++enter++.
-
-        ![VS Code connect remote SSH IP address](assets/images/vscode_remote_ip.png){ width="600" }
-
-        Now VS Code will connect to the Raspberry Pi via SSH and open a new remote
-        window. This might take a while during the first start, as several packages
-        have to be installed on the Raspberry Pi first. When you are asked to select
-        the platform of the remote host, choose **Linux**. Enter the password that you
-        set in the Raspberry Pi Imager options when you are asked for it (not necessary
-        if you chose public-key authentication).
-
-        After these steps, the Pi SSH Terminal at the bottom will open and you can
-        start with setting up your RPi. In the explorer view on the left, press
-        **Open Folder** and open the home folder `/home/pi/`. You can now view and
-        edit files (e.g. [Python scripts](programming.md){target=_blank} and images)
-        directly in VS Code and drag & drop any files or folders (e.g. `insect-detect`)
-        from your PC to the RPi Zero.
-
-        If the Pi SSH Terminal will not automatically open after you established the
-        SSH connection, go to `Terminal` in the menu bar at the top and open a
-        `New Terminal`.
-
-        ![VS Code Raspberry Pi connected](assets/images/vscode_raspberry_connected.png){ width="600" }
-
-        When you are asked to trust the authors of the files in this folder press
-        `Yes` and make sure to check the option `Trust the authors of all files in
-        the parent folder 'home'`.
-
-        ![VS Code Raspberry Pi trust authors](assets/images/vscode_trust_authors.png){ width="600" }
-
-    === "Remote X11 extension"
-
-        Open the VS Code Extensions and install the Remote X11 extension that you
-        already installed to your computer in [Local Setup](localsetup.md){target=_blank}
-        to the Raspberry Pi by selecting `Install in SSH:`.
-
-        ![VS Code Remote X11 install SSH](assets/images/vscode_remotex11_ssh_install.png){ width="700" }
-
-        Open the local **Remote X11 (SSH)** extension and select `Extension Settings`.
-
-        ![VS Code Remote X11 SSH settings](assets/images/vscode_remotex11_ssh_settings.png){ width="700" }
-
-        At the top you will see two tabs for `User` and `Remote [SSH: <IP-ADDRESS>]`.
-        In the `User` settings tab, make sure that the **XAuth Permission Level** is
-        set to `trusted`.
-
-        ![VS Code Remote X11 SSH settings User](assets/images/vscode_remotex11_ssh_settings_user.png){ width="700" }
-
-        Go to the `Remote [SSH: <IP-ADDRESS>]` settings tab and change the
-        **Display Command** to:
-
-        ``` text
-        echo DISPLAY=$DISPLAY
-        ```
-
-        ![VS Code Remote X11 SSH settings Remote Display](assets/images/vscode_remotex11_ssh_settings_remote_display.png){ width="700" }
-
-        Scroll down and set the **XAuth Permission Level** to `trusted`.
-
-        ![VS Code Remote X11 SSH settings Remote Authentication](assets/images/vscode_remotex11_ssh_settings_remote_auth.png){ width="700" }
-
-        Now you can start the **VcXsrv X server** by opening the `XLaunch.exe`, which
-        you installed in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
-        Keep all the [default settings](localsetup.md#vcxsrv-windows-x-server){target=_blank}
-        and the VcXsrv tray icon will appear in your taskbar. Before we will test the X11
-        forwarding, open a new SSH Terminal in VS Code for all changes to take effect.
-
-        ![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
-
-        You can test if the X11 forwarding from the Raspberry Pi to our Windows X
-        Server is established by running the following command:
-
-        ``` bash
-        echo $DISPLAY
-        ```
-
-        ...which should give you the following output:
-
-        ``` bash
-        localhost:10.0
-        ```
-
-        ??? bug "X11 connection Error"
-
-            If the X11 connection is not properly working, a possible problem could be
-            an incompatible private key format. You can convert your private key to the
-            older PEM format (which will work with the Remote X11 extension) by running
-            the following command in your local Terminal (Windows PowerShell):
-
-            ``` powershell
-            ssh-keygen -p -m PEM -f .ssh/id_rsa
-            ```
-
-            Restart VcXsrv and reboot the Raspberry Pi before testing the connection
-            again with `echo $DISPLAY`.
-
-- Set the `DISPLAY` environment variable in Windows by
-  [opening](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/){target=_blank}
-  the Command Prompt (cmd) and running:
-
-    ``` powershell
-    setx DISPLAY "localhost:0.0"
-    ```
-
-    You may have to reboot your computer for the changes to take effect.
-
-- Start the **VcXsrv X server** by opening the `XLaunch.exe`, which you installed
-  after following the [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}.
-  Keep all the default settings (press **Next** three times, then **Finish**) and
-  the VcXsrv tray icon will appear in your taskbar.
-- Open a new Terminal in VS Code.
-
-    ![VS Code new Terminal](assets/images/vscode_new_terminal.png){ width="700" }
-
-- Connect to your Raspberry Pi via SSH and trusted X11 forwarding (`-Y`) by running:
-
-    ``` powershell
-    ssh -Y pi@raspberrypi
-    ```
-
-    If you set a different hostname than `raspberrypi` during the
-    [RPi OS installation](#raspberry-pi-os-installation), change it
-    accordingly. When you are asked if you are sure you want to
-    continue connecting, type in `yes` and hit ++enter++.
-
-- Use **right-click** to paste commands to the Pi's SSH Terminal.
-- You can check if X11 forwarding works correctly by running:
-
-    ``` bash
-    echo $DISPLAY
-    ```
-
-    ...which should give you the following output:
-
-    ``` bash
-    localhost:10.0
-    ```
-
-- If you followed the steps in [Local Setup](localsetup.md){target=_blank}, you already have the
-  [SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
-  extension installed. Open the extension by clicking on the folder icon in the left side bar.
-- Create a new SSH FS configuration (`Name:` your RPi hostname) with the following fields:
-
-    - Host: `raspberrypi` (or different hostname)
-    - Port: `22`
-    - Root: `~/`
-    - Username: `pi`
-    - Private key: `c:\Users\<username>\.ssh\id_rsa` (insert your Windows username)
-
-- Leave the other fields blank and save the configuration with the
-  **Save** button at the bottom.
-- In the SSH FS extension, click on the first symbol to the right of your
-  configuration (`Add as Workspace folder`). Retry if it does not work
-  immediately. This will open the `/home/pi` folder in your VS Code explorer.
-  You can now view and edit files (e.g. [Python scripts](programming.md){target=_blank}
-  and images) directly in VS Code and drag & drop any files or folders
-  (e.g. `insect-detect`) from your PC to the RPi.
-
----
-
-## RPi configuration
-
-We will start with updating all standard packages by running:
+Connect to your Raspberry Pi via
+[SSH](https://www.raspberrypi.com/documentation/computers/remote-access.html#ssh){target=_blank}
+and trusted X11 forwarding (`-Y`) by running:
 
 ``` bash
-sudo apt update
+ssh -Y pi@insdet-cam01
 ```
 
-...in the Pi SSH Terminal, followed by:
+!!! info ""
+
+    `pi` = username. `insdet-cam01` = hostname. Change it to
+    the hostname that you set during the RPi OS installation.
+
+When you are asked if you want to continue connecting, type `yes` and hit ++enter++.
+
+---
+
+## Add RPi File Explorer
+
+We will use the
+[SSH FS](https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs){target=_blank}
+extension that you installed in [Local Setup](localsetup.md#visual-studio-code){target=_blank}
+to mount a remote workspace folder (from Raspberry Pi) as a local workspace
+folder in VS Code. This makes working with files on the Raspberry Pi easier
+(e.g. editing Python scripts or showing metadata/logs/images).
+
+- Open the SSH FS extension and create a new configuration (`Name`: your RPi
+  hostname). Hit `Save` to start editing the configuration.
+
+    ![VS Code SSH FS Create Configuration](assets/images/vscode_sshfs_create_config.png){ width="600" }
+
+- Configure the following fields and keep the rest empty:
+
+    - `Host`: your RPi hostname
+    - `Port`: `22` (should be the default)
+    - `Root`: `~/` (will open the `/home/pi` directory)
+    - `Username`: `pi`
+    - `Private key`: hit `Prompt` and select the path to your SSH key (`id_rsa`)
+
+        ![VS Code SSH FS Edit Configuration](assets/images/vscode_sshfs_edit_config.png){ width="500" }
+
+- Hit `Save` at the bottom to save the configuration.
+- Hit `Add as Workspace folder` to the right of your saved configuration to
+  mount the `/home/pi` directory from the Raspberry Pi in your local workspace.
+
+    ![VS Code SSH FS Add Workspace Folder](assets/images/vscode_sshfs_add_workspace.png){ width="400" }
+
+- Hit the blue SSH FS icon in the bottom left corner and select `Close Remote Workspace`
+  to close the workspace and disconnect from the Raspberry Pi (e.g. after shutdown).
+
+    ![VS Code SSH FS Close Workspace Folder](assets/images/vscode_sshfs_close_workspace.png){ width="700" }
+
+---
+
+## Update Software
+
+We will start with updating the already installed software by running:
 
 ``` bash
-sudo apt full-upgrade
+sudo apt update && sudo apt full-upgrade
 ```
 
 When you are asked if you want to continue, confirm with ++y+enter++.
-
-![VS Code Raspberry Pi update](assets/images/vscode_raspberry_update.png){ width="600" }
 
 Reboot the Raspberry Pi after all updates were successfully installed with:
 
@@ -377,117 +227,111 @@ Reboot the Raspberry Pi after all updates were successfully installed with:
 sudo reboot
 ```
 
-After the reboot you will have to establish a new SSH connection. When the
-Raspberry Pi SSH Terminal is back and active again, we will change some of
-the RPi settings (use the arrow keys to navigate) with:
+After the reboot you will have to establish a new SSH connection.
 
-``` bash
-sudo raspi-config
-```
+---
 
-![VS Code raspi config](assets/images/vscode_raspi_config.png){ width="600" }
+## Configure Power Manager
 
-- Under `1 System Options` --> `Wireless LAN` you can add additional WiFi SSIDs
-  and passwords, e.g. if you want to connect to a Hotspot from your phone while
-  in the field. All WiFi settings are stored in `wpa_supplicant.conf`. You can
-  also edit them directly by running:
+The [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+software supports both the [Witty Pi 4 L3V7](https://www.uugear.com/product/witty-pi-4-l3v7/){target=_blank}
+and [PiJuice Zero](https://uk.pi-supply.com/products/pijuice-zero){target=_blank}
+as power management boards. With the new 2024 version of the hardware setup,
+the Witty Pi is used by default but can be easily exchanged with the PiJuice.
+
+---
+
+### Configure Witty Pi 4 L3V7
+
+- Install the [Witty-Pi-4](https://github.com/uugear/Witty-Pi-4){target=_blank}
+  software from the [modified fork](https://github.com/maxsitt/Witty-Pi-4){target=_blank}:
 
     ``` bash
-    sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+    wget -qO- https://raw.githubusercontent.com/maxsitt/Witty-Pi-4/main/Software/install.sh | sudo bash
     ```
 
-- Go back to the main menu and select `3 Interface Options` --> `I5 I2C` and
-  enable the I2C interface. We will need this for communication with the
-  PiJuice Zero pHAT.
-- Next, go to `4 Performance Options` --> `P2 GPU Memory` and change the value
-  from `64` to `16`. As we are using the RPi Lite OS version without desktop
-  environment, we won't need more memory for graphical features and more RAM
-  will be available.
-- Under `6 Advanced Options`, choose `A1 Expand Filesystem` to ensure that all
-  of the SD card space will be available.
-- Also under `6 Advanced Options`, select `A2 GL driver`, which will install
-  several packages (confirm with ++y+enter++). After the packages are installed,
-  you can select the first option `G1 Legacy` in the raspi-config window, which
-  will disable the new KMS video driver for 3D graphics in RPi OS Bullseye.
+- Reboot the Raspberry Pi after the software was successfully installed:
 
-After these changes are made, select `Finish` in the bottom right of the main
-menu and reboot.
+    ``` bash
+    sudo reboot
+    ```
+
+- Start the Witty Pi 4 configuration tool by running:
+
+    ``` bash
+    wittypi/wittyPi.sh
+    ```
+
+- Type ++3++ in and hit ++enter++ to synchronize the
+  [RTC](https://en.wikipedia.org/wiki/Real-time_clock){target=_blank} time with
+  your network time:
+
+    ![Witty Pi Config Sync Time](assets/images/wittypi_config_time.png){ width="700" }
+
+    ??? warning "Batteries Unplugged"
+
+        If you unplug both the 3.7V battery and USB-C input (5V battery) from the
+        Witty Pi board, the RTC will not be powered and lose its time. In this case,
+        you will have to synchronize the RTC time with your network time again.
+
+- Next, we will deactivate Auto-On when USB-C is connected to the Witty Pi.
+  Type ++8++ in the Terminal and hit ++enter++. Select `No` by typing ++0++
+  and hit ++enter++ again:
+
+    ![Witty Pi Config USB Auto-On](assets/images/wittypi_config_usb_on.png){ width="700" }
+
+- Type `11` and hit ++enter++ to go to `11. View/change other settings...`
+- Type `2` and hit ++enter++ to change the power cut delay time after shutdown.
+  Type in `25` which is the maximum allowed value and hit ++enter++:
+
+    ![Witty Pi Config Power Cut Delay](assets/images/wittypi_config_power_cut_delay.png){ width="700" }
+
+- Back in the main menu, type `13` and hit ++enter++ to exit the Witty Pi configuration.
+
+Now that the Witty Pi 4 L3V7 is configured, we can set up scheduling of automatic
+startup and shutdown times. This is done with `.wpi` schedule files containing a
+custom ON/OFF sequence. In the
+[`wittypi/schedules`](https://github.com/maxsitt/Witty-Pi-4/tree/main/Software/wittypi/schedules){target=_blank}
+directory you can find some example schedule scripts.
+
+Start with creating a `BEGIN` and `END` date + time that will define the duration
+of your loop, which will continue as long as the current time is between the
+`BEGIN` and `END` time of the schedule script. Add your first `ON` state and how
+long it should last. Use `D` to set the number of days, `H` for hours, `M` for
+minutes and `S` for seconds.
+
+Add `WAIT` after the duration of an `ON` state to trigger the shutdown externally
+(e.g. shutdown command at end of Python script). In this case, the end of the
+`ON` state will not automatically trigger a shutdown but is required to calculate
+the duration of the next `OFF` state.
+
+To activate your schedule script, run the Witty Pi 4 configuration tool:
+
+``` bash
+wittypi/wittyPi.sh
+```
+
+Type `6` and hit ++enter++ to `Choose schedule script`. We are selecting the
+[example script](https://github.com/maxsitt/Witty-Pi-4/blob/main/Software/wittypi/schedules/on_9_12_15_18_hours.wpi){target=_blank}
+that will turn on the Raspberry Pi every day at 9, 12, 15 and 18 o'clock.
+
+![Witty Pi Choose Schedule Script](assets/images/wittypi_schedule.png){ width="700" }
+
+After choosing the schedule script, it will be copied to `wittypi/schedule.wpi`
+and the `wittypi/schedule.log` file will start logging startup/shutdown events.
+
+You can also use the
+[Witty Pi Schedule Script Generator](https://www.uugear.com/app/wittypi-scriptgen/){target=_blank}
+to create your schedule script with a visual feedback and the option to run a
+preview of the scheduling behaviour. You can find more information in chapter 9
+of the Witty Pi 4 L3V7 User Manual:
+[About Schedule Script](https://www.uugear.com/doc/WittyPi4L3V7_UserManual.pdf){target=_blank}.
 
 ---
 
-In the next step, we will disable some features that we won't need to decrease
-the RPi power consumption. In the Pi SSH Terminal run:
+### Configure PiJuice Zero
 
-``` bash
-sudo nano /boot/config.txt
-```
-
-We will disable audio, camera/display auto detects and Bluetooth, by making the
-following changes in the `config.txt` file (use the arrow keys to navigate):
-
-``` py
-# Enable audio (loads snd_bcm2835)
-dtparam=audio=off
-
-# Automatically load overlays for detected cameras
-camera_auto_detect=0
-
-# Automatically load overlays for detected DSI displays
-display_auto_detect=0
-```
-
-Copy and paste (use right-click to paste) the following two lines directly
-under the options you just changed:
-
-``` py
-# Disable Bluetooth
-dtoverlay=disable-bt
-```
-
-Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
-
-![VS Code RPi config.txt](assets/images/vscode_config_txt.png){ width="600" }
-
-The last thing we can do to decrease the power consumption, is to disable HDMI
-at each boot. In the SSH Terminal run:
-
-``` bash
-sudo nano /etc/rc.local
-```
-
-Add the following lines above `exit 0`:
-
-``` py
-# Disable HDMI at boot
-/usr/bin/tvservice -o
-```
-
-Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
-
-![VS Code RPi rc.local HDMI](assets/images/vscode_rclocal_hdmi.png){ width="600" }
-
-Reboot the Raspberry Pi for all changes to take effect:
-
-``` bash
-sudo reboot
-```
-
-If you want to shutdown your Raspberry Pi, run:
-
-``` bash
-sudo shutdown -h now
-```
-
----
-
-## PiJuice Zero configuration
-
-In the next steps, we will configure the PiJuice Zero for efficient power
-management and wake-up control. If you want to try the system without the
-PiJuice Zero connected to the Raspberry Pi, you can skip this and the following
-step and directly continue with the [OAK-1 configuration](#oak-1-configuration).
-
-First install the PiJuice package and its dependencies by running:
+Install the PiJuice software by running:
 
 ``` bash
 sudo apt install pijuice-base
@@ -507,20 +351,19 @@ now established.
 
 ![VS Code PiJuice i2cdetect](assets/images/pijuice_i2cdetect.png){ width="500" }
 
-From now on we want to use the built-in RTC
-([real-time clock](https://en.wikipedia.org/wiki/Real-time_clock){target=_blank})
+From now on we want to use the built-in [RTC](https://en.wikipedia.org/wiki/Real-time_clock){target=_blank}
 of the PiJuice Zero board as primary hardware clock to wake up the Raspberry Pi
 at specific times when it is not connected to the internet. For this, we will
 have to manually load the RTC driver at each boot by modifying the
-`/boot/config.txt` file with:
+`config.txt` file:
 
 ``` bash
-sudo nano /boot/config.txt
+sudo nano /boot/firmware/config.txt
 ```
 
 Add the following lines at the end of the text file:
 
-``` py
+``` text
 # Load PiJuice RTC driver at boot
 dtoverlay=i2c-rtc,ds1307=1
 ```
@@ -551,8 +394,6 @@ You can check if the date and time is correct with:
 ``` bash
 sudo hwclock -r
 ```
-
----
 
 We will now configure the PiJuice Zero through its command line interface
 by running:
@@ -606,20 +447,89 @@ wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Activate
     trap enclosure will be lower if the RPi and OAK-1 are not running, which can
     increase the charging efficiency of the batteries.
 
-With this we are finished with the PiJuice Zero pHAT configuration and we can
-set up the cron job that will execute the monitoring script at boot in the next
-step.
+---
+
+## Configure Raspberry Pi
+
+To show the camera live stream with OpenCV and X11 forwarding on your PC, you
+will need to switch from Wayland to the X11 backend for the window manager.
+
+Open the Raspberry Pi
+[configuration tool](https://www.raspberrypi.com/documentation/computers/configuration.html){target=_blank}
+by running:
+
+``` bash
+sudo raspi-config
+```
+
+Use your arrow keys to navigate and ++enter++ to select settings. Go to
+`6 Advanced Options` and then to `A6 Wayland`. Select `W1 X11` to activate
+X11.
+
+![Raspi Config X11](assets/images/raspi_config_x11.png){ width="700" }
+
+Select `Finish` in the main menu and confirm with `Yes` when asked if you want
+to reboot now.
 
 ---
 
-## Set up Cron Job
+## Install Software
 
-Because the Raspberry Pi should run the
-[Python script](programming.md#automated-monitoring-script){target=_blank} for
-automated insect monitoring on its own after being woken up by the PiJuice, we
-have to set up a cron job that will be executed at each boot. You can find more
-information about cron, crontab and cron jobs
-[here](https://en.wikipedia.org/wiki/Cron){target=_blank}.
+Install all required dependencies for RPi + OAK:
+
+``` bash
+wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/install_dependencies_oak.sh | sudo bash
+```
+
+Download the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+GitHub repo:
+
+``` bash
+git clone https://github.com/maxsitt/insect-detect
+```
+
+Create a virtual environment with access to the system site-packages:
+
+``` bash
+python3 -m venv --system-site-packages env_insdet
+```
+
+Update pip in the virtual environment:
+
+``` bash
+env_insdet/bin/python3 -m pip install --upgrade pip
+```
+
+Install all required packages in the virtual environment:
+
+``` bash
+env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
+```
+
+Run the scripts with the Python interpreter from the virtual environment:
+
+``` bash
+env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py
+```
+
+!!! tip ""
+
+    - A lot more information about setting up the OAK camera and DepthAI can be found at the
+      [Luxonis Docs](https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide/){target=_blank}.
+    - If you want to learn more about the DepthAI software, check out the
+      [Software Documentation](https://docs.luxonis.com/software){target=_blank}.
+    - For OAK-specific problems, get support in the
+      [Luxonis Forum](https://discuss.luxonis.com/){target=_blank} or post an issue
+      to the [`depthai-python`](https://github.com/luxonis/depthai-python/issues){target=_blank} repo.
+
+---
+
+## Schedule Cron Job
+
+We will have to set up a cron job that will be executed at each boot to
+automatically run the recording script after a startup is triggered by the
+power management board. You can find more information about cron, crontab and
+cron jobs [here](https://en.wikipedia.org/wiki/Cron){target=_blank}.
 
 Open the crontab file for editing by running:
 
@@ -631,35 +541,37 @@ When you are asked to choose an editor, type in `1` and confirm with ++enter++.
 
 Now paste the following lines at the end of the crontab file:
 
-``` py
-# Sleep for 30 seconds after boot to wait for all services to start, then execute Python script and
-# redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp
-@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py; } >> insect-detect/cronjob_log.log 2>&1
+``` text
+# Sleep for 30 seconds after boot to wait for all services to start, then execute Python script
+# Redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp
+@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync_wittypi.py; } >> insect-detect/cronjob_log.log 2>&1
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py`, separated by space:
+    Add after `env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync_wittypi.py`, separated by space:
 
-    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default: 1080p)
-    - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
+    - `-res` set camera resolution for HQ frames (default: `4k`)
+    - `-fov` stretch or crop frames to square for model input (default: `stretch`)
+    - `-cpi` set capture interval in seconds (default: `1`)
+    - `-tli` set time lapse interval in seconds (default: `600`)
+    - `-af CM_MIN CM_MAX` set auto focus range in cm (min - max distance to camera)
+    - `-mf CM` set manual focus position in cm (distance to camera)
     - `-ae` use bounding box coordinates from detections to set auto exposure region
-    - `-crop` save cropped detections with aspect ratio 1:1 (default: `-crop square`)
-              or keep original bbox size with variable aspect ratio (`-crop tight`)
-    - `-full` additionally save full HQ frames to .jpg together with cropped detections
-              (`-full det`) or at specified frequency, independent of detections (`-full freq`)
-    - `-overlay` additionally save full HQ frames with overlays (bbox + info) to .jpg
     - `-log` write RPi CPU + OAK chip temperature, RPi available
              memory + CPU utilization and battery info to .csv
-    - `-zip` store data in an uncompressed .zip file for each day and delete original directory
+    - `-post` set post-processing method(s) for saved HQ frames (`crop`, `overlay`, `delete`)
+    - `-crop` save cropped detections with aspect ratio 1:1 (default: `square`)
+              or keep original bbox size (`tight`)
+    - `-arx` archive all captured data + logs and manage disk space
+    - `-ul` upload archived data to cloud storage provider using Rclone
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
 This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure
 that all important services are ready. It will then run the provided Python
 script and append all error messages redirected to the standard output (`2>&1`)
-to a log file together with a prepended timestamp
-(`printf "\%s " "$(date +"\%F \%T")"`).
+to a log file together with a timestamp.
 
 !!! tip ""
 
@@ -669,86 +581,32 @@ to a log file together with a prepended timestamp
 
 ---
 
-## OAK-1 configuration
+## Add Wi-Fi Connections
 
-Before you can use the [DepthAI API](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}
-in the [Python scripts](programming.md){target=_blank} for automated insect
-monitoring on the RPi + OAK-1, you will first have to install some dependencies
-by running:
+Use the [NetworkManager TUI](https://networkmanager.dev/docs/api/latest/nmtui.html){target=_blank}
+to add or edit Wi-Fi connections (navigate with arrow keys):
 
 ``` bash
-sudo curl -fL https://docs.luxonis.com/install_dependencies.sh | bash
+sudo nmtui-edit
 ```
 
-Additionally, install the package `libopenblas-dev`:
+![NetworkManager TUI Add Connection](assets/images/nmtui_add_connection.png){ width="400" }
 
-```
-sudo apt install libopenblas-dev
-```
+Select `Wi-Fi` and then `Create` to add credentials for a new Wi-Fi connection.
 
-??? question "Only Raspberry Pi Zero W (v1)"
+![NetworkManager TUI Connection Type](assets/images/nmtui_connection_type.png){ width="400" }
 
-    Additionally to the installed dependencies, you will have to install the
-    package `libusb-1.0-0-dev` with:
+Set a profile name and enter the SSID and password of the Wi-Fi connection you
+want to add. Hit ++space++ to activate `Show password`.
 
-    ``` bash
-    sudo apt install libusb-1.0-0-dev
-    ```
+![NetworkManager TUI Edit Connection](assets/images/nmtui_edit_connection.png){ width="400" }
 
-[Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
-the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
-GitHub repo, extract it and change its foldername to `insect-detect`. Copy the
-renamed folder to the `home/pi` directory of your Raspberry Pi, by simply dragging
-& dropping it into the SSH FS Workspace folder (or VS Code remote window explorer).
+Hit `OK` and then `Quit` to save your new connection.
 
-Install all required Python packages by running:
+To show the available networks and connect to one of them, run:
 
 ``` bash
-python3 -m pip install -r insect-detect/requirements.txt
+nmtui-connect
 ```
 
-You can check if your OAK camera is correctly detected by running:
-
-``` bash
-lsusb | grep MyriadX
-```
-
-...which should give you the following output:
-
-``` bash
-Bus 001 Device 002: ID 03e7:2485 Intel Movidius MyriadX
-```
-
-??? bug "Device not found"
-
-    If your device is not found, or if you get errors including something like
-    `X_LINK_DEVICE_NOT_FOUND` or `skipping X_LINK_UNBOOTED device`, you can set
-    new udev rules to identify the OAK device. Unplug the OAK camera, then run:
-
-    ``` bash
-    echo 'SUBSYSTEM=="usb", ATTRS{idVendor}=="03e7", MODE="0666"' | sudo tee /etc/udev/rules.d/80-movidius.rules
-    ```
-
-    ...followed by:
-
-    ``` bash
-    sudo udevadm control --reload-rules && sudo udevadm trigger
-    ```
-
-    Plug the OAK device back into the USB port, it should
-    be correctly detected and identified now.
-
-!!! tip ""
-
-    - A lot more information on setting up the OAK camera and DepthAI can be found at the
-      [Luxonis Docs](https://docs.luxonis.com/en/latest/pages/tutorials/first_steps/){target=_blank}.
-    - If you want to learn more about the OAK and DepthAI, also check out the
-      [FAQ](https://docs.luxonis.com/en/latest/pages/faq/){target=_blank} and
-      [API Documentation](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
-    - If you have any problems with the OAK device, take a look at the
-      [Troubleshooting page](https://docs.luxonis.com/en/latest/pages/troubleshooting/){target=_blank}
-      or get [Support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} in the
-      [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
-
-With everything set up, you can now move on to [**Programming**](programming.md) and
-use the provided Python scripts for your own automated insect monitoring pipelines!
+![NetworkManager TUI Connect Network](assets/images/nmtui_connect_network.png){ width="400" }
