@@ -544,27 +544,15 @@ Now paste the following lines at the end of the crontab file:
 ``` text
 # Sleep for 30 seconds after boot to wait for all services to start, then execute Python script
 # Redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp
-@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync_wittypi.py; } >> insect-detect/cronjob_log.log 2>&1
+@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
 ```
 
-??? info "Optional arguments"
+???+ info "Optional argument"
 
-    Add after `env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync_wittypi.py`, separated by space:
+     Add after `env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
 
-    - `-res` set camera resolution for HQ frames (default: `4k`)
-    - `-fov` stretch or crop frames to square for model input (default: `stretch`)
-    - `-cpi` set capture interval in seconds (default: `1`)
-    - `-tli` set time lapse interval in seconds (default: `600`)
-    - `-af CM_MIN CM_MAX` set auto focus range in cm (min - max distance to camera)
-    - `-mf CM` set manual focus position in cm (distance to camera)
-    - `-ae` use bounding box coordinates from detections to set auto exposure region
-    - `-log` write RPi CPU + OAK chip temperature, RPi available
-             memory + CPU utilization and battery info to .csv
-    - `-post` set post-processing method(s) for saved HQ frames (`crop`, `overlay`, `delete`)
-    - `-crop` save cropped detections with aspect ratio 1:1 (default: `square`)
-              or keep original bbox size (`tight`)
-    - `-arx` archive all captured data + logs and manage disk space
-    - `-ul` upload archived data to cloud storage provider using Rclone
+     `-config` to set path to YAML file that contains all configuration parameters,
+     e.g. `-config configs/config_custom.yaml` to use custom config file
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
