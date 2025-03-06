@@ -544,7 +544,7 @@ Now paste the following lines at the end of the crontab file:
 ``` text
 # Sleep for 30 seconds after boot to wait for all services to start, then execute Python script
 # Redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp
-@reboot sleep 30 && { printf "\%s " "$(date +"\%F \%T")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
+@reboot sleep 30 && { printf "\%s\n" "$(date +"\%F \%T")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
 ```
 
 ???+ info "Optional argument"
