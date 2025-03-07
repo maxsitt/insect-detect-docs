@@ -526,10 +526,8 @@ env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py
 
 ## Schedule Cron Job
 
-We will have to set up a cron job that will be executed at each boot to
-automatically run the recording script after a startup is triggered by the
-power management board. You can find more information about cron, crontab and
-cron jobs [here](https://en.wikipedia.org/wiki/Cron){target=_blank}.
+To automatically run the recording script after each boot (triggered by the power management
+board), you will have to set up a [cron job](https://en.wikipedia.org/wiki/Cron){target=_blank}.
 
 Open the crontab file for editing by running:
 
@@ -539,33 +537,30 @@ crontab -e
 
 When you are asked to choose an editor, type in `1` and confirm with ++enter++.
 
-Now paste the following lines at the end of the crontab file:
+Paste the following lines at the end of the crontab file:
 
 ``` text
-# Sleep for 30 seconds after boot to wait for all services to start, then execute Python script
-# Redirect error messages (stderr) to standard output (stdout) and append both to log file with timestamp
-@reboot sleep 30 && { printf "\%s\n" "$(date +"\%F \%T")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
+# Wait 30 seconds after boot to ensure all system services are fully initialized
+# Run Python script with timestamped logging, including potential error messages
+@reboot sleep 30 && { printf "\%s - Running yolo_tracker_save_hqsync.py\n" "$(date +"\%F \%T,\%3N")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
 ```
-
-???+ info "Optional argument"
-
-     Add after `env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py`, separated by space:
-
-     `-config` to set path to YAML file that contains all configuration parameters,
-     e.g. `-config configs/config_custom.yaml` to use custom config file
 
 Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
 
-This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure
-that all important services are ready. It will then run the provided Python
-script and append all error messages redirected to the standard output (`2>&1`)
-to a log file together with a timestamp.
+This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure that
+all important services are ready. It will then run the Python script and log its
+execution, including potential error messages, to `insect-detect/cronjob_log.log`.
+
+??? info "Use custom configuration"
+
+    Add `-config configs/config_custom.yaml` after `insect-detect/yolo_tracker_save_hqsync.py`,
+    separated by space, to set the path to your custom YAML config file.
 
 !!! tip ""
 
-    If you are still in the testing phase, it is highly recommended to comment out
-    your cronjob by adding `#` in front of `@reboot`, otherwise each time you are
-    booting up your Raspberry Pi, it will try to run the Python script.
+    If you are still in the testing phase, it is highly recommended to deactivate
+    your cronjob by adding `#` in front of `@reboot`. Otherwise each time you are
+    booting up your Raspberry Pi, it will run the Python script.
 
 ---
 
