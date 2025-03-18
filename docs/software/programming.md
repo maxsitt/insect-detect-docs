@@ -14,33 +14,10 @@
     suggestions on possible modifications. Click on the :material-plus-circle:
     symbol to open the code annotations for more information. More details
     about the API that is used can be found at the
-    [DepthAI API Docs](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}.
-
-The latest versions of the Python scripts are available in the
-[`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
-[Download](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){target=_blank}
-the whole repository, extract it and change its foldername to `insect-detect`. Copy
-the renamed folder to the `home/pi` directory of your Raspberry Pi, by simply dragging
-& dropping it into the SSH FS Workspace folder (or VS Code remote window explorer).
+    [Luxonis Docs](https://docs.luxonis.com/software/){target=_blank}.
 
 If you run into any problems, find a bug or something that could be optimized, please
 create a [GitHub issue](https://github.com/maxsitt/insect-detect/issues){target=_blank}.
-You can also get OAK-specific
-[Luxonis support](https://docs.luxonis.com/en/latest/pages/support/){target=_blank} or check
-out the [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
-
-??? bug "libGL error"
-
-    When running one of the preview scripts to show the OAK camera livestream on
-    your computer, the following error message might be printed to your console:
-
-    ``` bash
-    libGL error: No matching fbConfigs or visuals found
-    libGL error: failed to load driver: swrast
-    ```
-
-    You can ignore this error message, as everything will still work as expected.
-    It will only be printed to the console once after each boot.
 
 ??? bug "RuntimeError: X_LINK_DEVICE_ALREADY_IN_USE"
 
@@ -69,7 +46,7 @@ out the [Luxonis Forum](https://discuss.luxonis.com/){target=_blank}.
 ## OAK camera preview
 
 The following Python script will create and configure the
-[ColorCamera](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}
+[ColorCamera](https://docs.luxonis.com/software/depthai-components/nodes/color_camera/){target=_blank}
 node to send downscaled LQ frames (e.g. 320x320 px) to the host (Raspberry Pi)
 and show them in a new window. If you are connected to the RPi via SSH,
 [X11 forwarding](pisetup.md#set-up-x11-forwarding){target=_blank}
@@ -77,15 +54,16 @@ has to be set up, together with an started and active
 [X server](localsetup.md#vcxsrv-windows-x-server){target=_blank}
 to show the frames in a window on your local PC.
 
-Run the script with:
+Run the script with the Python interpreter from the virtual environment where
+you installed the required packages (e.g. `env_insdet`):
 
 ``` bash
-python3 insect-detect/cam_preview.py
+env_insdet/bin/python3 insect-detect/cam_preview.py
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/cam_preview.py`, separated by space:
+    Add after `env_insdet/bin/python3 insect-detect/cam_preview.py`, separated by space:
 
     - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
     - `-big` show a bigger preview window with 640x640 px size
@@ -221,26 +199,21 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device: # (7)!
 ## YOLO preview
 
 With the following Python script you can run a custom YOLO object detection model
-([.blob format](https://docs.luxonis.com/en/latest/pages/model_conversion){target=_blank})
+([.blob format](https://docs.luxonis.com/software/ai-inference/conversion){target=_blank})
 on the OAK device with downscaled LQ frames (e.g. 320x320 px) as model input
 and show the frames together with the model output (bounding box, label,
 confidence score) in a new window.
 
-If you copied the whole
-[`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
-GitHub repo to your Raspberry Pi, the provided YOLOv5n detection model and
-config .json will be used by default. If you want to use a different model,
-change the `MODEL_PATH` and `CONFIG_PATH` accordingly.
-
-Run the script with:
+Run the script with the Python interpreter from the virtual environment where
+you installed the required packages (e.g. `env_insdet`):
 
 ``` bash
-python3 insect-detect/yolo_preview.py
+env_insdet/bin/python3 insect-detect/yolo_preview.py
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/yolo_preview.py`, separated by space:
+    Add after `env_insdet/bin/python3 insect-detect/yolo_preview.py`, separated by space:
 
     - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
     - `-ae` use bounding box coordinates from detections to set auto exposure region
@@ -465,7 +438,7 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 ## YOLO + object tracker preview
 
 In the following Python script an
-[ObjectTracker](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank},
+[ObjectTracker](https://docs.luxonis.com/software/depthai-components/nodes/object_tracker){target=_blank},
 node based on the [Intel DL Streamer](https://dlstreamer.github.io/dev_guide/object_tracking.html){target=_blank}
 framework, is added to the pipeline. The object tracker uses the detection model
 output as input for tracking detected objects and assigning unique tracking IDs
@@ -473,15 +446,16 @@ on-device. The frames, together with the model and tracker output (bounding box
 from tracker output and bbox from detection model, label, confidence score,
 tracking ID, tracking status), are shown in a new window.
 
-Run the script with:
+Run the script with the Python interpreter from the virtual environment where
+you installed the required packages (e.g. `env_insdet`):
 
 ``` bash
-python3 insect-detect/yolo_tracker_preview.py
+env_insdet/bin/python3 insect-detect/yolo_tracker_preview.py
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/yolo_preview.py`, separated by space:
+    Add after `env_insdet/bin/python3 insect-detect/yolo_tracker_preview.py`, separated by space:
 
     - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
     - `-ae` use bounding box coordinates from detections to set auto exposure region
@@ -721,77 +695,54 @@ with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
 
 ## Automated monitoring script
 
+!!! warning "Outdated Script Versions"
+
+    The versions of the Python scripts shown in this subsection are currently
+    **not up-to-date** with the versions in the
+    [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+    GitHub repo. Will be updated as soon as possible.
+
 The following Python script is the main script for fully
 [automated insect monitoring](../deployment/detection.md){target=_blank}.
 
-- The object tracker output (+ passthrough detections) from inference on downscaled
-  LQ frames (e.g. 320x320 px) is synchronized with HQ frames (e.g. 1920x1080 px) in a
-  [Sync](https://docs.luxonis.com/projects/api/en/latest/components/nodes/sync_node/){target=_blank}
-  node on-device, using the respective message timestamps.
-- Detections (bounding box area) are
-  [cropped](https://maxsitt.github.io/insect-detect-docs/deployment/assets/images/hq_frame_sync_1080p.jpg){target=_blank}
-  from synced HQ frames and saved to .jpg. By default, cropped detections are saved
-  with aspect ratio 1:1 (`-crop square`) which increases classification accuracy,
-  as the images are not stretched during resizing and no distortion is added.
-  Use option `-crop tight` to keep original bbox size with variable aspect ratio.
-- All relevant metadata from the detection model and tracker output (timestamp,
-  label, confidence score, tracking ID, relative bbox coordinates, .jpg file
-  path) is saved to a [metadata .csv](../deployment/detection.md#metadata-csv){target=_blank}
-  file for each cropped detection.
-- Info and error messages are written to log file. Recording info (recording
-  ID, start/end time, duration, number of cropped detections, number of unique
-  tracking IDs, free disk space and battery charge level) is written to the
-  `record_log.csv` file for each recording interval.
-- The [PiJuice I2C Command API](https://github.com/PiSupply/PiJuice/tree/master/Software#i2c-command-api){target=_blank}
-  is used for power management. A recording will only be made if the PiJuice
-  battery charge level is higher than the specified threshold. The respective
-  recording duration is conditional on the current charge level.
-- After a recording interval is finished, or if the PiJuice battery charge
-  level drops below a specified threshold, or if an error occurs, the Raspberry
-  Pi is safely shut down and waits for the next wake up alarm from the PiJuice Zero.
+All relevant configuration parameters can be modified in the
+[`configs/config_custom.yaml`](https://github.com/maxsitt/insect-detect/tree/main/configs/config_custom.yaml) file.
 
-Using the default 1080p resolution for the HQ frames will result in an
-pipeline speed of **~13 fps**, which is fast enough to track many insects.
-If 4K resolution is used instead (`-4k`), the pipeline speed will decrease to
-**~3 fps**, which reduces tracking accuracy for fast moving insects.
+Processing pipeline for the
+[`yolo_tracker_save_hqsync.py`](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync.py)
+script that can be used for automated insect monitoring:
+
+- A custom **YOLO insect detection model** is run in real time on device (OAK) and uses a
+  continuous stream of downscaled LQ frames as input (default: 320x320 px at 20 fps).
+- An **object tracker** uses the bounding box coordinates of detected insects to assign a unique
+  tracking ID to each individual present in the frame and track its movement through time.
+- The tracker + model output from inference on LQ frames is synchronized with
+  **MJPEG-encoded HQ frames** (default: 3840x2160 px) on device (OAK) using the respective timestamps.
+- The encoded HQ frames are saved to the microSD card at the configured intervals if
+  an insect is detected (default: 1 s) and independent of detections (default: 10 min).
+- Corresponding **metadata** from the detection model and tracker output (including timestamp, label,
+  confidence score, tracking ID, tracking status and bounding box coordinates) is saved to a
+  metadata .csv file for each detected and tracked insect at the configured interval.
+- The metadata can be used to **crop detected insects** from the HQ frames and save them as individual
+  .jpg images. Depending on the post-processing configuration, the original HQ frames will be optionally deleted after the processing to save storage space.
+- During the recording, a maximum pipeline speed of **~19 FPS** for 4K resolution (3840x2160) and
+  **~42 FPS** for 1080p resolution (1920x1080) can be reached if the capture interval is set to 0
+  and the camera frame rate is adjusted accordingly.
+- With the default configuration, the recording pipeline consumes **~3.8 W** of power.
+- If a power management board (Witty Pi 4 L3V7 or PiJuice Zero) is connected and enabled in the
+  configuration, intelligent power management is activated which includes battery charge level
+  monitoring and conditional recording durations.
 
 For fully automated monitoring in the field, set up a
 [cron job](pisetup.md#schedule-cron-job){target=_blank} that will run the script
-automatically after each boot (after wake up by the PiJuice Zero).
+automatically after each boot.
 
-??? question "No PiJuice Zero?"
-
-    If you want to try the software without the PiJuice Zero pHAT
-    connected to your Raspberry Pi, use the
-    [`yolo_tracker_save_hqsync.py`](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync.py){target=_blank}
-    script, available in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
-
-    If you want to use the [Witty Pi 4 L3V7](https://www.uugear.com/product/witty-pi-4-l3v7/){target=_blank}
-    as alternative power management board, you can use the
-    [`yolo_tracker_save_hqsync_wittypi.py`](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync_wittypi.py){target=_blank}
-    script. Witty Pi support is still in development and therefore not everything might work as expected!
-
-Run the script with:
+Run the script with the Python interpreter from the virtual environment where
+you installed the required packages (e.g. `env_insdet`):
 
 ``` bash
-python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py
+env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py
 ```
-
-??? info "Optional arguments"
-
-    Add after `python3 insect-detect/yolo_tracker_save_hqsync_pijuice.py`, separated by space:
-
-    - `-4k` crop detections from (+ save HQ frames in) 4K resolution (default: 1080p)
-    - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
-    - `-ae` use bounding box coordinates from detections to set auto exposure region
-    - `-crop` save cropped detections with aspect ratio 1:1 (default: `-crop square`)
-              or keep original bbox size with variable aspect ratio (`-crop tight`)
-    - `-full` additionally save full HQ frames to .jpg together with cropped detections
-              (`-full det`) or at specified frequency, independent of detections (`-full freq`)
-    - `-overlay` additionally save full HQ frames with overlays (bbox + info) to .jpg
-    - `-log` write RPi CPU + OAK chip temperature, RPi available
-             memory + CPU utilization and battery info to .csv
-    - `-zip` store data in an uncompressed .zip file for each day and delete original directory
 
 Stop the script by pressing ++ctrl+c++ in the Terminal.
 
@@ -1261,15 +1212,16 @@ can be saved to .jpg additionally, e.g. to include them in the training data,
 as the detection model will use LQ frames for inference. However, it is recommended
 to use the original HQ images for annotation and downscale them only before/during training.
 
-Run the script with:
+Run the script with the Python interpreter from the virtual environment where
+you installed the required packages (e.g. `env_insdet`):
 
 ``` bash
-python3 insect-detect/frame_capture.py
+env_insdet/bin/python3 insect-detect/frame_capture.py
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/frame_capture.py`, separated by space:
+    Add after `env_insdet/bin/python3 insect-detect/frame_capture.py`, separated by space:
 
     - `-min` set recording time in minutes (default: 2)
     - `-4k` set camera resolution to 4K (3840x2160 px) (default: 1080p)
@@ -1456,210 +1408,6 @@ if args.zip_data:
 
 ---
 
-## Still capture
-
-The following Python script enables the capture of still frames at the highest
-possible resolution of the
-[supported sensors](https://docs.luxonis.com/projects/hardware/en/latest/pages/articles/supported_sensors.html){target=_blank}
-at a specified time interval. This will lead to a bigger field of view (FOV),
-compared to the other scripts where the frames are cropped to 4K or 1080p
-resolution. You can find more information on sensor resolution and image types at the
-[DepthAI API Docs](https://docs.luxonis.com/projects/api/en/latest/components/nodes/color_camera/){target=_blank}.
-
-Run the script with:
-
-``` bash
-python3 insect-detect/still_capture.py
-```
-
-??? info "Optional arguments"
-
-    Add after `python3 insect-detect/still_capture.py`, separated by space:
-
-    - `-min` set recording time in minutes (default: 2)
-    - `-af CM_MIN CM_MAX` set auto focus range in cm (min distance, max distance)
-    - `-zip` store data in an uncompressed .zip file for each day and delete original directory
-
-Stop the script by pressing ++ctrl+c++ in the Terminal.
-
-``` py title="still_capture.py" linenums="1" hl_lines="14-21 49 54 74-76"
-#!/usr/bin/env python3
-
-"""Save encoded still frames from OAK camera.
-
-Source:   https://github.com/maxsitt/insect-detect
-License:  GNU GPLv3 (https://choosealicense.com/licenses/gpl-3.0/)
-Author:   Maximilian Sittinger (https://github.com/maxsitt)
-Docs:     https://maxsitt.github.io/insect-detect-docs/
-
-- save encoded still frames in highest possible resolution (default: 4032x3040 px)
-  to .jpg at specified capture frequency (default: ~every second)
-  -> stop recording early if free disk space drops below threshold
-- optional arguments:
-  '-min' set recording time in minutes (default: 2 [min])
-         -> e.g. '-min 5' for 5 min recording time
-  '-af'  set auto focus range in cm (min distance, max distance)
-         -> e.g. '-af 14 20' to restrict auto focus range to 14-20 cm
-  '-zip' store all captured data in an uncompressed .zip file for each day
-         and delete original directory
-         -> increases file transfer speed from microSD to computer
-            but also on-device processing time and power consumption
-
-based on open source scripts available at https://github.com/luxonis
-"""
-
-import argparse
-import logging
-import time
-from datetime import datetime
-from pathlib import Path
-
-import depthai as dai
-import psutil
-
-from utils.general import zip_data
-from utils.oak_cam import set_focus_range
-
-# Define optional arguments
-parser = argparse.ArgumentParser()
-parser.add_argument("-min", "--min_rec_time", type=int, choices=range(1, 721), default=2,
-    help="Set recording time in minutes (default: 2 [min]).", metavar="1-720")
-parser.add_argument("-af", "--af_range", nargs=2, type=int,
-    help="Set auto focus range in cm (min distance, max distance).", metavar=("CM_MIN", "CM_MAX"))
-parser.add_argument("-zip", "--zip_data", action="store_true",
-    help="Store data in an uncompressed .zip file for each day and delete original directory.")
-args = parser.parse_args()
-
-# Set threshold value required to start and continue a recording
-MIN_DISKSPACE = 100  # minimum free disk space (MB) (default: 100 MB)
-
-# Set capture frequency (default: ~every second)
-# -> wait for specified amount of seconds between saving still frames
-# 'CAPTURE_FREQ = 1' saves ~54 still frames per minute to .jpg (12 MP)
-CAPTURE_FREQ = 1 # (1)!
-
-# Set recording time (default: 2 minutes)
-REC_TIME = args.min_rec_time * 60
-
-# Set logging level and format
-logging.basicConfig(level=logging.INFO, format="%(message)s")
-
-# Create directory per day and recording interval to save still frames
-rec_start = datetime.now()
-rec_start_format = rec_start.strftime("%Y-%m-%d_%H-%M-%S")
-save_path = Path(f"insect-detect/stills/{rec_start.date()}/{rec_start_format}")
-save_path.mkdir(parents=True, exist_ok=True)
-
-# Create depthai pipeline
-pipeline = dai.Pipeline()
-
-# Create and configure color camera node
-cam_rgb = pipeline.create(dai.node.ColorCamera)
-#cam_rgb.setImageOrientation(dai.CameraImageOrientation.ROTATE_180_DEG)  # rotate image 180°
-cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_12_MP) # (2)# OAK-1 (IMX378)
-#cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_13_MP)     # OAK-1 Lite (IMX214)
-#cam_rgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_5312X6000) # OAK-1 MAX (IMX582)
-cam_rgb.setInterleaved(False)  # planar layout
-cam_rgb.setNumFramesPool(2,2,2,2,2) # (3) # decrease frame pool size to avoid memory issues
-cam_rgb.setFps(25) # (4) # frames per second available for auto focus/exposure
-
-# Create and configure video encoder node and define input + output
-still_enc = pipeline.create(dai.node.VideoEncoder) # (5)!
-still_enc.setDefaultProfilePreset(1, dai.VideoEncoderProperties.Profile.MJPEG)
-still_enc.setNumFramesPool(1)
-cam_rgb.still.link(still_enc.input)
-
-xout_still = pipeline.create(dai.node.XLinkOut)
-xout_still.setStreamName("still")
-still_enc.bitstream.link(xout_still.input)
-
-# Create script node
-script = pipeline.create(dai.node.Script)
-script.setProcessor(dai.ProcessorType.LEON_CSS)
-
-# Set script that will be run on OAK device to send capture still command
-script.setScript('''
-ctrl = CameraControl()
-ctrl.setCaptureStill(True)
-while True:
-    node.io["capture_still"].send(ctrl)
-''')
-
-# Define script node output to send capture still command to color camera node
-script.outputs["capture_still"].link(cam_rgb.inputControl)
-
-if args.af_range:
-    # Create XLinkIn node to send control commands to color camera node
-    xin_ctrl = pipeline.create(dai.node.XLinkIn)
-    xin_ctrl.setStreamName("control")
-    xin_ctrl.out.link(cam_rgb.inputControl)
-
-# Connect to OAK device and start pipeline in USB2 mode
-with dai.Device(pipeline, maxUsbSpeed=dai.UsbSpeed.HIGH) as device:
-
-    logging.info("Recording time: %s min\n", int(REC_TIME / 60))
-
-    # Get free disk space (MB)
-    disk_free = round(psutil.disk_usage("/").free / 1048576)
-
-    # Create output queue to get the encoded still frames from the output defined above
-    q_still = device.getOutputQueue(name="still", maxSize=1, blocking=False)
-
-    if args.af_range:
-        # Create input queue to send control commands to OAK camera
-        q_ctrl = device.getInputQueue(name="control", maxSize=16, blocking=False)
-
-        # Set auto focus range to specified cm values
-        af_ctrl = set_focus_range(args.af_range[0], args.af_range[1])
-        q_ctrl.send(af_ctrl)
-
-    # Set start time of recording
-    start_time = time.monotonic()
-
-    # Record until recording time is finished
-    # Stop recording early if free disk space drops below threshold
-    while time.monotonic() < start_time + REC_TIME and disk_free > MIN_DISKSPACE:
-
-        # Update free disk space (MB)
-        disk_free = round(psutil.disk_usage("/").free / 1048576)
-
-        # Get encoded still frames and save to .jpg
-        if q_still.has():
-            frame_still = q_still.get().getData()
-            timestamp_still = datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f")
-            with open(save_path / f"{timestamp_still}.jpg", "wb") as still_jpg:
-                still_jpg.write(frame_still)
-
-        # Wait for specified amount of seconds (default: 1)
-        time.sleep(CAPTURE_FREQ)
-
-# Print number and directory of saved still frames
-num_frames_still = len(list(save_path.glob("*.jpg")))
-logging.info("Saved %s still frames to %s\n", num_frames_still, save_path)
-
-if args.zip_data:
-    # Store frames in uncompressed .zip file and delete original folder
-    zip_data(save_path)
-    logging.info("Stored all captured images in %s.zip\n", save_path.parent)
-
-```
-
-1.  You can increase the capture frequency in this line, e.g. if you want to
-    only save a still frame every 10 seconds, every minute, etc.
-2.  `THE_12_MP` = 4032x3040 pixel, which is the maximum resolution of the IMX378
-    camera sensor of the OAK-1. You can use other possible
-    [sensor resolutions](https://docs.luxonis.com/projects/api/en/latest/references/python/#depthai.ColorCameraProperties.SensorResolution){target=_blank}
-    depending on your device type.
-3.  The maximum number of frames in all pools (raw, isp, preview, video, still)
-    is set to 2, to avoid a potential out-of-memory error, especially when
-    saving images with the OAK-1 MAX at 5312x6000 px.
-4.  10 fps is currently the maximum framerate supported by the OAK-1 MAX at
-    full resolution (will be automatically capped).
-5.  More info about the
-    [VideoEncoder node](https://docs.luxonis.com/projects/api/en/latest/components/nodes/video_encoder/){target=_blank}.
-
----
-
 ## Video capture
 
 With the following Python script you can save encoded HQ frames (1080p or 4K
@@ -1673,15 +1421,16 @@ left drops below a specified threshold (e.g. 100 MB).
 If you don't need the 25 fps you can decrease the frame rate which will
 lead to a smaller video file size (e.g. `-fps 20`).
 
-Run the script with:
+Run the script with the Python interpreter from the virtual environment where
+you installed the required packages (e.g. `env_insdet`):
 
 ``` bash
-python3 insect-detect/video_capture.py
+env_insdet/bin/python3 insect-detect/video_capture.py
 ```
 
 ??? info "Optional arguments"
 
-    Add after `python3 insect-detect/video_capture.py`, separated by space:
+    Add after `env_insdet/bin/python3 insect-detect/video_capture.py`, separated by space:
 
     - `-min` set recording time in minutes (default: 2)
     - `-4k` set camera resolution to 4K (3840x2160 px) (default: 1080p)
