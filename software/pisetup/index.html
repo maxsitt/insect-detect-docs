@@ -1,0 +1,2127 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Insect Detect: DIY camera trap for continuous automated insect monitoring -  Documentation and build instructions">
+      
+      
+        <meta name="author" content="Maximilian Sittinger">
+      
+      
+        <link rel="canonical" href="https://maxsitt.github.io/insect-detect-docs/software/pisetup/">
+      
+      
+        <link rel="prev" href="../localsetup/">
+      
+      
+        <link rel="next" href="../programming/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Raspberry Pi Setup - Insect Detect Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#raspberry-pi-setup" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Insect Detect Docs" class="md-header__button md-logo" aria-label="Insect Detect Docs" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Insect Detect Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Raspberry Pi Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Insect Detect Docs" class="md-nav__button md-logo" aria-label="Insect Detect Docs" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Insect Detect Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../hardware/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Version 2024
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Version 2024
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Building Instructions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Building Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_enclosures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enclosure Preparation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hardware Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_buildinstructions_mounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mounting Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/2024_field_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Field Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Version 2023
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Version 2023
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Building Instructions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Building Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_enclosure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Preparing the Enclosure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integrating the Hardware
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/buildinstructions_mounting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mounting Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../localsetup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Local Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Raspberry Pi Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Raspberry Pi Setup
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-raspberry-pi-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Raspberry Pi OS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turn-on-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Turn On Raspberry Pi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Turn On Raspberry Pi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#witty-pi-4-l3v7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Witty Pi 4 L3V7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pijuice-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      PiJuice Zero
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-x11-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up X11 forwarding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-rpi-via-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect RPi via SSH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-rpi-file-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add RPi File Explorer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-power-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Power Manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Power Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-witty-pi-4-l3v7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Witty Pi 4 L3V7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-pijuice-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure PiJuice Zero
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schedule-cron-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schedule Cron Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-wi-fi-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add Wi-Fi Connections
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../programming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Model Training
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Model Training
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/annotation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Annotation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/train_detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/train_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Image Classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/post-processing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Post-Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-raspberry-pi-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Raspberry Pi OS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#turn-on-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Turn On Raspberry Pi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Turn On Raspberry Pi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#witty-pi-4-l3v7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Witty Pi 4 L3V7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pijuice-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      PiJuice Zero
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-x11-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up X11 forwarding
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-rpi-via-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect RPi via SSH
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-rpi-file-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add RPi File Explorer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-power-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Power Manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Power Manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-witty-pi-4-l3v7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Witty Pi 4 L3V7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-pijuice-zero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure PiJuice Zero
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-raspberry-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Raspberry Pi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schedule-cron-job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schedule Cron Job
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-wi-fi-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add Wi-Fi Connections
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="raspberry-pi-setup">Raspberry Pi Setup<a class="headerlink" href="#raspberry-pi-setup" title="Anchor link to this section">&para;</a></h1>
+<h2 id="install-raspberry-pi-os">Install Raspberry Pi OS<a class="headerlink" href="#install-raspberry-pi-os" title="Anchor link to this section">&para;</a></h2>
+<p>Insert the microSD card into your card reader and start the Raspberry Pi Imager.</p>
+<p>First, use <code>CHOOSE DEVICE</code> to select your Raspberry Pi model (<code>Raspberry Pi Zero 2 W</code>
+in our case). Continue with <code>CHOOSE OS</code> to select the operating system.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_choose_os.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Choose OS" src="../assets/images/raspberrypi_imager_choose_os.png" width="700" /></a></p>
+<p>Go to <code>Raspberry Pi OS (other)</code> to show the Lite OS versions.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_choose_os_other.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Choose OS Other" src="../assets/images/raspberrypi_imager_choose_os_other.png" width="700" /></a></p>
+<p>Select <code>Raspberry Pi OS Lite (32-bit)</code> (based on Debian 12 Bookworm with Python 3.11).</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_choose_os_lite.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Choose OS Lite" src="../assets/images/raspberrypi_imager_choose_os_lite.png" width="700" /></a></p>
+<p>Continue with <code>CHOOSE STORAGE</code> and select your microSD card.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_choose_storage.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Choose Storage" src="../assets/images/raspberrypi_imager_choose_storage.png" width="700" /></a></p>
+<p>Hit <code>NEXT</code> and select <code>EDIT SETTINGS</code> to customize your OS setup.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Edit Settings" src="../assets/images/raspberrypi_imager_settings.png" width="700" /></a></p>
+<p>Configure the following settings under the <code>GENERAL</code> tab:</p>
+<ul>
+<li><code>Set hostname</code>: For multiple camera traps, give each one a unique hostname.
+  Note the hostname, as you will need it to connect to the RPi via SSH.</li>
+<li><code>Set username and password</code>: Keep the default <code>pi</code> as username. Choose a
+  simple password (we won't use it after setting up SSH key based authentication
+  in the next step).</li>
+<li><code>Configure wireless LAN</code>: Enter your Wi-Fi credentials (e.g. 2.4 GHz
+  <a href="https://support.microsoft.com/en-us/windows/use-your-windows-device-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85" target="_blank">mobile hotspot</a>).</li>
+<li>Select the correct <code>Wireless LAN country</code>.</li>
+<li>
+<p><code>Set locale settings</code> to your time zone and keyboard layout.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings_general.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Settings General" src="../assets/images/raspberrypi_imager_settings_general.png" width="500" /></a></p>
+</li>
+</ul>
+<p>Configure the following settings under the <code>SERVICES</code> tab:</p>
+<ul>
+<li>Activate <code>Enable SSH</code> and <code>Allow public-key authentication only</code>.</li>
+<li>
+<p>Hit <code>RUN SSH-KEYGEN</code> if you didn't already generate a SSH key pair before.
+  The public key will be automatically inserted in the text field.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings_services.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Settings Services" src="../assets/images/raspberrypi_imager_settings_services.png" width="700" /></a></p>
+</li>
+</ul>
+<p>Keep the default settings under the <code>OPTIONS</code> tab and hit <code>SAVE</code>.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings_options.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Settings Options" src="../assets/images/raspberrypi_imager_settings_options.png" width="500" /></a></p>
+<p>Hit <code>YES</code> to apply the customized OS settings. Confirm again with <code>YES</code> that all
+existing data on your microSD card will be erased when writing the image.</p>
+<p><a class="glightbox" href="../assets/images/raspberrypi_imager_settings_apply.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspberry Pi Imager Apply Settings" src="../assets/images/raspberrypi_imager_settings_apply.png" width="700" /></a></p>
+<p><strong>Insert the microSD card into the Raspberry Pi after the OS installation is finished.</strong></p>
+<hr />
+<h2 id="turn-on-raspberry-pi">Turn On Raspberry Pi<a class="headerlink" href="#turn-on-raspberry-pi" title="Anchor link to this section">&para;</a></h2>
+<p>If you are not using a power management board, insert a Micro-USB cable
+connected to a power supply, battery or laptop into the <strong>PWR IN</strong> Micro-USB
+input of the Raspberry Pi, which will trigger it to turn on. The first boot
+can take a little bit longer (up to 5 min).</p>
+<hr />
+<h3 id="witty-pi-4-l3v7">Witty Pi 4 L3V7<a class="headerlink" href="#witty-pi-4-l3v7" title="Anchor link to this section">&para;</a></h3>
+<p>If you integrated the
+<a href="../../hardware/2024_buildinstructions_hardware/#13-led-button" target="_blank">LED button</a>,
+press it once to turn on the Raspberry Pi. If you don't have an external button,
+press the button on the Witty Pi board to turn on the Raspberry Pi.</p>
+<p><span class="twemoji circle_green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> Green LED: battery fully charged indicator</p>
+<p><span class="twemoji circle_blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> Blue LED: battery charging indicator</p>
+<p><span class="twemoji circle_red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> Red LED: power indicator</p>
+<p><span class="twemoji circle_yellow"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> On/Off Button</p>
+<p><a class="glightbox" href="../assets/images/wittypi_button_leds.jpg" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Witty Pi Button LEDs" src="../assets/images/wittypi_button_leds.jpg" width="600" /></a></p>
+<p>If the red LED on the Witty Pi board is turned on, the Raspberry Pi is powered
+via the GPIO pins by either the USB-C input (if 5V battery pack is connected
+and charged) or the 3.7V battery pack (5V battery pack not connected or empty).</p>
+<p>After installing and configuring the Witty Pi software, the power to the
+Raspberry Pi will be cut 25 seconds after a shutdown command is received
+and the red LED will turn off.</p>
+<p>More info:
+<a href="https://www.uugear.com/doc/WittyPi4L3V7_UserManual.pdf" target="_blank">Witty Pi 4 L3V7 User Manual</a></p>
+<details class="bug">
+<summary>Red LED stays on</summary>
+<p>If the Raspberry Pi is turned off, but the red LED on the Witty Pi board
+still stays on after 25 seconds, the button will not be responsive as the
+Witty Pi assumes that the RPi is still turned on. This can happen if the
+Witty Pi software is not yet installed or if there is a problem with the
+GPIO connection (check for faulty solder joints). In this case, you will
+need to unplug both batteries (USB-C and 3.7V) and connect them again to
+reset the Witty Pi board.</p>
+</details>
+<hr />
+<h3 id="pijuice-zero">PiJuice Zero<a class="headerlink" href="#pijuice-zero" title="Anchor link to this section">&para;</a></h3>
+<p>Turn on the Raspberry Pi with a short single press on the PiJuice <strong>SW1</strong>
+button (marked green on the left side of the following picture).</p>
+<p>More info:
+<a href="https://github.com/PiSupply/PiJuice#buttons-and-leds" target="_blank">PiJuice Buttons and LEDs</a></p>
+<p><a class="glightbox" href="https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="PiJuice Zero buttons" src="https://user-images.githubusercontent.com/3359418/72735262-5cb7c480-3b93-11ea-8a51-a9f4ccec81ce.png" width="600" /></a></p>
+<hr />
+<h2 id="set-up-x11-forwarding">Set up X11 forwarding<a class="headerlink" href="#set-up-x11-forwarding" title="Anchor link to this section">&para;</a></h2>
+<p>To show the camera live stream with OpenCV on your PC, you will have to set up
+X11 forwarding.</p>
+<p>To set the <code>DISPLAY</code> environment variable in Windows,
+<a href="https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/" target="_blank">open cmd</a>
+and run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">setx</span> <span class="n">DISPLAY</span> <span class="s2">&quot;localhost:0.0&quot;</span>
+</span></code></pre></div>
+<p>Reboot your computer for the changes to take effect. You only have to do this once.</p>
+<p>Follow the instructions in <a href="../localsetup/#vcxsrv-windows-x-server" target="_blank">Local Setup</a>
+to install and start the <strong>VcXsrv X server</strong>.</p>
+<hr />
+<h2 id="connect-rpi-via-ssh">Connect RPi via SSH<a class="headerlink" href="#connect-rpi-via-ssh" title="Anchor link to this section">&para;</a></h2>
+<div class="admonition tip">
+<p>You can connect to the RPi via SSH by using the hostname that you set during
+the RPi OS installation. If this does not work, you will have to use its IP
+address instead. There are
+<a href="https://www.raspberrypi.com/documentation/computers/remote-access.html#ip-address" target="_blank">several ways</a>
+to find the RPi's IP address, one of the easiest solutions is to install
+the <a href="https://www.fing.com/app/" target="_blank">Fing App</a> and scan the IP
+addresses of all devices in your Wi-Fi network.</p>
+</div>
+<p>Open a new Terminal in VS Code. Use <strong>right-click</strong> to paste commands to the Terminal.</p>
+<p><a class="glightbox" href="../assets/images/vscode_new_terminal.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code new Terminal" src="../assets/images/vscode_new_terminal.png" width="700" /></a></p>
+<p>Connect to your Raspberry Pi via
+<a href="https://www.raspberrypi.com/documentation/computers/remote-access.html#ssh" target="_blank">SSH</a>
+and trusted X11 forwarding (<code>-Y</code>) by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>-Y<span class="w"> </span>pi@insdet-cam01
+</span></code></pre></div>
+<div class="admonition info">
+<p><code>pi</code> = username. <code>insdet-cam01</code> = hostname. Change it to
+the hostname that you set during the RPi OS installation.</p>
+</div>
+<p>When you are asked if you want to continue connecting, type <code>yes</code> and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<hr />
+<h2 id="add-rpi-file-explorer">Add RPi File Explorer<a class="headerlink" href="#add-rpi-file-explorer" title="Anchor link to this section">&para;</a></h2>
+<p>We will use the
+<a href="https://marketplace.visualstudio.com/items?itemName=Kelvin.vscode-sshfs" target="_blank">SSH FS</a>
+extension that you installed in <a href="../localsetup/#visual-studio-code" target="_blank">Local Setup</a>
+to mount a remote workspace folder (from Raspberry Pi) as a local workspace
+folder in VS Code. This makes working with files on the Raspberry Pi easier
+(e.g. editing Python scripts or showing metadata/logs/images).</p>
+<ul>
+<li>
+<p>Open the SSH FS extension and create a new configuration (<code>Name</code>: your RPi
+  hostname). Hit <code>Save</code> to start editing the configuration.</p>
+<p><a class="glightbox" href="../assets/images/vscode_sshfs_create_config.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code SSH FS Create Configuration" src="../assets/images/vscode_sshfs_create_config.png" width="600" /></a></p>
+</li>
+<li>
+<p>Configure the following fields and keep the rest empty:</p>
+<ul>
+<li><code>Host</code>: your RPi hostname</li>
+<li><code>Port</code>: <code>22</code> (should be the default)</li>
+<li><code>Root</code>: <code>~/</code> (will open the <code>/home/pi</code> directory)</li>
+<li><code>Username</code>: <code>pi</code></li>
+<li>
+<p><code>Private key</code>: hit <code>Prompt</code> and select the path to your SSH key (<code>id_rsa</code>)</p>
+<p><a class="glightbox" href="../assets/images/vscode_sshfs_edit_config.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code SSH FS Edit Configuration" src="../assets/images/vscode_sshfs_edit_config.png" width="500" /></a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Hit <code>Save</code> at the bottom to save the configuration.</p>
+</li>
+<li>
+<p>Hit <code>Add as Workspace folder</code> to the right of your saved configuration to
+  mount the <code>/home/pi</code> directory from the Raspberry Pi in your local workspace.</p>
+<p><a class="glightbox" href="../assets/images/vscode_sshfs_add_workspace.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code SSH FS Add Workspace Folder" src="../assets/images/vscode_sshfs_add_workspace.png" width="400" /></a></p>
+</li>
+<li>
+<p>Hit the blue SSH FS icon in the bottom left corner and select <code>Close Remote Workspace</code>
+  to close the workspace and disconnect from the Raspberry Pi (e.g. after shutdown).</p>
+<p><a class="glightbox" href="../assets/images/vscode_sshfs_close_workspace.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code SSH FS Close Workspace Folder" src="../assets/images/vscode_sshfs_close_workspace.png" width="700" /></a></p>
+</li>
+</ul>
+<hr />
+<h2 id="update-software">Update Software<a class="headerlink" href="#update-software" title="Anchor link to this section">&para;</a></h2>
+<p>We will start with updating the already installed software by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>full-upgrade
+</span></code></pre></div>
+<p>When you are asked if you want to continue, confirm with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>Reboot the Raspberry Pi after all updates were successfully installed with:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<p>After the reboot you will have to establish a new SSH connection.</p>
+<hr />
+<h2 id="configure-power-manager">Configure Power Manager<a class="headerlink" href="#configure-power-manager" title="Anchor link to this section">&para;</a></h2>
+<p>The <a href="https://github.com/maxsitt/insect-detect" target="_blank"><code>insect-detect</code></a>
+software supports both the <a href="https://www.uugear.com/product/witty-pi-4-l3v7/" target="_blank">Witty Pi 4 L3V7</a>
+and <a href="https://uk.pi-supply.com/products/pijuice-zero" target="_blank">PiJuice Zero</a>
+as power management boards. With the new 2024 version of the hardware setup,
+the Witty Pi is used by default but can be easily exchanged with the PiJuice.</p>
+<hr />
+<h3 id="configure-witty-pi-4-l3v7">Configure Witty Pi 4 L3V7<a class="headerlink" href="#configure-witty-pi-4-l3v7" title="Anchor link to this section">&para;</a></h3>
+<ul>
+<li>
+<p>Install the <a href="https://github.com/uugear/Witty-Pi-4" target="_blank">Witty-Pi-4</a>
+  software from the <a href="https://github.com/maxsitt/Witty-Pi-4" target="_blank">modified fork</a>:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>wget<span class="w"> </span>-qO-<span class="w"> </span>https://raw.githubusercontent.com/maxsitt/Witty-Pi-4/main/Software/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash
+</span></code></pre></div>
+</li>
+<li>
+<p>Reboot the Raspberry Pi after the software was successfully installed:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+</li>
+<li>
+<p>Start the Witty Pi 4 configuration tool by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>wittypi/wittyPi.sh
+</span></code></pre></div>
+</li>
+<li>
+<p>Type <span class="keys"><kbd class="key-3">3</kbd></span> in and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> to synchronize the
+  <a href="https://en.wikipedia.org/wiki/Real-time_clock" target="_blank">RTC</a> time with
+  your network time:</p>
+<p><a class="glightbox" href="../assets/images/wittypi_config_time.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Witty Pi Config Sync Time" src="../assets/images/wittypi_config_time.png" width="700" /></a></p>
+<details class="warning">
+<summary>Batteries Unplugged</summary>
+<p>If you unplug both the 3.7V battery and USB-C input (5V battery) from the
+Witty Pi board, the RTC will not be powered and lose its time. In this case,
+you will have to synchronize the RTC time with your network time again.</p>
+</details>
+</li>
+<li>
+<p>Next, we will deactivate Auto-On when USB-C is connected to the Witty Pi.
+  Type <span class="keys"><kbd class="key-8">8</kbd></span> in the Terminal and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>. Select <code>No</code> by typing <span class="keys"><kbd class="key-0">0</kbd></span>
+  and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> again:</p>
+<p><a class="glightbox" href="../assets/images/wittypi_config_usb_on.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Witty Pi Config USB Auto-On" src="../assets/images/wittypi_config_usb_on.png" width="700" /></a></p>
+</li>
+<li>
+<p>Type <code>11</code> and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> to go to <code>11. View/change other settings...</code></p>
+</li>
+<li>
+<p>Type <code>2</code> and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> to change the power cut delay time after shutdown.
+  Type in <code>25</code> which is the maximum allowed value and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>:</p>
+<p><a class="glightbox" href="../assets/images/wittypi_config_power_cut_delay.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Witty Pi Config Power Cut Delay" src="../assets/images/wittypi_config_power_cut_delay.png" width="700" /></a></p>
+</li>
+<li>
+<p>Back in the main menu, type <code>13</code> and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> to exit the Witty Pi configuration.</p>
+</li>
+</ul>
+<p>Now that the Witty Pi 4 L3V7 is configured, we can set up scheduling of automatic
+startup and shutdown times. This is done with <code>.wpi</code> schedule files containing a
+custom ON/OFF sequence. In the
+<a href="https://github.com/maxsitt/Witty-Pi-4/tree/main/Software/wittypi/schedules" target="_blank"><code>wittypi/schedules</code></a>
+directory you can find some example schedule scripts.</p>
+<p>Start with creating a <code>BEGIN</code> and <code>END</code> date + time that will define the duration
+of your loop, which will continue as long as the current time is between the
+<code>BEGIN</code> and <code>END</code> time of the schedule script. Add your first <code>ON</code> state and how
+long it should last. Use <code>D</code> to set the number of days, <code>H</code> for hours, <code>M</code> for
+minutes and <code>S</code> for seconds.</p>
+<p>Add <code>WAIT</code> after the duration of an <code>ON</code> state to trigger the shutdown externally
+(e.g. shutdown command at end of Python script). In this case, the end of the
+<code>ON</code> state will not automatically trigger a shutdown but is required to calculate
+the duration of the next <code>OFF</code> state.</p>
+<p>To activate your schedule script, run the Witty Pi 4 configuration tool:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>wittypi/wittyPi.sh
+</span></code></pre></div>
+<p>Type <code>6</code> and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> to <code>Choose schedule script</code>. We are selecting the
+<a href="https://github.com/maxsitt/Witty-Pi-4/blob/main/Software/wittypi/schedules/on_9_12_15_18_hours.wpi" target="_blank">example script</a>
+that will turn on the Raspberry Pi every day at 9, 12, 15 and 18 o'clock.</p>
+<p><a class="glightbox" href="../assets/images/wittypi_schedule.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Witty Pi Choose Schedule Script" src="../assets/images/wittypi_schedule.png" width="700" /></a></p>
+<p>After choosing the schedule script, it will be copied to <code>wittypi/schedule.wpi</code>
+and the <code>wittypi/schedule.log</code> file will start logging startup/shutdown events.</p>
+<p>You can also use the
+<a href="https://www.uugear.com/app/wittypi-scriptgen/" target="_blank">Witty Pi Schedule Script Generator</a>
+to create your schedule script with a visual feedback and the option to run a
+preview of the scheduling behaviour. You can find more information in chapter 9
+of the Witty Pi 4 L3V7 User Manual:
+<a href="https://www.uugear.com/doc/WittyPi4L3V7_UserManual.pdf" target="_blank">About Schedule Script</a>.</p>
+<hr />
+<h3 id="configure-pijuice-zero">Configure PiJuice Zero<a class="headerlink" href="#configure-pijuice-zero" title="Anchor link to this section">&para;</a></h3>
+<p>Install the PiJuice software by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>pijuice-base
+</span></code></pre></div>
+<p>When you are asked if you want to continue, confirm with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>After the installation you can check if the PiJuice Zero is correctly detected
+by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
+<p>If you see an entry at address <code>14</code> and <code>68</code>, the connection to the PiJuice is
+now established.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_i2cdetect.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice i2cdetect" src="../assets/images/pijuice_i2cdetect.png" width="500" /></a></p>
+<p>From now on we want to use the built-in <a href="https://en.wikipedia.org/wiki/Real-time_clock" target="_blank">RTC</a>
+of the PiJuice Zero board as primary hardware clock to wake up the Raspberry Pi
+at specific times when it is not connected to the internet. For this, we will
+have to manually load the RTC driver at each boot by modifying the
+<code>config.txt</code> file:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/boot/firmware/config.txt
+</span></code></pre></div>
+<p>Add the following lines at the end of the text file:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a># Load PiJuice RTC driver at boot
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>dtoverlay=i2c-rtc,ds1307=1
+</span></code></pre></div>
+<p>Exit the editor with <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> and save the changes with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_rtc_driver.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="config.txt PiJuice RTC driver" src="../assets/images/pijuice_rtc_driver.png" width="600" /></a></p>
+<p>Reboot the Raspberry Pi:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>reboot
+</span></code></pre></div>
+<p>After the reboot run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>i2cdetect<span class="w"> </span>-y<span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
+<p>You should now see <code>UU</code> at address 68, which means that the RTC driver was
+successfully loaded and the PiJuice RTC will now be used as hardware clock.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_i2cdetect_rtc.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice i2cdetect RTC" src="../assets/images/pijuice_i2cdetect_rtc.png" width="500" /></a></p>
+<p>You can check if the date and time is correct with:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>hwclock<span class="w"> </span>-r
+</span></code></pre></div>
+<p>We will now configure the PiJuice Zero through its command line interface
+by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>pijuice_cli
+</span></code></pre></div>
+<p><a class="glightbox" href="../assets/images/pijuice_cli.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice CLI" src="../assets/images/pijuice_cli.png" width="500" /></a></p>
+<ul>
+<li>Start with checking if the firmware is up to date by going to the <code>Firmware</code>
+  tab (use the arrow keys to navigate). If there is a new version available,
+  <code>Update</code> the firmware.</li>
+<li>Next, go to the <code>Battery profile</code> tab and check if the correct profile is
+  selected. If you are using the 12,000 mAh battery, this should be
+  <code>PJLIPO_12000</code>. Scroll down and change <code>Temperature sense</code> to <code>NTC</code>.
+  This will make sure that the battery temperature is correctly estimated.
+  Save the changed settings with <code>Apply settings</code>.</li>
+<li>
+<p>Go to the <code>System Task</code> tab, activate <code>Software Halt Power Off</code> and set the
+  <code>Delay period [seconds]</code> to <code>20</code>. With this setting activated, the power to
+  the Raspberry Pi will be cut off 20 seconds after a software shutdown has
+  occured. This will make sure that the OS can complete the shutdown process
+  without potential SD card corruption.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_system_task.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice System Task" src="../assets/images/pijuice_system_task.png" width="500" /></a></p>
+</li>
+<li>
+<p>Optional: Depending on your hardware setup, under the <code>Battery profile</code> tab
+  you could decrease the <code>Termination current [mA]</code> to e.g. <code>100</code> if you are
+  using a solar panel as direct input into the PiJuice Zero
+  (<a href="../../hardware/components/#minimal-setup" target="_blank"><strong>Minimal Setup</strong></a>
+  without Voltaic battery).</p>
+</li>
+</ul>
+<p>The most important settings are now applied. You can get a lot more information
+about all of the other settings at the
+<a href="https://github.com/PiSupply/PiJuice/tree/master/Software#pijuice-cli" target="_blank">PiJuice GitHub repo</a>.</p>
+<p>In the last step, we will set the <code>Wakeup Alarm</code> to specified times to fully
+automate the camera trap recordings. The PiJuice wakeup alarm clock is set in
+UTC time, so you have to convert the wake-up times to your time zone (in our
+case UTC+2). As you can see in the example below, we set our Wakeup Alarm to
+<code>Every day</code> at <code>Hour</code> <code>7;10;13;16</code> UTC time, which means that the PiJuice will
+wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Activate
+<code>Wakeup enabled</code> and press <code>Set alarm</code> to save your specified wake-up times.</p>
+<p><a class="glightbox" href="../assets/images/pijuice_wakeup_alarm.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="VS Code PiJuice Wakeup Alarm" src="../assets/images/pijuice_wakeup_alarm.png" width="500" /></a></p>
+<div class="admonition tip">
+<p>During summer it might make sense to not record around noon, as many insects
+are not active during the hottest daytime. Also the temperature in the camera
+trap enclosure will be lower if the RPi and OAK-1 are not running, which can
+increase the charging efficiency of the batteries.</p>
+</div>
+<hr />
+<h2 id="configure-raspberry-pi">Configure Raspberry Pi<a class="headerlink" href="#configure-raspberry-pi" title="Anchor link to this section">&para;</a></h2>
+<p>To show the camera live stream with OpenCV and X11 forwarding on your PC, you
+will need to switch from Wayland to the X11 backend for the window manager.</p>
+<p>Open the Raspberry Pi
+<a href="https://www.raspberrypi.com/documentation/computers/configuration.html" target="_blank">configuration tool</a>
+by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>raspi-config
+</span></code></pre></div>
+<p>Use your arrow keys to navigate and <span class="keys"><kbd class="key-enter">Enter</kbd></span> to select settings. Go to
+<code>6 Advanced Options</code> and then to <code>A6 Wayland</code>. Select <code>W1 X11</code> to activate
+X11.</p>
+<p><a class="glightbox" href="../assets/images/raspi_config_x11.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="Raspi Config X11" src="../assets/images/raspi_config_x11.png" width="700" /></a></p>
+<p>Select <code>Finish</code> in the main menu and confirm with <code>Yes</code> when asked if you want
+to reboot now.</p>
+<hr />
+<h2 id="install-software">Install Software<a class="headerlink" href="#install-software" title="Anchor link to this section">&para;</a></h2>
+<p>Install all required dependencies for RPi + OAK:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>wget<span class="w"> </span>-qO-<span class="w"> </span>https://raw.githubusercontent.com/maxsitt/insect-detect/main/install_dependencies_oak.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash
+</span></code></pre></div>
+<p>Download the <a href="https://github.com/maxsitt/insect-detect" target="_blank"><code>insect-detect</code></a>
+GitHub repo:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/maxsitt/insect-detect
+</span></code></pre></div>
+<p>Create a virtual environment with access to the system site-packages:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>--system-site-packages<span class="w"> </span>env_insdet
+</span></code></pre></div>
+<p>Update pip in the virtual environment:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>env_insdet/bin/python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</span></code></pre></div>
+<p>Install all required packages in the virtual environment:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>env_insdet/bin/python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>insect-detect/requirements.txt
+</span></code></pre></div>
+<p>Run the scripts with the Python interpreter from the virtual environment:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>env_insdet/bin/python3<span class="w"> </span>insect-detect/yolo_tracker_save_hqsync.py
+</span></code></pre></div>
+<div class="admonition tip">
+<ul>
+<li>A lot more information about setting up the OAK camera and DepthAI can be found at the
+  <a href="https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide/" target="_blank">Luxonis Docs</a>.</li>
+<li>If you want to learn more about the DepthAI software, check out the
+  <a href="https://docs.luxonis.com/software" target="_blank">Software Documentation</a>.</li>
+<li>For OAK-specific problems, get support in the
+  <a href="https://discuss.luxonis.com/" target="_blank">Luxonis Forum</a> or post an issue
+  to the <a href="https://github.com/luxonis/depthai-python/issues" target="_blank"><code>depthai-python</code></a> repo.</li>
+</ul>
+</div>
+<hr />
+<h2 id="schedule-cron-job">Schedule Cron Job<a class="headerlink" href="#schedule-cron-job" title="Anchor link to this section">&para;</a></h2>
+<p>To automatically run the recording script after each boot (triggered by the power management
+board), you will have to set up a <a href="https://en.wikipedia.org/wiki/Cron" target="_blank">cron job</a>.</p>
+<p>Open the crontab file for editing by running:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>crontab<span class="w"> </span>-e
+</span></code></pre></div>
+<p>When you are asked to choose an editor, type in <code>1</code> and confirm with <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>Paste the following lines at the end of the crontab file:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a># Wait 30 seconds after boot to ensure all system services are fully initialized
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a># Run Python script with timestamped logging, including potential error messages
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>@reboot sleep 30 &amp;&amp; { printf &quot;\%s - Running yolo_tracker_save_hqsync.py\n&quot; &quot;$(date +&quot;\%F \%T,\%3N&quot;)&quot;; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py; } &gt;&gt; insect-detect/cronjob_log.log 2&gt;&amp;1
+</span></code></pre></div>
+<p>Exit the editor with <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-x">X</kbd></span> and save the changes with <span class="keys"><kbd class="key-y">Y</kbd><span>+</span><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>This cron job will wait for 30 seconds after boot (<code>sleep 30</code>) to make sure that
+all important services are ready. It will then run the Python script and log its
+execution, including potential error messages, to <code>insect-detect/cronjob_log.log</code>.</p>
+<details class="info">
+<summary>Use custom configuration</summary>
+<p>Add <code>-config configs/config_custom.yaml</code> after <code>insect-detect/yolo_tracker_save_hqsync.py</code>,
+separated by space, to set the path to your custom YAML config file.</p>
+</details>
+<div class="admonition tip">
+<p>If you are still in the testing phase, it is highly recommended to deactivate
+your cronjob by adding <code>#</code> in front of <code>@reboot</code>. Otherwise each time you are
+booting up your Raspberry Pi, it will run the Python script.</p>
+</div>
+<hr />
+<h2 id="add-wi-fi-connections">Add Wi-Fi Connections<a class="headerlink" href="#add-wi-fi-connections" title="Anchor link to this section">&para;</a></h2>
+<p>Use the <a href="https://networkmanager.dev/docs/api/latest/nmtui.html" target="_blank">NetworkManager TUI</a>
+to add or edit Wi-Fi connections (navigate with arrow keys):</p>
+<div class="highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>sudo<span class="w"> </span>nmtui-edit
+</span></code></pre></div>
+<p><a class="glightbox" href="../assets/images/nmtui_add_connection.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="NetworkManager TUI Add Connection" src="../assets/images/nmtui_add_connection.png" width="400" /></a></p>
+<p>Select <code>Wi-Fi</code> and then <code>Create</code> to add credentials for a new Wi-Fi connection.</p>
+<p><a class="glightbox" href="../assets/images/nmtui_connection_type.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="NetworkManager TUI Connection Type" src="../assets/images/nmtui_connection_type.png" width="400" /></a></p>
+<p>Set a profile name and enter the SSID and password of the Wi-Fi connection you
+want to add. Hit <span class="keys"><kbd class="key-space">Space</kbd></span> to activate <code>Show password</code>.</p>
+<p><a class="glightbox" href="../assets/images/nmtui_edit_connection.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="NetworkManager TUI Edit Connection" src="../assets/images/nmtui_edit_connection.png" width="400" /></a></p>
+<p>Hit <code>OK</code> and then <code>Quit</code> to save your new connection.</p>
+<p>To show the available networks and connect to one of them, run:</p>
+<div class="highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>nmtui-connect
+</span></code></pre></div>
+<p><a class="glightbox" href="../assets/images/nmtui_connect_network.png" data-type="image" data-width="90%" data-height="auto" data-desc-position="bottom"><img alt="NetworkManager TUI Connect Network" src="../assets/images/nmtui_connect_network.png" width="400" /></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../localsetup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Local Setup">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Local Setup
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../programming/" class="md-footer__link md-footer__link--next" aria-label="Next: Programming">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Programming
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2025 Maximilian Sittinger
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/maxsitt" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://orcid.org/0000-0002-4096-8556" target="_blank" rel="noopener" title="orcid.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91 0-41.64-26.54-76.9-84.67-76.9M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8m-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57 19.64 19.64 0 0 1-19.57 19.57M300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://researchgate.net/profile/Maximilian-Sittinger" target="_blank" rel="noopener" title="researchgate.net" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 32v448h448V32zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9m-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:maximilian.sittinger@idiv.de" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "header.autohide", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
