@@ -437,6 +437,13 @@ Install all required dependencies for RPi + OAK:
 wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/install_dependencies_oak.sh | sudo bash
 ```
 
+Install and configure [Rclone](https://rclone.org/docs/){target=_blank} if you
+want to use the upload feature:
+
+``` bash
+wget -qO- https://rclone.org/install.sh | sudo bash
+```
+
 Clone the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
 GitHub repo:
 
