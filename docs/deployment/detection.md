@@ -29,12 +29,11 @@ following, an alternative approach to this problem is proposed.
 The OAK-1 camera and
 [DepthAI Python API](https://docs.luxonis.com/projects/api/en/latest/){target=_blank}
 make it possible to run a low-quality (LQ) stream (e.g. 320x320 px) in parallel
-with a high-quality (HQ) stream (e.g. 1920x1080 px) and
-[synchronize the detections](../software/programming.md#automated-monitoring-script){target=_blank}
-made on the LQ stream with the frames from the HQ stream on-device. This
-approach enables the use of the LQ stream as input for a YOLO detection model
-to increase the possible inference speed, which in turn also increases the
-performance and accuracy of the
+with a high-quality (HQ) stream (e.g. 3840 x 2160 px) and synchronize the
+detections made on the LQ stream with the frames from the HQ stream on-device.
+This approach enables the use of the LQ stream as input for a YOLO detection
+model to increase the possible inference speed, which in turn also increases
+the performance and accuracy of the
 [object tracker](https://docs.luxonis.com/projects/api/en/latest/components/nodes/object_tracker/){target=_blank}.
 
 <figure markdown>
@@ -103,19 +102,3 @@ event. This metadata includes:
 | rec_ID | timestamp                                                          | label  | confidence | track_ID | x_min  | y_min  | x_max  | y_max  | file_path                                                                                                                                    |
 | ------ | ------------------------------------------------------------------ | ------ | ---------- | -------- | ------ | ------ | ------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1      | <span style="white-space: nowrap;">20221201_16-41-02.393074</span> | insect | 0.87       | 1        | 0.5647 | 0.5357 | 0.6321 | 0.6132 | <span style="white-space: nowrap;">./insect-detect/data/20221201/20221201_16-40/cropped/insect/20221201_16-41-02.393074_1_cropped.jpg</span> |
-
----
-
-## Power consumption
-
-Due to a relatively low power consumption of the hardware components, the whole
-camera trap system (OAK-1 + Raspberry Pi Zero 2 W + PiJuice Zero pHAT) has a
-mean peak power consumption of **~4.4 W** under full load, when running the provided
-[monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}.
-
-<figure markdown>
-  ![Insect Detect camera trap power consumption](assets/images/power_consumption.png){ width="700" }
-  <figcaption>Power consumption of the whole system during a 5 min recording
-              interval, while constantly detecting and tracking 5 individual
-              insects and saving the cropped detections to .jpg every second</figcaption>
-</figure>

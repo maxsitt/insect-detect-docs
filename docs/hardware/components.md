@@ -45,11 +45,7 @@ the camera trap on a tripod and focus it on a different background.
 If you only want to test the basic hardware and software capabilities in the
 lab, for about **187 &euro;** you can already get started. As there is no
 PiJuice Zero pHAT and battery included in this setup, an additional power
-supply will be necessary. To test the
-[automated monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}
-without the PiJuice Zero pHAT connected to the Raspberry Pi, please use the corresponding
-[script](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync_nopj.py){target=_blank}
-in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} GitHub repo.
+supply will be necessary.
 
 ---
 
@@ -156,47 +152,3 @@ in the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank
     | RPi Micro USB Adapter | 1.85 &euro;       | e.g. [Reichelt](https://bit.ly/3pbJPlp){target=_blank}                                                        |
     | RPi Power Supply      | 7.99 &euro;       | e.g. [Reichelt](https://bit.ly/3w30QBV){target=_blank}                                                        |
     | **Total cost**        | **~187 &euro;**   |                                                                                                               |
-
----
-
-## Alternative components
-
-While the
-[OAK-1](https://docs.luxonis.com/projects/hardware/en/latest/pages/BW1093.html){target=_blank}
-camera is recommended for the Insect Detect camera trap, other versions with
-different image sensors are available. The cheaper
-[OAK-1 Lite](https://docs.luxonis.com/projects/hardware/en/latest/pages/NG9096.html){target=_blank}
-has a lower quality image sensor, which might be good enough depending on your use case.
-While the image quality is similar to the OAK-1 under optimal conditions, it will get
-noticeably worse under challenging conditions (e.g. low light). The more expensive
-[OAK-1 MAX](https://docs.luxonis.com/projects/hardware/en/latest/pages/NG9096max.html){target=_blank}
-with a 48MP sensor can take still images with a resolution of up to 5312x6000 pixel.
-However, the video output that is used for the HQ frames in the
-[automated monitoring script](../software/programming.md#automated-monitoring-script){target=_blank}
-is limited to a maximum resolution of 3840x2160 pixel (4K). Therefore the OAK-1 MAX
-will only be worth the higher price if you are using e.g. the
-[still capture script](../software/programming.md#still-capture){target=_blank}
-to take still images at the highest possible sensor resolution. The also more expensive
-[OAK-1 W](https://docs.luxonis.com/projects/hardware/en/latest/pages/NG9096w.html){target=_blank}
-includes a wide FOV 120° sensor, which might be beneficial depending on your camera
-trap setup. This version was not tested, so there is no guarantee that all provided
-Python scripts will work in the same way as for the OAK-1, OAK-1 Lite and OAK-1 MAX.
-
-The following table shows all compatible Raspberry Pi and OAK versions, that
-were tested with the Insect Detect camera trap
-[software](https://github.com/maxsitt/insect-detect){target=_blank}.
-
-| Raspberry Pi | OAK-1                   | OAK-1 Lite              | OAK-1 MAX               | OAK-D Lite              |
-| ------------ | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-| Zero 2 W     | :material-check-circle: | :material-check-circle: | :material-check-circle: | :material-check-circle: |
-| Zero W       | :material-check-circle: | :material-check-circle: | :material-check-circle: | :material-check-circle: |
-| 4 Model B    | :material-check-circle: | :material-check-circle: | :material-check-circle: | :material-check-circle: |
-
-The [Witty Pi 4 Mini](https://www.uugear.com/product/witty-pi-4-mini/){target=_blank}
-or the newer version
-[Witty Pi 4 L3V7](https://www.uugear.com/product/witty-pi-4-l3v7/){target=_blank},
-with the ability to connect 3.7V Li-Ion or LiPo batteries, could be used as
-alternative component to the PiJuice Zero pHAT, especially if your camera trap
-is connected to the power grid without the need of solar power input and the
-power management capabilities of the PiJuice Zero. Both were not tested, so no
-guarantee can be given for their full functionality.

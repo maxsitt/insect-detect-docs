@@ -6,13 +6,14 @@ one generic class ("insect"). The low input resolution enables a high inference
 speed, which is necessary to reliably track moving/flying insects. Images of the
 detected and tracked insects are cropped from synchronized HQ frames in real time.
 
-By using the provided script for
-[automated monitoring](../software/programming.md#automated-monitoring-script){target=_blank},
-cropped detections of individual insects are saved as .jpg files and relevant
-[metadata](../deployment/detection.md#metadata-csv){target=_blank} is saved to .csv for each
-recording interval. The insect images can be classified in a subsequent step on
-your local PC, by using a [classification model](../index.md#classification-model){target=_blank}
-exported to [ONNX format](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
+By using the provided
+[recording script](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync.py){target=_blank},
+for automated monitoring, cropped detections of individual insects are saved as
+.jpg files and relevant [metadata](../deployment/detection.md#metadata-csv){target=_blank}
+is saved to .csv for each recording session. The insect images can be classified
+in a subsequent step on your local PC, by using a
+[classification model](../index.md#classification-model){target=_blank} exported to
+[ONNX format](https://github.com/ultralytics/yolov5/issues/251){target=_blank}
 for faster CPU inference.
 
 Read the [classification instructions](../deployment/classification.md){target=_blank}

@@ -52,12 +52,9 @@ to communicate with the Raspberry Pi Zero 2 W. The next steps will guide you
 through the [Raspberry Pi configuration](https://maxsitt.github.io/insect-detect-docs/software/pisetup/),
 after which everything is ready to use the Python scripts from the
 [`insect-detect`](https://github.com/maxsitt/insect-detect) GitHub repo
-for testing and deploying the camera trap. Details on various options to
-adapt the scripts to different use cases can be found in the
-[Programming](https://maxsitt.github.io/insect-detect-docs/software/programming/)
-part of the Software section.
-
-<img src="https://raw.githubusercontent.com/maxsitt/insect-detect-docs/main/docs/software/assets/images/vscode_raspberry_ssh_x11.gif" width="800">
+for testing and deploying the camera trap. More information about the specific
+scripts and how to run them can be found in
+[Usage](https://maxsitt.github.io/insect-detect-docs/software/usage/).
 
 ---
 

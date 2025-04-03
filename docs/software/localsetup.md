@@ -63,35 +63,6 @@ find more information including a tutorial at
 
 ---
 
-## VcXsrv Windows X Server
-
-Download [VcXsrv](https://github.com/marchaesen/vcxsrv/releases/download/21.1.13/vcxsrv-64.21.1.13.0.installer.exe){target=_blank}
-and install it to your computer. To be able to see the OAK camera stream on
-your local computer, you will need to install a X server if you are connected
-to the Raspberry Pi via SSH and [X11 forwarding](https://goteleport.com/blog/x11-forwarding/){target=_blank}.
-Run `XLaunch.exe` to start the X server with the default settings:
-
-1.  **Select display settings**:
-
-    - :fontawesome-regular-square-check: Multiple windows
-    - Display number: `-1`
-
-2.  **Select how to start clients**:
-
-    - :fontawesome-regular-square-check: Start no client
-
-3.  **Extra settings**:
-
-    - :fontawesome-regular-square-check: Clipboard
-        - :fontawesome-regular-square-check: Primary Selection
-    - :fontawesome-regular-square-check: Native opengl
-
-After that you will see the VcXsrv tray icon in the taskbar and running e.g.
-one of the [preview](programming.md#oak-camera-preview){target=_blank} scripts
-will open the OAK camera stream in a new VcXsrv window on your computer.
-
----
-
 ## DiskInternals Linux Reader
 
 Download [DiskInternals Linux Reader](https://www.diskinternals.com/linux-reader/){target=_blank}

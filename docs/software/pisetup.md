@@ -121,26 +121,6 @@ More info:
 
 ---
 
-## Set up X11 forwarding
-
-To show the camera live stream with OpenCV on your PC, you will have to set up
-X11 forwarding.
-
-To set the `DISPLAY` environment variable in Windows,
-[open cmd](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/){target=_blank}
-and run:
-
-``` powershell
-setx DISPLAY "localhost:0.0"
-```
-
-Reboot your computer for the changes to take effect. You only have to do this once.
-
-Follow the instructions in [Local Setup](localsetup.md#vcxsrv-windows-x-server){target=_blank}
-to install and start the **VcXsrv X server**.
-
----
-
 ## Connect RPi via SSH
 
 !!! tip ""
@@ -159,10 +139,10 @@ Open a new Terminal in VS Code. Use **right-click** to paste commands to the Ter
 
 Connect to your Raspberry Pi via
 [SSH](https://www.raspberrypi.com/documentation/computers/remote-access.html#ssh){target=_blank}
-and trusted X11 forwarding (`-Y`) by running:
+by running:
 
 ``` bash
-ssh -Y pi@insdet-cam01
+ssh pi@insdet-cam01
 ```
 
 !!! info ""
@@ -211,7 +191,7 @@ folder in VS Code. This makes working with files on the Raspberry Pi easier
 
 ---
 
-## Update Software
+## Update RPi
 
 We will start with updating the already installed software by running:
 
@@ -449,30 +429,6 @@ wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Activate
 
 ---
 
-## Configure Raspberry Pi
-
-To show the camera live stream with OpenCV and X11 forwarding on your PC, you
-will need to switch from Wayland to the X11 backend for the window manager.
-
-Open the Raspberry Pi
-[configuration tool](https://www.raspberrypi.com/documentation/computers/configuration.html){target=_blank}
-by running:
-
-``` bash
-sudo raspi-config
-```
-
-Use your arrow keys to navigate and ++enter++ to select settings. Go to
-`6 Advanced Options` and then to `A6 Wayland`. Select `W1 X11` to activate
-X11.
-
-![Raspi Config X11](assets/images/raspi_config_x11.png){ width="700" }
-
-Select `Finish` in the main menu and confirm with `Yes` when asked if you want
-to reboot now.
-
----
-
 ## Install Software
 
 Install all required dependencies for RPi + OAK:
@@ -481,7 +437,7 @@ Install all required dependencies for RPi + OAK:
 wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/install_dependencies_oak.sh | sudo bash
 ```
 
-Download the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+Clone the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
 GitHub repo:
 
 ``` bash
@@ -509,12 +465,12 @@ env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
 Run the scripts with the Python interpreter from the virtual environment:
 
 ``` bash
-env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py
+env_insdet/bin/python3 insect-detect/webapp.py
 ```
 
 !!! tip ""
 
-    - A lot more information about setting up the OAK camera and DepthAI can be found at the
+    - More information about setting up the OAK camera and DepthAI can be found at the
       [Luxonis Docs](https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide/){target=_blank}.
     - If you want to learn more about the DepthAI software, check out the
       [Software Documentation](https://docs.luxonis.com/software){target=_blank}.
@@ -551,16 +507,20 @@ This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure that
 all important services are ready. It will then run the Python script and log its
 execution, including potential error messages, to `insect-detect/cronjob_log.log`.
 
-??? info "Use custom configuration"
-
-    Add `-config configs/config_custom.yaml` after `insect-detect/yolo_tracker_save_hqsync.py`,
-    separated by space, to set the path to your custom YAML config file.
-
 !!! tip ""
 
     If you are still in the testing phase, it is highly recommended to deactivate
     your cronjob by adding `#` in front of `@reboot`. Otherwise each time you are
     booting up your Raspberry Pi, it will run the Python script.
+
+??? info "Use custom configuration"
+
+    Modify the
+    [`config_selector.yaml`](https://github.com/maxsitt/insect-detect/blob/main/configs/config_selector.yaml){target=_blank}
+    file to select the active config that will be used to load all configuration
+    parameters. Change it to
+    [`config_custom.yaml`](https://github.com/maxsitt/insect-detect/blob/main/configs/config_custom.yaml){target=_blank}
+    to use your modified settings when running the recording script.
 
 ---
 

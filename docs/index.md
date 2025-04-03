@@ -8,9 +8,9 @@
 Build your own insect-detecting camera trap!
 </span>
 
-This website provides instructions on hardware assembly, software setup,
-programming, model training and deployment of a DIY camera trap that can
-be used for automated insect monitoring.
+This website provides instructions on hardware assembly, software setup, model
+training and deployment of the **Insect Detect** camera trap that can be used
+for automated insect monitoring.
 
 ---
 
@@ -163,9 +163,9 @@ In the [**Software**](software/index.md){target=_blank} section, all steps to
 get the camera trap up and running are explained. You will start with installing
 the necessary software on your [local PC](software/localsetup.md){target=_blank},
 to communicate with the Raspberry Pi. After the Raspberry Pi is
-[configured](software/pisetup.md){target=_blank}, details about the Python
-scripts and tips on customization to different use cases can be found in the
-[Programming](software/programming.md){target=_blank} part.
+[configured](software/pisetup.md){target=_blank}, check the
+[usage](software/usage.md){target=_blank} instructions for information on custom
+configuration and how to use the scripts for live preview and automated recording.
 
 The **Model Training** section will show you tools to
 [annotate](modeltraining/annotation.md){target=_blank} your own images and use
@@ -192,8 +192,8 @@ combined results.
 - [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/580886977.svg)](https://zenodo.org/badge/latestdoi/580886977){target=_blank}
 
-    > YOLOv5/v6/v7/v8 insect detection models and Python scripts for testing and
-      deploying the Insect Detect DIY camera trap system for automated insect monitoring.
+    > YOLO insect detection models and Python scripts for testing and deploying
+      the Insect Detect DIY camera trap system for automated insect monitoring.
 
       [Download :fontawesome-brands-github:](https://github.com/maxsitt/insect-detect/archive/refs/heads/main.zip){ .md-button }
 
@@ -227,8 +227,8 @@ combined results.
 - [**Insect Detection Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7725941.svg)](https://doi.org/10.5281/zenodo.7725941){target=_blank}
 
-    > Dataset to train insect detection models. Contains annotated images collected in
-      2022 with the DIY camera trap and the proposed flower platform as background.
+    > Dataset to train insect detection models. Contains annotated images collected in 2022
+      with the DIY camera trap and the first version of the flower platform as background.
 
 - [**Insect Classification Dataset**](https://universe.roboflow.com/maximilian-sittinger/insect_detect_classification_v2){target=_blank} &nbsp;
   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8325384.svg)](https://doi.org/10.5281/zenodo.8325384){target=_blank}
@@ -251,20 +251,15 @@ combined results.
 
 ??? note "Table Notes"
 
-    - All [models](https://github.com/maxsitt/insect-detect/tree/main/models){target=_blank} were trained
-      to 300 epochs with batch size 32 and default hyperparameters. Reproduce the model training with
-      the provided [Google Colab notebooks](https://github.com/maxsitt/insect-detect-ml#model-training).
-    - Trained on [Insect_Detect_detection](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection)
-      dataset [version 7](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7)
+    - All [models](https://github.com/maxsitt/insect-detect/tree/main/models){target=_blank} were trained to
+      300 epochs with batch size 32 and default hyperparameters. Reproduce the model training with the provided
+      [Google Colab notebooks](https://github.com/maxsitt/insect-detect-ml#model-training){target=_blank}.
+    - Trained on
+      [Insect_Detect_detection](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection){target=_blank}
+      dataset [version 7](https://universe.roboflow.com/maximilian-sittinger/insect_detect_detection/dataset/7){target=_blank}
       with only 1 class ("insect").
     - Model metrics (mAP, Precision, Recall) are shown for the original PyTorch (.pt) model before conversion
       to ONNX -> OpenVINO -> .blob format. Reproduce metrics by using the respective model validation method.
-    - Speed (fps) is shown for the converted models (.blob), running on OAK-1 connected to RPi Zero 2 W
-      (~2 fps slower with object tracker). Set `cam_rgb.setFps()` to the respective fps shown for each
-      model to reproduce the speed measurements.
-    - While connected via SSH (X11 forwarding of the frames), print fps to the console and comment out `cv2.imshow()`,
-      as forwarding the frames will slow down the received message output and thereby fps. If you are using a
-      Raspberry Pi 4 B connected to a screen, fps will be correctly shown in the livestream (see gif).
 
 ![On-device detection and tracking](assets/images/yolov5n_tracker_episyrphus_320.gif){ width="300" }
 

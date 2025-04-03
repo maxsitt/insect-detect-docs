@@ -133,7 +133,7 @@ nav:
     - software/index.md
     - Local Setup: software/localsetup.md
     - Raspberry Pi Setup: software/pisetup.md
-    - Programming: software/programming.md
+    - Usage: software/usage.md
   - Model Training:
     - Annotation: modeltraining/annotation.md
     - Object Detection: modeltraining/train_detection.md

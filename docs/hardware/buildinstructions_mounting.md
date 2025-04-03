@@ -177,11 +177,9 @@ After the frame is prepared, place the flower platform on top of the two short
 tube pieces and align them with the holes you drilled. If your are using the
 same platform dimension and pipe clamps as in this example, you can already
 adjust the platform at 55 mm, measured from the aluminium tube to the platform.
-For the smaller platform (350x200 mm) this distance should be 115 mm. Otherwise
-you can adjust the platform after everything is mounted with the provided
-[`cam_preview.py`](../software/programming.md#oak-camera-preview){target=_blank} script.
-Attach the platform to the shorter aluminium tubes with two M4 40 mm screws,
-two M4 nuts and four washers.
+For the smaller platform (350x200 mm) this distance should be 115 mm. Attach
+the platform to the shorter aluminium tubes with two M4 40 mm screws, two M4
+nuts and four washers.
 
 ![Flower platform frame connection](assets/images/flower_platform_frame_connection.jpg){ width="600" }
 
@@ -197,10 +195,9 @@ tube piece.
 ![Flower platform pipe clamp connected](assets/images/flower_platform_frame_pipeclamp.jpg){ width="600" }
 
 You can now mount the platform on any standard wooden or steel post.
-Tighten the screws after you checked the correct position with the
-[`cam_preview.py`](../software/programming.md#oak-camera-preview){target=_blank}
-script. If possible, slightly tilt the post and camera trap system forwards,
-that rainwater can run off the platform.
+Tighten the screws after you checked the correct position. If possible,
+slightly tilt the post and camera trap system forwards, that rainwater
+can run off the platform.
 
 ![Flower platform mounted](assets/images/flower_platform_mounted.jpg){ width="700" }
 
