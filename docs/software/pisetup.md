@@ -437,8 +437,8 @@ Install all required dependencies for RPi + OAK:
 wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/install_dependencies_oak.sh | sudo bash
 ```
 
-Install and configure [Rclone](https://rclone.org/docs/){target=_blank} if you
-want to use the upload feature:
+Optional: Install and configure [Rclone](https://rclone.org/docs/){target=_blank}
+if you want to use the upload feature:
 
 ``` bash
 wget -qO- https://rclone.org/install.sh | sudo bash
@@ -469,11 +469,15 @@ Install all required packages in the virtual environment:
 env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
 ```
 
-Run the scripts with the Python interpreter from the virtual environment:
+Your system is all set up and ready to go now! Run the scripts with the
+Python interpreter from the virtual environment:
 
 ``` bash
 env_insdet/bin/python3 insect-detect/webapp.py
 ```
+
+Check the [Usage](usage.md){target=_blank} instructions for more details about
+the software and how to use it.
 
 !!! tip ""
 
@@ -484,6 +488,26 @@ env_insdet/bin/python3 insect-detect/webapp.py
     - For OAK-specific problems, get support in the
       [Luxonis Forum](https://discuss.luxonis.com/){target=_blank} or post an issue
       to the [`depthai-python`](https://github.com/luxonis/depthai-python/issues){target=_blank} repo.
+
+---
+
+## Update Software
+
+As the software for the Insect Detect camera trap is still under continuous
+development, it is recommended to update it regularly.
+
+Update the `insect-detect` repo with git by running:
+
+``` bash
+git -C ~/insect-detect pull
+```
+
+If the `requirements.txt` file was included in the updates, make sure that you
+have the latest versions of the required packages installed by running:
+
+``` bash
+env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
+```
 
 ---
 
