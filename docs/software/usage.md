@@ -52,23 +52,9 @@ You can use any device that is connected to the same network as the Raspberry Pi
 (e.g. phone or tablet) to open the web app. If the link based on your hostname
 does not work, use the RPi's IP address instead.
 
-- Link option 1 (hostname):
-
-    ``` text
-    http://insdet-cam01:5000/
-    ```
-
-- Link option 2 (IP address):
-
-    ``` text
-    http://{IP_ADDRESS}:5000/
-    ```
-
-!!! info ""
-
-    `insdet-cam01` = hostname. Change it to the hostname that you set during
-    the RPi OS installation. `5000` = default port used by the web app. Make
-    sure that your browser does not automatically redirect to `https`.
+If the Raspberry Pi is connected to a hotspot from your phone, you can use the
+[Network Analyzer](https://play.google.com/store/apps/details?id=net.techet.netanalyzerlite.an&hl=en){target=_blank}
+app to find its IP address.
 
 Stop the web app by either using the button in your browser window
 or by pressing ++ctrl+c++ in the Terminal.
