@@ -437,13 +437,6 @@ Install all required dependencies for RPi + OAK:
 wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/install_dependencies_oak.sh | sudo bash
 ```
 
-Optional: Install and configure [Rclone](https://rclone.org/docs/){target=_blank}
-if you want to use the upload feature:
-
-``` bash
-wget -qO- https://rclone.org/install.sh | sudo bash
-```
-
 Clone the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
 GitHub repo:
 
@@ -467,6 +460,19 @@ Install all required packages in the virtual environment:
 
 ``` bash
 env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
+```
+
+Generate self-signed SSL certificates to optionally enable HTTPS for the web app:
+
+``` bash
+bash insect-detect/generate_ssl_certificates.sh
+```
+
+**Optional**: Install and configure [Rclone](https://rclone.org/docs/){target=_blank}
+if you want to use the upload feature:
+
+``` bash
+wget -qO- https://rclone.org/install.sh | sudo bash
 ```
 
 Your system is all set up and ready to go now! Run the scripts with the
