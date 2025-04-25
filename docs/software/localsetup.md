@@ -34,7 +34,7 @@ and install it to your computer. Install the following
 
 ## Python
 
-Download [Python 3.12.9](https://www.python.org/downloads/release/python-3129/){target=_blank}
+Download [Python 3.12.10](https://www.python.org/downloads/release/python-31210/){target=_blank}
 and install it to your computer (3.13 is not yet supported by some packages). Select
 [Install Now](https://docs.python.org/3.12/using/windows.html#the-full-installer){target=_blank}
 with the checkbox `Add Python to PATH` activated. Run `Disable path length limit`
