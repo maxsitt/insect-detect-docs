@@ -103,9 +103,9 @@ More info:
     still stays on after 25 seconds, the button will not be responsive as the
     Witty Pi assumes that the RPi is still turned on. This can happen if the
     Witty Pi software is not yet installed or if there is a problem with the
-    GPIO connection (check for faulty solder joints). In this case, you will
-    need to unplug both batteries (USB-C and 3.7V) and connect them again to
-    reset the Witty Pi board.
+    GPIO connection (check for faulty solder joints). To make the Witty Pi
+    responsive again, press and hold the button for 10 seconds until the red
+    LED turns off.
 
 ---
 

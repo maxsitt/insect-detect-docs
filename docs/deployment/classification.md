@@ -24,54 +24,54 @@ for faster CPU inference. The classification results are added to the merged met
 If you followed the steps in [Local Setup](../software/localsetup.md#python){target=_blank},
 you already have [Python](https://www.python.org/){target=_blank} installed on your computer.
 
-??? info "Optional: Set up an isolated Python environment"
+???+ info "Recommended: Set up an isolated Python environment"
 
-    You can [create a virtual environment](https://virtualenv.pypa.io/en/latest/user_guide.html){target=_blank}
-    before installing the required packages for YOLOv5 to avoid version and dependency
-    conflicts of the packages, especially if you are working on different Python projects.
+     You can [create a virtual environment](https://virtualenv.pypa.io/en/latest/user_guide.html){target=_blank}
+     before installing the required packages for YOLOv5 to avoid version and dependency
+     conflicts of the packages, especially if you are working on different Python projects.
 
-    - Install [`virtualenv`](https://virtualenv.pypa.io/en/latest/){target=_blank}:
+     - Install [`virtualenv`](https://virtualenv.pypa.io/en/latest/){target=_blank}:
 
-        ``` powershell
-        py -m pip install virtualenv
-        ```
+         ``` powershell
+         py -m pip install virtualenv
+         ```
 
-    - Navigate to the `YOLOv5-cls` folder:
+     - Navigate to the `YOLOv5-cls` folder:
 
-        ``` powershell
-        cd YOLOv5-cls
-        ```
+         ``` powershell
+         cd YOLOv5-cls
+         ```
 
-    - Create a new Python environment (folder in your current directory):
+     - Create a new Python environment (folder in your current directory):
 
-        ``` powershell
-        py -m virtualenv env_yolov5
-        ```
+         ``` powershell
+         py -m virtualenv env_yolov5
+         ```
 
-    - Activate the environment by running:
+     - Activate the environment by running:
 
-        ``` powershell
-        .\env_yolov5\Scripts\activate
-        ```
+         ``` powershell
+         .\env_yolov5\Scripts\activate
+         ```
 
-        If you cannot run the activate script because of your Execution Policy
-        settings, open a new PowerShell as administrator and run the following:
+         If you cannot run the activate script because of your Execution Policy
+         settings, open a new PowerShell as administrator and run the following:
 
-        ``` powershell
-        Set-ExecutionPolicy RemoteSigned
-        ```
+         ``` powershell
+         Set-ExecutionPolicy RemoteSigned
+         ```
 
-        You can find more info [here](https://virtualenv.pypa.io/en/latest/user_guide.html#activators){target=_blank}
-        and [here](https://stackoverflow.com/questions/18713086/virtualenv-wont-activate-on-windows){target=_blank}.
+         You can find more info [here](https://virtualenv.pypa.io/en/latest/user_guide.html#activators){target=_blank}
+         and [here](https://stackoverflow.com/questions/18713086/virtualenv-wont-activate-on-windows){target=_blank}.
 
-    - Now all packages will be installed only in the virtual environment,
-      which you have to activate everytime you want to run a script that
-      depends on these packages.
-    - You can deactivate the virtual environment by running:
+     - Now all packages will be installed only in the virtual environment,
+       which you have to activate everytime you want to run a script that
+       depends on these packages.
+     - You can deactivate the virtual environment by running:
 
-        ``` powershell
-        deactivate
-        ```
+         ``` powershell
+         deactivate
+         ```
 
 - Create the new folder `C:\Users\<username>\YOLOv5-cls`.
 - [Download](https://github.com/maxsitt/yolov5/archive/refs/heads/master.zip){target=_blank}

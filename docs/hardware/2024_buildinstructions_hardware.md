@@ -230,6 +230,13 @@ Put the sealing ring onto the thread of the button.
 
 ![Button Sealing Ring](assets/images/2024_button_sealing_ring.jpg){ width="600" }
 
+!!! warning "Different Button Types"
+
+    Please check the cable colors and their respective assignment for your
+    specific product on either the button itself or the button socket. Even if
+    the button looks identical, the cable assignments/colors can be different
+    depending on the producer or batch.
+
 Take a look at the socket and note the colors of the cables that are labeled
 with **C** and **NO**. In our case this is green for **C** and yellow for **NO**.
 We won't use the white cable labeled with **NC**.
