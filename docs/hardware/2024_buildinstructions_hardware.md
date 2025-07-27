@@ -343,6 +343,13 @@ has to move freely.
 
 ![Cable Gland USB Cable Sealing Fixed](assets/images/2024_cable_gland_usb_cable_sealing_fixed.jpg){ width="600" }
 
+!!! warning "Micro-USB Adapter"
+
+    Make sure that the Micro-USB adapter is correctly oriented, the black side
+    of the adapter should face the blue side of the USB cable, so that the
+    contacts are aligned. If your Raspberry Pi doesn't turn on, there could be
+    a problem with either the adapter or the USB cable itself.
+
 Slide the cable gland to the USB-A side of the camera cable. Connect the
 Micro-USB to USB-A adapter. Prepare the cable gland sealing ring and counter nut.
 
