@@ -82,9 +82,10 @@ env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py
 
 Stop the script by pressing ++ctrl+c++ in the Terminal.
 
-For fully automated monitoring in the field, set up a
-[cron job](pisetup.md#schedule-cron-job){target=_blank} that will run the script
-automatically after each boot (triggered by the power management board).
+For fully autonomous monitoring in the field, enable `auto_run` in the `startup`
+settings of your custom config file and add `yolo_tracker_save_hqsync.py` as
+`primary` script. This will run the recording script automatically after each boot
+(triggered by the power management board).
 
 **Processing pipeline:**
 

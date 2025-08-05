@@ -468,6 +468,24 @@ Generate self-signed SSL certificates to optionally enable HTTPS for the web app
 bash insect-detect/generate_ssl_certificates.sh
 ```
 
+To enable the `insect-detect-startup.service` at boot, copy it to the systemd directory:
+
+``` bash
+sudo cp insect-detect/insect-detect-startup.service /etc/systemd/system/
+```
+
+...reload the systemd daemon:
+
+``` bash
+sudo systemctl daemon-reload
+```
+
+...and enable the service:
+
+``` bash
+sudo systemctl enable insect-detect-startup.service
+```
+
 **Optional**: Install and configure [Rclone](https://rclone.org/docs/){target=_blank}
 if you want to use the upload feature:
 
@@ -500,12 +518,14 @@ the software and how to use it.
 ## Update Software
 
 As the software for the Insect Detect camera trap is still under continuous
-development, it is recommended to update it regularly.
+development, it is recommended to update it regularly. The provided update
+script will create backups of all your config files, handle your local changes
+and give you instructions in the case of merge conflicts.
 
-Update the `insect-detect` repo with git by running:
+Update the `insect-detect` repo by running the update script:
 
 ``` bash
-git -C ~/insect-detect pull
+bash insect-detect/insect_detect_update.sh
 ```
 
 If the `requirements.txt` file was included in the updates, make sure that you
@@ -514,79 +534,3 @@ have the latest versions of the required packages installed by running:
 ``` bash
 env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
 ```
-
----
-
-## Schedule Cron Job
-
-To automatically run the recording script after each boot (triggered by the power management
-board), you will have to set up a [cron job](https://en.wikipedia.org/wiki/Cron){target=_blank}.
-
-Open the crontab file for editing by running:
-
-``` bash
-crontab -e
-```
-
-When you are asked to choose an editor, type in `1` and confirm with ++enter++.
-
-Paste the following lines at the end of the crontab file:
-
-``` text
-# Wait 30 seconds after boot to ensure all system services are fully initialized
-# Run Python script with timestamped logging, including potential error messages
-@reboot sleep 30 && { printf "\%s - Running yolo_tracker_save_hqsync.py\n" "$(date +"\%F \%T,\%3N")"; env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py; } >> insect-detect/cronjob_log.log 2>&1
-```
-
-Exit the editor with ++ctrl+x++ and save the changes with ++y+enter++.
-
-This cron job will wait for 30 seconds after boot (`sleep 30`) to make sure that
-all important services are ready. It will then run the Python script and log its
-execution, including potential error messages, to `insect-detect/cronjob_log.log`.
-
-!!! tip ""
-
-    If you are still in the testing phase, it is highly recommended to deactivate
-    your cronjob by adding `#` in front of `@reboot`. Otherwise each time you are
-    booting up your Raspberry Pi, it will run the Python script.
-
-??? info "Use custom configuration"
-
-    Modify the
-    [`config_selector.yaml`](https://github.com/maxsitt/insect-detect/blob/main/configs/config_selector.yaml){target=_blank}
-    file to select the active config that will be used to load all configuration
-    parameters. Change it to
-    [`config_custom.yaml`](https://github.com/maxsitt/insect-detect/blob/main/configs/config_custom.yaml){target=_blank}
-    to use your modified settings when running the recording script.
-
----
-
-## Add Wi-Fi Connections
-
-Use the [NetworkManager TUI](https://networkmanager.dev/docs/api/latest/nmtui.html){target=_blank}
-to add or edit Wi-Fi connections (navigate with arrow keys):
-
-``` bash
-sudo nmtui-edit
-```
-
-![NetworkManager TUI Add Connection](assets/images/nmtui_add_connection.png){ width="400" }
-
-Select `Wi-Fi` and then `Create` to add credentials for a new Wi-Fi connection.
-
-![NetworkManager TUI Connection Type](assets/images/nmtui_connection_type.png){ width="400" }
-
-Set a profile name and enter the SSID and password of the Wi-Fi connection you
-want to add. Hit ++space++ to activate `Show password`.
-
-![NetworkManager TUI Edit Connection](assets/images/nmtui_edit_connection.png){ width="400" }
-
-Hit `OK` and then `Quit` to save your new connection.
-
-To show the available networks and connect to one of them, run:
-
-``` bash
-nmtui-connect
-```
-
-![NetworkManager TUI Connect Network](assets/images/nmtui_connect_network.png){ width="400" }
