@@ -431,59 +431,10 @@ wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Activate
 
 ## Install Software
 
-Install all required dependencies for RPi + OAK:
+Install all dependencies/packages and automatically run the required setup steps:
 
 ``` bash
-wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/install_dependencies_oak.sh | sudo bash
-```
-
-Clone the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
-GitHub repo:
-
-``` bash
-git clone https://github.com/maxsitt/insect-detect
-```
-
-Create a virtual environment with access to the system site-packages:
-
-``` bash
-python3 -m venv --system-site-packages env_insdet
-```
-
-Update pip in the virtual environment:
-
-``` bash
-env_insdet/bin/python3 -m pip install --upgrade pip
-```
-
-Install all required packages in the virtual environment:
-
-``` bash
-env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
-```
-
-Generate self-signed SSL certificates to optionally enable HTTPS for the web app:
-
-``` bash
-bash insect-detect/generate_ssl_certificates.sh
-```
-
-To enable the `insect-detect-startup.service` at boot, copy it to the systemd directory:
-
-``` bash
-sudo cp insect-detect/insect-detect-startup.service /etc/systemd/system/
-```
-
-...reload the systemd daemon:
-
-``` bash
-sudo systemctl daemon-reload
-```
-
-...and enable the service:
-
-``` bash
-sudo systemctl enable insect-detect-startup.service
+wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/insect_detect_install.sh | bash
 ```
 
 **Optional**: Install and configure [Rclone](https://rclone.org/docs/){target=_blank}
@@ -522,15 +473,8 @@ development, it is recommended to update it regularly. The provided update
 script will create backups of all your config files, handle your local changes
 and give you instructions in the case of merge conflicts.
 
-Update the `insect-detect` repo by running the update script:
+Update the `insect-detect` software by running:
 
 ``` bash
 bash insect-detect/insect_detect_update.sh
-```
-
-If the `requirements.txt` file was included in the updates, make sure that you
-have the latest versions of the required packages installed by running:
-
-``` bash
-env_insdet/bin/python3 -m pip install -r insect-detect/requirements.txt
 ```
