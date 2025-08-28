@@ -7,7 +7,7 @@ speed, which is necessary to reliably track moving/flying insects. Images of the
 detected and tracked insects are cropped from synchronized HQ frames in real time.
 
 By using the provided
-[recording script](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync.py){target=_blank},
+[recording script](https://github.com/maxsitt/insect-detect/blob/main/trigger_capture.py){target=_blank},
 for automated monitoring, cropped detections of individual insects are saved as
 .jpg files and relevant [metadata](detection.md#metadata-csv){target=_blank}
 is saved to .csv for each recording session. The insect images can be classified

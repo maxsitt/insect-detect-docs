@@ -63,7 +63,7 @@ or by pressing ++ctrl+c++ in the Terminal.
 
 ## Recording Script
 
-The [recording script](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync.py){target=_blank}
+The [recording script](https://github.com/maxsitt/insect-detect/blob/main/trigger_capture.py){target=_blank}
 can be used for fully automated insect monitoring in autonomous camera trap deployments.
 All configuration parameters can be customized in the web app or by directly modifying the
 [`config_custom.yaml`](https://github.com/maxsitt/insect-detect/tree/main/configs/config_custom.yaml){target=_blank}
@@ -72,18 +72,18 @@ config either in the web app or by modifying the
 [`config_selector.yaml`](https://github.com/maxsitt/insect-detect/blob/main/configs/config_selector.yaml){target=_blank}.
 
 Run the
-[`yolo_tracker_save_hqsync.py`](https://github.com/maxsitt/insect-detect/blob/main/yolo_tracker_save_hqsync.py){target=_blank}
+[`trigger_capture.py`](https://github.com/maxsitt/insect-detect/blob/main/trigger_capture.py){target=_blank}
 script with the Python interpreter from the virtual environment where you
 installed the required packages (e.g. `env_insdet`):
 
 ``` bash
-env_insdet/bin/python3 insect-detect/yolo_tracker_save_hqsync.py
+env_insdet/bin/python3 insect-detect/trigger_capture.py
 ```
 
 Stop the script by pressing ++ctrl+c++ in the Terminal.
 
 For fully autonomous monitoring in the field, enable `auto_run` in the `startup`
-settings of your custom config file and add `yolo_tracker_save_hqsync.py` as
+settings of your custom config file and add `trigger_capture.py` as
 `primary` script. This will run the recording script automatically after each boot
 (triggered by the power management board).
 
