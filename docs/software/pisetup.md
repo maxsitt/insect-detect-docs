@@ -248,6 +248,19 @@ the Witty Pi is used by default but can be easily exchanged with the PiJuice.
 
     ![Witty Pi Config Sync Time](assets/images/wittypi_config_time.png){ width="700" }
 
+    ??? question "No internet connection"
+
+        If you are connected to the RPi hotspot and therefore are not able to
+        get the network time due to the missing internet connection, first set
+        the RPi system time to the current date + time manually by running:
+
+        ``` bash
+        sudo date -s "2025-09-08 14:00:00"
+        ```
+
+        Then use the first option `1. Write system time to RTC` in the Witty Pi
+        configuration tool to synchronize the RTC time with the system time.
+
     ??? warning "Batteries Unplugged"
 
         If you unplug both the 3.7V battery and USB-C input (5V battery) from the
