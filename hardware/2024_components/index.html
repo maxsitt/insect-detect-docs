@@ -1,0 +1,2312 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Insect Detect: DIY camera trap for continuous automated insect monitoring -  Documentation and build instructions">
+      
+      
+        <meta name="author" content="Maximilian Sittinger">
+      
+      
+        <link rel="canonical" href="https://maxsitt.github.io/insect-detect-docs/hardware/2024_components/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../2024_buildinstructions_overview/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>Components - Insect Detect Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#components" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Insect Detect Docs" class="md-header__button md-logo" aria-label="Insect Detect Docs" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Insect Detect Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Components
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Insect Detect Docs" class="md-nav__button md-logo" aria-label="Insect Detect Docs" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Insect Detect Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/maxsitt/insect-detect-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    maxsitt/insect-detect-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Version 2024
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Version 2024
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#full-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of Components
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Building Instructions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Building Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2024_buildinstructions_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2024_buildinstructions_enclosures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enclosure Preparation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2024_buildinstructions_hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2024_buildinstructions_mounting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mounting Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2024_field_deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Field Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3">
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Version 2023
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Version 2023
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Building Instructions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Building Instructions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildinstructions_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildinstructions_enclosure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Preparing the Enclosure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildinstructions_hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Integrating the Hardware
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buildinstructions_mounting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mounting Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../software/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/localsetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Local Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/pisetup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Raspberry Pi Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Model Training
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Model Training
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Annotation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/train_detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Object Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modeltraining/train_classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Image Classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/classification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Classification
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/post-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Post-Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#full-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Full Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of Components
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="components">Components<a class="headerlink" href="#components" title="Anchor link to this section">¶</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Choose your Hardware Setup</p>
+<p>Depending on your field of application, several variations of the hardware
+setup with different scopes and required components are possible. Three
+example setups are presented here that can be easily modified if desired.</p>
+</div>
+<h2 id="full-setup">Full Setup<a class="headerlink" href="#full-setup" title="Anchor link to this section">¶</a></h2>
+<p>For a total cost of about <strong>660 €</strong>, the full hardware setup includes all
+necessary components for continuous automated monitoring of insects in the
+field during a whole season with any background of choice (e.g. flower platform,
+screen, real flower, etc.).</p>
+<p>Two batteries with a combined capacity of ~88Wh enable a continuous monitoring
+of about 20 hours (e.g. 4 hours/day for 5 days), even if no sunlight is available
+to charge the batteries with the 5W solar panel. An integrated LED button can be
+used to turn the camera trap on and off without needing to open the enclosure.
+The behaviour of the LED ring in the button can be programmed to give specific
+feedback to the user. A highly customizable mounting solution enables free
+adjustment of the camera height/angle and is stabilized with a soil anchor.</p>
+<hr>
+<h2 id="minimal-setup">Minimal Setup<a class="headerlink" href="#minimal-setup" title="Anchor link to this section">¶</a></h2>
+<p>For a total cost of about <strong>445 €</strong>, the minimal hardware setup includes
+all necessary components for automated monitoring of insects in the field.</p>
+<p>The minimal setup does not include a solar panel, LED button and mounting.
+It is expected that you want to use your custom solutions, but all additional
+options (solar panel, button, mounting) can also be easily added later on.</p>
+<hr>
+<h2 id="test-setup">Test Setup<a class="headerlink" href="#test-setup" title="Anchor link to this section">¶</a></h2>
+<p>For a total cost of about <strong>196 €</strong> you can already get started
+to test the basic hardware and software capabilities in a lab setting.
+As there is no battery included in this setup, an additional power supply will
+be necessary, e.g. a Micro-USB to USB-A cable that is connected to a USB port.</p>
+<hr>
+<h2 id="list-of-components">List of Components<a class="headerlink" href="#list-of-components" title="Anchor link to this section">¶</a></h2>
+<details class="info">
+<summary>Component Costs</summary>
+<p>Most prices are shown with 19% VAT (for Germany) and without shipping
+costs. Depending on your country the VAT may differ and additional
+shipping costs may increase the total cost of the components.</p>
+<p>The prices for specific components may change and this list is only a
+snapshot in time (<strong>January 2025</strong>).</p>
+</details>
+<details class="info">
+<summary>USB-C Cables</summary>
+<p>A USB-C to USB-A cable to connect the OAK camera to the Raspberry Pi is
+included in the OAK-1 box and is therefore not listed in the components.
+Another USB-C to USB-A cable to connect the Witty Pi 4 L3V7 to the V75 battery
+is included in the V75 box and is therefore not listed in the components.</p>
+</details>
+<details class="warning" open="open">
+<summary>V75 Battery Version</summary>
+<p>The new version of the <a href="https://voltaicsystems.com/v75/" target="_blank">Voltaic V75 Battery</a>
+ uses an USB-C side port for charging with the solar panel. If you have the
+ old version with Micro-USB input, get the <a href="https://voltaicsystems.com/A101/" target="_blank">Micro-USB Adapter</a>
+ instead of the <a href="https://voltaicsystems.com/A123/" target="_blank">USB-C Adapter</a> listed in the following.</p>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Full Setup</label><label for="__tabbed_1_2">Minimal Setup</label><label for="__tabbed_1_3">Test Setup</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Quantity</th>
+<th>Price (€)</th>
+<th>Shop 1</th>
+<th>Shop 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Main Electronic Components</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OAK-1 (Auto-Focus)</td>
+<td>1</td>
+<td>141.55</td>
+<td><a href="https://eu.mouser.com/ProductDetail/Luxonis/OAK-1?qs=DPoM0jnrROWlYN7ZaaM6%2FA%3D%3D" target="_blank">Mouser</a></td>
+<td><a href="https://shop.luxonis.com/products/oak-1?variant=42664380334303" target="_blank">Luxonis</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi Zero 2 WH</td>
+<td>1</td>
+<td>21.90</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_zero_2_wh_4x_1_ghz_512_mb_ram_wlan_bt-383360" target="_blank">Reichelt</a></td>
+<td><a href="https://rpilocator.com/?cat=PIZERO2" target="_blank">rpilocator</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi CPU Heatsink</td>
+<td>1</td>
+<td>1.20</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_cooling_kit_2-piece_black-242772" target="_blank">Reichelt</a></td>
+<td><a href="https://shop.pimoroni.com/products/heatsink?variant=16851450375" target="_blank">Pimoroni</a></td>
+</tr>
+<tr>
+<td>SanDisk Extreme microSD (256 GB)</td>
+<td>1</td>
+<td>24.95</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/microsdhx_memory_card_256_gb-358288" target="_blank">Reichelt</a></td>
+<td><a href="https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-extreme-uhs-i-microsd?sku=SDSQXAV-256G-AN6MA" target="_blank">SanDisk</a></td>
+</tr>
+<tr>
+<td>Micro-USB to USB-A Adapter</td>
+<td>1</td>
+<td>1.85</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_zero_-_hi-speed_otg_adapter-223604" target="_blank">Reichelt</a></td>
+<td><a href="https://www.berrybase.de/en/super-tiny-usb-2.0-hi-speed-otg-adapter-a-buchse-micro-b-stecker" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi Stacking GPIO Header</td>
+<td>1</td>
+<td>2.12</td>
+<td><a href="https://www.uugear.com/product/stacking-gpio-header-for-raspberry-pi-20x2-pins-square-pin/" target="_blank">UUGear</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_40-pin_stacking_header_rm_2_54-223626" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Witty Pi 4 L3V7</td>
+<td>1</td>
+<td>28.56</td>
+<td><a href="https://www.uugear.com/product/witty-pi-4-l3v7/" target="_blank">UUGear</a></td>
+<td><a href="https://www.berrybase.de/en/witty-pi-4-l3v7-real-time-clock-rtc-und-power-management-modul-fuer-raspberry-pi" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>Li-Ion Battery Pack 3.7V (4400mAh)</td>
+<td>1</td>
+<td>14.24</td>
+<td><a href="https://eckstein-shop.de/PKNERGY-Lithium-Ion-Battery-Pack-ICR-18650-37V-4400mAh-LiPo-Li-Ion-with-JST-PH-Connector-EN" target="_blank">Eckstein</a></td>
+<td><a href="https://shop.pimoroni.com/products/lithium-ion-battery-pack?variant=23417820423" target="_blank">Pimoroni</a></td>
+</tr>
+<tr>
+<td>Voltaic V75 USB Battery Pack</td>
+<td>1</td>
+<td>101.14</td>
+<td><a href="https://www.kiwi-electronics.com/en/brand-voltaic-systems/v75-usb-battery-pack-10102" target="_blank">Kiwi Electronics</a></td>
+<td><a href="https://voltaicsystems.com/v75/" target="_blank">Voltaic</a></td>
+</tr>
+<tr>
+<td>Standoff M2.5, female-male (5 mm)</td>
+<td>4</td>
+<td>1.12</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/distance_bolt_5_mm_m2_5-236284" target="_blank">Reichelt</a></td>
+<td><a href="https://www.berrybase.de/en/abstandshuelse-metall-mit-gewinde-innen-aussen-m2-5-laenge-5-mm" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>Standoff M2.5, female*2 (11-12 mm)</td>
+<td>4</td>
+<td>1.92</td>
+<td><a href="https://www.uugear.com/product/copper-standoff-m25x11-spacer/" target="_blank">UUGear</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/distance_bolt_12_mm_m2_5-236293" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Screw M2.5 (5 mm)</td>
+<td>8</td>
+<td>1.92</td>
+<td><a href="https://www.uugear.com/product/copper-screw-m2-5x5/" target="_blank">UUGear</a></td>
+<td><a href="https://www.berrybase.de/en/schraube-kopf-zylinder-m2-5x5" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td><strong>Enclosures &amp; Accessories</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bocube Enclosure B 221309 PC-V0</td>
+<td>1</td>
+<td>46.95</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/bocube/pc-ul-94-v0-single-coloured/enclosures-polycarbonate-ul-94-v0-single-coloured/b-221309-pc-v0-7035" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/bocube_231x125x90_mm_outdoor-compatible_ip68-345963" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Bocube Mounting Plate B M 2213</td>
+<td>2</td>
+<td>9.07</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/bocube/front-and-mounting-panels-3/mounting-panels-laminated-paper-2-mm/b-m-2213" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/bocube_mounting_plate_190_5_x_116_x_2_mm-359665" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Bocube Screw Set B M-SHR</td>
+<td>2</td>
+<td>0.57</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/bocube/accessories-26/sets-of-screws/b-m-shr" target="_blank">Bopla</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Euromas Enclosure M 215 G</td>
+<td>1</td>
+<td>24.16</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/euromas-abs-pc-f05/pc-crystal-clear-lid/enclosure-polycarbonate-3/m-215-g" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/polycarbonate_housing_clear_top_part_120x80x55_mm-126249" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Euromas Mounting Plate M 215</td>
+<td>1</td>
+<td>2.59</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/euromas-abs-pc-f05/mounting-panels-2/mounting-plates-laminated-paper-galvanised-steel-for-version-260/m-m-215-216-226-230" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/euromas_mounting_plate_110_x_70_x_1_5_mm-359683" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Cable Gland MBF 20-RJ45</td>
+<td>2</td>
+<td>14.26</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/cable-gland-with-slotted-sealing-insert-polyamide-light-grey-ip-66-68/mbf-20-rj45" target="_blank">Bopla</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable Gland Counter Nut M20</td>
+<td>2</td>
+<td>0.96</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/metric-counter-nuts-mgm-polyamide/mgm-20" target="_blank">Bopla</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Cable Gland Sealing Ring M20</td>
+<td>2</td>
+<td>0.20</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/metric-sealing-rings-mdr-polyethylene/mdr-20" target="_blank">Bopla</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Ventilation Plug M6</td>
+<td>2</td>
+<td>1.80</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/ventilation_plug_m6_grey_2_pcs-371153" target="_blank">Reichelt</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Screen Protector (~7x9 cm)</td>
+<td>1</td>
+<td>1.12</td>
+<td><a href="https://www.protectionfilms24.com/article/6x-savvies-screen-protectorstandard-sizes-with-4,3-inch-displays-96,5-mm-x-55,3-mm,-169-1603346.html?currency=EUR" target="_blank">protectionfilms24</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Silica Gel Pack (5 g)</td>
+<td>2</td>
+<td>0.45</td>
+<td><a href="https://www.amazon.de/wisedry-trockenmittel-regenerierbar-trockenmittelbeutel-Wiederverwendbar/dp/B078WQ92V3/?language=en_GB&amp;amp=undefined&amp;currency=EUR&amp;th=1" target="_blank">Amazon</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Cable Tie, 3.6 mm (length: 250+ mm)</td>
+<td>8</td>
+<td>0.43</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/cable_ties_with_flat_head_l_370_x_w_3_6_mm_100_pieces-316450" target="_blank">Reichelt</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Screw M4, internal hexagon (16 mm)</td>
+<td>2</td>
+<td>0.05</td>
+<td><a href="https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-M-4x16" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Hex Nut M4, flat</td>
+<td>2</td>
+<td>0.01</td>
+<td><a href="https://www.schraubenluchs.de/1000-Stueck-Sechskantmuttern-DIN-439-A2-M4" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td><strong>LED Button</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LED Push Button (3V) + Socket</td>
+<td>1</td>
+<td>5.22</td>
+<td><a href="https://funduinoshop.com/en/components/pushbuttons-and-switches/button/push-button-chrome-3v/5v-led-illuminated-with-socket?number=F23110281.6" target="_blank">Funduino</a></td>
+<td><a href="https://www.adafruit.com/product/560" target="_blank">Adafruit</a></td>
+</tr>
+<tr>
+<td>Single Row Pin Header, angled (7 pins)</td>
+<td>1</td>
+<td>0.09</td>
+<td><a href="https://eckstein-shop.de/Single-Double-Row-Pin-Male-Header-Stiftleiste-Strip-1x40-Pin-Rechteckig-5-Stuecke_1" target="_blank">Eckstein</a></td>
+<td><a href="https://shop.pimoroni.com/products/break-away-headers?variant=7351054145" target="_blank">Pimoroni</a></td>
+</tr>
+<tr>
+<td>Jumper Wire, 1-2 female ends (20 cm)</td>
+<td>4</td>
+<td>0.60</td>
+<td><a href="https://eckstein-shop.de/JumperWire10x1Pfemaletofemale20cmEN" target="_blank">Eckstein</a></td>
+<td><a href="https://www.berrybase.de/en/40pin-jumper-dupont-kabel-set-je-1x-f-f-m-m-f-m-20cm" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>WAGO Inline Splicing Connector</td>
+<td>4</td>
+<td>1.96</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/through_connector_max_4_mm_2_conductors-297351" target="_blank">Reichelt</a></td>
+<td><a href="https://shop.pimoroni.com/products/wago-inline-splicing-connector?variant=41207989010515" target="_blank">Pimoroni</a></td>
+</tr>
+<tr>
+<td><strong>Solar Panel &amp; Accessories</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Voltaic Solar Panel 5 Watt 6 Volt</td>
+<td>1</td>
+<td>40.45</td>
+<td><a href="https://www.kiwi-electronics.com/en/brand-voltaic-systems/5-watt-6-volt-solar-panel-etfe-10923" target="_blank">Kiwi Electronics</a></td>
+<td><a href="https://voltaicsystems.com/5-watt-panel-etfe/" target="_blank">Voltaic</a></td>
+</tr>
+<tr>
+<td>Voltaic Solar Panel Bracket - Medium</td>
+<td>1</td>
+<td>10.70</td>
+<td><a href="https://www.kiwi-electronics.com/en/solar-panel-bracket-medium-3375" target="_blank">Kiwi Electronics</a></td>
+<td><a href="https://voltaicsystems.com/BK102/" target="_blank">Voltaic</a></td>
+</tr>
+<tr>
+<td>Voltaic ETFE Panel Screws &amp; Washers</td>
+<td>1</td>
+<td>3.56</td>
+<td><a href="https://www.kiwi-electronics.com/en/brand-voltaic-systems/etfe-panel-screw-washer-set-10916" target="_blank">Kiwi Electronics</a></td>
+<td><a href="https://voltaicsystems.com/mount-set-etfe/" target="_blank">Voltaic</a></td>
+</tr>
+<tr>
+<td>Voltaic 3.5x1.1mm USB-C Adapter</td>
+<td>1</td>
+<td>3.92</td>
+<td><a href="https://www.kiwi-electronics.com/en/brand-voltaic-systems/female-3-5x1-1mm-usb-c-10930" target="_blank">Kiwi Electronics</a></td>
+<td><a href="https://voltaicsystems.com/A123/" target="_blank">Voltaic</a></td>
+</tr>
+<tr>
+<td>Voltaic 3.5x1.1mm Cable (30 cm)</td>
+<td>1</td>
+<td>5.70</td>
+<td><a href="https://www.kiwi-electronics.com/en/brand-voltaic-systems/male-3-5x1-1mm-to-female-3-5x1-1mm-extension-wire-voltaic-20133" target="_blank">Kiwi Electronics</a></td>
+<td><a href="https://voltaicsystems.com/W044/" target="_blank">Voltaic</a></td>
+</tr>
+<tr>
+<td>Cable Gland M20</td>
+<td>1</td>
+<td>1.73</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/metric-cable-glands-mbf-polyamide-light-grey-ip-68-5-bar-30-min/mbf-20-7035" target="_blank">Bopla</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Cable Gland Counter Nut M20</td>
+<td>1</td>
+<td>0.48</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/metric-counter-nuts-mgm-polyamide/mgm-20" target="_blank">Bopla</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Cable Gland Sealing Ring M20</td>
+<td>1</td>
+<td>0.10</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/metric-sealing-rings-mdr-polyethylene/mdr-20" target="_blank">Bopla</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td><strong>Mounting</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Insect Detect 2024 Aluminium Mount</td>
+<td>1</td>
+<td>101.20</td>
+<td><a href="https://i24.ws/0rN9vuwC" target="_blank">item</a></td>
+<td><a href="https://github.com/maxsitt/insect-detect-docs/blob/main/PDF_templates/Insect_Detect_mount_2024.pdf" target="_blank">PDF</a></td>
+</tr>
+<tr>
+<td>HPL Sheet, 3 mm (10x20 cm)</td>
+<td>1</td>
+<td>3.57</td>
+<td><a href="https://hplplattenshop.de/product/weiss-hpl-platten-3-mm-ral-9016/" target="_blank">hplplattenshop</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>HPL Sheet, 3 mm (12x24 cm)</td>
+<td>1</td>
+<td>3.57</td>
+<td><a href="https://hplplattenshop.de/product/weiss-hpl-platten-3-mm-ral-9016/" target="_blank">hplplattenshop</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Steel L-profile (50 cm)</td>
+<td>1</td>
+<td>3.23</td>
+<td><a href="https://www.hornbach.de/p/conceptor-winkelprofil-gelocht-verzinkt-35x35x1-mm-1m/6783618/" target="_blank">Hornbach</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Screw M4, internal hexagon (16 mm)</td>
+<td>11</td>
+<td>0.27</td>
+<td><a href="https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-M-4x16" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Screw M4, internal hexagon (30 mm)</td>
+<td>2</td>
+<td>0.12</td>
+<td><a href="https://www.schraubenluchs.de/500-Stueck-Zylinderschrauben-DIN-912-A2-Vollgewinde-M4-x-30" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Screw M8, internal hexagon (16 mm)</td>
+<td>2</td>
+<td>0.17</td>
+<td><a href="https://www.schraubenluchs.de/50-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-8x16" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Hex Nut M4, flat</td>
+<td>20</td>
+<td>0.12</td>
+<td><a href="https://www.schraubenluchs.de/1000-Stueck-Sechskantmuttern-DIN-439-A2-M4" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Washer (4.3x15x1 mm)</td>
+<td>13</td>
+<td>0.09</td>
+<td><a href="https://www.schraubenluchs.de/500-Stueck-Kotfluegelscheiben-Edelstahl-A2-43-x-15-x-1" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Washer (8.4x24x2 mm)</td>
+<td>2</td>
+<td>0.08</td>
+<td><a href="https://www.schraubenluchs.de/100-Stueck-Unterlegscheiben-DIN-9021-Edelstahl-A2-84" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td><strong>Platform (14x14 cm)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Alu Square Tube, 13.5 mm (250 mm)</td>
+<td>2</td>
+<td>3.88</td>
+<td><a href="https://www.alusteck.de/aluprofil-ohne-steg-13-5-x-13-5-mm-vierkantrohr-kaufen#neonCfg=schnittbild_profile::(A)--laenge::250" target="_blank">Alusteck</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Alu Square Tube, 13.5 mm (120 mm)</td>
+<td>5</td>
+<td>5.90</td>
+<td><a href="https://www.alusteck.de/aluprofil-ohne-steg-13-5-x-13-5-mm-vierkantrohr-kaufen#neonCfg=schnittbild_profile::(A)--laenge::120" target="_blank">Alusteck</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Connector, 13.5 mm (right angle)</td>
+<td>4</td>
+<td>8.76</td>
+<td><a href="https://www.alusteck.de/rechter-winkel-13-5-x-13-5-mm-steckverbinder-vierkantrohr" target="_blank">Alusteck</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Connector, 13.5 mm (+ outlet)</td>
+<td>2</td>
+<td>4.38</td>
+<td><a href="https://www.alusteck.de/rechter-winkel-1-abgang-13-5-x-13-5-mm-steckverbinder-vierkantrohr" target="_blank">Alusteck</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>HPL Sheet, green (14x14 cm)</td>
+<td>1</td>
+<td>3.57</td>
+<td><a href="https://hplplattenshop.de/product/signalgruen-ral-6032-struktur-hpl-platte-6-mm/" target="_blank">hplplattenshop</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Magnetic Tape, &lt;13.5 mm (~720 mm)</td>
+<td>1</td>
+<td>1.50</td>
+<td><a href="https://www.magnet-shop.com/magnetic-tape-and-sheets/magnetic-tape/fly-screens-tape-faced-with-adhesive-tape-12.7-mm-a-b" target="_blank">magnet-shop</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Components for Platform Design</td>
+<td></td>
+<td></td>
+<td><a href="../2024_buildinstructions_mounting/#2-platform" target="_blank">Instructions</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Total Cost</strong></td>
+<td></td>
+<td><strong>~660</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Quantity</th>
+<th>Price (€)</th>
+<th>Shop 1</th>
+<th>Shop 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Main Electronic Components</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OAK-1 (Auto-Focus)</td>
+<td>1</td>
+<td>141.55</td>
+<td><a href="https://eu.mouser.com/ProductDetail/Luxonis/OAK-1?qs=DPoM0jnrROWlYN7ZaaM6%2FA%3D%3D" target="_blank">Mouser</a></td>
+<td><a href="https://shop.luxonis.com/products/oak-1?variant=42664380334303" target="_blank">Luxonis</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi Zero 2 WH</td>
+<td>1</td>
+<td>21.90</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_zero_2_wh_4x_1_ghz_512_mb_ram_wlan_bt-383360" target="_blank">Reichelt</a></td>
+<td><a href="https://rpilocator.com/?cat=PIZERO2" target="_blank">rpilocator</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi CPU Heatsink</td>
+<td>1</td>
+<td>1.20</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_cooling_kit_2-piece_black-242772" target="_blank">Reichelt</a></td>
+<td><a href="https://shop.pimoroni.com/products/heatsink?variant=16851450375" target="_blank">Pimoroni</a></td>
+</tr>
+<tr>
+<td>SanDisk Extreme microSD (256 GB)</td>
+<td>1</td>
+<td>24.95</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/microsdhx_memory_card_256_gb-358288" target="_blank">Reichelt</a></td>
+<td><a href="https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-extreme-uhs-i-microsd?sku=SDSQXAV-256G-AN6MA" target="_blank">SanDisk</a></td>
+</tr>
+<tr>
+<td>Micro-USB to USB-A Adapter</td>
+<td>1</td>
+<td>1.85</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_zero_-_hi-speed_otg_adapter-223604" target="_blank">Reichelt</a></td>
+<td><a href="https://www.berrybase.de/en/super-tiny-usb-2.0-hi-speed-otg-adapter-a-buchse-micro-b-stecker" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi Stacking GPIO Header</td>
+<td>1</td>
+<td>2.12</td>
+<td><a href="https://www.uugear.com/product/stacking-gpio-header-for-raspberry-pi-20x2-pins-square-pin/" target="_blank">UUGear</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_40-pin_stacking_header_rm_2_54-223626" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Witty Pi 4 L3V7</td>
+<td>1</td>
+<td>28.56</td>
+<td><a href="https://www.uugear.com/product/witty-pi-4-l3v7/" target="_blank">UUGear</a></td>
+<td><a href="https://www.berrybase.de/en/witty-pi-4-l3v7-real-time-clock-rtc-und-power-management-modul-fuer-raspberry-pi" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>Li-Ion Battery Pack 3.7V (4400mAh)</td>
+<td>1</td>
+<td>14.24</td>
+<td><a href="https://eckstein-shop.de/PKNERGY-Lithium-Ion-Battery-Pack-ICR-18650-37V-4400mAh-LiPo-Li-Ion-with-JST-PH-Connector-EN" target="_blank">Eckstein</a></td>
+<td><a href="https://shop.pimoroni.com/products/lithium-ion-battery-pack?variant=23417820423" target="_blank">Pimoroni</a></td>
+</tr>
+<tr>
+<td>Voltaic V75 USB Battery Pack</td>
+<td>1</td>
+<td>101.14</td>
+<td><a href="https://www.kiwi-electronics.com/en/brand-voltaic-systems/v75-usb-battery-pack-10102" target="_blank">Kiwi Electronics</a></td>
+<td><a href="https://voltaicsystems.com/v75/" target="_blank">Voltaic</a></td>
+</tr>
+<tr>
+<td>Standoff M2.5, female-male (5 mm)</td>
+<td>4</td>
+<td>1.12</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/distance_bolt_5_mm_m2_5-236284" target="_blank">Reichelt</a></td>
+<td><a href="https://www.berrybase.de/en/abstandshuelse-metall-mit-gewinde-innen-aussen-m2-5-laenge-5-mm" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>Standoff M2.5, female*2 (11-12 mm)</td>
+<td>4</td>
+<td>1.92</td>
+<td><a href="https://www.uugear.com/product/copper-standoff-m25x11-spacer/" target="_blank">UUGear</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/distance_bolt_12_mm_m2_5-236293" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Screw M2.5 (5 mm)</td>
+<td>8</td>
+<td>1.92</td>
+<td><a href="https://www.uugear.com/product/copper-screw-m2-5x5/" target="_blank">UUGear</a></td>
+<td><a href="https://www.berrybase.de/en/schraube-kopf-zylinder-m2-5x5" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td><strong>Enclosures &amp; Accessories</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Bocube Enclosure B 221309 PC-V0</td>
+<td>1</td>
+<td>46.95</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/bocube/pc-ul-94-v0-single-coloured/enclosures-polycarbonate-ul-94-v0-single-coloured/b-221309-pc-v0-7035" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/bocube_231x125x90_mm_outdoor-compatible_ip68-345963" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Bocube Mounting Plate B M 2213</td>
+<td>2</td>
+<td>9.07</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/bocube/front-and-mounting-panels-3/mounting-panels-laminated-paper-2-mm/b-m-2213" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/bocube_mounting_plate_190_5_x_116_x_2_mm-359665" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Bocube Screw Set B M-SHR</td>
+<td>2</td>
+<td>0.57</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/bocube/accessories-26/sets-of-screws/b-m-shr" target="_blank">Bopla</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Euromas Enclosure M 215 G</td>
+<td>1</td>
+<td>24.16</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/euromas-abs-pc-f05/pc-crystal-clear-lid/enclosure-polycarbonate-3/m-215-g" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/polycarbonate_housing_clear_top_part_120x80x55_mm-126249" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Euromas Mounting Plate M 215</td>
+<td>1</td>
+<td>2.59</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/euromas-abs-pc-f05/mounting-panels-2/mounting-plates-laminated-paper-galvanised-steel-for-version-260/m-m-215-216-226-230" target="_blank">Bopla</a></td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/euromas_mounting_plate_110_x_70_x_1_5_mm-359683" target="_blank">Reichelt</a></td>
+</tr>
+<tr>
+<td>Cable Gland MBF 20-RJ45</td>
+<td>2</td>
+<td>14.26</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/cable-gland-with-slotted-sealing-insert-polyamide-light-grey-ip-66-68/mbf-20-rj45" target="_blank">Bopla</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Cable Gland Counter Nut M20</td>
+<td>2</td>
+<td>0.96</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/metric-counter-nuts-mgm-polyamide/mgm-20" target="_blank">Bopla</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Cable Gland Sealing Ring M20</td>
+<td>2</td>
+<td>0.20</td>
+<td><a href="https://www.bopla.de/en/enclosure-technology/cable-glands-general-accessories/cable-glands/metric-sealing-rings-mdr-polyethylene/mdr-20" target="_blank">Bopla</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Ventilation Plug M6</td>
+<td>2</td>
+<td>1.80</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/ventilation_plug_m6_grey_2_pcs-371153" target="_blank">Reichelt</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Screen Protector (~7x9 cm)</td>
+<td>1</td>
+<td>1.12</td>
+<td><a href="https://www.protectionfilms24.com/article/6x-savvies-screen-protectorstandard-sizes-with-4,3-inch-displays-96,5-mm-x-55,3-mm,-169-1603346.html?currency=EUR" target="_blank">protectionfilms24</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Silica Gel Pack (5 g)</td>
+<td>2</td>
+<td>0.45</td>
+<td><a href="https://www.amazon.de/wisedry-trockenmittel-regenerierbar-trockenmittelbeutel-Wiederverwendbar/dp/B078WQ92V3/?language=en_GB&amp;amp=undefined&amp;currency=EUR&amp;th=1" target="_blank">Amazon</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Cable Tie, 3.6 mm (length: 250+ mm)</td>
+<td>8</td>
+<td>0.43</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/cable_ties_with_flat_head_l_370_x_w_3_6_mm_100_pieces-316450" target="_blank">Reichelt</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Screw M4, internal hexagon (16 mm)</td>
+<td>2</td>
+<td>0.05</td>
+<td><a href="https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-M-4x16" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td>Hex Nut M4, flat</td>
+<td>2</td>
+<td>0.01</td>
+<td><a href="https://www.schraubenluchs.de/1000-Stueck-Sechskantmuttern-DIN-439-A2-M4" target="_blank">Schraubenluchs</a></td>
+<td>DIY Store</td>
+</tr>
+<tr>
+<td><strong>Total Cost</strong></td>
+<td></td>
+<td><strong>~445</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Quantity</th>
+<th>Price (€)</th>
+<th>Shop 1</th>
+<th>Shop 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Main Electronic Components</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OAK-1 (Auto-Focus)</td>
+<td>1</td>
+<td>141.55</td>
+<td><a href="https://eu.mouser.com/ProductDetail/Luxonis/OAK-1?qs=DPoM0jnrROWlYN7ZaaM6%2FA%3D%3D" target="_blank">Mouser</a></td>
+<td><a href="https://shop.luxonis.com/products/oak-1?variant=42664380334303" target="_blank">Luxonis</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi Zero 2 WH</td>
+<td>1</td>
+<td>21.90</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_zero_2_wh_4x_1_ghz_512_mb_ram_wlan_bt-383360" target="_blank">Reichelt</a></td>
+<td><a href="https://rpilocator.com/?cat=PIZERO2" target="_blank">rpilocator</a></td>
+</tr>
+<tr>
+<td>Raspberry Pi CPU Heatsink</td>
+<td>1</td>
+<td>1.20</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_cooling_kit_2-piece_black-242772" target="_blank">Reichelt</a></td>
+<td><a href="https://shop.pimoroni.com/products/heatsink?variant=16851450375" target="_blank">Pimoroni</a></td>
+</tr>
+<tr>
+<td>SanDisk Extreme microSD (256 GB)</td>
+<td>1</td>
+<td>24.95</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/microsdhx_memory_card_256_gb-358288" target="_blank">Reichelt</a></td>
+<td><a href="https://shop.sandisk.com/products/memory-cards/microsd-cards/sandisk-extreme-uhs-i-microsd?sku=SDSQXAV-256G-AN6MA" target="_blank">SanDisk</a></td>
+</tr>
+<tr>
+<td>Micro-USB to USB-A Adapter</td>
+<td>1</td>
+<td>1.85</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/raspberry_pi_zero_-_hi-speed_otg_adapter-223604" target="_blank">Reichelt</a></td>
+<td><a href="https://www.berrybase.de/en/super-tiny-usb-2.0-hi-speed-otg-adapter-a-buchse-micro-b-stecker" target="_blank">BerryBase</a></td>
+</tr>
+<tr>
+<td>Micro-USB to USB-A Cable (power RPi)</td>
+<td>1</td>
+<td>4.70</td>
+<td><a href="https://www.reichelt.com/de/en/shop/product/dual_easy-usb_2_0_cable_a_connector_to_micro-b_connector_angle-287771" target="_blank">Reichelt</a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Total Cost</strong></td>
+<td></td>
+<td><strong>~196</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Hardware">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Hardware
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../2024_buildinstructions_overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2022 - 2025 Maximilian Sittinger
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/maxsitt" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://orcid.org/0000-0002-4096-8556" target="_blank" rel="noopener" title="orcid.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M294.7 188.2h-45.9V342h47.5c67.6 0 83.1-51.3 83.1-76.9 0-41.6-26.5-76.9-84.7-76.9M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m-80.8 360.8h-29.8V161.3h29.8zM160.3 98.5a19.6 19.6 0 1 1 0 39.2 19.6 19.6 0 1 1 0-39.2M300 369h-81V161.3h80.6c76.7 0 110.4 54.8 110.4 103.9 0 53.3-41.7 103.9-110 103.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://researchgate.net/profile/Maximilian-Sittinger" target="_blank" rel="noopener" title="researchgate.net" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M0 32v448h448V32zm262.2 334.4c-6.6 3-33.2 6-50-14.2-9.2-10.6-25.3-33.3-42.2-63.6-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6 31.7 0 55.9 14.4 55.9 45.6 0 21.1-16.7 42.2-39.2 47.5 13.6 24.2 30 45.6 42.2 58.9 7.2 7.8 17.2 14.7 27.2 14.7zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3 14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9m-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6 23.3 0 37.2 12.2 37.2 34.5 0 21.9-15 36.6-39.7 36.6"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:maximilian.sittinger@idiv.de" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M61.4 64C27.5 64 0 91.5 0 125.4c0 .9 0 1.7.1 2.6H0v256c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V128h-.1c0-.9.1-1.7.1-2.6 0-33.9-27.5-61.4-61.4-61.4zM464 192.3V384c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192.3l154.8 117.4c31.4 23.9 74.9 23.9 106.4 0zM48 125.4c0-7.4 6-13.4 13.4-13.4h389.2c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "header.autohide", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
