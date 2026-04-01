@@ -4,59 +4,41 @@
 
 Insert the microSD card into your card reader and start the Raspberry Pi Imager.
 
-First, use `CHOOSE DEVICE` to select your Raspberry Pi model (`Raspberry Pi Zero 2 W`
-in our case). Continue with `CHOOSE OS` to select the operating system.
+Start with selecting **Raspberry Pi Zero 2 W** as your device.
+
+Continue with the OS selection where you need to go to **Raspberry Pi OS (other)** first.
+Then, choose **Raspberry Pi OS Lite (64-bit)** (based on Debian Trixie with Python 3.13).
 
 ![Raspberry Pi Imager Choose OS](assets/images/raspberrypi_imager_choose_os.png){ width="700" }
 
-Go to `Raspberry Pi OS (other)` to show the Lite OS versions.
+Select your SD card as storage medium and continue to the **Customisation** settings.
 
-![Raspberry Pi Imager Choose OS Other](assets/images/raspberrypi_imager_choose_os_other.png){ width="700" }
+- Set your **Hostname** that will be used as device ID. Make sure to give each device
+  a unique hostname, e.g. `insdet-cam01`, `insdet-cam02`, etc. Note the hostname, as
+  you will need it to connect to the RPi via SSH later.
+- Check if the **Localisation** settings are already correct and modify them if needed.
+- Continue to **User** and keep the default `pi` as username. Changing the username will
+  break the software functionality, do this on your own risk. Choose a simple password, you
+  won't actually need it, as we will set up SSH key based authentication in the next steps.
 
-Select `Raspberry Pi OS Lite (32-bit)` (based on Debian 12 Bookworm with Python 3.11).
+    ![Raspberry Pi Imager Choose Username](assets/images/raspberrypi_imager_choose_username.png){ width="700" }
 
-![Raspberry Pi Imager Choose OS Lite](assets/images/raspberrypi_imager_choose_os_lite.png){ width="700" }
+- Add your **Wi-Fi** credentials so that the Raspberry Pi can connect to the internet for
+  the initial software download and installation. This can be e.g. a 2.4 GHz
+  [mobile hotspot](https://support.microsoft.com/en-us/windows/use-your-windows-device-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85#windowsversion=windows_11){target=_blank}.
+- Continue to the **Remote access** settings and **enable SSH** with **public key authentication**.
+  If there is no SSH key configured yet, hit the `BROWSE` button and select the `id_rsa.pub` file
+  in the `.ssh` folder in your user directory. Add multiple public SSH keys if you need to be able
+  to connect to different computers.
 
-Continue with `CHOOSE STORAGE` and select your microSD card.
+    ![Raspberry Pi Imager Configure SSH](assets/images/raspberrypi_imager_configure_ssh.png){ width="700" }
 
-![Raspberry Pi Imager Choose Storage](assets/images/raspberrypi_imager_choose_storage.png){ width="700" }
+- Optionally, activate [Raspberry Pi Connect](https://www.raspberrypi.com/software/connect/){target=_blank}.
+  This is only recommended if your Raspberry Pi is always connected to a Wi-Fi network
+  and you need to be able to remotely access it.
 
-Hit `NEXT` and select `EDIT SETTINGS` to customize your OS setup.
-
-![Raspberry Pi Imager Edit Settings](assets/images/raspberrypi_imager_settings.png){ width="700" }
-
-Configure the following settings under the `GENERAL` tab:
-
-- `Set hostname`: For multiple camera traps, give each one a unique hostname.
-  Note the hostname, as you will need it to connect to the RPi via SSH.
-- `Set username and password`: Keep the default `pi` as username. Choose a
-  simple password (we won't use it after setting up SSH key based authentication
-  in the next step).
-- `Configure wireless LAN`: Enter your Wi-Fi credentials (e.g. 2.4 GHz
-  [mobile hotspot](https://support.microsoft.com/en-us/windows/use-your-windows-device-as-a-mobile-hotspot-c89b0fad-72d5-41e8-f7ea-406ad9036b85){target=_blank}).
-- Select the correct `Wireless LAN country`.
-- `Set locale settings` to your time zone and keyboard layout.
-
-    ![Raspberry Pi Imager Settings General](assets/images/raspberrypi_imager_settings_general.png){ width="500" }
-
-Configure the following settings under the `SERVICES` tab:
-
-- Activate `Enable SSH` and `Allow public-key authentication only`.
-- Hit `RUN SSH-KEYGEN` if you didn't already generate a SSH key pair before.
-  The public key will be automatically inserted in the text field.
-
-    ![Raspberry Pi Imager Settings Services](assets/images/raspberrypi_imager_settings_services.png){ width="700" }
-
-Keep the default settings under the `OPTIONS` tab and hit `SAVE`.
-
-![Raspberry Pi Imager Settings Options](assets/images/raspberrypi_imager_settings_options.png){ width="500" }
-
-Hit `YES` to apply the customized OS settings. Confirm again with `YES` that all
-existing data on your microSD card will be erased when writing the image.
-
-![Raspberry Pi Imager Apply Settings](assets/images/raspberrypi_imager_settings_apply.png){ width="700" }
-
-**Insert the microSD card into the Raspberry Pi after the OS installation is finished.**
+Write the customized Raspberry Pi OS to your microSD card and insert it into the
+Raspberry Pi after it is finished.
 
 ---
 
@@ -444,10 +426,11 @@ wake up the Raspberry Pi everyday at 9, 12, 15 and 18 o'clock (UTC+2). Activate
 
 ## Install Software
 
-Install all dependencies/packages and automatically run the required setup steps:
+Install the [`insect-detect`](https://github.com/maxsitt/insect-detect){target=_blank}
+software including all required packages and setup steps:
 
 ``` bash
-wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/insect_detect_install.sh | bash
+wget -qO- https://raw.githubusercontent.com/maxsitt/insect-detect/main/install.sh | bash
 ```
 
 **Optional**: Install and configure [Rclone](https://rclone.org/docs/){target=_blank}
@@ -457,11 +440,17 @@ if you want to use the upload feature:
 wget -qO- https://rclone.org/install.sh | sudo bash
 ```
 
-Your system is all set up and ready to go now! Run the scripts with the
-Python interpreter from the virtual environment:
+Your system is all set up and ready to go now! Before running scripts,
+first navigate to the `insect-detect` directory:
 
 ``` bash
-env_insdet/bin/python3 insect-detect/webapp.py
+cd insect-detect
+```
+
+Run the web app with:
+
+``` bash
+uv run webapp
 ```
 
 Check the [Usage](usage.md){target=_blank} instructions for more details about
@@ -472,10 +461,10 @@ the software and how to use it.
     - More information about setting up the OAK camera and DepthAI can be found at the
       [Luxonis Docs](https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide/){target=_blank}.
     - If you want to learn more about the DepthAI software, check out the
-      [Software Documentation](https://docs.luxonis.com/software){target=_blank}.
+      [Software Documentation](https://docs.luxonis.com/software-v3/){target=_blank}.
     - For OAK-specific problems, get support in the
       [Luxonis Forum](https://discuss.luxonis.com/){target=_blank} or post an issue
-      to the [`depthai-python`](https://github.com/luxonis/depthai-python/issues){target=_blank} repo.
+      to the [`depthai-core`](https://github.com/luxonis/depthai-core){target=_blank} repo.
 
 ---
 
@@ -489,5 +478,5 @@ and give you instructions in the case of merge conflicts.
 Update the `insect-detect` software by running:
 
 ``` bash
-bash insect-detect/insect_detect_update.sh
+bash insect-detect/update.sh
 ```

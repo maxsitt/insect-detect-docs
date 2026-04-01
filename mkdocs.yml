@@ -1,4 +1,4 @@
-# Copyright (c) 2022-2025 Maximilian Sittinger <maximilian.sittinger@idiv.de>
+# Copyright (c) 2022-2026 Maximilian Sittinger <maximilian.sittinger@idiv.de>
 
 # License: CC BY-SA 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
 # You are free to share (copy and redistribute the material in any medium or
@@ -18,8 +18,8 @@ site_name: Insect Detect Docs
 site_url: https://maxsitt.github.io/insect-detect-docs/
 site_author: Maximilian Sittinger
 site_description: >-
-  Insect Detect: DIY camera trap for continuous automated insect monitoring - 
-  Documentation and build instructions
+  Insect Detect: DIY camera trap for continuous automated insect monitoring -
+   Documentation and build instructions
 
 # Repository
 repo_name: maxsitt/insect-detect-docs
@@ -27,7 +27,7 @@ repo_url: https://github.com/maxsitt/insect-detect-docs
 edit_uri: ""
 
 # Copyright
-copyright: Copyright &copy; 2022 - 2025 Maximilian Sittinger
+copyright: Copyright &copy; 2022 - 2026 Maximilian Sittinger
 
 # Configuration
 theme:
@@ -45,7 +45,7 @@ theme:
     - search.highlight
     - search.suggest
     - toc.follow
-  palette: 
+  palette:
     - scheme: slate
       primary: blue grey
       accent: teal

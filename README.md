@@ -18,8 +18,7 @@ the DIY camera trap.
 The Insect Detect DIY camera trap system is composed of low-cost off-the-shelf hardware components
 ([Raspberry Pi Zero 2 W](https://www.raspberrypi.com/products/raspberry-pi-zero-2-w/),
 [Luxonis OAK-1](https://docs.luxonis.com/hardware/products/OAK-1),
-[Witty Pi 4 L3V7](https://www.uugear.com/product/witty-pi-4-l3v7/) or
-[PiJuice Zero pHAT](https://uk.pi-supply.com/products/pijuice-zero)), combined with
+[Witty Pi 4 L3V7](https://www.uugear.com/product/witty-pi-4-l3v7/)), combined with
 open source software and can be easily assembled and set up with the
 [provided instructions](https://maxsitt.github.io/insect-detect-docs/).
 
@@ -45,7 +44,7 @@ some standard tools are necessary, which are listed in the Hardware
 ## Software setup
 
 In the [**Software**](https://maxsitt.github.io/insect-detect-docs/software/)
-section of the documentaton website, all steps to get the camera trap up and
+section of the documentation website, all steps to get the camera trap up and
 running are explained. You will start with installing the necessary software
 to your [local PC](https://maxsitt.github.io/insect-detect-docs/software/localsetup/),
 to communicate with the Raspberry Pi Zero 2 W. The next steps will guide you
@@ -59,6 +58,11 @@ scripts and how to run them can be found in
 ---
 
 ## Model training
+
+> [!WARNING]
+> Detection model training is currently being refactored and will be updated soon.
+> YOLO detection models trained with the previous approach are not supported anymore
+> after insect-detect v2.0.0.
 
 The **Model Training** section will show you tools to
 [annotate](https://maxsitt.github.io/insect-detect-docs/modeltraining/annotation/)

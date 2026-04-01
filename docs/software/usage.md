@@ -29,26 +29,30 @@ hotspot as fallback mechanism when no configured Wi-Fi network is available
 
 ## Web App
 
-With the [web app](https://github.com/maxsitt/insect-detect/blob/main/webapp.py){target=_blank},
+With the [web app](https://github.com/maxsitt/insect-detect/blob/main/src/insectdetect/webapp.py){target=_blank},
 you can view the OAK camera live stream including detected and tracked insects
 in the browser-based user interface
 (based on [NiceGUI](https://github.com/zauberzeug/nicegui/){target=_blank}).
 It also allows real-time camera control (e.g. setting manual focus) and customization of all
-[configuration parameters](https://github.com/maxsitt/insect-detect/blob/main/configs/config_custom.yaml){target=_blank},
+[configuration parameters](https://github.com/maxsitt/insect-detect/blob/main/configs/config.yaml){target=_blank},
 as well as selecting the
 [active config](https://github.com/maxsitt/insect-detect/blob/main/configs/config_selector.yaml){target=_blank}
 that is used by both the web app and the recording script.
 When using the web app in the field while setting up your camera trap, you
 can also save deployment metadata, such as location and background setting.
 The `Advanced` section includes current system info (e.g. temperature,
-CPU/RAM usage) and viewing of log files.
+CPU/RAM usage), viewing of log files and an integrated Terminal.
 
-Run the [`webapp.py`](https://github.com/maxsitt/insect-detect/blob/main/webapp.py){target=_blank}
-script with the Python interpreter from the virtual environment where you
-installed the required packages (e.g. `env_insdet`):
+First navigate to the `insect-detect` directory:
 
 ``` bash
-env_insdet/bin/python3 insect-detect/webapp.py
+cd insect-detect
+```
+
+Run the web app with:
+
+``` bash
+uv run webapp
 ```
 
 Use one of the links that is shown in the Terminal to open the web app in your
@@ -63,49 +67,52 @@ Stop the web app with the `Stop App` button or by pressing ++ctrl+c++ in the Ter
 
 ## Recording Script
 
-The [recording script](https://github.com/maxsitt/insect-detect/blob/main/trigger_capture.py){target=_blank}
+The [recording script](https://github.com/maxsitt/insect-detect/blob/main/src/insectdetect/capture.py){target=_blank}
 can be used for fully automated insect monitoring in autonomous camera trap deployments.
 All configuration parameters can be customized in the web app or by directly modifying the
-[`config_custom.yaml`](https://github.com/maxsitt/insect-detect/tree/main/configs/config_custom.yaml){target=_blank}
+[`config.yaml`](https://github.com/maxsitt/insect-detect/tree/main/configs/config.yaml){target=_blank}
 file. You can generate multiple custom configuration files and select the active
 config either in the web app or by modifying the
 [`config_selector.yaml`](https://github.com/maxsitt/insect-detect/blob/main/configs/config_selector.yaml){target=_blank}.
 
-Run the
-[`trigger_capture.py`](https://github.com/maxsitt/insect-detect/blob/main/trigger_capture.py){target=_blank}
-script with the Python interpreter from the virtual environment where you
-installed the required packages (e.g. `env_insdet`):
+First navigate to the `insect-detect` directory:
 
 ``` bash
-env_insdet/bin/python3 insect-detect/trigger_capture.py
+cd insect-detect
+```
+
+Run the capture script with:
+
+``` bash
+uv run capture
 ```
 
 Stop the script by pressing ++ctrl+c++ in the Terminal.
 
 ### Processing Pipeline
 
-- A custom **YOLO insect detection model** is run in real time on device (OAK)
-  and uses a continuous stream of downscaled LQ frames as input.
+- A custom **insect detection model** is run in real time on device (OAK)
+  and uses a continuous stream of downscaled frames as input.
 - An **object tracker** uses the bounding box coordinates of detected insects
   to assign a unique tracking ID to each individual present in the frame and
   track its movement through time.
-- The tracker + model output from inference on LQ frames is synchronized with
-  **MJPEG-encoded HQ frames** (default: 3840x2160 px) on device (OAK).
-- The HQ frames are saved to the microSD card at the configured
+- The tracker + model output from inference on downscaled frames is synchronized with
+  **MJPEG-encoded high-resolution frames** (default: 3840x2160 px) on device (OAK).
+- The full frames are saved to the microSD card at the configured
   **capture intervals** while an insect is detected (triggered capture)
-  and independent of detections (time-lapse capture).
+  and independent of detections (timelapse capture).
 - Corresponding **metadata** from the detection model and tracker output
   is saved to a metadata .csv file for each detected and tracked insect
   (including timestamp, label, confidence score, tracking ID, tracking status
   and bounding box coordinates).
 - The bounding box coordinates can be used to **crop detected insects** from
-  the corresponding HQ frames and save them as individual .jpg images.
-  Depending on the post-processing configuration, the original HQ frames are
+  the corresponding full frames and save them as individual .jpg images.
+  Depending on the post-processing configuration, the original full frames are
   optionally deleted to save storage space.
-- If a power management board (Witty Pi 4 L3V7 or PiJuice Zero) is connected and
+- If a power management board (e.g. Witty Pi 4 L3V7) is connected and
   enabled in the configuration, **intelligent power management** is activated which
   includes battery charge level monitoring with conditional recording durations.
-- With the default configuration, running the recording consumes **~3.8 W** of power.
+- With the default configuration, running the recording consumes around **4.2 W** of power.
 
 ---
 
@@ -124,56 +131,56 @@ the recording script manually.
 ``` yaml hl_lines="6-8"
 startup:
   hotspot_setup:
-    enabled: true  # Create RPi Wi-Fi hotspot if it doesn't exist (uses hostname for SSID and password)
+    enabled: true
   network_setup:
-    enabled: true  # Create/update all configured Wi-Fi networks in NetworkManager (including hotspot)
+    enabled: true
   auto_run:
-    enabled: true       # Automatically run configured Python script(s) after boot
-    primary: webapp.py  # Primary Python script in "insect-detect" directory that is run first
-    fallback:           # Fallback Python script in "insect-detect" directory (can be empty)
-    delay: 180          # Wait time (seconds) before stopping primary script and running fallback script
+    enabled: true
+    primary: webapp
+    fallback: null
+    delay: 180
 ```
 
 ### Use Case 2: Autonomous
 
 For long-term field deployment, you want to run the recording script
-`trigger_capture.py` automatically after each boot. Please make sure to
-modify and save all relevant configuration parameters either beforehand or
-when setting up the camera trap.
+automatically after each boot. Please make sure to modify and save
+all relevant configuration parameters either beforehand or when
+setting up the camera trap.
 
 ``` yaml hl_lines="6-8"
 startup:
   hotspot_setup:
-    enabled: true  # Create RPi Wi-Fi hotspot if it doesn't exist (uses hostname for SSID and password)
+    enabled: true
   network_setup:
-    enabled: true  # Create/update all configured Wi-Fi networks in NetworkManager (including hotspot)
+    enabled: true
   auto_run:
-    enabled: true                # Automatically run configured Python script(s) after boot
-    primary: trigger_capture.py  # Primary Python script in "insect-detect" directory that is run first
-    fallback:                    # Fallback Python script in "insect-detect" directory (can be empty)
-    delay: 180                   # Wait time (seconds) before stopping primary script and running fallback script
+    enabled: true
+    primary: capture
+    fallback: null
+    delay: 180
 ```
 
 ### Use Case 3: Hybrid
 
 There might be scenarios where you want to optionally connect to the web app
 after a scheduled wake-up time, e.g. to modify settings or check log files.
-For this use case, you can set `webapp.py` as `primary` auto-run script and
-`trigger_capture.py` as `fallback` script. If no user interaction (opening the
+For this use case, you can set `webapp` as `primary` auto-run script and
+`capture` as `fallback` script. If no user interaction (opening the
 web app in your browser) is detected for the configured `delay` time, the
 web app will be terminated and the recording script will be started automatically.
 
 ``` yaml hl_lines="6-10"
 startup:
   hotspot_setup:
-    enabled: true  # Create RPi Wi-Fi hotspot if it doesn't exist (uses hostname for SSID and password)
+    enabled: true
   network_setup:
-    enabled: true  # Create/update all configured Wi-Fi networks in NetworkManager (including hotspot)
+    enabled: true
   auto_run:
-    enabled: true                 # Automatically run configured Python script(s) after boot
-    primary: webapp.py            # Primary Python script in "insect-detect" directory that is run first
-    fallback: trigger_capture.py  # Fallback Python script in "insect-detect" directory (can be empty)
-    delay: 180                    # Wait time (seconds) before stopping primary script and running fallback script
+    enabled: true
+    primary: webapp
+    fallback: capture
+    delay: 180
 ```
 
 ---

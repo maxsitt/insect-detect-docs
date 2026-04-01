@@ -1,5 +1,11 @@
 # Object detection model training
 
+!!! warning "Deprecation notice"
+
+    Detection model training is currently being refactored and will be updated soon.
+    YOLO detection models trained with the previous approach are not supported anymore
+    after insect-detect v2.0.0.
+
 [YOLO](https://pjreddie.com/darknet/yolo/){target=_blank} (You Only Look Once)
 ([Redmon et al., 2016](https://doi.org/10.48550/arXiv.1506.02640){target=_blank})
 is the first object detection model which combines object detection (bounding
