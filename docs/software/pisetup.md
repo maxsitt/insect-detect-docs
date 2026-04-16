@@ -460,8 +460,13 @@ if you want to use the upload feature:
 wget -qO- https://rclone.org/install.sh | sudo bash
 ```
 
-Your system is all set up and ready to go now! Please close and reopen your terminal
-before using the `uv` command to ensure the PATH is updated and `uv` is available.
+Your system is all set up and ready to go now!
+
+To make the `uv` command available in your current terminal session, run:
+
+``` bash
+source $HOME/.local/bin/env
+```
 
 Before running scripts, first navigate to the `insect-detect` directory:
 
