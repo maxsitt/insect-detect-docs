@@ -18,8 +18,9 @@ Select your SD card as storage medium and continue to the **Customisation** sett
   you will need it to connect to the RPi via SSH later.
 - Check if the **Localisation** settings are already correct and modify them if needed.
 - Continue to **User** and keep the default `pi` as username. Changing the username will
-  break the software functionality, do this on your own risk. Choose a simple password, you
-  won't actually need it, as we will set up SSH key based authentication in the next steps.
+  break the software functionality, do this on your own risk. Choose a password and note
+  it. By default, you will need it when running `sudo` commands since RPi OS version 6.2.
+  Make sure to change this default setting in the [Update RPi](#update-rpi) step.
 
     ![Raspberry Pi Imager Choose Username](assets/images/raspberrypi_imager_choose_username.png){ width="700" }
 
@@ -174,6 +175,25 @@ folder in VS Code. This makes working with files on the Raspberry Pi easier
 ---
 
 ## Update RPi
+
+!!! warning "Disable admin password"
+
+    If you set up your SD card after April 14 (2026), you will have the latest
+    RPi OS 6.2 installed, where passwordless sudo is now disabled by default
+    ([blog post](https://www.raspberrypi.com/news/a-security-update-for-raspberry-pi-os/){target=_blank}).
+    For the insect-detect software to function correctly, we will need to enable
+    passwordless sudo again by disabling the admin password in the system settings.
+
+    Open the [`raspi-config`](https://www.raspberrypi.com/documentation/computers/configuration.html#raspi-config){target=_blank}
+    tool by running:
+
+    ``` bash
+    sudo raspi-config
+    ```
+
+    Go to `1 System Options` and then `S10 Admin Password`. When asked if you would
+    like the admin (sudo) password to be enabled, choose `No`, which will disable the
+    admin password. Hit `Finish` to close the `raspi-config` tool.
 
 We will start with updating the already installed software by running:
 
